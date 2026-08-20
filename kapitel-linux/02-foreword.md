@@ -42,5 +42,3 @@ decisions made by architects of programming languages, APIs game engines and too
 of them make sense, they can be learned and they are completely deterministic. If we take the
 time to understand them, they are completely knowable.
 Best of luck, I believe in you!
-
-3

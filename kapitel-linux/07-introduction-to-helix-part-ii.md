@@ -39,7 +39,8 @@ Your editor (e.g. nvim)'s tab-completion will help you find files. Type part of 
 
 If you attempt to open a file that doesn't exist, your editor (e.g. nvim) will create a new buffer with that name. It is not yet saved to disk.
 
-> **NOTE:** When your editor (e.g. nvim) stores text before it has been written, it is being stored in something known as a **buffer**.
+> [!NOTE]
+> When your editor (e.g. nvim) stores text before it has been written, it is being stored in something known as a **buffer**.
 
 Once you press:
 
@@ -117,4 +118,5 @@ To browse files in the project directory:
 - `:e .` — open netrw (built-in file browser) in the current directory
 - Or if you have LazyVim or a similar distribution: `<leader>ff` to open telescope/fzf fuzzy finder
 
-> **NOTE:** For heavier projects, you can also use an IDE with its own project-wide file navigation and refactoring tools.
+> [!NOTE]
+> For heavier projects, you can also use an IDE with its own project-wide file navigation and refactoring tools.

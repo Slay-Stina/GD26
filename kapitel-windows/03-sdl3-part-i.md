@@ -63,7 +63,7 @@ Download the pre-built binary `helix-25.07.1-x86_64-windows.zip` and extract it 
 
 > [!NOTE]
 > 
-> > We need to remember this location as we will be referencing this specific address on our computer soon.
+> We need to remember this location as we will be referencing this specific address on our computer soon.
 
 Running `hx.exe` will bring up the Helix editor. To quit the editor (don't panic) type `:` to bring up the command line, type a single `q` and press enter.
 

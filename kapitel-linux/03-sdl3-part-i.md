@@ -4,7 +4,8 @@
 
 SDL3 is not a .EXE. it's a collection of shared objects (.so) and header files that can be called on to access basic features like creating windows or accept input from the keyboard.
 
-> NOTE: This course teaches game programming just about as "from scratch" as is educationally viable. Once we know how these systems operate and move through the semester we will off-load a bunch of this heavy lifting onto game engines and well groomed applications with a lot of large and shiny helpful buttons. This course aims to empower you by teaching you
+> [!NOTE]
+> This course teaches game programming just about as "from scratch" as is educationally viable. Once we know how these systems operate and move through the semester we will off-load a bunch of this heavy lifting onto game engines and well groomed applications with a lot of large and shiny helpful buttons. This course aims to empower you by teaching you
 > 1) how things work "behind the scenes"
 > 2) how to not become dependant on a ready-made game engine
 > 3) if you can do this, then nothing a LIA will throw at you will feel difficult in comparison
@@ -55,7 +56,8 @@ No manual downloading or copying of DLLs needed.
 
 For this course, we will be writing our code in **your editor (e.g. nvim)** (Neovim). You can also use VS Code or any editor you prefer.
 
-> NOTE: your editor (e.g. nvim) is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
+> [!NOTE]
+> your editor (e.g. nvim) is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
 
 ## bash and environment variables
 
@@ -200,7 +202,8 @@ sudo dnf install cmake ninja-build clang
 sudo pacman -S cmake ninja clang
 ```
 
-> NOTE: LLVM contains a compiler called `clang++`. We will be using it from bash.
+> [!NOTE]
+> LLVM contains a compiler called `clang++`. We will be using it from bash.
 
 ### Check installation
 

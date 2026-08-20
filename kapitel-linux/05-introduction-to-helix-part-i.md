@@ -11,7 +11,8 @@ Your editor (e.g. nvim) (Neovim) is a code editor, and unlike a full IDE it is n
 
 When we dive into programming applications in SDL3 we will be using your editor (e.g. nvim) to edit our code.
 
-> **NOTE:** Debugging is another lecture.
+> [!NOTE]
+> Debugging is another lecture.
 
 If you have computer experience then you will quickly find that your editor (e.g. nvim) is unlike any other software you've used. Just writing in it, before knowing how it works will feel alien and strange. You may eventually decide to move away from your editor (e.g. nvim) and towards more mainstream and less opinionated editors. But for this course, you will be using the software that I use myself.
 
@@ -32,7 +33,8 @@ Your editor (e.g. nvim) uses a way of typing that was first introduced with the 
 
 We enter Insert Mode using `i` or `a` or `o` or `O` (note how upper and lowercase are distinct from each other). We exit Insert Mode, Visual Mode, and Command Mode going back to Normal Mode by pressing Escape.
 
-> **NOTE:** On Linux, keyboard layout is handled by your system. For programming, an English (US) layout is recommended for easy access to symbols like `{}`, `[]`, `|`, `~`, etc.
+> [!NOTE]
+> On Linux, keyboard layout is handled by your system. For programming, an English (US) layout is recommended for easy access to symbols like `{}`, `[]`, `|`, `~`, etc.
 
 We will be pressing Escape a lot, and because the Escape key is so far away from the keyboard's home row we can remap Caps Lock to Escape. This is done on Linux via your desktop environment or window manager. For example, on systems using X11:
 
@@ -44,7 +46,8 @@ On Wayland compositors, this is usually configured in the compositor's config fi
 
 Now we turn Caps ON and OFF using Escape and exit Insert Mode and Visual Mode using Caps Lock. This will, like many new things, feel strange at first. But this remapping is very common when using your editor (e.g. nvim) or other VIM-style software. And now we're using our computer as developers not hobbyists, and that should naturally come with changes to how we use our hardware.
 
-> **NOTE:** I suggest unplugging your mouse when learning your editor (e.g. nvim) if you can't help but reach for it all the time.
+> [!NOTE]
+> I suggest unplugging your mouse when learning your editor (e.g. nvim) if you can't help but reach for it all the time.
 
 Your editor (e.g. nvim) and VIM style systems are so notorious that there are even a slew of memes relating to the fact that people don't know how to exit them. ("how to quit vim" on Google will yield a number of results). So let's learn how to close down your editor (e.g. nvim). This is done from the **Command Mode**, which we access by typing `:`. Once we have done so, we can type a massive number of commands.
 
@@ -60,7 +63,8 @@ colorscheme your-chosen-theme
 
 Then save with `:w` and quit with `:q`.
 
-> **NOTE:** You can also type `:wq` to save and quit in one command, or `:wqa` to save all files and quit.
+> [!NOTE]
+> You can also type `:wq` to save and quit in one command, or `:wqa` to save all files and quit.
 
 We will be working with C++ files, and it would be very nice to catch errors before we try and compile. Luckily we can do just that. Once we compile, it's clang that finds and spits out any errors. But using what is known as a **language server** we can run background processes that look at and understand our code. This info is then given to your editor (e.g. nvim) so it can display red errors for us.
 
@@ -76,7 +80,8 @@ But more directly, we can check if clangd is available:
 clangd --version
 ```
 
-> **NOTE:** `clangd` is not the same as `clang`. It actually stands for **clang daemon**. A daemon is a silent background process that just listens to requests that come in then shuts down when not needed anymore. This specific language server daemon is a repackaged part of clang that editors can talk to.
+> [!NOTE]
+> `clangd` is not the same as `clang`. It actually stands for **clang daemon**. A daemon is a silent background process that just listens to requests that come in then shuts down when not needed anymore. This specific language server daemon is a repackaged part of clang that editors can talk to.
 
 Install clangd using your package manager:
 
@@ -98,4 +103,5 @@ Once we have clangd up and running, it runs in the background each time we open 
 - **A)** Get diagnostics inside your editor (e.g. nvim) (red underlines, error messages)
 - **B)** Use `K` (in Normal Mode) to hover over a symbol and see documentation, and use the built-in LSP integration to see fixes
 
-> **NOTE:** If you use a distribution like LazyVim, you get telescope, autocompletion, and LSP diagnostics out of the box. For heavier projects, you can also use an IDE with built-in clangd integration.
+> [!NOTE]
+> If you use a distribution like LazyVim, you get telescope, autocompletion, and LSP diagnostics out of the box. For heavier projects, you can also use an IDE with built-in clangd integration.

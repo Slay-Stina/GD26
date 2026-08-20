@@ -42,7 +42,8 @@ With this updated cmakelists.txt we can start working with asset files.
 
 The next step is taking our big monolith memory arena and placing another arena inside of it, segmenting a section of memory to be the exclusive area to hold pointers to our sprites.
 
-> **NOTE:** sprites aka textures live on the GPU inside our VRAM compared to our game data that lives on the CPU. We will need to convert each .PNG file into `SDL_GPUTexture` storing it in VRAM and accessing it by pointer reference inside our memory arena.
+> [!NOTE]
+> sprites aka textures live on the GPU inside our VRAM compared to our game data that lives on the CPU. We will need to convert each .PNG file into `SDL_GPUTexture` storing it in VRAM and accessing it by pointer reference inside our memory arena.
 
 At the top of our `main()` we will be adding a new memory arena by allocating it directly inside our top-level memory arena:
 

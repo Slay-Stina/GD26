@@ -4,7 +4,8 @@
 
 With the skillset we have currently we can begin constructing a core loop for a program.
 
-> **NOTE:** As it lacks a win-state or any sense of actual logic we'll call it a program for now and a game once we add those elements.
+> [!NOTE]
+> As it lacks a win-state or any sense of actual logic we'll call it a program for now and a game once we add those elements.
 
 We're going to create a skeleton version of our core loop, including:
 
@@ -14,7 +15,8 @@ We're going to create a skeleton version of our core loop, including:
 
 We will be setting up parts of this in our `main.cpp` but we'll also create other files that our `main.cpp` will call into.
 
-> **NOTE:** Once we have gotten this core loop to work we will be changing a lot (almost all) of how we structure our program in the next couple of lectures. We will be re-writing things a couple of times, each time digging deeper into performance-focused C++ code!
+> [!NOTE]
+> Once we have gotten this core loop to work we will be changing a lot (almost all) of how we structure our program in the next couple of lectures. We will be re-writing things a couple of times, each time digging deeper into performance-focused C++ code!
 
 At the end of this lecture we will have a colored rectangle that we can control on the screen using the arrow keys.
 
@@ -95,7 +97,8 @@ All functions are collected in a **namespace** — a namespace acts as a contain
 
 We can write `using namespace Core;` at the top of our `main.cpp` and remove the `Core::` prefix from all function calls if we want.
 
-> **NOTE:** In this project we don't have any other functions with these same names, so removing the namespace entirely would not cause compile errors.
+> [!NOTE]
+> In this project we don't have any other functions with these same names, so removing the namespace entirely would not cause compile errors.
 
 Each function will have the following job:
 

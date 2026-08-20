@@ -23,13 +23,15 @@ Now we have 2 ways of ensuring that clangd can read this .json and use it to sup
 
 We will create the `.clangd` file (option 2).
 
-> **NOTE:** `clangd` is used as a file extension here, and the lack of any text before the `.` tells us that the file has no name.
+> [!NOTE]
+> `clangd` is used as a file extension here, and the lack of any text before the `.` tells us that the file has no name.
 
 In our root directory (`goto projectname`) we add the `.clangd` file using `touch .clangd`. We then open it inside your editor (e.g. nvim) with `your-editor .clangd`.
 
 We will write our `.clangd` file using a different data format than JSON. The format is called **YAML** and has even less boilerplate than JSON, making it extremely human readable. But without braces to set the scope of a piece of data, YAML instead relies on **indentation** to sort data. An indentation is what pushes new lines of text to the right on your monitor.
 
-> **NOTE:** Like when we put an if-statement inside another if-statement, then we began drifting to the right.
+> [!NOTE]
+> Like when we put an if-statement inside another if-statement, then we began drifting to the right.
 
 For now, our `.clangd` file will be very small:
 
@@ -44,9 +46,11 @@ We want to add the ability to completely empty our `build/` folder before compil
 
 By adding a new parameter and new logic to our function `build` we can pass it as a parameter when calling `build projectname clean`. The type of parameter inside bash is called an **argument** — when it is not passed the check is skipped and when present it triggers the clean.
 
-> **NOTE:** This true/false data type is what we call a `bool` (boolean) in C++.
+> [!NOTE]
+> This true/false data type is what we call a `bool` (boolean) in C++.
 
-> **WARNING:** Before we look at the function below: we are going to start using pretty strong commands to add or delete files from our computer. It's a good idea to, in the future, have backups for important stuff if you start experimenting with these functions on your own. Our function below is not an issue as we are doing a lot to ensure that we are in the proper directory.
+> [!WARNING]
+> Before we look at the function below: we are going to start using pretty strong commands to add or delete files from our computer. It's a good idea to, in the future, have backups for important stuff if you start experimenting with these functions on your own. Our function below is not an issue as we are doing a lot to ensure that we are in the proper directory.
 
 Here's our updated `build` function:
 
@@ -85,7 +89,8 @@ build() {
 
 We've added a few new things. Like in other functions we've made we've sorted the `sourceDir` and `buildDir` in two variables. We have also added the `clean` parameter check — if the second argument is `"clean"`, we delete the build directory.
 
-> **NOTE:** In both bash syntax and C++ we can skip the `== true` in an if-statement, as it is implied unless specified otherwise.
+> [!NOTE]
+> In both bash syntax and C++ we can skip the `== true` in an if-statement, as it is implied unless specified otherwise.
 
 `echo` is a function that writes the parameter string to the console. This is a common method we will use in SDL3 later to check what is going on when our program is running.
 
@@ -94,7 +99,8 @@ We've added a few new things. Like in other functions we've made we've sorted th
 - **A)** The files in subdirectories (folders) are also deleted (`-r` for recursive)
 - **B)** Even hidden files and read-only files are removed without prompting (`-f` for force)
 
-> **NOTE:** "Recurse" stands for **recursive** — a common programming method we will use in later course material.
+> [!NOTE]
+> "Recurse" stands for **recursive** — a common programming method we will use in later course material.
 
 Knowing more about if-statements and scope we can better understand that with this function we only do the `rm -rf` calls if `clean` was set to true.
 
@@ -114,7 +120,8 @@ For a game this loop is broken down into 3 distinct steps: **Input**, **Update**
 
 Then the loop starts over again. The more times this loop can be finished in a second, the higher our FPS is.
 
-> **NOTE:** This loop is present in all games and every game engine is built on it — even though Unity hides the Draw part of the loop from us.
+> [!NOTE]
+> This loop is present in all games and every game engine is built on it — even though Unity hides the Draw part of the loop from us.
 
 The control flow statement is known as a **while** and its syntax looks like this:
 
@@ -155,14 +162,17 @@ int main() {
 
 Alright, so now our program doesn't quit automatically. Note how we've `#include` a new .h file. The reason the .h file is not added on its own but instead we've passed a path is because SDL3's system headers are in `/usr/include/SDL3/` so our `#include` points at a specific file by passing in its path.
 
-> **NOTE:** The reason why our path is `<SDL3/SDL.h>` and not `<include/SDL3/SDL.h>` is because the compiler knows to look in system include paths. In our `CMakeLists.txt` we also set the include directory with:
+> [!NOTE]
+> The reason why our path is `<SDL3/SDL.h>` and not `<include/SDL3/SDL.h>` is because the compiler knows to look in system include paths. In our `CMakeLists.txt` we also set the include directory with:
 > `target_include_directories(${PROJECT_NAME} PRIVATE include)`
 
-> **NOTE:** Remember the not-so-elegant syntax of the standard library header `<iostream>` or `cout`? Well now we can use the much more convenient `SDL_Log()` instead!
+> [!NOTE]
+> Remember the not-so-elegant syntax of the standard library header `<iostream>` or `cout`? Well now we can use the much more convenient `SDL_Log()` instead!
 
 We have no way of interrupting our program as there is nothing we can do within the scope of our while that will turn `running` from `true` to `false`.
 
-> **NOTE:** A while loop that never terminates or pauses will hog 100% of our CPU and make the program appear frozen, as it tries to keep running the same code over and over. It's up to us to either terminate a while loop or in this case, add logic to it so it has to yield.
+> [!NOTE]
+> A while loop that never terminates or pauses will hog 100% of our CPU and make the program appear frozen, as it tries to keep running the same code over and over. It's up to us to either terminate a while loop or in this case, add logic to it so it has to yield.
 
 All code is eventually represented as binary machine code. All languages like C# and C++ are an intermediary step that lets us write instructions in a far(!) more readable format. The chain is actually that C++ gets compiled into assembly first, and then the assembly instructions are compiled into machine code. Our `while()` loop eventually becomes a `jmp` assembly instruction telling the program to jump to another line. Another way of coding a while loop is like this:
 
@@ -188,11 +198,13 @@ main:
 
 What this means is that when our program compiles, there is 0% difference between the while-loop and the goto solution. I touch on this to begin teaching you about what happens during the compilation step, introduce assembly and help empower you to dispel a lot of noise coming out of the programming community.
 
-> **NOTE:** It is considered bad practice to use `goto` and recruiters will probably not like seeing it. But just to be clear, it's the exact same thing.
+> [!NOTE]
+> It is considered bad practice to use `goto` and recruiters will probably not like seeing it. But just to be clear, it's the exact same thing.
 
 We will add some SDL boilerplate code to allow pressing Escape in order to flip `running` to `false` and terminate the while loop and the program. Though before we can do this, we need to learn about one of the most essential parts of C++: a **pointer**.
 
-> **NOTE:** Pointers can be difficult to understand at first, re-reading is recommended.
+> [!NOTE]
+> Pointers can be difficult to understand at first, re-reading is recommended.
 
 Let's look at a basic `int`:
 
@@ -235,7 +247,8 @@ Let's break it down:
 - `int number = 5;` — this is a newly created variable. It is stored in memory somewhere with the value 5.
 - `int* aNumber` — this is a pointer variable. It points not to a number, but the place in memory where we will store a number. To pass a point in memory to a function that expects a pointer we must pass the variable by pointer using `&`.
 
-> **NOTE:** Without passing our `number` variable as a pointer we are actually just performing operations on a new number that lives only within the scope of the `AddOne()` function. As soon as we leave that scope the number stops existing.
+> [!NOTE]
+> Without passing our `number` variable as a pointer we are actually just performing operations on a new number that lives only within the scope of the `AddOne()` function. As soon as we leave that scope the number stops existing.
 
 - `&number` — we take `number`, and instead of passing it by value we get its place in memory and pass that along instead.
 - `*number += 1;` — this takes the reference to the memory address that the pointer was pointing to (where `number` lives) and dereferences it, grabbing the value stored in it so we can manipulate and change it.
@@ -297,7 +310,8 @@ int AddOne(int theNumber){
 
 With this setup the Log function will output a 6, as the updated value of 5 → 6 lives inside the scope of the `AddOne` function but the value is later returned and then using the `=` operator assigned back into the `number` variable inside `main()`.
 
-> **NOTE:** A `=` operator always assigns the value on its right to whatever is on its left.
+> [!NOTE]
+> A `=` operator always assigns the value on its right to whatever is on its left.
 
 Now that we know more about pointers and while loops we can better understand the SDL syntax (boilerplate) necessary to start working on a more proper example. What follows is a lot of new code, but we've touched on this syntax in many cases. We will break it all down once we've seen it in its entirety.
 
@@ -345,7 +359,8 @@ Let's begin by looking at our entry point.
 
 The `main()` function has a lot of new parts to it. A lot of it is boilerplate that SDL3 requires in order to start communicating with our computer. `SDL_Init()` accepts a series of so-called **flags** as parameters that tell it what systems from SDL3 to activate. In our case we've told it to initialize the "VIDEO" subsystem. This is required in order to create a window and get keyboard inputs to register as `SDL_Event`s we can query.
 
-> **NOTE:** "Query" means "ask questions about".
+> [!NOTE]
+> "Query" means "ask questions about".
 
 A flag is actually a datatype known as an **enum**. It is a series of numbers that are all represented as a name. What makes it a flag as well as an enum is that the numbers associated with each enum are one power of 2 larger than the previous.
 
@@ -405,7 +420,8 @@ If we want to pass both `SDL_INIT_EVENTS` and `SDL_INIT_VIDEO` to our `SDL_Init(
 SDL_Init( SDL_INIT_EVENTS | SDL_INIT_VIDEO );
 ```
 
-> **NOTE:** You can find all the SDL_INIT flags here: [SDL_INIT flags](https://wiki.libsdl.org/SDL3/SDL_Init)
+> [!NOTE]
+> You can find all the SDL_INIT flags here: [SDL_INIT flags](https://wiki.libsdl.org/SDL3/SDL_Init)
 
 Let's keep looking at our program:
 
@@ -452,7 +468,8 @@ We have another function besides our `main()`. It has the return type of `bool` 
 
 The nested while loop inside `main()` first stores a variable of the type `SDL_Event`, then it passes that place in memory to the `SDL_PollEvent()` function, and by passing it by reference the `SDL_PollEvent` can make changes to the variable that is stored in that same variable that we passed into the function. So that when we call our `HandleRunning()` function we pass along that same `event` variable, now potentially modified by our `PollEvent()`.
 
-> **NOTE:** The documentation for PollEvent can be found here: [SDL_PollEvent](https://wiki.libsdl.org/SDL3/SDL_PollEvent)
+> [!NOTE]
+> The documentation for PollEvent can be found here: [SDL_PollEvent](https://wiki.libsdl.org/SDL3/SDL_PollEvent)
 
 Looking at our `HandleRunning()` function we can see a series of `if` and `if-else` statements asking questions about (querying) the `SDL_Event` parameter that was passed into it. As we are only interested in if the Escape key was pressed we can avoid nesting by returning `true` (meaning **keep running**) if the event was not a keyboard event to begin with. Then if we did not return we know for a fact that it is a keyboard event we're querying. Then we check the pretty nasty looking `key.key` and compares the key value with the SDL enum called `SDLK_ESCAPE` and if it is a match we return `false`.
 
@@ -460,7 +477,8 @@ Looking at our `HandleRunning()` function we can see a series of `if` and `if-el
 
 The value returned from the function is then stored into our `running` variable and if it was `false` it will stop the while-loop from continuing to run. Now we can actually quit our game by pressing Escape.
 
-> **NOTE:** In the future we would of course not just close the program anytime someone accidentally presses Escape — but for now we'll use this brutish approach.
+> [!NOTE]
+> In the future we would of course not just close the program anytime someone accidentally presses Escape — but for now we'll use this brutish approach.
 
 So now we do the following things inside our program:
 

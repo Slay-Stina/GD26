@@ -10,7 +10,8 @@ We need to update our directory to somewhere we can create and access a small .c
 
 We will instead create a little function in `~/.bashrc` to help us get things set up.
 
-> **NOTE:** I like the convenience of the following setup as I will show you a bunch of coding examples throughout the course.
+> [!NOTE]
+> I like the convenience of the following setup as I will show you a bunch of coding examples throughout the course.
 
 ```bash
 practice() {
@@ -87,7 +88,8 @@ All C++ programs need an entry point. This is the function called `main`. It has
 
 We want to be able to write text from our program into our terminal so we want to use the `println` function (this stands for **print on new line**). The `println` function is made available by the inclusion of `<print>` at the top of the program.
 
-> **NOTE:** `<print>` and `std::println` are C++23 features. We must pass `-std=c++23` to clang++ to use them.
+> [!NOTE]
+> `<print>` and `std::println` are C++23 features. We must pass `-std=c++23` to clang++ to use them.
 
 `std::` that comes before `println` is a safeguard put in place by the ISO C++ Standards Committee way back in the 90's. All functions added to the standard library are put into a namespace called `std` (stands for **standard**). This has two purposes:
 
@@ -113,11 +115,13 @@ int main() {
 
 We could then remove `std::` and just write `println()`.
 
-> **NOTE:** Namespaces will be part of all games you will work on, including those using C# and game engines like Unity.
+> [!NOTE]
+> Namespaces will be part of all games you will work on, including those using C# and game engines like Unity.
 
 You might have noticed that we add a semicolon to the end of all lines in C++. This is a required step dating back to the C programming language and the inception of C++. It was added for clarity, to show when we are at the end of a line. It's something we just have to accept, for both C++ and C# (unfortunately).
 
-> **NOTE:** Thankfully our intellisense will catch us if we miss a `;`. And if it doesn't then our compiler will spit out a pretty clear error message when it fails to compile our program.
+> [!NOTE]
+> Thankfully our intellisense will catch us if we miss a `;`. And if it doesn't then our compiler will spit out a pretty clear error message when it fails to compile our program.
 
 `main()` is a function, `println()` is a function. All functions have a pair of parenthesis after its name, this parenthesis hold the **parameters** we can send to the function.
 
@@ -154,7 +158,8 @@ But notice those strange `<<` — we will not be seeing them in any other settin
 
 Let's learn about scope. The newly created integer variable `result` is only available inside the curly braces of the function. Once the code reaches the end of the last line, all locally scoped variables are cleaned up.
 
-> **NOTE:** A variable is a named piece of memory that stores something for us (a number, a word, a sentence, etc.)
+> [!NOTE]
+> A variable is a named piece of memory that stores something for us (a number, a word, a sentence, etc.)
 
 Updating our `main()` function we can take a look at our program:
 
@@ -175,7 +180,8 @@ Now we can clearly see the difference between the function itself and calling th
 
 **BUT!** There is one problem: in C++ (not in C#) we can't use a function by another function before it has been seen by the compiler, and that happens in a top-down fashion. This feels silly and like something the computer should be able to handle, and here we touch on the idea of how programming languages are written by people and have different philosophies and trade-offs. By forcing the declaration of functions to be done in sequence the compiler can work faster.
 
-> **NOTE:** With even simple Unity projects taking AGES to compile, I would like to stress the importance of a design decision as this one.
+> [!NOTE]
+> With even simple Unity projects taking AGES to compile, I would like to stress the importance of a design decision as this one.
 
 Swapping the position of the `AddNumbers()` and `main()` functions, then compiling and running our program, it spits out 15 — the combined total of the two values we passed to the function (5 and 10) that are then printed to the console via the `println()` function. After that we hit the `return 0` and the program closes.
 
@@ -218,7 +224,8 @@ void Add(int a, int b){
 }
 ```
 
-> **NOTE:** I also simplified the function name in the .h file and our .cpp file to just `Add`.
+> [!NOTE]
+> I also simplified the function name in the .h file and our .cpp file to just `Add`.
 
 Because our .cpp includes this .h file, we get it added to the top of the file during compilation.
 
@@ -297,7 +304,8 @@ double precisionValue = 0.75443341234114;
 bool isThisCool = false;
 ```
 
-> **NOTE:** We will need to use the assignment operator `=` whenever we want to store the right side value in a left side variable.
+> [!NOTE]
+> We will need to use the assignment operator `=` whenever we want to store the right side value in a left side variable.
 
 There is a bit of syntax we need to learn, and it's in regards to `float` type variables. The following way of writing decimal numbers `0.34` is interpreted as a `double` by the computer and then converted to a `float` when assigned to it. This means that our computer does a little conversion each time we assign a float like this. To tell the computer that the decimal number we've written is really a `float` we append an `f` to the end of the decimal chain:
 
@@ -333,7 +341,8 @@ What follows is a common part of programming: an `if` statement followed by an `
 
 The **assignment operator** `=` is different from the **equality operator** `==`. The equality operator doesn't assign a new value to the left hand side, instead it checks that the value on the left side and the right side are the same. So this if-statement asks if the value stored in `isPlayerDead` is the same as `true`. And with the `playerHealth` above 0 the value of `isPlayerDead` is `false`. The if-statement then looks like this: `if(false == true)` and because these are not equal to each other we skip the if-scope and jump directly to the else-scope.
 
-> **NOTE:** If we increased `enemyDamage` above or equal to the value of `playerHealth`, then the if-statement would evaluate to `true == true` and the code inside the if-scope would execute instead of the else-scope.
+> [!NOTE]
+> If we increased `enemyDamage` above or equal to the value of `playerHealth`, then the if-statement would evaluate to `true == true` and the code inside the if-scope would execute instead of the else-scope.
 
 ## Nesting
 
@@ -358,7 +367,8 @@ void DealDamage(int damageAmount, bool isHardcore){
 
 Here we have an if statement within another if statement. Still no problem to read and parse. Though you can imagine that with 1-2 more if-statements our code would begin to drift right at an alarming rate.
 
-> **NOTE:** The sideways drift towards right is sometimes referred to as a "pyramid of death".
+> [!NOTE]
+> The sideways drift towards right is sometimes referred to as a "pyramid of death".
 
 We can use a `return` to do an **early return** as well as ask the opposite question:
 

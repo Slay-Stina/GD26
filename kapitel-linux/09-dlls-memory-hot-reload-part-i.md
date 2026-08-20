@@ -83,7 +83,8 @@ set(EXE_EXCLUSIVE
 
 Here we store all .cpp files we want to have included with our executable in a single array that we've named `EXE_EXCLUSIVE` — should we need more files to be compiled into our executable we will have to manually modify this list.
 
-> **NOTE:** Another method is to take all the .cpp files we want to have and store them in a separate subdirectory then point our functions towards that folder. But this time we'll do the manual work.
+> [!NOTE]
+> Another method is to take all the .cpp files we want to have and store them in a separate subdirectory then point our functions towards that folder. But this time we'll do the manual work.
 
 ```cmake
 file(GLOB_RECURSE LIB_FILES "${CMAKE_SOURCE_DIR}/lib/*.a")
@@ -107,7 +108,8 @@ target_link_libraries(${LIB_NAME} PRIVATE ${LIB_FILES})
 
 The `add_executable` and `add_library` functions are the only part that is different between these. They specify if we should compile the following files into an executable or a shared library. We specify the name of the file using our handy variables `PROJECT_NAME` and `LIB_NAME` then the `EXE_EXCLUSIVE` and `LIB_EXCLUSIVE` file lists are added respectively.
 
-> **NOTE:** .so stands for shared object (Linux equivalent of DLL)
+> [!NOTE]
+> .so stands for shared object (Linux equivalent of DLL)
 
 ```cmake
 # Copy shared libraries
@@ -140,7 +142,8 @@ reload() {
 3. We read the contents of our Cache looking for the line of text that includes the `CMAKE_PROJECT_NAME:STATIC` text. We then store the name of our game in the `projectName` variable
 4. We then tell cmake to build the project again, but only the target named `NameOfOurProject_game`
 
-> **NOTE:** This reload function relies on us having built our project beforehand.
+> [!NOTE]
+> This reload function relies on us having built our project beforehand.
 
 So if we follow the syntax of having `_game` as a suffix for our created shared library for all projects then this will work just fine. If we ever need more flexibility with our naming scheme we can store info like this name in for example our `projects.json`.
 
@@ -219,11 +222,14 @@ In this program we:
    Then we use these structs to hold variables, and our `GameData` struct holds `Character` structs itself. But notice how the variable name is `characters` in plural, but we only store a single pointer — this should mean that we are only storing a single character. We are actually storing a collection of characters inside memory by pointing to the first character only. We'll get back to how that is set up once we have a better understanding of the program in its entirety.
 
 2. We create our `MemoryArena` struct
-   > **NOTE:** lets conceptualize a memory arena as a continuous block of memory, each thing laid out next to the previous.
+   > [!NOTE]
+   > lets conceptualize a memory arena as a continuous block of memory, each thing laid out next to the previous.
 
 This struct holds very little in terms of stuff, but is very powerful. Our three variables are:
 
-- `unsigned char* base;` — This a pointer to the first address in memory of our arena. We need to use an `unsigned char*` instead of a `void*` as this allows us to add a number to our base to move further down our block of memory. If we had our pointer as a `void*` it would need to be cast all the time before we attempt to do arithmetic (+, -, x, etc). > **NOTE:** we will learn about casting a bit later in this lecture
+- `unsigned char* base;` — This a pointer to the first address in memory of our arena. We need to use an `unsigned char*` instead of a `void*` as this allows us to add a number to our base to move further down our block of memory. If we had our pointer as a `void*` it would need to be cast all the time before we attempt to do arithmetic (+, -, x, etc).
+  > [!NOTE]
+  > we will learn about casting a bit later in this lecture
 - `size_t size;` — `size_t` is a type of variable, like an int, that holds a whole number, but `size_t` is larger than an `int` and especially made to help us store how big something is. `size_t` is also unsigned, meaning that compared to a int it can't store a negative number. This variable is meant to tell us how large our memory block is, whilst the `unsigned char*` pointer above just tells us where it starts.
 - `size_t used;` — We update this variable each time we specify what the next piece of memory is used for. So we know we aren't overwriting other parts of our memory when adding new things to it. Also, by resetting this to 0 we actually delete all memory in the arena all at once. We do this in the `Arena_Reset()` function
 
@@ -265,7 +271,8 @@ Arena_Initialize(&arena, blob_of_memory, memory_size);
 
 Here we take our `blob_of_memory`, AKA the pointer to the first byte in the memory chunk, along with the size of the memory chunk and the arena and pass all of these to our `Arena_Initialize()` function.
 
-> **NOTE:** this has just set some initial state for our arena, it is yet to have anything actually useful inside of it
+> [!NOTE]
+> this has just set some initial state for our arena, it is yet to have anything actually useful inside of it
 
 ```cpp
 gameData = (Game_Data*)Add_To_Arena(&arena, sizeof(Game_Data));
@@ -296,7 +303,8 @@ A single instance of our `Character` struct takes up a certain amount of memory.
 
 Now inside our memory arena we have laid out the memory for 10 characters sequentially. And because we know the size of a `Character` and we know they are packed next to each other in memory we can use the array `[]` symbols to fetch one of the ten characters by specifying its position in the memory 0-9.
 
-> **NOTE:** remember that arrays start at 0 instead of at 1. This means that element 9 is the 10th and last element.
+> [!NOTE]
+> remember that arrays start at 0 instead of at 1. This means that element 9 is the 10th and last element.
 
 ```cpp
 gameData->characters[3].health = 32;

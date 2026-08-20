@@ -1,10 +1,61 @@
+# Intro to C++ programming with SDL3
+
+*A complete guide to your first game* by Max Friberg
+
+---
+
+## Innehållsförteckning
+
+- [1 Acknowledgments](#1-acknowledgments)
+- [2 Foreword - How to learn how to program](#2-foreword-how-to-learn-how-to-program)
+- [SDL3 - part I](#sdl3-part-i)
+- [Introduction to C/C++ - Part I](#introduction-to-cc-part-i)
+- [Introduction to the Helix Editor - Part I](#introduction-to-the-helix-editor-part-i)
+- [Introduction to SDL3 - Part II](#introduction-to-sdl3-part-ii)
+- [Introduction to the Helix Editor - Part II](#introduction-to-the-helix-editor-part-ii)
+- [Core Loop - Part I](#core-loop-part-i)
+- [DLLs Memory and Hot Reloading - Part I](#dlls-memory-and-hot-reloading-part-i)
+- [DLLs Memory and Hot Reloading - Part II](#dlls-memory-and-hot-reloading-part-ii)
+- [Rendering images](#rendering-images)
+- [Savestates](#savestates)
+- [Sokoban Programming I](#sokoban-programming-i)
+- [Sokoban Programming II](#sokoban-programming-ii)
+- [Sokoban Programming III](#sokoban-programming-iii)
+- [16 Command Pattern](#16-command-pattern)
+- [17 Developer Tools with DearImGui](#17-developer-tools-with-dearimgui)
+- [18 Better undo/redo](#18-better-undoredo)
+- [19 Animation Part I](#19-animation-part-i)
+- [20 Repeat Inputs](#20-repeat-inputs)
+- [21 Camera](#21-camera)
+- [22 Asset Management Part I](#22-asset-management-part-i)
+- [23 Mouse input](#23-mouse-input)
+- [24 Level Editor](#24-level-editor)
+- [25 Sokoban programming IV](#25-sokoban-programming-iv)
+- [26 Animation Part II](#26-animation-part-ii)
+- [27 Scratch Arena and Sprite Sorting](#27-scratch-arena-and-sprite-sorting)
+- [28 Spawn Commands and active/inactive entities](#28-spawn-commands-and-activeinactive-entities)
+- [29 Scenes and transitions Part I](#29-scenes-and-transitions-part-i)
+- [30 Tilemap parsing](#30-tilemap-parsing)
+- [31 Sokoban Programming V](#31-sokoban-programming-v)
+- [32 Buttons Part I](#32-buttons-part-i)
+- [33 Sokoban Programming VI](#33-sokoban-programming-vi)
+- [34 FMOD and Audio](#34-fmod-and-audio)
+- [35 Animation III](#35-animation-iii)
+- [36 Music](#36-music)
+- [37 Parallax](#37-parallax)
+- [38 Text](#38-text)
+- [39 Buttons Part II](#39-buttons-part-ii)
+- [40 Intermission I - Creating a release candidate](#40-intermission-i-creating-a-release-candidate)
+- [41 Intermission II - Debugging in Visual Studio](#41-intermission-ii-debugging-in-visual-studio)
+- [42 Intermission III - Github Part I](#42-intermission-iii-github-part-i)
+
+---
+
 # 1 Acknowledgments
 
 I would like to thank colleagues and friends for input and support during the creation of this material.
 All content and intellectual property remain the sole work of the author.
 © 2026 Max Friberg. All rights reserved.
-
-
 
 # 2 Foreword - How to learn how to program
 
@@ -50,8 +101,6 @@ decisions made by architects of programming languages, APIs game engines and too
 of them make sense, they can be learned and they are completely deterministic. If we take the
 time to understand them, they are completely knowable.
 Best of luck, I believe in you!
-
-
 
 # SDL3 - part I
 
@@ -12558,5 +12607,4 @@ Once we have our repository locally we can start commiting changes and pushing a
 For a more in-depth look, check out the documentation: https://docs.github.com/en/desktop
 With this we can do the very basics in Github.
 Later you will learn about branches and pull requests and merge conflicts .
-
 
