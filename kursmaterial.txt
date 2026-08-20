@@ -284,7 +284,7 @@ The build folder holds the compiled version of our game that is run and/or
 distributed
 The include folder holds header files that tell us what functions we can call
 from the .DLL files
-The lib (library) folder has all of our .DLL files
+The lib (library) folder will hold all of our .DLL files
 The assets folder has all our sound effects, PNGs etc
 The src (source) folder has all the script files .cpp .h that we create ourselves
 it’s not uncommon to have a release folder as well, a version of the build
@@ -739,7 +739,7 @@ executable .exe
 Lets get cracking! first lets download the required software
 cmake (Windows x64 Installer): https://cmake.org/download/
 ninja (ninja-win.zip): https://github.com/ninja-build/ninja/releases
-LLVM https://github.com/llvm/llvm-project/releases/tag/llvmorg-18.1.8
+LLVM https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.8
 NOTE: LLVM contains and works with a compiler called clang , that is what
 we will be using in powershell later NOTE: we will talk about clangd (with
 a d ) later, that’s a different thing.
