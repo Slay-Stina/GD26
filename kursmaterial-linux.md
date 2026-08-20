@@ -50,8 +50,6 @@
 - [Intermission III - Github Part I](#intermission-iii-github-part-i)
 
 ---
-
-
 # Acknowledgments
 
 I would like to thank colleagues and friends for input and support during the creation of this material.
@@ -161,7 +159,7 @@ No manual downloading or copying of DLLs needed.
 
 ## Editor
 
-For this course, we will be writing our code in **Helix**. You can also use VS Code or any editor you prefer.
+For this course, we will be writing our code in [Helix](https://helix-editor.com/). You can also use VS Code or any editor you prefer.
 
 > [!NOTE]
 > Helix is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
@@ -10950,6 +10948,8 @@ case SCENE_TYPES::MAINMENU:
 ```
 
 This is the basics of working with fonts and rendering text!
+
+
 
 # Buttons Part II
 

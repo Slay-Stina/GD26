@@ -54,7 +54,7 @@ No manual downloading or copying of DLLs needed.
 
 ## Editor
 
-For this course, we will be writing our code in **Helix**. You can also use VS Code or any editor you prefer.
+For this course, we will be writing our code in [Helix](https://helix-editor.com/). You can also use VS Code or any editor you prefer.
 
 > [!NOTE]
 > Helix is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
