@@ -13,7 +13,7 @@ We can use Git in one of two ways
 1. We can use powershell to send commands to Git directly
 2. We can use a software like Github Desktop to do the same stuff, but with some nice helpful buttons instead of code.
 
-https://desktop.github.com/download/
+[GitHub Desktop](https://desktop.github.com/download/)
 Besides the Github Desktop client we will also need an account on github.com.
 > [!NOTE]
 > This account will be your portfolio, this if maintained nicely will be a huge asset for you when applying for internships and work. So please pick a sensible account name.
@@ -21,6 +21,6 @@ Besides the Github Desktop client we will also need an account on github.com.
 Once our account is set up we can log in to Github Desktop.
 Now we can use file->new repository to start working on a new project. Or if we have the URL to a github project that we've been invited to collaborate on we can clone that repository from file->clone repository
 Once we have our repository locally we can start commiting changes and pushing and pulling those commits to and from Github .
-For a more in-depth look, check out the documentation: https://docs.github.com/en/desktop
+For a more in-depth look, check out the documentation: [https://docs.github.com/en/desktop](https://docs.github.com/en/desktop)
 With this we can do the very basics in Github.
 Later you will learn about branches and pull requests and merge conflicts .

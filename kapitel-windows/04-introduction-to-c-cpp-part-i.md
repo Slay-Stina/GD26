@@ -7,7 +7,7 @@ The next step is to create a new empty .cpp file, open it, write some code, then
 We need to update our directory to somewhere we can create and access a small .cpp file. This can be done by using the basic building blocks found in terminal programming.
 
 > [!NOTE]
-> A full exhaustive list can be found here: Windows Commands
+> A full exhaustive list can be found here: [Windows Commands](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 
 We will instead create a little function in `$profile` (PowerShell) to help us get things set up.
 

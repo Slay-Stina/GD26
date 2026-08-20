@@ -1,6 +1,6 @@
 # 25 Sokoban programming IV
 
-We're going to be adding functionality specific for the certain game we're making. To outline it we're creating a cast of characters that have different gameplay abilities. The starting point will be the game Heroes of Sokoban 1, 2 and 3 by Jonah Ostroff (https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html)
+We're going to be adding functionality specific for the certain game we're making. To outline it we're creating a cast of characters that have different gameplay abilities. The starting point will be the game Heroes of Sokoban 1, 2 and 3 by Jonah Ostroff ([https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html](https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html))
 The heroes of sokoban are:
 Red (warrior) pushes blocks Green (thief) drags blocks Blue (wizard) swaps position with blocks in view yellow (priestess) the priestess is unkillable purple (bard) pushesx and drags along entities in the squares around her green (druid) turns blocks into foilage and vice versa
 on a level one or more of these characters will be present, and the player will be allowed to swap between them using an action button. Then each level is cleared when all characters present on the level are standing on a designated goal square. Each of these abilities are compulsory meaning that they are not activated by the player and is instead an intrinsic part of the character - for good and for bad.

@@ -3,12 +3,12 @@
 We can of course already render text if each time we want to do so we just create a bespoke sprite and use that as a text-proxy. But this is not a good way of doing it an neither is it industry standard. What we'll be doing is rendering text one character at a time by taking a font and converting it to a `SDL_Texture` .
 The process will be us creating what is called a Texture Atlas a texture atlas is similar to a spritesheet because it has multiple individual things all layed out in a larger grid.
 To convert a font into a texture we need to work with some external library (or spend a lot of effort coding our own). The easiest solution for us it to download `SDL_TTF` a library that helps us work with TTF files. a TTF file is a True Text Font . This is the same file format used by all your text-displaying software.
-the `SDL_TTF` github is at: https://github.com/libsdl-org/SDL_ttf after navigating to Releases we're downloading `SDL3_ttf-devel-3.2.2-VC.zip` this will let us work with the .h files and .dll files directly as it our practice for this course.
+the `SDL_TTF` github is at: [https://github.com/libsdl-org/SDL_ttf](https://github.com/libsdl-org/SDL_ttf) after navigating to Releases we're downloading `SDL3_ttf-devel-3.2.2-VC.zip` this will let us work with the .h files and .dll files directly as it our practice for this course.
 after having unziped our file we will find the `SDL_textengine.h` and `SDL_ttf.h` in `include` and add it to our own. I've opted to put these two .h files into their own subdirectory inside `include` that I've named `SDL_TTF` .
 we also need `SDL3_ttf.dll` and `SDL3_ttf.lib` . These are going into their own subdirectory inside our `lib` folder. I've named their subdirectory `SDL_TTF` just as I did for our `include` folder.
 Thankfully this will work out of the gate requiring no adjustments to our `cmakelists.txt` .
 
-For this chapter I've downloaded a font called ByteBounce from: https://www.1001fonts.com/bytebounce-font.html . I've put this `ByteBounce.ttf` file into a new subdirectory `assets/fonts` . We'll be using this path to load it later.
+For this chapter I've downloaded a font called ByteBounce from: [https://www.1001fonts.com/bytebounce-font.html](https://www.1001fonts.com/bytebounce-font.html) . I've put this `ByteBounce.ttf` file into a new subdirectory `assets/fonts` . We'll be using this path to load it later.
 We want to store our text in a fashion to save us from having to re-create a texture each frame that we want to show text to the screen - that would be terribly slow.
 We need to initialize SDL_TTF if we miss this step then even if we code everything correct afterwards then nothing will show up on our screen.
 

@@ -135,9 +135,9 @@ root/
 
 ## Setting up SDL3
 
-We need to download SDL3 from GitHub: https://github.com/libsdl-org/SDL/releases
+We need to download SDL3 from GitHub: [https://github.com/libsdl-org/SDL/releases](https://github.com/libsdl-org/SDL/releases)
 
-Download `SDL3-devel-3.4.2-VC.zip`. Extract it with 7-Zip.
+Download `SDL3-devel-3.4.2-VC.zip`. Extract it with [7-Zip](https://www.7-zip.org/).
 
 Back in our project root folder, inside the **lib** folder we copy:
 - `SDL3.dll` and `SDL3.lib` from `lib/x64/`
@@ -161,7 +161,7 @@ root/
 
 ## Helix Editor
 
-For this course, we will be writing our code in the Helix Editor: https://helix-editor.com/
+For this course, we will be writing our code in the Helix Editor: [Helix install guide](https://docs.helix-editor.com/install.html)
 
 Download the pre-built binary `helix-25.07.1-x86_64-windows.zip` and extract it to a folder on your computer.
 
@@ -171,11 +171,11 @@ Download the pre-built binary `helix-25.07.1-x86_64-windows.zip` and extract it 
 
 Running `hx.exe` will bring up the Helix editor. To quit the editor (don't panic) type `:` to bring up the command line, type a single `q` and press enter.
 
-Additionally, for simpler text editing and pseudo-code examples we will be working with Sublime Text: https://www.sublimetext.com/
+Additionally, for simpler text editing and pseudo-code examples we will be working with Sublime Text: [https://www.sublimetext.com/](https://www.sublimetext.com/)
 
 ## PowerShell and environment variables
 
-We will be starting the Helix editor from the command line using Windows PowerShell. If your computer doesn't already have PowerShell installed, download it from Microsoft.
+We will be starting the Helix editor from the command line using Windows PowerShell. If your computer doesn't already have PowerShell installed, download it from [Microsoft](https://learn.microsoft.com/en-us/powershell/).
 
 To give PowerShell access to our Helix editor, we need to create our first User Environment Variable. From the Control Panel on Windows, find System Properties → Environment Variables. Add a new entry to the `Path` list pointing to the Helix folder:
 
@@ -305,10 +305,10 @@ This function:
 
 We need a few more things before we can build:
 
-1. **CMake** — Build System Generator: https://cmake.org/download/
-2. **Ninja** — Build system: https://github.com/ninja-build/ninja/releases
-3. **LLVM/Clang** — Compiler: https://github.com/llvm/llvm-project/releases
-4. **Visual Studio Build Tools** with "Desktop Development with C++"
+1. **CMake** — Build System Generator: [https://cmake.org/download/](https://cmake.org/download/)
+2. **Ninja** — Build system: [https://github.com/ninja-build/ninja/releases](https://github.com/ninja-build/ninja/releases)
+3. **LLVM/Clang** — Compiler: [https://github.com/llvm/llvm-project/releases](https://github.com/llvm/llvm-project/releases)
+4. **Visual Studio Build Tools** with "Desktop Development with C++": [https://aka.ms/vs/stable/vs_BuildTools.exe](https://aka.ms/vs/stable/vs_BuildTools.exe)
 
 > [!NOTE]
 > LLVM contains a compiler called `clang`. We will be using `clang++` in PowerShell.
@@ -360,6 +360,9 @@ Create `CMakePresets.json` in the project root:
     ]
 }
 ```
+
+> [!NOTE]
+> To learn more about CMakePresets, check out the [CMakePresets documentation](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html).
 
 ### The `goto` function
 
@@ -468,7 +471,7 @@ The next step is to create a new empty .cpp file, open it, write some code, then
 We need to update our directory to somewhere we can create and access a small .cpp file. This can be done by using the basic building blocks found in terminal programming.
 
 > [!NOTE]
-> A full exhaustive list can be found here: Windows Commands
+> A full exhaustive list can be found here: [Windows Commands](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 
 We will instead create a little function in `$profile` (PowerShell) to help us get things set up.
 
@@ -1896,7 +1899,7 @@ Ok! So we've managed to get things to interact, move and get rendered in SDL3. T
 
 This lecture will teach us how to expand our Cmakelists.txt to generate not only our .exe but also a .dll that will be responsible for holding most of our game, making our .exe just a very small entry point.
 
-Why do we want to do this? Because we want to enable something called hot-reloading. (https://zylinski.se/posts/hot-reload-gameplay-code/) "Hot reloading gameplay code means that you swap out the code that controls the behavior of your game while the game is running. Why? To improve and tweak your gameplay code without having to restart the game."
+Why do we want to do this? Because we want to enable something called [hot-reloading](https://zylinski.se/posts/hot-reload-gameplay-code/). "Hot reloading gameplay code means that you swap out the code that controls the behavior of your game while the game is running. Why? To improve and tweak your gameplay code without having to restart the game."
 
 Without this set up we have to stop running our .exe to make changes to the game, then recompile the game and run it again, getting back to the gamestate we're looking for. This becomes so useful when we want to make adjustments to parts of the game that happens a bit into our game, or requires a lot of tweaking to get right.
 
@@ -2363,7 +2366,7 @@ void Update(GameData* data, float dt);
 void OnQuit(SDL_Renderer* renderer);
 ```
 
-`extern "C"` ensures that during compilation, our functions won't have their names modified in any way. This is essential when we want to access them later by referencing their names exactly, otherwise the name will be changed in a linking process called **name-mangling**. (https://en.wikipedia.org/wiki/Name_mangling)
+`extern "C"` ensures that during compilation, our functions won't have their names modified in any way. This is essential when we want to access them later by referencing their names exactly, otherwise the name will be changed in a linking process called [**name-mangling**](https://en.wikipedia.org/wiki/Name_mangling).
 
 `__declspec(dllexport)` has that very strange syntax as it is not part of normal C++ but an addition by Microsoft to flag the function as relevant to the compiler, in this case making sure the function is made available to other programs that are interested in calling it. The syntax is very strange, but fortunately we will basically only use it in this specific case. Meaning that as long as we can remember that the header file required some strange additions then we can search for those again later if we forget the exact syntax — that's very common.
 
@@ -2786,7 +2789,7 @@ So far we've just rendered an SDL_FRect to the screen. But we of course want to 
 3. Prepare a portion of memory to store our images
 4. Use SDL3_Image.dll from its corresponding SDL3_Image.h file downloaded earlier
    > [!NOTE]
-   > In case you don't have both these files, then go ahead and download SDL3_image-devel-3.2.4-VC from https://github.com/libsdl-org/SDL_image/releases
+   > In case you don't have both these files, then go ahead and download SDL3_image-devel-3.2.4-VC from [https://github.com/libsdl-org/SDL_image/releases](https://github.com/libsdl-org/SDL_image/releases)
 5. Swap our SDL_FRect to a texture
 
 Opening any drawing software we can create a 32x32px square and fill it with whatever shapes and colors we please. I've created a red square with an 'X' running through it. I've saved it as "fallback.png" as this will be the sprite that gets loaded whenever I attempt to load a sprite that doesn't exist. I do this so I can continue testing and developing even if I lack the necessary assets still.
@@ -2804,7 +2807,7 @@ set(DIR_ASSETS_DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
 
 The syntax is a little bit more confusing when we have to store a yet-to-be-known path. The location where our .EXE and files will end up is specified by our cmakepresets.json and when we add another preset for release we will be targeting another folder instead of `build`. So to not hard-code our paths we use `$<TARGET_FILE_DIR:${PROJECT_NAME}>` to fetch the directory where the module called `${PROJECT_NAME}` ended up after compilation finished. So in my case that text gets replaced with `D:\PROJECTS\HEARTBURNER\build` because my cmakepresets.json sets `"binaryDir": "${sourceDir}/build"`.
 
-`DIR_ASSETS_ORIGIN` points to the known path of our assets. In a project, our assets folder could eventually grow pretty sizeable, holding images, sound effects and music. Copying them over each time we compile will dramatically slow down our compile times. To get around this we will increase our `cmake_minimum_required(VERSION X.XX)` from 3.25 to 3.26 as cmake version 3.26 adds a very handy instruction `copy_directory_if_different` — this according to the cmake documentation (https://cmake.org/cmake/help/latest/manual/cmake.1.html) does the following:
+`DIR_ASSETS_ORIGIN` points to the known path of our assets. In a project, our assets folder could eventually grow pretty sizeable, holding images, sound effects and music. Copying them over each time we compile will dramatically slow down our compile times. To get around this we will increase our `cmake_minimum_required(VERSION X.XX)` from 3.25 to 3.26 as cmake version 3.26 adds a very handy instruction `copy_directory_if_different` — this according to the [CMake documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html) does the following:
 
 > "Copy changed content of <dir>... directories to <destination> directory. If <destination> directory does not exist it will be created."
 
@@ -3404,7 +3407,7 @@ Opening our exported `.tmj` file inside Sublime Text we can look at the differen
 
 But Windows or SDL does not have a native JSON parser. Instead it is expected that we write our own or use one that someone else wrote. A very good JSON parser comes from nlohmann and is a single .h file that has all the relevant functionality all in the same single location.
 
-We download the `json.hpp` file from https://github.com/nlohmann/json. I've placed this .hpp file in `include/Parsers/`.
+We download the `json.hpp` file from [https://github.com/nlohmann/json](https://github.com/nlohmann/json). I've placed this .hpp file in `include/Parsers/`.
 
 > [!NOTE]
 > .hpp is just the dogmatic C++ way of labeling a header file. The C-standard is .h. So just remember that when working with C++, .hpp and .h are interchangeable.
@@ -4790,7 +4793,7 @@ We're going to solve that today by adding Dear ImGui to our project.
 
 Dear ImGui is an immediate mode GUI framework that allows us to, with very very little code, get a developer window up and running.
 This window is not meant to act as actual game UI, but is instead only meant to hold our development tools. Dear ImGui uses a game engine style approach where no state is copied over to the gui, instead all of the data is being fed to the gui each frame. This ensures that there is no desync between what the gui visualizes and what the data of the game is.
-We will download Dear ImGui from: https://github.com/ocornut/imgui/releases
+We will download Dear ImGui from: [https://github.com/ocornut/imgui/releases](https://github.com/ocornut/imgui/releases)
 At time of writing the latest release was v1.92.8
 We've come to expect that everything we download and add to our program is a bunch of .h files and .lib or .dll files. But this framework comes just as a series of .h/cpp files.
 This is not really a problem and we'll have it up and running in no time.
@@ -6724,7 +6727,7 @@ Now our level editor is set up, we can now go ahead and test logic without havin
 
 # Sokoban programming IV
 
-We're going to be adding functionality specific for the certain game we're making. To outline it we're creating a cast of characters that have different gameplay abilities. The starting point will be the game Heroes of Sokoban 1, 2 and 3 by Jonah Ostroff (https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html)
+We're going to be adding functionality specific for the certain game we're making. To outline it we're creating a cast of characters that have different gameplay abilities. The starting point will be the game Heroes of Sokoban 1, 2 and 3 by Jonah Ostroff ([https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html](https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html))
 The heroes of sokoban are:
 Red (warrior) pushes blocks Green (thief) drags blocks Blue (wizard) swaps position with blocks in view yellow (priestess) the priestess is unkillable purple (bard) pushesx and drags along entities in the squares around her green (druid) turns blocks into foilage and vice versa
 on a level one or more of these characters will be present, and the player will be allowed to swap between them using an action button. Then each level is cleared when all characters present on the level are standing on a designated goal square. Each of these abilities are compulsory meaning that they are not activated by the player and is instead an intrinsic part of the character - for good and for bad.
@@ -11029,7 +11032,7 @@ We'll be working with a middleware called FMOD . This is an industry standard to
 2. FMOD studio
 
 We'll be using FMOD core even though FMOD studio is far an away the more common way of working with FMOD. We do this because FMOD studio is its own software with a bunch of buttons and menues that do not fit into the scope of this course. FMOD core is just a few .h files and .lib files that we can hook into to produce audio for our games.
-To download FMOD core you need to create a free account over at https://www.fmod.com/download#fmodengine . Once that is done you should have downloaded the FMOD Engine installer. Once that is loaded and run you'll find that included in the install directory `FMOD SoundSystem\FMOD Studio API Windows\api\core` is the core folder with an `inc` and a `lib` folder. Copy over the contents of each into your project in the project folder with the same name. For my `include` folder I decided to put all fmod .h files into a `FMOD` subdirectory.
+To download FMOD core you need to create a free account over at [https://www.fmod.com/download#fmodengine](https://www.fmod.com/download#fmodengine) . Once that is done you should have downloaded the FMOD Engine installer. Once that is loaded and run you'll find that included in the install directory `FMOD SoundSystem\FMOD Studio API Windows\api\core` is the core folder with an `inc` and a `lib` folder. Copy over the contents of each into your project in the project folder with the same name. For my `include` folder I decided to put all fmod .h files into a `FMOD` subdirectory.
 In the `lib` folder, look for the `x64` folder inside. In my own projects `lib` folder I've opted for putting the FMOD .lib files into a `FMOD` subdirectory as well.
 Audio is a pretty difficult part of game development. and there are many pitfalls and ways to make your life harder. But FMOD honestly does a great job of having minimal boilerplate and handling most of our issues for you.
 You can unzip the `chapter 35 assets.zip` and replace the old content inside your `assets` folder with it.
@@ -11774,12 +11777,12 @@ That's it!
 We can of course already render text if each time we want to do so we just create a bespoke sprite and use that as a text-proxy. But this is not a good way of doing it an neither is it industry standard. What we'll be doing is rendering text one character at a time by taking a font and converting it to a `SDL_Texture` .
 The process will be us creating what is called a Texture Atlas a texture atlas is similar to a spritesheet because it has multiple individual things all layed out in a larger grid.
 To convert a font into a texture we need to work with some external library (or spend a lot of effort coding our own). The easiest solution for us it to download `SDL_TTF` a library that helps us work with TTF files. a TTF file is a True Text Font . This is the same file format used by all your text-displaying software.
-the `SDL_TTF` github is at: https://github.com/libsdl-org/SDL_ttf after navigating to Releases we're downloading `SDL3_ttf-devel-3.2.2-VC.zip` this will let us work with the .h files and .dll files directly as it our practice for this course.
+the `SDL_TTF` github is at: [https://github.com/libsdl-org/SDL_ttf](https://github.com/libsdl-org/SDL_ttf) after navigating to Releases we're downloading `SDL3_ttf-devel-3.2.2-VC.zip` this will let us work with the .h files and .dll files directly as it our practice for this course.
 after having unziped our file we will find the `SDL_textengine.h` and `SDL_ttf.h` in `include` and add it to our own. I've opted to put these two .h files into their own subdirectory inside `include` that I've named `SDL_TTF` .
 we also need `SDL3_ttf.dll` and `SDL3_ttf.lib` . These are going into their own subdirectory inside our `lib` folder. I've named their subdirectory `SDL_TTF` just as I did for our `include` folder.
 Thankfully this will work out of the gate requiring no adjustments to our `cmakelists.txt` .
 
-For this chapter I've downloaded a font called ByteBounce from: https://www.1001fonts.com/bytebounce-font.html . I've put this `ByteBounce.ttf` file into a new subdirectory `assets/fonts` . We'll be using this path to load it later.
+For this chapter I've downloaded a font called ByteBounce from: [https://www.1001fonts.com/bytebounce-font.html](https://www.1001fonts.com/bytebounce-font.html) . I've put this `ByteBounce.ttf` file into a new subdirectory `assets/fonts` . We'll be using this path to load it later.
 We want to store our text in a fashion to save us from having to re-create a texture each frame that we want to show text to the screen - that would be terribly slow.
 We need to initialize SDL_TTF if we miss this step then even if we code everything correct afterwards then nothing will show up on our screen.
 
@@ -12563,7 +12566,7 @@ the `install()` functions in `cmakelists.txt` , our new `buildPresets` and `conf
 # Intermission II - Debugging in Visual Studio
 
 We want to be able to understand the flow of our code, and peek at variables to look at their values. We do this by using a debugger. We will be downloading the IDE Visual Studio and installing its Community version.
-Download link: https://visualstudio.microsoft.com/
+Download link: [https://visualstudio.microsoft.com/](https://visualstudio.microsoft.com/)
 It's important that we download **Visual Studio** and not the smaller light-weight **Visual Studio Code** .
 Visual Studio as a complete IDE (Integrated Development Environment) meaning that is a one-stop-shop for everything someone "would need" when working with programming. But it's bloated, slow and cumbersome. We will be using its debugging tools though.
 Meaning that our day-to-day text editor is Helix and our debugger is Visual Studio .
@@ -12596,7 +12599,7 @@ We can use Git in one of two ways
 1. We can use powershell to send commands to Git directly
 2. We can use a software like Github Desktop to do the same stuff, but with some nice helpful buttons instead of code.
 
-https://desktop.github.com/download/
+[GitHub Desktop](https://desktop.github.com/download/)
 Besides the Github Desktop client we will also need an account on github.com.
 > [!NOTE]
 > This account will be your portfolio, this if maintained nicely will be a huge asset for you when applying for internships and work. So please pick a sensible account name.
@@ -12604,7 +12607,7 @@ Besides the Github Desktop client we will also need an account on github.com.
 Once our account is set up we can log in to Github Desktop.
 Now we can use file->new repository to start working on a new project. Or if we have the URL to a github project that we've been invited to collaborate on we can clone that repository from file->clone repository
 Once we have our repository locally we can start commiting changes and pushing and pulling those commits to and from Github .
-For a more in-depth look, check out the documentation: https://docs.github.com/en/desktop
+For a more in-depth look, check out the documentation: [https://docs.github.com/en/desktop](https://docs.github.com/en/desktop)
 With this we can do the very basics in Github.
 Later you will learn about branches and pull requests and merge conflicts .
 

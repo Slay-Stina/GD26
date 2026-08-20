@@ -57,8 +57,6 @@ I would like to thank colleagues and friends for input and support during the cr
 All content and intellectual property remain the sole work of the author.
 © 2026 Max Friberg. All rights reserved.
 
-2
-
 
 # Foreword - How to learn how to program
 
@@ -104,8 +102,6 @@ decisions made by architects of programming languages, APIs game engines and too
 of them make sense, they can be learned and they are completely deterministic. If we take the
 time to understand them, they are completely knowable.
 Best of luck, I believe in you!
-
-3
 
 
 # SDL3 - part I (Linux)

@@ -31,9 +31,9 @@ root/
 
 ## Setting up SDL3
 
-We need to download SDL3 from GitHub: https://github.com/libsdl-org/SDL/releases
+We need to download SDL3 from GitHub: [https://github.com/libsdl-org/SDL/releases](https://github.com/libsdl-org/SDL/releases)
 
-Download `SDL3-devel-3.4.2-VC.zip`. Extract it with 7-Zip.
+Download `SDL3-devel-3.4.2-VC.zip`. Extract it with [7-Zip](https://www.7-zip.org/).
 
 Back in our project root folder, inside the **lib** folder we copy:
 - `SDL3.dll` and `SDL3.lib` from `lib/x64/`
@@ -57,7 +57,7 @@ root/
 
 ## Helix Editor
 
-For this course, we will be writing our code in the Helix Editor: https://helix-editor.com/
+For this course, we will be writing our code in the Helix Editor: [Helix install guide](https://docs.helix-editor.com/install.html)
 
 Download the pre-built binary `helix-25.07.1-x86_64-windows.zip` and extract it to a folder on your computer.
 
@@ -67,11 +67,11 @@ Download the pre-built binary `helix-25.07.1-x86_64-windows.zip` and extract it 
 
 Running `hx.exe` will bring up the Helix editor. To quit the editor (don't panic) type `:` to bring up the command line, type a single `q` and press enter.
 
-Additionally, for simpler text editing and pseudo-code examples we will be working with Sublime Text: https://www.sublimetext.com/
+Additionally, for simpler text editing and pseudo-code examples we will be working with Sublime Text: [https://www.sublimetext.com/](https://www.sublimetext.com/)
 
 ## PowerShell and environment variables
 
-We will be starting the Helix editor from the command line using Windows PowerShell. If your computer doesn't already have PowerShell installed, download it from Microsoft.
+We will be starting the Helix editor from the command line using Windows PowerShell. If your computer doesn't already have PowerShell installed, download it from [Microsoft](https://learn.microsoft.com/en-us/powershell/).
 
 To give PowerShell access to our Helix editor, we need to create our first User Environment Variable. From the Control Panel on Windows, find System Properties → Environment Variables. Add a new entry to the `Path` list pointing to the Helix folder:
 
@@ -201,10 +201,10 @@ This function:
 
 We need a few more things before we can build:
 
-1. **CMake** — Build System Generator: https://cmake.org/download/
-2. **Ninja** — Build system: https://github.com/ninja-build/ninja/releases
-3. **LLVM/Clang** — Compiler: https://github.com/llvm/llvm-project/releases
-4. **Visual Studio Build Tools** with "Desktop Development with C++"
+1. **CMake** — Build System Generator: [https://cmake.org/download/](https://cmake.org/download/)
+2. **Ninja** — Build system: [https://github.com/ninja-build/ninja/releases](https://github.com/ninja-build/ninja/releases)
+3. **LLVM/Clang** — Compiler: [https://github.com/llvm/llvm-project/releases](https://github.com/llvm/llvm-project/releases)
+4. **Visual Studio Build Tools** with "Desktop Development with C++": [https://aka.ms/vs/stable/vs_BuildTools.exe](https://aka.ms/vs/stable/vs_BuildTools.exe)
 
 > [!NOTE]
 > LLVM contains a compiler called `clang`. We will be using `clang++` in PowerShell.
@@ -256,6 +256,9 @@ Create `CMakePresets.json` in the project root:
     ]
 }
 ```
+
+> [!NOTE]
+> To learn more about CMakePresets, check out the [CMakePresets documentation](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html).
 
 ### The `goto` function
 

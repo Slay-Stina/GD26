@@ -156,7 +156,7 @@ void Update(GameData* data, float dt);
 void OnQuit(SDL_Renderer* renderer);
 ```
 
-`extern "C"` ensures that during compilation, our functions won't have their names modified in any way. This is essential when we want to access them later by referencing their names exactly, otherwise the name will be changed in a linking process called **name-mangling**. (https://en.wikipedia.org/wiki/Name_mangling)
+`extern "C"` ensures that during compilation, our functions won't have their names modified in any way. This is essential when we want to access them later by referencing their names exactly, otherwise the name will be changed in a linking process called [**name-mangling**](https://en.wikipedia.org/wiki/Name_mangling).
 
 `__declspec(dllexport)` has that very strange syntax as it is not part of normal C++ but an addition by Microsoft to flag the function as relevant to the compiler, in this case making sure the function is made available to other programs that are interested in calling it. The syntax is very strange, but fortunately we will basically only use it in this specific case. Meaning that as long as we can remember that the header file required some strange additions then we can search for those again later if we forget the exact syntax — that's very common.
 

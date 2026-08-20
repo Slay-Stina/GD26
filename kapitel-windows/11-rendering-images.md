@@ -7,7 +7,7 @@ So far we've just rendered an SDL_FRect to the screen. But we of course want to 
 3. Prepare a portion of memory to store our images
 4. Use SDL3_Image.dll from its corresponding SDL3_Image.h file downloaded earlier
    > [!NOTE]
-> In case you don't have both these files, then go ahead and download SDL3_image-devel-3.2.4-VC from https://github.com/libsdl-org/SDL_image/releases
+> In case you don't have both these files, then go ahead and download SDL3_image-devel-3.2.4-VC from [https://github.com/libsdl-org/SDL_image/releases](https://github.com/libsdl-org/SDL_image/releases)
 5. Swap our SDL_FRect to a texture
 
 Opening any drawing software we can create a 32x32px square and fill it with whatever shapes and colors we please. I've created a red square with an 'X' running through it. I've saved it as "fallback.png" as this will be the sprite that gets loaded whenever I attempt to load a sprite that doesn't exist. I do this so I can continue testing and developing even if I lack the necessary assets still.
@@ -25,7 +25,7 @@ set(DIR_ASSETS_DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets)
 
 The syntax is a little bit more confusing when we have to store a yet-to-be-known path. The location where our .EXE and files will end up is specified by our cmakepresets.json and when we add another preset for release we will be targeting another folder instead of `build`. So to not hard-code our paths we use `$<TARGET_FILE_DIR:${PROJECT_NAME}>` to fetch the directory where the module called `${PROJECT_NAME}` ended up after compilation finished. So in my case that text gets replaced with `D:\PROJECTS\HEARTBURNER\build` because my cmakepresets.json sets `"binaryDir": "${sourceDir}/build"`.
 
-`DIR_ASSETS_ORIGIN` points to the known path of our assets. In a project, our assets folder could eventually grow pretty sizeable, holding images, sound effects and music. Copying them over each time we compile will dramatically slow down our compile times. To get around this we will increase our `cmake_minimum_required(VERSION X.XX)` from 3.25 to 3.26 as cmake version 3.26 adds a very handy instruction `copy_directory_if_different` — this according to the cmake documentation (https://cmake.org/cmake/help/latest/manual/cmake.1.html) does the following:
+`DIR_ASSETS_ORIGIN` points to the known path of our assets. In a project, our assets folder could eventually grow pretty sizeable, holding images, sound effects and music. Copying them over each time we compile will dramatically slow down our compile times. To get around this we will increase our `cmake_minimum_required(VERSION X.XX)` from 3.25 to 3.26 as cmake version 3.26 adds a very handy instruction `copy_directory_if_different` — this according to the [CMake documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html) does the following:
 
 > "Copy changed content of <dir>... directories to <destination> directory. If <destination> directory does not exist it will be created."
 

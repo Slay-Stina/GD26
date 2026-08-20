@@ -8,7 +8,7 @@ Ok! So we've managed to get things to interact, move and get rendered in SDL3. T
 
 This lecture will teach us how to expand our Cmakelists.txt to generate not only our .exe but also a .dll that will be responsible for holding most of our game, making our .exe just a very small entry point.
 
-Why do we want to do this? Because we want to enable something called hot-reloading. (https://zylinski.se/posts/hot-reload-gameplay-code/) "Hot reloading gameplay code means that you swap out the code that controls the behavior of your game while the game is running. Why? To improve and tweak your gameplay code without having to restart the game."
+Why do we want to do this? Because we want to enable something called [hot-reloading](https://zylinski.se/posts/hot-reload-gameplay-code/). "Hot reloading gameplay code means that you swap out the code that controls the behavior of your game while the game is running. Why? To improve and tweak your gameplay code without having to restart the game."
 
 Without this set up we have to stop running our .exe to make changes to the game, then recompile the game and run it again, getting back to the gamestate we're looking for. This becomes so useful when we want to make adjustments to parts of the game that happens a bit into our game, or requires a lot of tweaking to get right.
 

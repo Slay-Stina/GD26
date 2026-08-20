@@ -6,7 +6,7 @@ We're going to solve that today by adding Dear ImGui to our project.
 
 Dear ImGui is an immediate mode GUI framework that allows us to, with very very little code, get a developer window up and running.
 This window is not meant to act as actual game UI, but is instead only meant to hold our development tools. Dear ImGui uses a game engine style approach where no state is copied over to the gui, instead all of the data is being fed to the gui each frame. This ensures that there is no desync between what the gui visualizes and what the data of the game is.
-We will download Dear ImGui from: https://github.com/ocornut/imgui/releases
+We will download Dear ImGui from: [https://github.com/ocornut/imgui/releases](https://github.com/ocornut/imgui/releases)
 At time of writing the latest release was v1.92.8
 We've come to expect that everything we download and add to our program is a bunch of .h files and .lib or .dll files. But this framework comes just as a series of .h/cpp files.
 This is not really a problem and we'll have it up and running in no time.

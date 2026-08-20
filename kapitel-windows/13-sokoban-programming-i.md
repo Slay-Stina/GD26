@@ -31,7 +31,7 @@ Opening our exported `.tmj` file inside Sublime Text we can look at the differen
 
 But Windows or SDL does not have a native JSON parser. Instead it is expected that we write our own or use one that someone else wrote. A very good JSON parser comes from nlohmann and is a single .h file that has all the relevant functionality all in the same single location.
 
-We download the `json.hpp` file from https://github.com/nlohmann/json. I've placed this .hpp file in `include/Parsers/`.
+We download the `json.hpp` file from [https://github.com/nlohmann/json](https://github.com/nlohmann/json). I've placed this .hpp file in `include/Parsers/`.
 
 > [!NOTE]
 > .hpp is just the dogmatic C++ way of labeling a header file. The C-standard is .h. So just remember that when working with C++, .hpp and .h are interchangeable.

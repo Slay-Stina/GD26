@@ -1,7 +1,7 @@
 # 41 Intermission II - Debugging in Visual Studio
 
 We want to be able to understand the flow of our code, and peek at variables to look at their values. We do this by using a debugger. We will be downloading the IDE Visual Studio and installing its Community version.
-Download link: https://visualstudio.microsoft.com/
+Download link: [https://visualstudio.microsoft.com/](https://visualstudio.microsoft.com/)
 It's important that we download **Visual Studio** and not the smaller light-weight **Visual Studio Code** .
 Visual Studio as a complete IDE (Integrated Development Environment) meaning that is a one-stop-shop for everything someone "would need" when working with programming. But it's bloated, slow and cumbersome. We will be using its debugging tools though.
 Meaning that our day-to-day text editor is Helix and our debugger is Visual Studio .
