@@ -18,159 +18,159 @@ Max Friberg
 
 4 Introduction to C/C++ - Part I
 
-38
+39
 
 5 Introduction to the Helix Editor - Part I
 
-52
+53
 
 6 Introduction to SDL3 - Part II
 
-56
+57
 
 7 Introduction to the Helix Editor - Part II
 
-75
+76
 
 8 Core Loop - Part I
 
-79
+80
 
 9 DLLs Memory and Hot Reloading - Part I
 
-93
+94
 
 10 DLLs Memory and Hot Reloading - Part II
 
-106
+107
 
 11 Rendering images
-129
-11.1 Updating our cmakelists.txt . . . . . . . . . . . . . . . . . . . 129
+130
+11.1 Updating our cmakelists.txt . . . . . . . . . . . . . . . . . . . 130
 12 Savestates
 
-151
+152
 
 13 Sokoban Programming I
 
-155
+156
 
 14 Sokoban Programming II
 
-176
+177
 
 15 Sokoban Programming IV
 
-188
+189
 
 16 Command Pattern
 
-195
+196
 
 17 Developer Tools with DearImGui
 
-208
+209
 
 18 Better undo/redo
 
-221
+222
 
 19 Animation Part I
 
-225
+226
 
 20 Repeat Inputs
 
-239
+240
 
 21 Camera
 
-249
+250
 2
 
 22 Asset Management Part I
 
-256
+257
 
 23 Mouse input
 
-266
+267
 
 24 Level Editor
 
-272
+273
 
 25 Sokoban programming V
 
-285
+286
 
 26 Animation Part II
 
-320
+321
 
 27 Scratch Arena and Sprite Sorting
 
-336
+337
 
 28 Spawn Commands and active/inactive entities
 
-342
+343
 
 29 Scenes and transitions Part I
 
-349
+350
 
 30 Tilemap parsing
 
-364
+365
 
 31 Sokoban Programming V
-387
-31.1 Control deltatime . . . . . . . . . . . . . . . . . . . . . . . . . 387
-31.2 Select an active entity . . . . . . . . . . . . . . . . . . . . . . 388
+388
+31.1 Control deltatime . . . . . . . . . . . . . . . . . . . . . . . . . 388
+31.2 Select an active entity . . . . . . . . . . . . . . . . . . . . . . 389
 32 Buttons Part I
 
-413
+414
 
 33 Sokoban Programming VI
 
-430
+431
 
 34 FMOD and Audio
 
-443
+444
 
 35 Animation III
 
-455
+456
 
 36 Music
 
-464
+465
 
 37 Parallax
 
-467
+468
 
 38 Text
 
-472
+473
 
 39 Buttons Part II
 
-484
+485
 
 40 Intermission I - Creating a release candidate
 
-497
+498
 
 41 Intermission II - Debugging in Visual Studio
 
-504
+505
 
 42 Intermission III - Github Part I
 
-507
+508
 
 3
 
@@ -507,7 +507,7 @@ https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.managem
 by adding Hello, sailor! to the body of our hello function we have created
 our first function (!)
 function hello {
-`hello, sailor!`
+'hello, sailor!'
 }
 
 when we’ve made changes to our Powershell profile our functions are only
@@ -740,16 +740,25 @@ Lets get cracking! first lets download the required software
 cmake (Windows x64 Installer): https://cmake.org/download/
 ninja (ninja-win.zip): https://github.com/ninja-build/ninja/releases
 LLVM https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.8
+Visual Studio Build Tools with Desktop Development with C++
+https://aka.ms/vs/stable/vs_BuildTools.exe
 NOTE: LLVM contains and works with a compiler called clang , that is what
 we will be using in powershell later NOTE: we will talk about clangd (with
 a d ) later, that’s a different thing.
+Visual Studio Build Tools are some required files and setup needed to make
+our other tools (clangd, cmake, ninja) know how to locate and find microsoft
+features and c++ standard libraries.
+When installing Visual Studio Build tools we need to also check the box
+labeled Desktop Development with C++ . Then press install .
 It can be difficult at first to know if everything has been downloaded correctly
 and User environment variable having been correctly set up. A good way of
 testing if we can access our software through the command line is to type the
 following
 `software` --version
 
-into Powershell, substituting software for whatever we want to check
+22
+
+into Powershell, substituting software for whatever we want to check
 hx --version subl --version cmake --version
 We want to ensure that our clang is of the type MSVC and not MinGW.
 This can be confirmed with by calling clang --version and making sure
@@ -757,9 +766,7 @@ the target is: x86_64-pc-windows-msvc
 If powershell throws an error here we have either not installed the software or
 we dont have a User environment variable pointing to its folder. We can also
 use the command where.exe software to find where we the .EXE is located
-22
-
-on our computer.
+on our computer.
 NOTE: I strongly recommend setting up a logical folder structure for where to
 keep these things. And if you change that location at a later date, remember
 to update your User environment variable paths to match the new location.
@@ -775,7 +782,9 @@ $env:PATH -split ';' this takes each environment variable and prints it
 to its own line.
 NOTE: if we remove the -split ';' then all paths just get printed to the
 same line - much harder to read
-So with cmake and llvm hopefully automatically added to our system environment variables we just have to add a new user environment variable path
+So with cmake and llvm hopefully automatically added to our system envi23
+
+ronment variables we just have to add a new user environment variable path
 to our Ninja folder.
 These three pieces of software are responsible for taking our project and
 producing a .EXE. Each software used in order. cmake: Build System
@@ -783,9 +792,7 @@ Generator ninja: Build system clang: Compiler
 cmake uses a text file we write ourselves, called CMakeLists.txt to learn
 what content our project consists of, and what we want to do with these files
 and assets.
-23
-
-ninja then takes this set of instructions from cmake and using a compiler
+ninja then takes this set of instructions from cmake and using a compiler
 (clang++) performs actions on the files of the project based on the instructions
 provided by the build instructions created by cmake. Ninja tells the compiler
 what actions to perform and how those can be optimized for speed and making
@@ -799,19 +806,19 @@ Programmer = Architect - makes blueprints cmake = General
 contractor - Interprets blueprints, writes work orders for your
 specific site Ninja = Foreman - Schedules workers, coordinates
 tasks, maximizes parallel work Clang = worker - Actually builds
-the house
+the house Visual Studio Build Tools - necessary to work with
+windows and c++. Bricks and mortar
 we have a dev and a getConfig function. it’s time to use our toolchain to
-prepare a function that builds our project
+24
+
+prepare a function that builds our project
 We can do this in two ways
 1) tell cmake what we want directly in the function
 2) create a JSON file with our settings and giving it this to work with
 instead
 Below is a breakdown of method #1. Though this can be skipped as we will
 be working with method #2.
-
-24
-
-function build {
+function build {
 param (
 [parameter(Mandatory=$true)][string]$project
 )
@@ -839,7 +846,9 @@ is the same as:
 cmake -S $SourceDir -B $BuildDir -G Ninja -DCMAKE_CXX_COMPILER=clang++
 
 NOTE: we’ve added parameters to our own functions before, if we wanted
-to have more than 1 parameter then we would keep adding them after one
+25
+
+to have more than 1 parameter then we would keep adding them after one
 another just like the expanded cmake line above. Storing all the parameters
 in an array makes the line easier to read as well as simplify changing one of
 these parameters as they live on separate lines.
@@ -847,9 +856,7 @@ cmake $cmakeArgs prepares our cmake generator with links and references
 to the correct folders and instructions on what generator (ninja) and what
 compiler (clang++) we plan to use
 NOTE: this line -DCMAKE_CXX_COMPILER=clang++ is pretty hard to parse
-25
-
-and remember how to write, that’s why we have the documentation, lectures,
+and remember how to write, that’s why we have the documentation, lectures,
 AI-help and forums. How were you supposed to know that the syntax had
 to be written like that? you really weren‘t sadly, you basically just have to
 learn it, remember it or at least remember where to look it up.
@@ -866,7 +873,9 @@ version and a release version as simple as swapping between -debug and
 -release when calling our cmake –build command
 we want to use Powershell’s New-Item function to create the two files listed
 above. But remember that any Powershell function will be executed in the
-directory (folder) we‘re currently working in.
+26
+
+directory (folder) we‘re currently working in.
 To simplify our lives, we will create - you guessed it - another function
 function goto {
 param(
@@ -877,9 +886,7 @@ Set-Location -Path $config.path
 }
 
 now we can type goto project_name“ and the working directory will change
-26
-
-to the root folder of that project. Now if we use New-Item our newly created
+to the root folder of that project. Now if we use New-Item our newly created
 files will be created in that directory.
 NOTE: the reason we use a JSON preset file is:
 1) it is easily shared inside a team rather than each programmer having
@@ -896,12 +903,12 @@ now that we are in the same working directory as our newly created JSON
 file we can open it in sublime text using subl CMakePresets.json
 NOTE: to learn more about CMakePresets, check out the documentation:
 https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
-lets create the minimum required configure preset and build preset to get
-started
 
 27
 
-{
+lets create the minimum required configure preset and build preset to get
+started
+{
 
 }
 
@@ -937,11 +944,11 @@ NOTE: This is known as boilerplate code and just has to be there for
 everything to function.
 some of these we can name as we please, but most need to be written very
 exactly. The “version” field is not the version of our preset or the version of
-our game, it tells cmake what version of JSON we are using. This should
-always be 3. “configurePresets” and the name of the fields inside it “name”,
 28
 
-“generator” and the array “cacheVariables” have to be named exactly as they
+our game, it tells cmake what version of JSON we are using. This should
+always be 3. “configurePresets” and the name of the fields inside it “name”,
+“generator” and the array “cacheVariables” have to be named exactly as they
 are - but we do get to put in whatever name we want for our preset on the
 “name” row. Here we use the name “default”.
 NOTE: cmake syntax and powershell syntax are not the exact same, sadly. So
@@ -969,11 +976,11 @@ our build function is done, we have a preset that can be loaded to provide
 cmake with the settings we want. But we still have two more steps before we
 can build anything
 1) add instructons to our CMakeLists.txt file that we created alongside
-our CMakePresets.json file
-2) write a super small SDL game inside our main entry point (main.cpp)
 29
 
-without any information in our CMakeLists.txt our compiler has no idea what
+our CMakePresets.json file
+2) write a super small SDL game inside our main entry point (main.cpp)
+without any information in our CMakeLists.txt our compiler has no idea what
 files it should add to our game, and how those files should be bundled. It
 won‘t make sure that any sprite or sound effect we’ve added to our asset
 folder will be available in our game and no code will be compiled to our .EXE
@@ -984,7 +991,10 @@ NOTE: in case we’ve restarted our terminal or moved directory we can use
 our handy goto project_name function to get our directory back to the
 root folder
 Below is our minimal version of the CMakeLists.txt
-cmake_minimum_required(VERSION 3.25)
+
+30
+
+cmake_minimum_required(VERSION 3.25)
 project(Heartburner LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 # Automatically find all .cpp files in src/
@@ -1005,9 +1015,7 @@ ${DLL_FILES}
 )
 
 Before learning how this works we will take a break just to summarize all of
-30
-
-the things you‘ve begun to learn
+the things you‘ve begun to learn
 • JSON syntax
 • Powershell coding syntax
 • cmake syntax
@@ -1019,7 +1027,9 @@ Before learning how this works we will take a break just to summarize all of
 • file and folder structure for game projects
 • how to work with text editors (Helix and Sublime Text)
 • the relationship between build systems (cmake, ninja) and compilers
-(clang++)
+31
+
+(clang++)
 • how to download and integrate external libraries (SDL3)
 • how to create and use functions with parameters
 • how to work with variables and strings
@@ -1033,10 +1043,7 @@ That is seriously impressive! we’ve begun to lay the groundwork necessary to
 start making awesome games! In the next segment we will talk a bit more
 about cmakelists.txt, then create the most minimal program then compile
 and run it!
-
-31
-
-Our CmakeLists.txt does only what is absolutely necessary to build a mockapplication. But let‘s talk about what is there and what is missing
+Our CmakeLists.txt does only what is absolutely necessary to build a mockapplication. But let‘s talk about what is there and what is missing
 cmake_minimum_required(VERSION 3.25)
 project(Heartburner LANGUAGES CXX)
 
@@ -1048,7 +1055,9 @@ the background from the project() function.
 NOTE: We are maknig a C++ project, that is our langauge. The reason it
 says CXX and not C++ is because way back in the olden days, the operating
 system couldn t handle +‘ symbols in text, so they used X instead.
-set(CMAKE_CXX_STANDARD 20)
+32
+
+set(CMAKE_CXX_STANDARD 20)
 
 Languages, like C++ and C#, get new updates with additional functionality.
 This line tells cmake that we‘re using version 20 of C++. The reason we dont
@@ -1063,9 +1072,7 @@ the extention .cpp. here the asterix * acts as a joker, allowing any word to
 be substituted for it. If we had multiple .cpp files (and we will later) this
 is required. SOURCES is the name we give a new variable (later used with
 ${SOURCES} ) this is created by the file() function. the GLOB_RECURSE
-parameter tells the build system to fetch all files even if they are in subdi32
-
-rectories (folders) depper than src this way we can clean up our src folder
+parameter tells the build system to fetch all files even if they are in subdirectories (folders) depper than src this way we can clean up our src folder
 later by putting multiple scripts in different folders instead of having 100+
 all layed out in the src folder.
 # Create executable
@@ -1079,7 +1086,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 Ok, so now we have to talk a bit about the structure of C++. We write two
 types of files
-1) .cpp files
+
+33
+
+1) .cpp files
 2) .h (header) files
 Header files contain, with only a few exceptions, no code that will ever be run
 in the executable, rather a header file contains a list of names of functions
@@ -1093,9 +1103,7 @@ syntax at the top of the .cpp file. So when we write a .cpp file we dont add
 the content of .h ourselves at the top, this is done at compile time.
 The code above lets the build system know where it can find .h files inside our
 project so the compiler can add their contents to the top of all the .cpp files
-33
-
-NOTE: C# does not have .h files just .cs files (cs stands for c-sharp aka C#)
+NOTE: C# does not have .h files just .cs files (cs stands for c-sharp aka C#)
 # find and link all .lib files in lib/
 file(GLOB_RECURSE LIB_FILES "${CMAKE_SOURCE_DIR}/lib/*.lib")
 target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_FILES})
@@ -1108,7 +1116,9 @@ does, and relies on another program to call into it.
 They are used during linking so that a program can reference functions
 implemented in the DLL, which will be loaded and executed at runtime.
 NOTE: Linking is a step that comes after compilation, where the different
-parts of a program are connected so they can reference each other and work
+34
+
+parts of a program are connected so they can reference each other and work
 together correctly.
 NOTE: Some files may have the extension .dll.a. these work the same as .lib
 files, but indicate that you have downloaded the wrong version of the specific
@@ -1125,10 +1135,7 @@ ${DLL_FILES}
 )
 
 Since our program actually needs to run code found in .dll files we need to
-
-34
-
-make sure that these files are copied over to the build folder. First we collect
+make sure that these files are copied over to the build folder. First we collect
 all of them from our lib folder and store them in a variable we’ve named
 DLL_FILES then once our build is finished we ensure all of these are copied
 over to the build folder.
@@ -1140,7 +1147,9 @@ and is configured for C++. Now we will:
 2) use our powershell function to build the executable (.exe) by using our
 preset (cmakepreset.json) and our build instructions (cmakelists.txt) to
 tell our build system (ninja) to use our compiler (clang++) to compile
-the scripts into machine code and then link them together.
+35
+
+the scripts into machine code and then link them together.
 3) run our first program!
 lets start development
 dev pilot
@@ -1150,10 +1159,7 @@ NOTE: if the lecture series hasn’t gone over VIM motions and helix, change
 the dev function to not call hx but instead subl . This will open the sublime
 text editor instead of helix if necessary.
 inside our main.cpp we will add the following code
-
-35
-
-#include <windows.h>
+#include <windows.h>
 int main() {
 Sleep(2000);
 return 0;
@@ -1169,7 +1175,10 @@ the top of our main.cpp when building.
 then we create a function called main it has to be called exactly main, as
 our compiler will hunt for this function to make it our entry point. The code
 inside main() is the first code being executed when running our .exe later
-the int infront of main is the c++ way of declaring it a function. In
+
+36
+
+the int infront of main is the c++ way of declaring it a function. In
 powershell we wrote function explicitly. int actually stands for integer (whole
 numbers) meaning that this function will eventually return a number - in this
 case it returns a 0
@@ -1180,9 +1189,7 @@ and the program closes.
 NOTE: we use different integers to represent different conditions that caused
 the program to end. a 0 means it exited without any errors.
 NOTE: c++ requires us to end each line of code with a semicolon ;
-36
-
-So our program will do nothing (but still exist) for 2000 milliseconds AKA 2
+So our program will do nothing (but still exist) for 2000 milliseconds AKA 2
 seconds, then return 0 and at that point the program closes.
 if we go ahead and save our main.cpp file then build our project using
 build pilot we will get an executable in our build folder. Double-clicking
@@ -1195,7 +1202,9 @@ At this point the next steps ahead of us are:
 • learn the basics of C++
 • making fun systems through code
 • add images and sound effects
-• add more instructions to our cmakelists.txt
+37
+
+• add more instructions to our cmakelists.txt
 • add more presets to our cmakepresets.json
 • add more helpful functions to our powershell $profile
 • make the powershell functions we’ve already made more robust
@@ -1203,7 +1212,7 @@ It was hard, it was complex but this was the first, and biggest, step you will
 take on your journey to be a programmer! Going back to repeat steps and
 learning the ins-and-outs of these systems will be vital to actually understanding them. But now, just like our little program, it’s time to Sleep();
 
-37
+38
 
 4
 
@@ -1233,7 +1242,7 @@ New-Item example.cpp -Force
 subl example.cpp
 }
 
-38
+39
 
 this function sets our working directory to a folder I’ve already created NOTE:
 the path will not be the same on your computer, it depends on where you
@@ -1270,7 +1279,7 @@ else {
 get outta here!
 }
 
-39
+40
 
 With this in mind, lets break down this function: using our system environment
 variable Path to the folder containing clang++ we get to call into it without
@@ -1301,7 +1310,7 @@ return 0;
 All C++ programs needs an entry point. this is the function called main. It
 has the int (integer) return type and at the last line of the main() function
 we return a ‘0’ meaning ‘the code ran without issue’.
-40
+41
 
 We want to be able to write text from our program into our terminal so
 we want to use the println function (this stands for ‘print on new line’).
@@ -1332,7 +1341,7 @@ We could then remove ‘std::’ and just write println().
 NOTE: namespaces will be part of all games you will work on, including
 those using C# and game engines like Unity
 
-41
+42
 
 You might have noticed that we add a semicolon to the end of all lines in
 C++. This is a required step dating back to the C programming langauge
@@ -1362,7 +1371,7 @@ can’t work with an integer directly. Other methods like ‘cout’ can. By add
 ‘ “{}”,’ as the first parameter to println it can take the second parameter (in
 our case the nubmer 15) and replace the placeholder “{}” with it later. But
 don’t worry, there was really no way for you to know this, and no way from
-42
+43
 
 reading the code for us to understand this syntax, some parts of how code is
 written we kinda just gotta learn.
@@ -1390,7 +1399,7 @@ variable is a named piece of memory that stores something for us (a number,
 a word, a sentence etc)
 updating our main() function we can take a look at our program:
 
-43
+44
 
 #include <print>
 using namespace std;
@@ -1421,7 +1430,7 @@ two values we passed to the function (5 and 10) that are then printed to the
 console via the println() function. After that we hit the return 0 and the
 program closes.
 What we’ve created is sorta the world slowest and worst calculator. But it
-44
+45
 
 has taught us a few things:
 1) what the difference between an int and a void function is
@@ -1446,7 +1455,7 @@ We will use ‘New-Item’ to create a new .h file called example.h and the code
 written above will be the only content of this .h file (for now)
 back in our example.cpp we can now include this .h file at the top.
 
-45
+46
 
 #include <print>
 #include "example.h"
@@ -1480,7 +1489,7 @@ return result;
 
 our function no longer prints anything, instead it returns the integer we’ve
 named result. We have to do 2 things to get our program to compile and get
-46
+47
 
 the number to print to the console First: update our .h file so the function
 declaration matches the changes we made in the .cpp file (changed void to
@@ -1513,7 +1522,7 @@ Time to come clean, the ‘Add’ function is still not a good function. Doing
 basic arithemtic does not require a function. It can be done in just a normal
 line of code
 
-47
+48
 
 println("{}", 5 + 10);
 
@@ -1543,7 +1552,7 @@ it. This means that our computer does a little conversion each time we assign
 a float like this. To tell the computer that the decimal number we’ve written
 is really a float we append a ‘f’ to the end of the decimal chain. Like this:
 
-48
+49
 
 float aFloatFromTheStart = 0.34f;
 
@@ -1579,7 +1588,7 @@ by an else statement. The question being answered in the parenthesis of the
 if-statement is responsible for deciding if the code flow enters the scope of
 the ‘if’ or the ‘else’.
 The assignment operator ‘=’ is differnt from the equality operator ‘==’ the
-49
+50
 
 equality operator doesn’t assign a new value to the left hand side, instead it
 checks that the value on the left side and the right side are the same. So this
@@ -1613,7 +1622,7 @@ here we have an if statement within another if statement. Still no problem to
 read and parse. Though you can imagine that with 1-2 more if-statements
 our code would begin to drift right at an alarming rate. NOTE: the sideways
 drift towards right is sometimes refered to as a “pyramid of death”
-50
+51
 
 We can use a ‘return’ to do an “early return” as well as ask the opposite
 question:
@@ -1638,7 +1647,7 @@ to #include standard library headers vs our own .h files * Return types
 * Variable types * Assignment vs equality operators * If/else statements *
 Nesting and early returns
 
-51
+52
 
 5
 
@@ -1668,7 +1677,7 @@ When working in Helix we also get access to Helix-specific menues by using
 the correct keystrokes in Normal Mode.
 In Insert Mode the keys are used to type text like in any editor. Pressing
 Escape will return us out of Insert Mode and back into Normal Mode
-52
+53
 
 In Select Mode we can select multiple pieces of text to be copied, moved and
 otherwise manipulated.
@@ -1694,7 +1703,7 @@ now we turn caps ‘ON’ and ‘off’ using ecape and exit ‘Insert Mode’ a
 Mode’ using caps lock. This will, like many new things, feel strange at first.
 But this remapping is very common when using Helix or other VIM-style
 software. And now we’re using our computer as developers not hobbyists,
-53
+54
 
 and that should naturally come with changes to how we use our hardware.
 NOTE: I suggest unplugging your mouse when learning Helix if you can’t
@@ -1721,7 +1730,7 @@ using the ‘write’ command rather than our usual ‘ctrl+S’. So go ahead an
 open the command line again, type ‘w’ and press enter
 NOTE: you can also type ‘write’ or even ‘write-quit-all’ to save all your files
 at once then quit helix. or use the short form ‘wqa’
-54
+55
 
 //////////////////////////////////////////////////////////////////////////////////////
 We will be working with C++ files, and it would be very nice to catch errors
@@ -1747,7 +1756,7 @@ we open a .h or .cpp file. Then it lets us A) get diagnostics inside helix (red
 underlines, error message) B) we can use SPACE+A when our caret is over a
 part of our code with an error and clangd will offer fixes
 
-55
+56
 
 6
 
@@ -1777,7 +1786,7 @@ NOTE: clangd is used as a file extention here, and the lack of any text before
 the ‘.’ tells us that the file has no name.
 in our root directory (goto ‘projectname’) we add the .clangd file using
 ‘New-Item .clangd’. We then open it inside sublime text with subl .clangd.
-56
+57
 
 We will write our .clangd file using a different data format than .JSON. The
 format is called YAML and has even less boilerplate than JSON, making it
@@ -1806,7 +1815,7 @@ WARNING: before we look at the function below: we are going to start using
 pretty strong commands to add or delete files from our computer. It’s a
 good idea to, in the future, have backups for important stuff if you start
 
-57
+58
 
 experimenting with these functions on your own. Our function below is not
 an issue as we are doing a lot to ensure that we are in the proper directory.
@@ -1844,7 +1853,7 @@ added the ‘[switch]$clean’ parameter at the top and using in if-statement we
 check if $clean was true.
 NOTE: in both powershell syntax and C++ we can skip the ‘== true’ in
 an if-statement, as it is implied unless specified otherwise. So in powershell
-58
+59
 
 syntax ‘if(𝑐𝑙𝑒𝑎𝑛)′ 𝑖𝑠𝑡ℎ𝑒𝑠𝑎𝑚𝑒𝑎𝑠′ 𝑖𝑓(clean -eq $true)’ and in C++ ‘if(clean)’ is
 the same as ‘if(clean == true)’.
@@ -1868,7 +1877,7 @@ Now with our build function updated and our cmakelists.txt instructing us
 to generate a ‘compile_commands.json’ we can get much more helpful info
 from clangd, we just need to compile our program once so the ‘compile_commands.json’ is populated with the info we need.
 Now we can begin programming in our main.cpp and adding a few SDL3
-59
+60
 
 specific lines of code to spawn a window and fill it with a nice background
 color.
@@ -1896,7 +1905,7 @@ At the end of the while loops scope it jumps back to the beginning of the
 scope and runs it again.
 A naive version would look like
 
-60
+61
 
 while (game_is_running){
 1. Handle_Input
@@ -1930,7 +1939,7 @@ NOTE: Remember the not-so-elegant syntax of the standard library header
 or ‘cout’ from well now we can use the much more convenient ‘SDL_Log()’
 instead!
 
-61
+62
 
 We have no way of interupting our program as there is nothing we can do
 within the scope of our ‘while’ that will turn ‘running’ from ‘true’ to ‘false’.
@@ -1958,7 +1967,7 @@ Using the handy-dandy https://godbolt.org/ website we can actually compare
 our C++ code for both example (while() and goto) and running both main()
 functions (without SDL stuff) we get the same output:
 
-62
+63
 
 main:
 .L2:
@@ -1996,7 +2005,7 @@ theNumber += 1;
 
 then lets run this small program:
 
-63
+64
 
 int number = 5;
 AddOne(number);
@@ -2028,7 +2037,7 @@ Lets break it down:
 int number = 5; <- this is a newly created variable. It is stored in memory
 somewhere with the value ‘5’
 
-64
+65
 
 int* aNumber <- this is a pointer variable. It points not to a number, but the
 place in memory where we will store a number. To pass a point in memory
@@ -2057,7 +2066,7 @@ Here we make it so the function is expecting a ‘int&’ this handles the passb
 single ‘&’ the program knows that any value being passed to the function
 is really passed by reference, and any changes to the passed variable in the
 
-65
+66
 
 function will be made on the dereferenced value stored in that reference we
 passed along. It’s more invisible and has both its advantages and disadvantages, it’s less explicit because we ‘hide’ the fact that ‘AddOne()’ works by
@@ -2089,7 +2098,7 @@ The “simplified” way of passing by reference requires less specific C++ synt
 And that convenience styled syntax is often refered to as ‘syntactic sugar’.
 Understanding how we pass something as either the memory address or the
 actual value is key to working with C++. So we will mostly be working with
-66
+67
 
 ‘2.’ as a learning tool. Though much of the C++ you will come across uses
 ‘3.’. So eventually you will still have to learn and understand both.
@@ -2118,7 +2127,7 @@ more proper example. What follows is a lot of new code, but we’ve touched
 on this syntax in many cases. We will break it all down once we’ve seen it in
 its entirety.
 
-67
+68
 
 #include "SDL3/SDL_init.h"
 #include "SDL3/SDL_events.h"
@@ -2157,7 +2166,7 @@ if we press the ‘escape’ key 4) It nests a while loop within another while l
 .h files from SDL
 Lets begin by looking at our entry point:
 The ‘main()’ function has a lot of new parts to it. A lot of it is boilerplate
-68
+69
 
 that SDL3 requires in order to start communicating with our computer.
 ‘SDL_Init()’ accepts a series of so called “flags” as parameters that tell it
@@ -2192,7 +2201,7 @@ of 2 we can combine them together and the number that is the result of
 that addition can only be the result of that exact combination. In our
 “WeaponBuffs” example, if we wanted to have a weapon with both a ‘Poison’
 and an ‘ICE’ buff then this would be stored (in the background) as a ‘5’, an
-69
+70
 
 no other combination of flags can produce that number.
 enums are a great way of storing similar attributes in a way that is very easy
@@ -2219,7 +2228,7 @@ if ANY of the ‘bits’ in the ‘byte’ was a ‘1’
 POISON 00000001 ICE 00000100 = Result 00000101
 And now we can clearly see why an enum that is used as a flag needs to have
 each entry as a ‘power of 2’. And the ‘Result’ above ‘00000101’ is actually
-70
+71
 
 the byte representation of the number ‘5’.
 If we want to pass both ‘SDL_INIT_EVENTS’ and ‘SDL_INIT_VIDEO’
@@ -2229,7 +2238,7 @@ NOTE: you can find all the SDL_INIT flags here:
 sdl.org/SDL3/SDL_Init
 Lets keep looking at our program:
 
-71
+72
 
 https://wiki.lib-
 
@@ -2269,7 +2278,7 @@ the type being an SDL_Window. We know we’re storing a pointer and not
 the actual data as the ‘SDL_Window’ is followed by a * . This line on
 its own has not created a window for us. We need to actually create that
 window using the ‘SDL_CreateWindow()’ function. This function accepts 4
-72
+73
 
 parameters. The first being the name of the window, then its the width and
 the height, followed by whatever option flags we want to pass along. Lets
@@ -2297,7 +2306,7 @@ https://wiki.libsdl.org/SDL3/SDL_PollEvent
 looking at our ‘HandleRunning()’ function we can see a series of if and if-else
 statements asking questions about (querying) the SDL_Event parameter that
 was passed into it. As we are only interested in if the ‘escape’ key was pressed
-73
+74
 
 we can avoid nesting by returning true (meaning ‘keep running’) if the event
 was not a keyboard event to begin with. Then if we did not return we know
@@ -2320,7 +2329,7 @@ So now we do the following things inside our program:
 With this we’ve layed the foundation for a core loop (input, update, draw,
 repeat) !
 
-74
+75
 
 7
 
@@ -2349,7 +2358,7 @@ to our ‘src’ folder at the bottom of our Helix editor.
 We can switch between our active pane by pressing
 ‘space’ - open helix menu ‘w’ - open window submenu ‘left/right arrow’ -
 
-75
+76
 
 navigate to the left or right pane ‘h/l key’ - can also be used to navigate to
 the left or right pane
@@ -2374,7 +2383,7 @@ to disk or if we want to discard the changes we’ve written.
 if we try and close our pane using ‘:’ ‘q’ - quit
 Helix will warn us and nothing will happen (if we have unsaved changes)
 we can combine our write and quit (quit actually doesn’t quit, it closes the
-76
+77
 
 current view/pane)
 ‘:’ ‘wq’ - write-quit
@@ -2401,11 +2410,11 @@ in the src folder
 To open and look through the currently active buffers we can press ‘space’ ‘b’
 then step through them using ‘tab’ and select which one to open with ‘enter’
 To open and look through all files in the project we can press ‘space’ ‘f’ then
-77
+78
 
 step through them using ‘tab’ and select which one to open with ‘enter’:
 
-78
+79
 
 8
 
@@ -2434,7 +2443,7 @@ Lets look at our main.cpp function
 #include "SDL3/SDL_init.h"
 #include "SDL3/SDL_events.h"
 #include "SDL3/SDL_timer.h"
-79
+80
 
 #include "game.h"
 SDL_Window* window;
@@ -2457,7 +2466,7 @@ SDL_Init(SDL_INIT_EVENTS);
 bool running = true;
 window = SDL_CreateWindow("pilot", 650, 400, 0);
 renderer = SDL_CreateRenderer(window, NULL);
-80
+81
 
 Core::Initialize();
 while(running){
@@ -2478,7 +2487,7 @@ return 0;
 }
 A lot of new stuff happening. 1) we #include new .h files the ‘game.h’
 we wrote ourselves We’ve also written a game.cpp file that has the actual
-81
+82
 
 implementations of each function outlined in game.h
 2) we store pointer variables to both a window and a renderer the renderer
@@ -2505,7 +2514,7 @@ will be larger than if the time between ticks was very small. The result
 of this is that no matter how strong or how slow our computers are,
 our bullets will still fly at the same speed. Without deltatime, a gun in
 a fast computer would shoot faster bullets.
-82
+83
 
 5) We call ‘Initialize’ ‘Update’ and ‘Draw’ from a namespace we’ve named
 ‘Core’
@@ -2533,7 +2542,7 @@ We have already encountered a namespace earlier in this lecture series, when
 we decided to write the handy
 using namespace std;
 
-83
+84
 
 this allowed us to call the functions inside the namespace named ‘std’ without
 first writing ‘std::’. We can write ‘using namespace Core’ at the top of our
@@ -2559,7 +2568,7 @@ yPos = 100;
 box.h = 50;
 box.w = 50;
 box.x = xPos;
-84
+85
 
 box.y = yPos;
 }
@@ -2580,7 +2589,7 @@ yPos += SPEED * dt;
 box.x = xPos;
 box.y = yPos;
 }
-85
+86
 
 void Core::Draw(SDL_Renderer* renderer){
 SDL_SetRenderDrawColor(renderer, 0, 70, 0, 255);
@@ -2604,7 +2613,7 @@ gives them an initial value. It also sets the internal values of x and y of the
 SDL_FRect to match our xPos and yPos variables as well as its width and
 height ‘w’ and ‘h’.
 an SDL_FRect is a ‘struct’ holding the following data: float x; - horizontal
-86
+87
 
 position float y; - vertical position float w; - width float h; - height
 a ‘struct’ is just a collection of variables that we want to bundle together. An
@@ -2630,7 +2639,7 @@ used later to define things like bullets, enemies, players and more!
 for example:
 struct Bullet {
 int damage,
-87
+88
 
 bool fired,
 float travel_speed,
@@ -2655,7 +2664,7 @@ a_bullet->fired = true;
 So we use: ‘.’ when accessing the values on the actual variable ‘->’ when
 accessing the values the pointer is pointing to ‘::’ when accessing functions
 from a namespace
-88
+89
 
 Lets look at our Update() function
 void Core::Update(float dt){
@@ -2677,7 +2686,7 @@ box.y = yPos;
 }
 The first line holds a lot of new info for us: ‘const bool* keys’ is similar to
 ‘bool* keys’ which is a pointer to a place in memory where we store a bool.
-89
+90
 
 Adding const to it make it so that the value of the bool stored in memory at
 the address the pointer points to can’t be changed - SDL does this because
@@ -2703,7 +2712,7 @@ turns out the index for ‘B’ was 5 and that is exactly what the number to
 SDL_SCANCODE_B was given.
 So each tick SDL checks the status of all the keys on our keyboard then sets
 their value in memory to true or false, then we can check their status by
-90
+91
 
 pointing to the first place in memory then shifting by the specific index to
 find the value of the key we are looking for.
@@ -2728,7 +2737,7 @@ SDL_RenderClear(renderer);
 SDL_SetRenderDrawColor(renderer, 150, 0, 30, 255);
 SDL_RenderFillRect(renderer, &box);
 SDL_RenderPresent(renderer);
-91
+92
 
 }
 ‘SDL_SetRenderDrawColor’ sets the color through RGB (and ‘alpha’ for
@@ -2754,7 +2763,7 @@ So our basic draw loop is 1) RenderClear 2) Draw everything 3) RenderPresent
 There we go, we have created our first core loop, with input handling, updating
 game logic and finally drawing things to the screen!
 
-92
+93
 
 9
 
@@ -2783,7 +2792,7 @@ Here’s the breakdown of how we will achieve this:
 1) change our cmakelists.txt to compile our project differently, creating
 the .exe and our new .dll
 
-93
+94
 
 2) set up what is called a memory arena to hold all the memory we are
 allowing our game to use
@@ -2803,7 +2812,7 @@ the .DLL
 4) We use comments to help distinguish the different parts of our cmakelists.txt
 Here it is in full
 
-94
+95
 
 cmake_minimum_required(VERSION 3.25)
 project(Heartburner LANGUAGES CXX)
@@ -2850,7 +2859,7 @@ ${CMAKE_SOURCE_DIR}/src/arena.cpp
 
 Here we store all .cpp files we want to have included with our .EXE in a
 single array that we’ve named ‘EXE_EXCLUSIVE’ should we need more
-95
+96
 
 files to be compiled into our .EXE we will have to manually modify this list.
 NOTE: Another method is to take all the .cpp files we want to have and store
@@ -2883,7 +2892,7 @@ NOTE: ‘dll’ stands for dynamically linked library
 NOTE: our ‘add_library’ creates both a .dll and a .lib file as both are needed
 for us to work with our .dll
 
-96
+97
 
 # Copy DLLs
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -2919,7 +2928,7 @@ set by our cmakelists.txt We then store the name of our game in the
 $projectName variable by splitting the line we found at the position of
 the first (and only) ‘=’ then takes the second text. NOTE: arrays start
 a 0, so index ‘1’ is actually the second entry
-97
+98
 
 4) We then tell cmake to build the project again, but only the target named
 “NameOfOurProject_game”. So if our game is called “Asteroids” in our
@@ -2937,7 +2946,7 @@ ago to try small projects. This is a single file script that shows how we can
 work with what is called a memory arena and we’ll look at how we can think
 about memory and pointers pointing to memory.
 
-98
+99
 
 #include <iostream>
 #include <windows.h>
@@ -2985,7 +2994,7 @@ int main(){
 size_t memory_size = (1024 * 1024 * 4); // 4mb
 void* blob_of_memory = malloc(memory_size);
 
-99
+100
 
 if(blob_of_memory == nullptr){
 return 1;
@@ -3018,7 +3027,7 @@ about casting a bit later in this lecture
 • size_t size; ‘size_t’ is a type of variable, like an int, that holds a whole
 number, but size_t is larger than an int and especially made to help
 us store how big something is. size_t is also unsigned, meaning that
-100
+101
 
 compared to a int it can’t store a negative number.
 This variable is meant to tell us how large our memory block is, whilst
@@ -3045,7 +3054,7 @@ done with it we will free it all at once. The upside to this is
 1) we know that our program will not crash due to insufficient memory, if
 it starts up then we know we managed to allocate enough memory.
 2) our memory lives in tidy blocks on our heap, making accessing them
-101
+102
 
 faster as the CPU doesn’t have to go back to RAM as often to fetch a
 chunk of memory. This is perhaps the biggest performance win between
@@ -3075,7 +3084,7 @@ cout << "failed to allocate memory" << endl;
 return 1;
 }
 
-This if-statement checks if our pointer returned from malloc actually suc102
+This if-statement checks if our pointer returned from malloc actually suc103
 
 cesfully managed to find a place in memory to point to. If not we enter
 the scope of the if-statement and our main() returns with an error code of
@@ -3106,7 +3115,7 @@ Here we must take a moment to learn about ‘casting’ casting is the process o
 telling our compiler that we want to take data that is one of type, and treat
 it as if it were another type. Not all types can be ‘cast’ to each other, but
 the void* returned from our ‘Add_To_Arena’ function can be cast into any
-103
+104
 
 other pointer. Just as for example a float value can be ‘cast’ into an int, but
 of course in the process it gets stripped of its decimal value
@@ -3138,7 +3147,7 @@ character* so that the compiler knows what type of memory we have stored.
 Now inside our memory arena we have layed out the memory for 10 characters
 sequentially. And because we know the size of a Character and we know they
 are packed next to each other in memory we can use the array ‘[]’ symbols to
-104
+105
 
 fetch one of the ten characters by specifying its position in the memory 0-9.
 NOTE: remember that arrays start at 0 instead of at 1. This means that
@@ -3157,7 +3166,7 @@ layouts work we are ready to bring this into our SDL3 project to add new
 files and set up necessary boilerplate to allow us to work with our .EXE and
 .DLL solution
 
-105
+106
 
 10 DLLs Memory and Hot Reloading - Part
 II
@@ -3184,7 +3193,7 @@ game.h
 The process of breaking out parts of code into its own files is industry standard,
 as it allows clearer boundaries between files and makes reasoning about them
 simpler.
-106
+107
 
 As our .EXE has no access to game.cpp directly we need to specify where it
 can find each of its relevant functions:
@@ -3205,7 +3214,7 @@ a lot of benefit later on.
 The arena.h and arena.cpp files are very similar to our practice example, but
 lifted into their own files
 
-107
+108
 
 #pragma once
 namespace Memory {
@@ -3233,7 +3242,7 @@ the three functions are the same as well. We first call Initialize to make sure
 our size variable is set, our ‘used’ is zeroed and our ‘base’ pointer ‘points’ at
 the first byte in memory.
 
-108
+109
 
 #include "arena.h"
 #include <cstring>
@@ -3269,7 +3278,7 @@ it makes all numbers 0 and all pointers become nullptr . Without this code
 we could find ourselves working with data that has been given random values.
 We add #include <cstring> as that is the header that holds memset()
 
-109
+110
 
 that’s it for our memory arena. Mostly it’s all the same stuff, just in its own
 two files and with our defensive pattern added.
@@ -3298,7 +3307,7 @@ which have the 2 following conditions:
 1) the value is not meant to change
 2) we know the value at compile time
 We only use this header file in our main.cpp currently to simplify our ‘malloc’
-110
+111
 
 (memory allocation)
 and our minimal gameState.h
@@ -3331,7 +3340,7 @@ __declspec(dllexport) void Update(GameData* data, float dt);
 __declspec(dllexport) void OnQuit(SDL_Renderer* renderer);
 }
 
-111
+112
 
 Note the #pragma once .
 
@@ -3366,9 +3375,9 @@ long as we can remember that the header file required some strange additions
 then we can search for those again later if we forget the exact syntax - that’s
 very common.
 
-112
+113
 
-113
+114
 
 #include "game.h"
 extern "C" {
@@ -3421,7 +3430,7 @@ void OnQuit(SDL_Renderer* renderer){
 SDL_DestroyRenderer(renderer);
 }
 
-114
+115
 
 our game.cpp is similar to last time. The changes are we work directly on
 the SDL_FRect struct instead of our own xPos and yPos variables that
@@ -3457,7 +3466,7 @@ find at the memory being pointed to can not be changed by us accidentally
 in code. It has become read-only meaning that we can read the value but
 not write to it.
 
-115
+116
 
 Then we can use the array syntax [] along with an enum to handle the
 pointer offset to fetch the memory address of the specific keyboard key we are
@@ -3489,7 +3498,7 @@ sticking to best practices when it comes to ordering our .h files.
 2) After those we include all headers we have not written ourselves. In
 this case the SDL3 headers.
 3) After that we add our custom made headers
-116
+117
 
 SDL_Window* window;
 SDL_Renderer* renderer;
@@ -3519,7 +3528,7 @@ to reference a different string.
 The constexpr keyword makes the variable a compile-time constant .
 This implies that the pointer itself cannot change after initialization, and the
 compiler knows its value during compilation.
-117
+118
 
 now if we try and write
 NAME_OF_DLL = "a_new_name";
@@ -3571,7 +3580,7 @@ their return type and parameters and allows us to store them with a more
 easily typed name, like Function_Initialize
 Without our typedef we would need to write
 
-118
+119
 
 void (*initFunc)(GameData* data) = MyInitFunction;
 
@@ -3607,7 +3616,7 @@ Now by having access to it in memory we can tell it to do thing, like calling
 functions.
 FILETIME is a data type “Containing a 64-bit value representing the number
 of 100-nanosecond intervals since January 1, 1601 (UTC).” This might seem
-119
+120
 
 like insane precision for us, but we use it because there are handy windows
 functions that we can use to compare two FILETIME variables and we can also
@@ -3639,7 +3648,7 @@ FindFirstFile allocates some memory when called. This is stored in a
 HANDLE variable, this is done no matter what by our operating system when
 it is asked to look for a file like this. This little chunk of memory needs to be
 told that it is no longer necessary to keep around by using the FindClose()
-120
+121
 
 function. If we don’t free the memory from our HANDLE we will eventually
 run out of memory as every possible address in our memory is filled with an
@@ -3684,7 +3693,7 @@ This function has the job of finding our compiled .DLL, create a copy of it
 called NAME_OF_TEMP_DLL then store that .DLL in our provided DLL_INFO
 struct. We then take the function pointers in our DLL_INFO struct and
 point them to the functions we tagged as __declspec(dllexport) in our
-121
+122
 
 game.h .
 The first thing, when reading the function that might seem strange is that the
@@ -3712,7 +3721,7 @@ the top again, trying once more to copy the .DLL. If this once again
 is unsuccessful it will call another instance of the function and return
 whatever result that function gave back in its own return . Hopefully
 now the value being returned is the return true at the end of the
-122
+123
 
 function meaning that we succesfully allocated our DLL_INFO . Each
 time a function calls itself we pass along depth but first we add 1 to it.
@@ -3743,7 +3752,7 @@ at anything at all. It’s important to note that just because we’ve freed
 the memory associated with our HMODULE then that doesn’t mean that the
 memory is gone, we’ve just told our computer that it is allowed to overwrite
 
-123
+124
 
 it, until it does we could theoretically still use it. Then lastly we take the
 temporary copy of our .DLL created in the LoadDLL function and deletes
@@ -3782,7 +3791,7 @@ dt = SDL_NS_TO_SECONDS(dt);
 PREV = NOW;
 }
 
-124
+125
 
 this function does the exact same thing, taking a pointer to a float and
 setting it to the calcualated deltatime . Here we’ve used the float& rather
@@ -3813,7 +3822,7 @@ FILETIME , then we compare it and if we find that the .DLL has changed
 we unload the old .dll with UnloadDLL() then copy and create the new one
 using LoadDLL() .
 
-125
+126
 
 int main() {
 void* game_memory = AllocateGameMemory();
@@ -3856,7 +3865,7 @@ return 0;
 
 Here we do the same steps as in our previous lecture, but our initialize()
 update() and draw() functions are all called from our DLL_INFO struct
-using the function pointers we set in LoadDLL() we also run the func126
+using the function pointers we set in LoadDLL() we also run the func127
 
 tions SDL_Setup and AllocateGameMemory to do initial setups that were
 previously written as-is in our main() . Whenever we call a function we
@@ -3920,7 +3929,7 @@ our
 
 SDL_SetRenderDrawColor()
 4) compile our .DLL using reload name_of_project prompting clang
-127
+128
 
 to just rebuild the .DLL
 5) back in our still running program we can see that the changes we made
@@ -3929,7 +3938,7 @@ close the game and running it again.
 This ability to make live-changes to our game is such a huge win for us and
 will make development of any game so much more streamlined!
 
-128
+129
 
 11
 
@@ -3973,7 +3982,7 @@ Updating our cmakelists.txt
 at the top of our cmakelists.txt we will be adding the following code to
 specify the location of our assets and the place we want to copy them to.
 We already have few set instructions up there so it’s a nice place to keep
-129
+130
 
 storing them
 set(DIR_ASSETS_ORIGIN ${CMAKE_SOURCE_DIR}/assets)
@@ -4020,7 +4029,7 @@ very top of our cmakelists.txt
 
 Then at the very bottom of our cmakelists.txt we add
 
-130
+131
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different ${DIR_ASSETS_ORIGIN}
@@ -4055,7 +4064,7 @@ ${DIR_ASSETS_ORIGIN} ${DIR_ASSETS_DESTINATION} we specify first the
 path to our files and then the path to where we want them to get copied over
 to. We created these variables just a little earlier in this course
 VERBATIM this is a safety flag that makes sure that the paths we provided
-131
+132
 
 are treated “as is” and nothing gets changed. Some operating systems will
 treat spaces and special symbols as something to modify or discard, possibly
@@ -4082,7 +4091,7 @@ Memory::Arena* arena_main = new Memory::Arena();
 
 The new keyword creates a struct of the specified type and returns a pointer
 to it. It places this piece of memory somewhere on the heap. But our new
-132
+133
 
 memory arena will not be created in the same way, instead we will allocate it
 directly into this first arena_main
@@ -4124,7 +4133,7 @@ size_t used;
 
 So we have not put the block of memory to store images, just the arena
 responsible for knowing about and adding to their place in memory.
-133
+134
 
 the second Allocate() actually commits a block of memory inside
 arena_main to store the image arena.
@@ -4163,7 +4172,7 @@ draw it on the screen. We also store the width and height of the image
 alongside the SDL_Texture so we know how large it is when drawing it. We
 are putting our LoadSprite() function inside a namespace to avoid the
 
-134
+135
 
 naming conflict from other headers having functions with the exact same
 name.
@@ -4190,7 +4199,7 @@ Next we will need to add the actual code to LoadImage, then use it to create
 our texture, store it in VRAM and add its corresponding Image struct to
 our arena_image
 
-135
+136
 
 #include <cassert>
 #include <string>
@@ -4227,7 +4236,7 @@ to our .PNG but instead just its name example_sprite.png rather than
 assets/sprites/example_sprite.png
 First we create the full path to the file using a string . We first set it
 to be text stored in DIRECTORY aka assets/sprites/ then we use the
-136
+137
 
 append() function to add our name to the end of the text.
 But IMG_Load() doesn’t support us passing it a string as a parameter,
@@ -4258,7 +4267,7 @@ We can then create a new .DLL that we declare to be STATIC instead of
 SHARED as our game .DLL is. When we make the .DLL static it will share
 its contents with all other things we create. NOTE: when we mark a DLL
 as STATIC it will be copied into both our .EXE and our .DLL, meaning
-137
+138
 
 that its contents will be found in both and the .DLL will not actually live
 inside our build folder, it is absorbed into them instead. We could mark our
@@ -4288,7 +4297,7 @@ added to our assets folder. We accomplish this by having a fallback sprite
 that we load each time our LoadSprite() function fails to find the specified
 .PNG.
 
-138
+139
 
 if(surface == nullptr) {...}
 
@@ -4319,7 +4328,7 @@ new SDL_Surface inside memory. Once this function terminates this point
 in memory is still allocated. Meaning that if this function ran enough times,
 our memory would be filled up with no longer necessary SDL_Surfaces .
 Calling SDL_DestroySurface() lets us free that part of memory. In a more
-139
+140
 
 robust setup we would actually create another memory arena to hold this
 temporary data. If we do that then no part of our program would allocate
@@ -4348,7 +4357,7 @@ larger project.
 initialization. This is just a fancier way of finding them later, and skips
 the part where we have to explicitly type out each individual image
 variable ourselves, instead looping over each .PNG in our assets folder
-140
+141
 
 and based in its name we can find the corresponding SDL_Texture by
 pointer reference later.
@@ -4385,7 +4394,7 @@ Memory::Initialize(arena_image, image_memory_start, IMAGE_ARENA_SIZE);
 This allows us to store 1024 Image structs inside the arena. If we ever had
 1025 Image structs they would not fit and we would have to give it more
 memory.
-141
+142
 
 Now we can move to the Draw() function inside our game.cpp . Here we
 can swap the code that drew our Rect for our fallback texture.
@@ -4419,7 +4428,7 @@ We create the function signature for a Render function, passing all the relevant
 variables. As well as setting a default value for the float variable scale .
 This means that we can omit passing this when calling the function and the
 function will give it a default value of 1.
-142
+143
 
 This allows the following two calls to be functionally identical
 RenderSprite(sprite, renderer, 50, 20);
@@ -4454,7 +4463,7 @@ SDL Documentation is the best way of learning these rules.
 In a later lecture we will create another identically named function to
 RenderSprite that lets us pass even more parameters that we can use
 to render only a portion of the texture to the destination rect. This will be
-143
+144
 
 useful to allow us to fit multiple frames of a sprite animation inside a single
 .PNG.
@@ -4484,7 +4493,7 @@ program from just going to the next tick, instead waiting until the specified
 time has elapsed. For a 60FPS game each tick gets 1/60 seconds to process.
 We would rather enforce a stable framerate than hit frame-spikes.
 Our CPU can sleep() for a specified number of milliseconds, but there are
-144
+145
 
 some nasty quirks of this system. The most aggregious being that we can’t
 ensure that the time we specify will be the exact time it sleeps, it will schedule
@@ -4515,7 +4524,7 @@ return 3;
 }
 
 We could add only timeBeginperiod(1) without the extra defensive
-145
+146
 
 code, but then this change to the windows timer resolution could fail
 silently.
@@ -4552,7 +4561,7 @@ in our CalculateDeltaTime() fetch the time in nanoseconds since startup
 using SDL_GetTicksNS()
 Uint64 frame_end_time_ns = SDL_GetTicksNS();
 
-146
+147
 
 Then we remove the value stored in our PREV variable, which has the
 nanoseconds since startup stored just before we run our update and draw
@@ -4604,7 +4613,7 @@ to break it out like this for clarity.
 double time_to_sleep_ms = FRAME_TIME_MS - frame_time_spent_ms;
 
 If we took longer than our allowed time budget then frame_time_spent_ms
-147
+148
 
 will be larger than FRAME_TIME_MS and our time_to_sleep_ms will hold a
 negative value. This allows us to use an if-statement to check the value
@@ -4637,7 +4646,7 @@ double frame_time_spent_ms = frame_time_spent_ns / 1e6;
 }
 
 Then we could remove this calculation from our while(running) loop and
-148
+149
 
 just create a double to pass to the function. We create the double outside
 of the function and pass it in so the value can be assigned inside the function.
@@ -4671,7 +4680,7 @@ timestamp yet. This costs more CPU as it will run as many times as it
 needs, but this increased CPU load is well worth it as hitting our framerate
 should be an absolute goal of our program.
 
-149
+150
 
 double time_to_sleep_ms;
 CalculateRemainingFrameTime_MS(&time_to_sleep_ms);
@@ -4704,7 +4713,7 @@ Now our application enforces a stable framerate! A lot of what we do in our
 main.cpp is boilerplate-code that will be reusable in just about every
 project.
 
-150
+151
 
 12
 
@@ -4734,7 +4743,7 @@ I can’t stress enough that this system would be a complete and massive
 headache to ever even attempt inside Unity or Unreal Engine, the architecture
 is so obfuscated that any attempt at storing a full global state is so difficult
 
-151
+152
 
 that another solution would make far more sense.
 in our #include section we will add
@@ -4764,7 +4773,7 @@ first being a char* for the name and the second an option for how the data
 is supposed to be interpreted. In our case we store it as binary (0’s and 1’s)
 because that is the exact same thing our memory actually is!
 we then call .write and .read and because .write expects to get a
-152
+153
 
 const char* and our arena->base is an unsigned char* we need to
 use reinterpret_cast<...> to tell our program to treat it as if it were of
@@ -4798,7 +4807,7 @@ while(running)
 we expand our
 
 while(SDL_PollEvent(&event)) to include two if-statements one for
-153
+154
 
 pressing F9 and one for pressing F10
 while(SDL_PollEvent(&event)){
@@ -4831,7 +4840,7 @@ save the gamestate with F9 then whenever we press F10 we are instantly
 back at that exact point again.
 Boom!
 
-154
+155
 
 13
 
@@ -4860,7 +4869,7 @@ with 3) load a level and populate it with the relevant entities
 I will be creating three .PNG files, ground.png player.png and wall.png
 all are 32x32px squares. the ground will be brown, the player ice-blue and
 the walls grey. We’ll add these to our assets/sprites folder.
-155
+156
 
 We will be using a software called Tiled to create our levels. We could
 represent our levels in code directly, but this is not a smart way of handling
@@ -4887,7 +4896,7 @@ We download the json.hpp file from https://github.com/nlohmann/json
 I’ve placed this .hpp file in include/Parsers/ .
 Note: .hpp is just the dogmatic C++ way of labeling a header file. The
 C-standard is .h . So just remember that when working with C++ .hpp
-156
+157
 
 and .h are interchangeable.
 With our new parser added to our include folder we can begin working with
@@ -4921,7 +4930,7 @@ would need to expand to a uint16_t that can hold over 65 thousand unique
 numbers.
 const char* level_path this will hold the name of the level. So we can
 reference it in other functions.
-157
+158
 
 Entity* entityBuffer we will store a sequence of entities in memory.
 Using this pointer to the first entity along with int entityCount we can
@@ -4969,7 +4978,7 @@ int x;
 int y;
 };
 
-158
+159
 
 That’s it, just position and ID - neato!
 Including cstdint is what gives us access to uint8_t . With this dataoriented programming methodology (as compared to object oriented) we
@@ -5000,7 +5009,7 @@ NOTE: we are doing no safeguarding at this stage, meaning that yes, our
 program will crash if the specified .tmj file is not found. We’ll look at
 adding these safety measures to a bunch of functions in a later part of the
 course.
-159
+160
 
 CreateEntities() will loop over the entities layer in our .tmj and
 when it finds an entity it will add it to the entityBuffer inside LevelData
@@ -5058,7 +5067,7 @@ Parsers/json.hpp
 nlohmann Json parser
 
 to get access to the
-160
+161
 
 downloaded
 
@@ -5111,7 +5120,7 @@ we find the parse() function. We store the result of parsing the stream
 into a variable of type auto .
 The auto variable is a variable that we rely on the compiler to know the
 correct type of. in actuality the auto variable in this case expands to
-161
+162
 
 nlohmann::basic_json<> but all we want to know is that this jsonResult
 holds all the elements found in our .tmj file. The actual variable type is less
@@ -5139,7 +5148,7 @@ our level. Giving us the memory footprint of all the cells. We then allocate
 this memory chunk to our arena and in the process fetching a pointer to the
 first cell in our levels-cells pointer .
 
-162
+163
 
 It is named cells and not cell even though the pointer only points
 to one cell, we can, as we know the size of each cell and the fact that
@@ -5166,7 +5175,7 @@ Arena* CreateSubArena(Arena* parent_arena, size_t size);
 
 and inside our arena.cpp we create the function
 
-163
+164
 
 Memory::Arena* Memory::CreateSubArena(Arena* parent_arena, size_t size){
 Memory::Arena* sub_arena = (Memory::Arena*)Allocate(parent_arena,
@@ -5201,7 +5210,7 @@ But in order for these arenas to be assignable we need to actually set up our
 GameData struct to hold the games data, and not our test data that we used
 previously.
 
-164
+165
 
 struct GameData {
 Image* fallback;
@@ -5258,7 +5267,7 @@ both their x and y to the parameters provided. If an entity is found we
 return a pointer to it using & . If no entity is found at the specified position.
 We now need to update a few places inside our code and create a few new
 .h and .cpp files. These changes are necessary to render our levels and
-165
+166
 
 entities. We will start by expanding common.h adding a few variables to
 help us know where on the screen we should draw our tiles as well as how big
@@ -5303,7 +5312,7 @@ typedef void (*Function_Initialize) (GameData* data, SDL_Renderer* renderer);
 
 this addition needs to be added to game.h as well
 
-166
+167
 
 __declspec(dllexport) void Initialize(GameData* data, SDL_Renderer* renderer);
 
@@ -5330,7 +5339,7 @@ create level 0 and afterwards we create our entities related to the currentLevel
 (which is also level 0).
 Lets add the contents of CreateEntities to levels.cpp
 
-167
+168
 
 void CreateEntities(LevelData* lvl_data, Arena* arena){
 Reset(arena);
@@ -5373,7 +5382,7 @@ reset to the default.
 We then find the JSON data from the layer related to entities (rather than
 the layer for the level as we did previously)
 
-168
+169
 
 We then loop over all cells that we retrieved and whenever that cell is not 0
 (meaning we found an entity) we increment our entityCount .
@@ -5404,7 +5413,7 @@ we then take our calculated x y and the id we found and store those at
 the position index which starts at 0 and increases by 1 each time we find
 an entity. This index shifts the array one step forward, filling each array
 element with the corresponding info. Lastly we increment index so that we,
-169
+170
 
 during the next non-zero entity slot found, we put the corresponding data
 into the next array element.
@@ -5428,7 +5437,7 @@ Then inside our .cpp we will add our #includes and write the functions
 // needed to call the RenderSprite() function
 // to allow us to use uint8_t
 
-170
+171
 
 void RenderLevel(GameData* gameData, SDL_Renderer* renderer){
 LevelData lvl = gameData->levels[gameData->currentLevel];
@@ -5471,7 +5480,7 @@ We fetch the levels pointer then using our array indicator we fetch the
 level stored at the currentLevel position.
 board_width_px_half takes the w meaning the amount of cells multiplies
 
-171
+172
 
 it by the size of a cell CELL_SIZE_PX (which accounts for UPSCALE_FACTOR )
 then divides that total width of all the cells together by 2 to get half of this
@@ -5506,7 +5515,7 @@ of the program crashing we render our fallback sprite instead. Letting
 us know that something should be on that coordinate but we have not added
 it yet.
 
-172
+173
 
 // Shift the tile based on its coordinate and the size of a single tile
 float xPos = x * CELL_SIZE_PX;
@@ -5544,7 +5553,7 @@ custom scaling.
 And our RenderEntities() function is in most ways very similar to our
 RenderLevel() . But instead of looping over the entire grid we loop over
 all entities in our entityBuffer then fetch the correct Image* from its
-173
+174
 
 id . We then perform the same position adjustments as in RenderLevel()
 but I have not added the same board_width_px_half and instead opted to
@@ -5582,7 +5591,7 @@ RenderSprite(img, renderer, xPos, yPos);
 All that is left now is to rewrite the contents of our Draw() function inside
 game.cpp
 
-174
+175
 
 void Draw(GameData* data, SDL_Renderer* renderer){
 SDL_SetRenderDrawColor(renderer, 120, 70, 120, 255);
@@ -5601,7 +5610,7 @@ drawn to our backbuffer and blits it to the window so it can be rendered.
 With this we have our level rendering to the screen! In the next chapter we
 will start adding gameplay logic!
 
-175
+176
 
 14
 
@@ -5638,7 +5647,7 @@ keep the id-to-enum setup correct we are good to go. by adding the class
 attribute we make it so we can only access our enums by first specifying the
 class like so ID::GROUND this is very similar to a namespace.
 
-176
+177
 
 We also have a new operator << used for our Behaviour its known as one
 of many bitwise operators. A uint32_t holds 32 bits to create its
@@ -5681,7 +5690,7 @@ left of the previous is tasked with holding a number twice as large
 
 if all the bits are set to 1 in a uint8_t then the total value would be 256
 a value of 255 would have all bits except the rightmost set to a 1 . As our
-177
+178
 
 ID enum is not a series of flags but an indicator of the type of tile
 from TILED we don’t need more than a uint8_t as it will be quite a long
@@ -5712,7 +5721,7 @@ RESPOND_TO_INPUT = 1 << 2
 
 this moves a 1 toggled bit 2 steps to the left. Resulting in 00000100 aka
 
-178
+179
 
 a 4.
 Now we can see how our bitwise
@@ -5749,7 +5758,7 @@ return (behaviour & flags) == flags;
 
 HasBehaviour() takes a flag (or flags as they are collected in one single
 variable) and checks an & operation between them. This means that wherever
-179
+180
 
 there is a 1 in both sequences a 1 will be added to the output.
 01001001
@@ -5800,7 +5809,7 @@ reasoning is that if our assert fails then we don’t want to continue running
 our application as we’ve introduced a fatal error that needs to be addressed.
 In this case the assert checks that all entities that we initialize have had
 
-180
+181
 
 their ID set.
 void SetBehaviour(Behaviour flags){
@@ -5836,7 +5845,7 @@ index += 1;
 We’ve added a call to InitializeBaseBehaviour() as well as fixed a cast
 from entity_id to ID , a necessary change to compile our project now that
 id is an enum .
-181
+182
 
 The next step is writing code inside game.cpp fetching the currently pressed,
 held and released keyboard keys then using that info to manipulate our
@@ -5863,7 +5872,7 @@ inside our update() in game.cpp we can not fetch the current array of
 bools and at the end of the function we can assign the now old values to
 keys_previous
 
-182
+183
 
 // at the top of the Update function
 const bool* keys = SDL_GetKeyboardState(nullptr);
@@ -5892,7 +5901,7 @@ We will open game.h and, outside of our extern "C" block we will create
 the function signatures for 3 functions. These three functions are not meant
 to be called from outside the DLL so the don’t use any of those tags for them.
 
-183
+184
 
 bool KeyPressed(SDL_Scancode key, const bool* current, const bool* previous);
 bool KeyHeld(SDL_Scancode key, const bool* current, const bool* previous);
@@ -5930,7 +5939,7 @@ we could also write it as
 return current[key] == true && previous[key] == false;
 
 each of the three functions also have a defensive part where we first check if
-184
+185
 
 previous was nullptr this is true if:
 a) we have messed something up
@@ -5961,7 +5970,7 @@ With our keyboard logic set up as well as our entity behaviour we can start
 asking questions about our entities and the state of our inputs to drive our
 game.
 Lets look at our update() in game.cpp
-185
+186
 
 void Update(GameData* data,float dt){
 const bool* keys = SDL_GetKeyboardState(nullptr);
@@ -5999,7 +6008,7 @@ We then create 2 variables, meant to store the direction we will be travelling
 in based on keyboard inputs. We use if-else statements so that we can’t
 accidentally go diagonally if we pressed up and right on the same exact
 frame. We send in the correct SDL_SCANCODE and our keyboard data to our
-186
+187
 
 KeyPressed() function.
 
@@ -6039,7 +6048,7 @@ lastly, after having looped over all entities, we store the keyboard state in ou
 keys_previous .
 With this our player entity can move around the level using the arrow keys!
 
-187
+188
 
 15
 
@@ -6072,7 +6081,7 @@ recursive chain nmbr == 1 then we will keep calling factorial until our
 base case is reached. This means that the first iteration of this function
 to get resolved is the fifth iteration, where we passed in nmbr - 1 and
 number was 2 . Then we calculate nmbr - 1 to be 1 and instead of
-188
+189
 
 calling factorial() again we just return 1 . Now in the earlier iteration
 we get return 2 * factorial(2 - 1) and with the knowledge that we
@@ -6107,7 +6116,7 @@ ID::BOX
 case to the
 
 IntializeBaseBehaviour() function
-189
+190
 
 switch case
 
@@ -6152,7 +6161,7 @@ CreateLevel(data->arena_levels, &data->levels[1], "assets/levels/testLevel_box.t
 <- new
 CreateEntities(&data->levels[data->currentLevelIndex], data->arena_entities);
 
-190
+191
 
 In levelRenderer.cpp we select our box Image* to be the texture rendered
 from RenderEntities()
@@ -6178,7 +6187,7 @@ in our Update inside game.cpp we’ll strip out the logic that was responsible
 for moving our player and instead add a call to our new TryMove() function.
 We’ll keep the for-loop going over each entity and the keyboard-checks
 
-191
+192
 
 for (int i = 0; i < data->GetCurrentLevel()->entityCount; i++) {
 Entity* entity = &data->GetCurrentLevel()->entityBuffer[i];
@@ -6217,7 +6226,7 @@ return false;
 first we check if the entity we are trying to move actually is allowed to
 move based on its behaviour flags
 
-192
+193
 
 // TryMove() continued
 int test_x = mover->x + xDir;
@@ -6256,7 +6265,7 @@ return false;
 
 Now at this point we know that we are walking into another entity . We
 
-193
+194
 
 can then check if that entity is allowed to move, if not we can return false .
 If it is allowed to move then we recursively call TryMove() again, using that
@@ -6265,7 +6274,7 @@ if the cell is available to get moved into by our original mover.
 And with this we can now push a box around the level recursively! We’re
 making steady progress towards the basic logic of a Sokoban game!
 
-194
+195
 
 16
 
@@ -6289,7 +6298,7 @@ the relevant data associated with the execution of some code, allowing us to
 keep the action as data to be accessed later.
 Lets begin by setting up our command.h
 
-195
+196
 
 // command.h
 #pragma once // always add this
@@ -6324,7 +6333,7 @@ Here we have our MoveCommand responsible for holding an entity and the
 direction it is going to move in. This is the same data that we fetch from our
 Update() function in game.cpp and then use in the TryMove function.
 We’ll need a way of storing our different commands as an array as well as a
-196
+197
 
 way of knowing which command we’re currently trying to undo/redo. We’ll
 accomplish this by allocating all our commands all at once in an arena. We’ll
@@ -6360,7 +6369,7 @@ move = mv;
 };
 
 The union keyword makes this new AnyCommand have the same size as
-197
+198
 
 the largest struct it could represent. This means that when we allocate
 AnyCommands we allocate the largest command meaning that we’re sure
@@ -6390,7 +6399,7 @@ We could continue without these constructors, but it makes the code we’ll
 write later easier as we can more or less forget about the AnyCommand struct
 and work with the commands directly.
 Finally we need to create three functions, these are responsible for adding a
-198
+199
 
 new command to the array, undoing a command and redoing a command
 // command.h
@@ -6425,7 +6434,7 @@ class to determine which type of Command we’ve passed in. We then use a
 switch case to run the correct code.
 a switch case allows us to define multiple cases that something could be,
 then only run the code inside the relevant case.
-199
+200
 
 for example
 // example
@@ -6461,7 +6470,7 @@ game.cpp but we’re moving it here instead.
 If we create more Commands we need to add them to our AnyCommand
 union, create their Constructor then use their variables inside our Execute
 function to actually do something. It is extra code, but it’s actually very
-200
+201
 
 manageable. But(!) it’s very very important to understand that this code
 has made our game logic less simple, we’ve created a layer of abstraction in
@@ -6491,7 +6500,7 @@ with the last pushed command in our chain.
 lastly we call Execute() and pass along our cmd .
 Lets look at our Undo() function next
 
-201
+202
 
 // command.cpp
 void Undo(CommandBuffer* buffer){
@@ -6527,7 +6536,7 @@ Then as we add new commands we will make sure to add the actual logic to
 both switch cases in Execute() and Undo() .
 Lastly we have Redo()
 
-202
+203
 
 // command.cpp
 void Redo(CommandBuffer *buffer){
@@ -6561,7 +6570,7 @@ CommandBuffer
 
 Memory::Arena* to our GameData struct
 
-203
+204
 
 pointer and a new
 
@@ -6617,7 +6626,7 @@ We have just hard-coded capacity to be 2000. Our biggest command
 MoveCommand holds 2 integers and a pointer. this gives us a total of 16 bytes
 of memory to store a single Command . With 1 megabyte of memory (1 million
 bytes) allocated to the arena_command we can actually store closer to 62500
-204
+205
 
 commands. I’ve just lazily set the current bounds at 2000.
 Now we just have to worry about game.h/cpp where we will be using this
@@ -6635,7 +6644,7 @@ then inside game.cpp inside our TryMove() function we update the signature to ma
 passes it to our Push() function.
 Note: we need to #include "command.h" to access these.
 
-205
+206
 
 // game.cpp
 bool TryMove(Entity* mover, LevelData* level, CommandBuffer* cmd_buffer, int xDir,
@@ -6686,7 +6695,7 @@ MoveCommand inherits from Command .
 Now at our callsite for TryMove() we have to update the signature as well.
 This is done inside Update()
 
-206
+207
 
 // game.cpp
 if(xChange != 0 || yChange != 0){
@@ -6716,7 +6725,7 @@ this chapter to help explain what we’re doing there is surprisingly little act
 new code and we only had to make changes to a handful of our previously
 existing script files.
 
-207
+208
 
 17
 
@@ -6744,7 +6753,7 @@ is a bunch of .h files and .lib or .dll files. But this framework comes just as 
 series of .h/cpp files.
 This is not really a problem and we’ll have it up and running in no time.
 In the root of our project I’ll add a new directory called src_external this
-208
+209
 
 is because I don’t want to have these new .cpp files mingle directly with my
 own. It also helps if I should decide I don’t want to include these .cpp files in
@@ -6768,7 +6777,7 @@ earlier
 • imgui_impl_sdlrenderer3.cpp
 Note the six .cpp files, we’ll need to reference these in our cmakelists.txt
 in order to give access to both our .exe and . dll . We use a GLOB command
-209
+210
 
 to fetch all the .cpp files from our normal src folder, and we can do the
 same action for this new directory that we named src_external or we can
@@ -6803,7 +6812,7 @@ Later we will look at how we can limit access to Dear ImGui if we build a
 Release version rather than a Debug version. But for now, these are all
 the additions we need to add to our cmakelists.txt
 
-210
+211
 
 Next we’ll create dev_gui.h/cpp .
 // dev_gui.h
@@ -6833,7 +6842,7 @@ for putting our menues, buttons and sliders on the screen - that’s why we
 pass along a GameData* pointer to Draw .
 Now lets implement them
 
-211
+212
 
 // dev_gui.cpp - part 1
 #include "dev_gui.h"
@@ -6870,7 +6879,7 @@ is how large the game window is. We use the handy SDL function called
 SDL_GetWindowSize to get the window size, the width and height are
 stored in the w and h variables that we pass along by reference . So
 the GetWindowSize function actually sets new values for w and h that we
-212
+213
 
 then pass along to the ImGuiIO . ImVec2 is just a struct that ImGui has
 created that holds 2 floats but has some additionally functionality that
@@ -6898,7 +6907,7 @@ We call the NewFrame() function that lives inside the ImGui namespace.
 This is to safeguard as the function name is very generic (very similar to our
 own naming standard)
 
-213
+214
 
 // dev_gui.cpp part 4
 void DEV::Draw(GameData* data, SDL_Renderer* renderer){
@@ -6934,7 +6943,7 @@ But it could all have been added together on one line.
 We use common division to find out how much of an Arena's memory budget
 is being used. Then create a ProgressBar that is filled in to that percentage
 
-214
+215
 
 and writes barText inside of it. Passing in ImVeck(-1,0) allows the bar to
 stretch the entire width of the dev window. the c_str() function converts
@@ -6972,7 +6981,7 @@ we’ve created. This lets us call Undo and Redo as we scrub the slider back
 and forth, letting us perform mass-undo and mass-redo operations by just
 sliding. Because over the course of a single tick, our SliderPos could jump
 more than 1 spot, we need to pt our undo/redo calls in while loops so
-215
+216
 
 that we keep calling them until index has caught up to the sliderPos .
 the SliderInt() function returns a bool that is true only if the slider has
@@ -7002,7 +7011,7 @@ this pointer that we’ve just added for dev window conveniance.
 in main.cpp right after we create our float dt before our main loop we
 assign its address to this pointer
 
-216
+217
 
 // main.cpp
 float dt; // this was already in place
@@ -7047,7 +7056,7 @@ void Initialize() function. But before we can do that we need to update
 our Initialize() in game.h/cpp to pass in SDL_Window* window as a
 new parameter
 
-217
+218
 
 // game.h
 // 'SDL_Window* window' is a new parameter
@@ -7096,7 +7105,7 @@ With this our new dev window works! we can drag it around and make it
 larger by dragging the bottom right corner.
 there is only one problem now: if we perform a hot-reload the ImGui context
 that was created during Initialize() will dissapear, and because we don’t
-218
+219
 
 rerun Initialize() during a hot-reload we won’t have a context after the
 load and our program will crash.
@@ -7129,7 +7138,7 @@ Then we pass the context we stored during Initialize() to PreDraw()
 // inside void Draw()
 DEV::PreDraw(data->imGui_context);
 
-219
+220
 
 and finally in PreDraw() we check if our current context has been lost (is
 currently a pointer pointing to null aka nothing)
@@ -7152,7 +7161,7 @@ dev tool!
 Now as we expand our dev GUI we can visualize and help us build ANYTHING
 we want!
 
-220
+221
 
 18
 
@@ -7186,7 +7195,7 @@ for (int i = 0; i < data->GetCurrentLevel()->entityCount; i++) {
 at 60 fps this variable will fill to capacity only after hundreds of days, and
 at that point it just wraps back to 0 and continues again. So lets just not
 worry about it.
-221
+222
 
 Lets add a similar variable to Command
 // command.h
@@ -7225,7 +7234,7 @@ CommandBuffer* cmd_buffer, int xDir,
 
 Now at all locations in game.cpp where we call TryMove() and Push()
 we need to provide the timestamp from our GameData* data .
-222
+223
 
 Helix
 
@@ -7283,7 +7292,7 @@ We check if index is larger than zero before comparing the timestamp of
 the earlier Command with the one we just undid. And if that was true we
 call Undo again recursively.
 
-223
+224
 
 // command.cpp
 void Redo(CommandBuffer *buffer){
@@ -7312,7 +7321,7 @@ our gameplay functions like Undo() and Redo() this change already works
 with our undo-redo-slider !
 Now our undo and redo can’t put the game in an unnatural state.
 
-224
+225
 
 19
 
@@ -7351,7 +7360,7 @@ with this we can linearly interpolate between them.
 This is a
 
 way of making a third value that slides between the two extremes.
-225
+226
 
 Linear interpolation is almost always refered to as lerp and has 3
 basic components, a, b, and t .
@@ -7400,7 +7409,7 @@ LevelRenderer.cpp
 
 we need this header to be included to get access to a Lerp() function.
 
-226
+227
 
 in
 
@@ -7433,7 +7442,7 @@ in the 2-5 next inputs that are yet to be animated. Once these have been
 animated we are free to discard this info.
 A ring buffer is a limited sized array that loops back on itself once its full
 - therefore overwriting its oldest elements.
-227
+228
 
 We’ll add this input ring buffer to our GameData in gameState.h
 // gameState.h
@@ -7471,7 +7480,7 @@ input_buffer_read_count : each input is read only once its time for that
 input to be processed. Meaning that if we press up twice, we’ll immediatly
 begin moving up. But only after we’ve arrived at our destination will we
 move up for the second time. read_count will lag behind write_count
-228
+229
 
 and with each move performed by our entities this will increase by 1
 until read and write are at the same value.
@@ -7496,7 +7505,7 @@ that has been modulo'd with _capacity .
 Lets look at an example
 front = 1536 % 20;
 
-229
+230
 
 in this scenario our made up variable front gets a value of 16 . As we can
 strip away 20 from 1536 a total of 76 times 20 * 76 = 1520 then we have
@@ -7534,7 +7543,7 @@ first ensure we get something working, and only once we have a concrete
 need for a new feature do we actually code that system is by far the most
 reasonable way of working and the act of rewriting code aka refactoring
 is a cornerstone of programming. So with the rest of Update() removed we
-230
+231
 
 can no longer move our entities in game.
 What we’ll do next is start filling our ring buffer
@@ -7573,7 +7582,7 @@ the sugar'ed version.
 We assign the relevant Position to the correct element in our Ring Buffer
 by taking the _write_count and adding a Modulo with _capacity . The
 
-231
+232
 
 increment operator aka ++ will increase _write_count by 1 after the
 line of code has resolved. This is the same as writing:
@@ -7611,7 +7620,7 @@ start, we can know that if we get past the upcoming for-loop and it is
 still false , then we found no entity that was moving. And if no entity was
 moving, we can check if we have any more buffered inputs to resolve.
 We loop over all entities in the current level and then we check if they
-232
+233
 
 are allowed to move CAN_MOVE and has a move its currently performing
 IsMoving() .
@@ -7641,7 +7650,7 @@ const float MOVE_SPEED = 6.0;
 This means that anytime we multiply delta time aka dt by this value,
 we make it go from 0 to 1 in 1/6 of a second. and because dt aligns with
 our framerate we can ensure that it takes 1/6 of a second no matter how
-233
+234
 
 powerful the computer running the game is.
 if progress_01 is at or above a 1 we catch up x/y_prev to x/y and reset
@@ -7682,7 +7691,7 @@ Then we compare our _read with our _write . If _read has caught up
 then we have no further inputs to resolve and we can return early. This
 means that if we hit our return we leave our Update() function and no code
 below it will run.
-234
+235
 
 If we manage to get past the read / write if statement we know
 that we have at least one input to process. We can therefore increase
@@ -7704,7 +7713,7 @@ ring buffer .
 Finally we have to update command.cpp to assign our x_prev and y_prev
 values. As well as adding what is known as an optional parameter
 
-235
+236
 
 // command.cpp
 void Execute(AnyCommand cmd, bool from_redo = false){ // optional
@@ -7737,7 +7746,7 @@ its new destination. We will be setting this optional parameter to true
 when calling Execute() from our Redo() function.
 We’ll do something similar in Undo()
 
-236
+237
 
 // command.cpp
 void Undo(CommandBuffer* buffer){
@@ -7779,12 +7788,12 @@ Execute(cmd); // look how we didn't have to pass in `false`
 
 With these final changes our entities now slide across the game board and our
 inputs can be buffered, meaning that we can press our arrow keys as fast as
-237
+238
 
 we want and inputs will be registered and acknowledged once the animations
 have caught up to them!
 
-238
+239
 
 20
 
@@ -7817,7 +7826,7 @@ has been held.
 We’ll add one of these structs to our GameData inside gameState.h .
 We’re also removing the variables related to keys that lived directly inside
 GameData earlier. We also previously quite lazily allocated our key arrays
-239
+240
 
 into arena_level but we don’t really want to free the memory of these
 arrays. But we might want to reset their values. We’re also going to add a
@@ -7859,7 +7868,7 @@ function is a bit naive and does not take into account that sometimes a new
 allocation will be padded a little. creating a gap of a few bytes. This is only
 necessary because
 1) our Allocate() is a bit naive
-240
+241
 
 2) we are slicing of juuuuust enough memory to hold the three arrays
 Now inside our input.h we’ll add the functions that previously lived inside
@@ -7881,7 +7890,7 @@ we pass in Input* as a const as we are not letting those functions modify
 the arrays.
 Inside input.cpp we create the content of each of these functions
 
-241
+242
 
 // input.cpp
 #include "input.h"
@@ -7909,7 +7918,7 @@ these functions are the same as the ones we used inside game.cpp but we
 access keys_current/previous from our Input parameter that was passed
 in.
 
-242
+243
 
 // input.cpp
 bool KeyHeld_ForTime(const Input* input, SDL_Scancode key, float min_length){
@@ -7947,7 +7956,7 @@ keys_current and copy over all of those values to keys_previous . We’ll
 call this function from main.cpp after we’ve called Update()
 ResetKeyHeldTime() accepts a key then sets the timer for that key to 0
 ResetAll() uses the memset() function to fill every memory address for
-243
+244
 
 our three arrays with zeroes. This means that they still exist but nothing is
 stored. We’ll use this later to clear the inputs as we load or reload a level.
@@ -7984,7 +7993,7 @@ Now we can remove the old Pressed/Held/Released function from
 game.cpp and instead #include "input.h" and our new simplified
 functions. We are also removing the old functions (Pressed, Held, Released)
 from game.h
-244
+245
 
 // game.cpp
 if(KeyPressed(&data->input, SDL_SCANCODE_Z)){
@@ -8029,7 +8038,7 @@ KillEnemy(enemy);
 This pseudo-code would kill the enemy if either our weapon had enough
 damage or the max_damage bool from cheats were set to true.
 
-245
+246
 
 // game.cpp
 if(KeyPressed(&data->input, SDL_SCANCODE_Z) || KeyHeld_ForTime(&data->input,
@@ -8084,7 +8093,7 @@ const float UNDO_REPEAT_TIME = 0.15;
 
 this new or evaluator in our undo if-statement will allow us to repeat-
 
-246
+247
 
 edly undo once every 0.15 seconds as long as the Z key is being held down.
 Once the if-statement evaluates to true we call ResetKeyHeldTime to
@@ -8117,13 +8126,13 @@ If we are allowed inside the if-statement we reset the timer for the specific
 key then add the correct Position* to our ring buffer and increase
 _write_count by 1 afterwards using the increment operator aka ++ .
 
-247
+248
 
 Now we can hold our undo and movement keys instead of clicking all the
 time. We have also put our input logic inside our boilerplate and simplified
 calling Pressed/Held/Released .
 
-248
+249
 
 21
 
@@ -8157,7 +8166,7 @@ bool GetIsPointInsideGrid(float x, float y, const LevelData* lvl);
 
 for now, our Camera struct has only two floats, responsible for storing the
 position of the camera. Later we’ll expand this list of variables as we create
-249
+250
 
 additional camera features.
 we’re also creating three useful helper functions. GridToWorld() will let
@@ -8169,7 +8178,7 @@ reason about what is inside and outside of the grid we will also be using the
 GetIsPointInsideGrid()
 The implementation in our camera.cpp looks like:
 
-250
+251
 
 // camera.cpp
 #include "camera.h"
@@ -8219,7 +8228,7 @@ actually
 does
 
 the
-251
+252
 
 same
 
@@ -8261,7 +8270,7 @@ void RenderSprite_Grid(Image* sprite, LevelData* lvl, SDL_Renderer* renderer, co
 ↪
 Camera* camera, float x, float y, float scale = 1);
 
-252
+253
 
 We have taken what was previously a single RenderSprite() function and
 made a distinction between _World and _Grid . This is to give us a simplified
@@ -8316,7 +8325,7 @@ finishing up we’re adding a Camera struct variable to our GameData inside
 gameState.h . We need to pass this along to our levelRenderer.h/cpp
 functions, but
 
-253
+254
 
 // gameState.h
 struct GameData {
@@ -8360,7 +8369,7 @@ RenderSprite_Grid(sprite, &lvl, renderer, &gameData->camera, x, y);
 Now instead of having the grid to pixel calculations in RenderLevel() we
 just fetch the relevant sprite and call RenderSprite_Grid() .
 
-254
+255
 
 // levelRenderer.cpp
 void RenderEntities(GameData* data, SDL_Renderer* renderer){
@@ -8393,7 +8402,7 @@ between x/y_prev and x/y . But then it’s very similar.
 That’s it. We have done a bit of cleanup and layed the foundation for a
 camera and simplified our render logic!
 
-255
+256
 
 22
 
@@ -8420,7 +8429,7 @@ a box, and adding some actual game design to this base shell. One of the
 first changes we’re making is adding more contextually relevant IDs inside
 entity.h
 
-256
+257
 
 // entity.h
 enum class ID : uint8_t {
@@ -8451,7 +8460,7 @@ int height;
 so first we’re copying over our Image struct and renaming it Sprite . in a
 later chapter we’ll expand on this to help us with animation.
 
-257
+258
 
 // spriteLibrary.h
 enum class SPRITE_ID{
@@ -8486,7 +8495,7 @@ We’re also creating a helper function GetSpriteFromID() that allows us to
 pass an ID and get back a Sprite* . The spritebuffer will be added to
 our GameData as a way of fetching every sprite we’ve loaded.
 We’re protecting our LoadSprite and new LoadAllSprites with the
-258
+259
 
 AssetManagement namespace. This is just to highlight that these functions have a specific place within our program. We’re also changing our
 LoadSprite function to work with our allocated spriteBuffer instead of
@@ -8515,7 +8524,7 @@ We’ve deleted all of our direct Image* references from GameData and
 replaced them with a single Sprite* array, Now we need to go to our
 main.cpp and allocate our sprite buffer
 
-259
+260
 
 // main.cpp
 int SPRITE_COUNT = 256;
@@ -8563,7 +8572,7 @@ static const SpriteDataEntry all_sprite_data[] = {
 Here we have first a path to where our fallback sprite is located. We store
 this to help us with our LoadSprite in case we have an issue with a sprite
 not exiting.
-260
+261
 
 We then create a static array of our SpriteDataEntry . Using the c++
 way we’re allowed to outline a struct with just a pair of curcly bracer {}
@@ -8593,7 +8602,7 @@ const char* path . This has to be taken into account when using just the
 {} setup. As the variables are added in the order they show up inside the
 struct.
 
-261
+262
 
 // spritelibrary.cpp
 Sprite* GetSpriteFromID(ID id, Sprite* spriteBuffer){
@@ -8631,7 +8640,7 @@ sprite inside the spriteBuffer using the & operator.
 Right now, as mentioned previously, this just maps each entity to a sprite
 1-to-1. But this will be refactored later when we add animations.
 
-262
+263
 
 // spriteLibrary.cpp
 namespace AssetManagement{
@@ -8670,7 +8679,7 @@ write as we’re asking the compiler to infer the size of the array. Otherwise
 we would have to either write the array size manually or use a bit of code to
 calculate it.
 For each of the SpriteDataEntry elements in the all_sprite_data array we call LoadSprite() and we pass along the entry so that our
-263
+264
 
 LoadSprite() function can fetch the correct path and ID . To update the
 Sprite that the SpriteBuffer points to we need to fetch the pointer to the
@@ -8706,7 +8715,7 @@ levelRenderer.cpp
 
 RenderLevel() and RenderEntities()
 
-264
+265
 
 and simplify both
 
@@ -8743,7 +8752,7 @@ now instead of each function needing a switch case to fetch the correct Image*
 With these changes we have refactored our asset loading system and how we
 fetch sprites.
 
-265
+266
 
 23
 
@@ -8781,7 +8790,7 @@ MIDDLE = 1,
 RIGHT = 2,
 };
 
-266
+267
 
 We’re going to be using SDL’s bitmasks to compare our mouse buttons, but
 I’ve opted for this more human readable version as an in-between to make
@@ -8817,7 +8826,7 @@ We pass in a button and return the corresponding SDL_BUTTON_L/M/RMASK .
 You can check out the definition of each Mask by putting the caret over
 them and pressing space+d . The bitwise logic is a bit more forced in my
 opinion. I’ll be happy to have this tv-remote style interface to simplify
-267
+268
 
 accessing them.
 // input.cpp
@@ -8847,7 +8856,7 @@ Because the L/M/RMASKS only set one bit to 1 each, then we can treat the
 (mouse & flag) == 0 as false and (mouse & flag) != 0 as true. With
 this the logic is identical to our keys.
 
-268
+269
 
 // input.cpp
 void UpdateMouse(Input* input, float dt){
@@ -8885,7 +8894,7 @@ to match.
 Inside main.cpp we need to do some allocation and then call the relevant
 functions.
 
-269
+270
 
 // main.cpp
 gameData->arena_input = Memory::CreateSubArena(arena_main, INPUT_ARENA_SIZE);
@@ -8925,7 +8934,7 @@ UpdateMouse(&gameData->input, dt); // new
 dll.draw(gameData, renderer); // old
 
 SDL_GetMouseState both returns the SDL_MouseButtonFlags for the current tick and accepts a pointer to a x float and a y float. These values
-270
+271
 
 will be set inside the function itself to reference the current position of the
 mouse. By passing the mouse_x/y we can ensure that these variables are
@@ -8934,7 +8943,7 @@ gameData->input.mouse_x/y .
 Now our game engine can handle basic mouse inputs. In the next chapter
 we’ll be using this to help us create a level editor
 
-271
+272
 
 24
 
@@ -8962,7 +8971,7 @@ we’ve exported from Tiled . That is fine for the normal case. But for our
 purposes we need to have a simpler way of handling this. So first we’ll refactor
 parts of level.h/cpp
 
-272
+273
 
 // levels.h
 Entity* GetNextAvailableEntitySlot(Entity* entityBuffer);
@@ -8992,7 +9001,7 @@ Note how our for loop runs for i < level->EntityCount if we did <=
 we would always run up to the forward most slot and return that without
 incrementing entityCount .
 
-273
+274
 
 // levels.cpp
 void AddEntity(ID entity_id, int x, int y, LevelData *level){
@@ -9023,7 +9032,7 @@ completely added or the old entity totally overriden.
 now we can simplify our CreateEntities() function to use this new
 AddEntity()
 
-274
+275
 
 // levels.cpp
 void CreateEntities(LevelData* lvl_data, Arena* arena){
@@ -9064,7 +9073,7 @@ We no longer collect entityCount then allocate that specific amount. Instead
 we’ve simplified our code to just add enough room for 256 entities. This is
 still a bit flimsy and we can think about refactoring this later.
 We need a way of telling our game that we want to use our editor and a way
-275
+276
 
 of turning it off. We’ll add a bool to our GameData
 // gameState.h
@@ -9089,7 +9098,7 @@ The bool does nothing right now as the state of edit_level is never checked
 against.
 Let’s set up our leveleditor.h/cpp
 
-276
+277
 
 // leveleditor.h
 #pragma once
@@ -9120,7 +9129,7 @@ DrawPreview accepts a whole bunch of parameters and will draw a transparent vers
 working properly.
 We also need to add one of these new Editor structs to gameData
 
-277
+278
 
 // gameState.h
 #include "leveleditor.h"
@@ -9140,7 +9149,7 @@ namespace EDITOR {
 First we do our #includes as usual then we make sure that all our functions are wrapped inside the same EDITOR namespace as we declared in
 leveleditor.h
 
-278
+279
 
 // leveleditor.cpp
 void DrawObjectPanel(Editor* editor, Sprite* spriteBuffer){
@@ -9195,7 +9204,7 @@ returns true if it was pressed this frame, it also allows us to add an
 ImTextureID to it to set what the button will display. And becuase we
 have included imgui_impl_sdlrenderer3.h in our src_external folder
 we have given ImGui the ability to convert an SDL_Texture into the
-279
+280
 
 format it needs.
 So we use our GetSpriteFromID() function to retrieve the Sprite* pointer,
@@ -9229,7 +9238,7 @@ So first we compare the ID of our object_to_place_id then if it was
 GROUND or WALL we set the specific cell in our cells array at that position
 (using our handy 2D->1D equation) to the integer value represented by the
 enum (with a cast to int using (int) ).
-280
+281
 
 If we on the other hand had selected an Entity we go ahead and call
 AddEntity() that we prepared earlier.
@@ -9272,7 +9281,7 @@ void RenderSprite_Grid(Sprite* sprite, LevelData* lvl, SDL_Renderer* renderer, c
 ↪
 Camera* camera, float x, float y, float scale = 1, float alpha = 1);
 
-281
+282
 
 after our optional scale parameter we’ve added float alpha and given it
 a default value of 1 . Meaning that if it is not specified then it will be set to
@@ -9310,7 +9319,7 @@ change persists as it updates the texture being pointed to. So if we would do
 this only once and not repeatedly each time we call the function then every
 time the texture is rendered it would have the latest alpha value that was set.
 
-282
+283
 
 // leveleditor.cpp
 void Update(Editor* editor, Input* input, LevelData* level){
@@ -9342,7 +9351,7 @@ This is everything needed to start working with our leveleditor now we just
 have to call these new functions we’ve created from our game.
 We’re calling this through dev_gui.cpp
 
-283
+284
 
 // dev_gui.cpp
 void DEV::Draw(GameData* data, SDL_Renderer* renderer){
@@ -9374,7 +9383,7 @@ EDITOR::Update(&data->editorData, &data->input, data->GetCurrentLevel()); // new
 Now our level editor is set up, we can now go ahead and test logic without
 having to enter Tiled and set up/export/parse!
 
-284
+285
 
 25
 
@@ -9424,7 +9433,7 @@ Golem
 > Can't be pushed
 Medusa
 > Can push 1 block
-285
+286
 
 > Turns objects she looks at into pushable rocks
 > then they transform back if she no longer looks at them
@@ -9451,7 +9460,7 @@ related to working with Behaviour . We’re going to move them out of the
 struct and add a first parameter to each of them where we pass along an
 Enitity* pointer.
 
-286
+287
 
 // entity.h
 bool HasBehaviour(Entity* entity, Behaviour flags);
@@ -9493,7 +9502,7 @@ entity->behaviour = (Behaviour)(entity->behaviour & ~flags);
 }
 
 so instead of calling our functions from our Entity struct itself we had to
-287
+288
 
 refactor our code to pass the enitty along instead. Other than that, the code
 is identical.
@@ -9526,7 +9535,7 @@ Behaviour behaviour;
 I also noticed that for both Entity ID and SPRITE_ID I had GHOST/Ghost
 set up instead of SIREN/Siren . So I went to both these sites in entity.h
 and spriteLibrary.h and renamed it‘.
-288
+289
 
 Then in the switch case inside our IntializeBaseBehaviour() we make
 sure to set the strength values and add the four characters we’ve outlined.
@@ -9568,7 +9577,7 @@ recursively inside itself, meaning that each time a block pushes a block that
 pushes a block we reduce this value by 1 . If we ever reach a block in our
 chain and strength is no longer above 0 then we know we’re trying to push
 to many things at once and we can return false , meaning that the move
-289
+290
 
 fails.
 // game.h
@@ -9615,7 +9624,7 @@ return true;
 }
 
 then at the top of TryMove() we’ll make an if-statement that reacts to
-290
+291
 
 the value of strength . But notably its not the strength of the entity, its
 the value of the variable named strength that was passed into the function
@@ -9638,7 +9647,7 @@ didn’t find a sprite at the specified index of our spriteBuffer . Previously
 we could have invisible objects. Now they all at least show up. I’ve also
 taken the liberty to prepare for when we have art for the different characters.
 
-291
+292
 
 //spritelibrary.cpp
 Sprite* GetSpriteFromID(ID id, Sprite* spriteBuffer){
@@ -9682,7 +9691,7 @@ value or whatever was returned to us didn’t have a texture set aka was
 nullptr we can set it to the ID::Fallback sprite.
 We are allowed to stack our conditions inside our if-statement to include
 ->texture in the second condition. This would cause a crash if we changed
-292
+293
 
 from || to && as && evaluates all statements and would sometimes not
 find the texture pointer in the second condition as the sprite_to_return
@@ -9700,7 +9709,7 @@ a bit, as well as help us with the foundation for the Medusa ability inclusion.
 We’re adding a new Command a RotateCommand and a new CMD_TYPE enum.
 This will be created inside of our command.h file.
 
-293
+294
 
 // command.h
 enum class CMD_TYPE : uint8_t{
@@ -9736,7 +9745,7 @@ can add a prefix to the parameters aka Entity* _entity or similar.
 We also set the type directly from the constructor .
 lets go ahead and give MoveCommand a constructor as well
 
-294
+295
 
 // command.h
 struct MoveCommand : Command {
@@ -9782,7 +9791,7 @@ This is exactly what we did for MoveCommand earlier in the series.
 If we return to our base Command struct we can give type a default value
 of NONE . This will help us catch a nasty bug.
 
-295
+296
 
 // command.h
 struct Command {
@@ -9814,7 +9823,7 @@ void Redo(CommandBuffer* buffer, LevelData* level);
 
 Then inside command.cpp we need to update the same parameters as well.
 
-296
+297
 
 // command.cpp
 void Execute(AnyCommand cmd, LevelData* level, bool from_redo = false){
@@ -9855,7 +9864,7 @@ Redo() needs this parameter.
 Also Inside game.cpp we’re creating two MoveCommands lets update those
 callsite to instead use our new constructor
 
-297
+298
 
 // game.cpp
 bool TryMove(Entity* mover, LevelData* level, CommandBuffer* cmd_buffer, int xDir, int
@@ -9897,7 +9906,7 @@ add a LevelData* level parameter to each function as we now have to
 pass the LevelData* into it rather than having it placed inside our struct.
 We’re also creating a new function RaycastFirstEntity()
 
-298
+299
 
 // levels.h
 #pragma once
@@ -9942,7 +9951,7 @@ return &level->entityBuffer[i];
 return nullptr;
 
 They are identical except that we now have to use level-> to fetch the
-299
+300
 
 necessary variables.
 With this update to levels.h/cpp all the places where we call GetCellID()
@@ -9972,7 +9981,7 @@ A raycast is a “laser” that we fire from a point in space in a specific dire
 what it was. With us having four directions we’re not duplicating our code
 four times to handle all of these cases. Instead we do a bit of clever coding to
 
-300
+301
 
 allow all directions to work with the same function
 // levels.cpp
@@ -10018,7 +10027,7 @@ we’re creating a Position variable that we set to store a different x and
 y value depending on the Direction variable we provided. This will be
 the direction our laser travels. We then use our x/y_search integers to act
 as the point we’re evaluating. These numbers will increase by the contents
-301
+302
 
 of our facingVector each time the loop runs. We start of by immediatly
 adding facingVector.x/y to it as we don’t want to evaluate the cell that
@@ -10041,7 +10050,7 @@ the same direction.
 We will need a Behaviour to toggle whether or not an Entity has been
 turned to stone. Lets update our enum inside entity.h
 
-302
+303
 
 // entity.h
 enum Behaviour : uint32_t {
@@ -10062,7 +10071,7 @@ Next we’re going to add our RotateCommand to Game.cpp . We want to
 rotate an entity only if they moved due to a player input and we want to
 rotate them even if they did not manage to actually perform a move.
 
-303
+304
 
 // game.cpp
 for (int i = 0; i < data->GetCurrentLevel()->entityCount; i++) {
@@ -10102,7 +10111,7 @@ we’re moving in into our Direction enum. As this is a super small function
 I’ve opted to place it inside the entity.h directly which is possible using
 the inline attribute
 
-304
+305
 
 // entity.h
 enum class Direction {
@@ -10140,7 +10149,7 @@ After the rotation we call our TryMove as usual.
 Right now the Execute() of our RotateCommand does nothing as we’ve not
 updated our Execute() function inside command.cpp yet
 
-305
+306
 
 // command.cpp
 void Execute(AnyCommand cmd, LevelData* level, bool from_redo = false){
@@ -10181,7 +10190,7 @@ write code like this without the curly bracers to set the bounds for each case.
 It’s a bit messy but necessary.
 We use our Behaviour flag CAN_ROTATE to ensure that only relevant entities
 
-306
+307
 
 perform rotations.
 Now besides actually doing our rotation (and move) we need a way of adding
@@ -10211,7 +10220,7 @@ mapped to the LevelData from he included levels.h header file.
 right now the only logic we need to create is for our Medusa petrification
 ability, so lets go ahead and add our logic in entity.cpp
 
-307
+308
 
 // entity.cpp
 void PostMove(Entity *entity, LevelData* level){
@@ -10232,7 +10241,7 @@ Raycast function along with her facing direction to get the first entity
 she’s lookinb at. If we found an entity we check if it already was petrified,
 and if not we make it petrified.
 
-308
+309
 
 // entity.cpp
 void PostRotation(Entity* entity, LevelData* level, Direction from, Direction to){
@@ -10273,7 +10282,7 @@ Make sure you pay attention to the fact that our two rotation functions are
 almost entirely similar except if they Add or Remove the flag and if the
 raycast uses from or to .
 Now we can go to command.cpp and add these function calls to
-309
+310
 
 Execute()
 // command.cpp
@@ -10308,7 +10317,7 @@ break;
 
 next we add the logic in Undo()
 
-310
+311
 
 // command.cpp
 void Undo(CommandBuffer* buffer){
@@ -10352,7 +10361,7 @@ our entities. but as we Undo our steps our game breaks.
 This is because our Add/Remove Behaviour functions are not part of our
 Command structure yet. We’re going to do some refactoring then resolve
 this.
-311
+312
 
 As I was programming the BehaviourCommand logic I found myself passing
 command_timestamp to a bunch of functions to pass it along to the PostMove
@@ -10386,7 +10395,7 @@ affected functions
 • Update() inside game.cpp increases timestamp by 1
 Lets set up a new Command that will handle changes to Behaviour .
 
-312
+313
 
 // command.h
 struct ModifyBehaviourCommand : Command {
@@ -10421,7 +10430,7 @@ As per usual with a new command we:
 5) create a constructor inside
 ModifyBehaviourCommand
 
-313
+314
 
 AnyCommand
 
@@ -10478,7 +10487,7 @@ called
 Add/RemoveBehaviour we now create our ModifyBehaviourCommand and
 push it.
 
-314
+315
 
 // entity.cpp
 void PostMove(Entity *entity, LevelData* level, CommandBuffer* commandBuffer){
@@ -10498,7 +10507,7 @@ Push(commandBuffer, modify, level);
 }
 }
 
-315
+316
 
 // entity.cpp
 void PostRotation(Entity* entity, LevelData* level, CommandBuffer* commandBuffer,
@@ -10546,7 +10555,7 @@ Then we need to change Execute() to also have CommandBuffer* as a
 parameter so it can be passed to the three functions. Besides this we are also
 adding the new Command to Execute() and Undo()
 
-316
+317
 
 // command.cpp
 void Execute(AnyCommand cmd, LevelData* level, CommandBuffer* commandBuffer, bool
@@ -10588,7 +10597,7 @@ As a final step we’ll return to our Golem and do something simple. Lets
 stop any entity from pushing him. We have to give him the UNPUSHABLE
 behaviour in InitializeBaseBehaviour
 
-317
+318
 
 // entity.cpp
 void InitializeBaseBehaviour(Entity* entity){
@@ -10639,11 +10648,11 @@ if(TryMove(stepInto_entity, level, cmd_buffer, xDir, yDir, --strength)){ // old
 
 That’s it. Nice to end on a win.
 This chapter was long, and probably more difficult, great job getting to the
-318
+319
 
 end of it!
 
-319
+320
 
 26
 
@@ -10673,7 +10682,7 @@ We need to give our Sprite and SpriteDataEntry both a pivot_x and
 pivot_y integer. These will be manually set by us. They will represent the
 pixel on our sprite that we want to have be put in the center of the tile.
 
-320
+321
 
 // spritelibrary.h
 struct Sprite{
@@ -10715,7 +10724,7 @@ Dropshadow // new
 };
 
 In spritelibrary.cpp we can now add our manually set pivots to our
-321
+322
 
 static array of SpriteDataEntry
 // spritelibrary.cpp
@@ -10748,7 +10757,7 @@ special reserved value that should never be part of the actual scope of the
 variable. Used as a substitute for (in this case) a bool not_set variable
 inside the struct itself. Though that would also work and if this sentinel
 logic is confusing you could easily swap to a bool inside the struct instead.
-322
+323
 
 In LoadSprite() in spritelibrary.cpp we fetch this new pivot and check
 against our sentinel
@@ -10790,7 +10799,7 @@ the entity. instead we’ll be using its behaviour , facing Direction and
 progress_01 to get the correct sprite to render.
 In spritelibrary.h/.cpp we’ll add a new function
 
-323
+324
 
 // spritelibrary.h
 Sprite* GetSprite_FromEntityState(Entity* entity, Sprite* spritebuffer);
@@ -10830,7 +10839,7 @@ does two things.
 1) checks if the entity IS_PETRIFIED then returns the SPRITE_ID::Rock
 in that case.
 2) if it was Medusa we check its facing direction and pick the correct
-324
+325
 
 sprite. We’ll be flipping the _Side sprite along the x-axis to avoid
 having to add a mirrored sprite to our assets/sprites folder each
@@ -10873,7 +10882,7 @@ sprite_to_return = &spriteBuffer[(int)SPRITE_ID::Fallback];
 
 return sprite_to_return;
 
-325
+326
 
 During development we want our program to fail and fail loudly. We want to
 catch bugs as easily and as often as possible. That’s why it’s a good idea to be
@@ -10903,7 +10912,7 @@ We will only allow entities that have JUMPS and is not currently pushing
 something to perform the jump.
 in entity.cpp we’ll make Medusa have the new JUMPS behaviour
 
-326
+327
 
 // entity.cpp
 case ID::MEDUSA:
@@ -10962,7 +10971,7 @@ once
 
 are_entities_moving is false we can reset this behaviour flag to 0
 
-327
+328
 
 for (int i = 0; i < data->GetCurrentLevel()->entityCount; i++) {
 Entity* entity = &data->GetCurrentLevel()->entityBuffer[i];
@@ -10980,7 +10989,7 @@ Now IS_PUSHING is only true for moving entities during the visualisation
 when they were pushing something.
 Lets look at levelRenderer.cpp and update our RenderEntities() function
 
-328
+329
 
 // levelRenderer.cpp
 void RenderEntities(GameData* data, SDL_Renderer* renderer){
@@ -11026,7 +11035,7 @@ We’ve also removed the old logic here that checked IS_PETRIFIED as that
 is being taken care of by the GetSprite_FromEntityState() function. We
 then store the y position for our dropshadow before we update y_animated
 to account for an entity being allowed to jump.
-329
+330
 
 the following expression y_animated -= 0.5 * sinf(entity.progress_01 * 3.14);
 is part of linear algebra but I had to remind myself on how it was written.
@@ -11048,7 +11057,7 @@ able to retrieve this function (and many like it).
 Then we call a new RenderEntity_OnTile() function that we’ll look at
 right now inside rendering.h/.cpp
 
-330
+331
 
 // rendering.h
 void RenderSprite_World(Sprite* sprite, SDL_Renderer* renderer, const Camera* camera,
@@ -11073,7 +11082,7 @@ Note: with the addition of a new parameter we need to update the function
 both in our .h and our .cpp file.
 Lets look at the changes to rendering.cpp
 
-331
+332
 
 // rendering.cpp
 void RenderSprite_World(Sprite* sprite, SDL_Renderer* renderer, const Camera* camera,
@@ -11126,7 +11135,7 @@ setting our SDL_SCALEMODE to the provided _PIXELART we instead use
 point filtering meaning that no blurring happen. You can try and
 remove this line and see how bad the pixelart looks.
 
-332
+333
 
 We also swap from SDL_RenderTexture to SDL_RenderTextureRotated
 as this version has a parameter for flipping the texture. We use a new operator
@@ -11160,7 +11169,7 @@ the pivot point at the top left corner of the tile (so not yet in the middle).
 What makes it adjust to be fully centered is the little piece of math that we do
 that differentiates RenderSprite_Grid() and RenderEntity_OnTile()
 
-333
+334
 
 void RenderEntity_OnTile(Sprite* sprite, LevelData* lvl, SDL_Renderer* renderer, const
 ↪
@@ -11199,7 +11208,7 @@ sprite = GetSpriteFromID((ID)cellType, gameData->spriteBuffer);
 }
 
 (x + y) % 2 will flip-flop between 1 and 0. So by using the handy ?
-334
+335
 
 operator we can select Ground or Ground_alt alternating. Then if the ID
 was not ground we just go ahead and fetch the sprite as normal. This is a
@@ -11208,7 +11217,7 @@ now we have crispy pixel art, that can be flipped along the x-axis and that
 leverages the pivot positions we’ve set to place the entity in the correct
 position.
 
-335
+336
 
 27
 
@@ -11238,7 +11247,7 @@ gameData->arena_scratch = Memory::CreateSubArena(arena_main, KILOBYTES(256));
 
 then in our while(running) game loop we reset the arena.
 
-336
+337
 
 // main.cpp
 while(running){
@@ -11277,7 +11286,7 @@ gameData->fps_buffer = ALLOC_ARRAY(arena_main, float, gameData->fps_buffer_count
 This makes the code easier to read and reduces the amount of mindless typing
 we have to do each time we want to allocate to an arena. I’ve gone ahead
 and substituted all call sites for Memory::Allocate with this macro. You’re
-337
+338
 
 free to do the same. But make sure to compile your program afterwards to
 ensure you didn’t break something my mistyping.
@@ -11291,7 +11300,7 @@ Entity entity = lvl.entityBuffer[i]; this should also have been a
 pointer instead.
 With this in mind, lets look at the updated RenderEntities
 
-338
+339
 
 // levelRenderer.cpp
 void RenderEntities(GameData* data, SDL_Renderer* renderer){
@@ -11343,7 +11352,7 @@ pointer exists. We are going to be sorting pointers and to sort pointers we
 need an ordered list that points to them that we can sort.
 The original pointers are layed out sequentially in our memory, but the correct
 draw order is not the same order as they are in memory. This is why another
-339
+340
 
 array of pointers exist where each pointer-pointer points at a specific entry in
 the original array. Allowing for a remapping
@@ -11370,7 +11379,7 @@ note, this has to be placed above our RenderEntities() as it is not defined
 in our .h file.
 in our std::sort the second parameter SortedEntities + lvl->entityCount
 
-340
+341
 
 takes the known Entity** then moves down our memory block a number
 of Entity* long steps equal to entityCount . To arrive at the last element
@@ -11381,7 +11390,7 @@ sort to call and use it. The function compares two Entity* and because
 this is what the array points to our compiler knows how to work with this.
 With this we’ve added our scratch arena and added draw order to our entities!
 
-341
+342
 
 28 Spawn Commands and active/inactive entities
 Currently our game breaks if we move with a character then remove it from
@@ -11418,7 +11427,7 @@ Our AddCommand is simpler than the RemoveCommand as we only need to
 store the ID of the entity we want to spawn. So the AddCommand does not
 store an Entity itself.
 
-342
+343
 
 // command.h
 struct RemoveCommand : Command{
@@ -11443,7 +11452,7 @@ need to store this Behaviour so we can add it back.
 As usual we add constructors to both Add and Removee then add them as
 variables and constructor parameters to AnyCommand .
 
-343
+344
 
 // command.h
 union AnyCommand {
@@ -11493,7 +11502,7 @@ We can easily fix
 this issue that covers a lot of our lines inside Execute() and Undo by first
 pressing v to enter selection mode then we select the entire code block
 
-344
+345
 
 by moving the caret down over each line. Then we press s type cmd\. and
 press enter . This will put a caret on each of the lines at the exact position
@@ -11521,7 +11530,7 @@ break;
 We encapsulate each case with {} then we call our old AddEntity and
 RemoveEntity using the parameters we stored in the commands.
 
-345
+346
 
 // command.cpp
 // inside Undo()
@@ -11556,7 +11565,7 @@ pushing our new commands to do the same actions. To push our commands
 we need to pass along our commandBuffer . To do this we need to update
 our parameters inside levelEditor.h to supply it.
 
-346
+347
 
 // levelEditor.h
 void PlaceObject(const int x, const int y, Editor* editor, LevelData* level,
@@ -11585,7 +11594,7 @@ Push(commandBuffer, add, level); // new
 
 Then we update our callsite for RemoveEntity()
 
-347
+348
 
 // levelEditor.cpp
 void Update(Editor* editor, Input* input, LevelData* level, CommandBuffer* buffer){
@@ -11619,7 +11628,7 @@ levels using our levelEditor. It will be extremely bothersome to have our
 history malfunction and cause issues that we might confuse with mistakes in
 newly written code. That’s why we make sure to squash this bug right away.
 
-348
+349
 
 29
 
@@ -11659,7 +11668,7 @@ const float* dt;
 
 We have taken all the variables that are scene agnostic and kept them inside
 the main struct. Then we’ve added a new enum to help us keep track of the
-349
+350
 
 current and previously active scenes. We’ll need to know about both to help
 us with fade-in-and-out-from-black transitions between the scenes. All of our
@@ -11690,7 +11699,7 @@ struct Credits {
 
 We’ll fill these soon.
 
-350
+351
 
 // gameState.h
 enum class SCENE_TYPES : uint8_t{
@@ -11722,7 +11731,7 @@ this function to it. Totally legit, but as this is just a small helper function
 I’ve opted to have it live inside my .h file.
 Lets look at Gameplay
 
-351
+352
 
 // gameState.h
 struct Gameplay {
@@ -11753,7 +11762,7 @@ to. These function calls will become extremely long if we need to go thorugh
 scenes then gameplay for each variable.
 This is how we’ll fix this issue
 
-352
+353
 
 // example
 // old
@@ -11787,7 +11796,7 @@ will help reduce complexity, improve readability and reduce the chance of us
 creating hard to understand bugs. I’ve also taken the time to make the dt
 (deltatime) parameter a const as we’re not supposed to make any changes
 to it, just read its value.
-353
+354
 
 Our InitializeGame() lives only inside our game.cpp and is called from
 our Initialize() function. Inside it we’ve just placed the gameplay specific
@@ -11822,7 +11831,7 @@ We’re adding some new sprites, so first we’ll add them as SPRITE_IDs , then
 we’ll load them lastly we’ll write the GetSprite() helper function. You’ll
 find the required sprites in the chapter 30 sprite assets.zip file.
 
-354
+355
 
 // spritelibrary.h
 enum class SPRITE_ID{
@@ -11866,7 +11875,7 @@ at all. The GetSprite() function is a one-liner and you could just as easily
 substitute and use the code directly. I am of two minds about these types
 of helper functions, but I’ve kept it as I often find students respond well
 to functions that help with contextualisation. The reason we can do this
-355
+356
 
 simple lookup inside the spriteBuffer is because when we loaded the sprites
 we looped over them in SPRITE_ID order. Meaning that the SPRITE_ID
@@ -11904,7 +11913,7 @@ A lot of changes here. Lets break them down one by one
 First we fetch pointer references to Gameplay , TitleScreen , EditorData
 and Transition to simplify passing their variables along. We update our old
 call sites to use the new way we find variables We also add a quick testbutton
-356
+357
 
 5 to call ChangeScene() .
 before moving forward we should look at our new Transition struct inside
@@ -11931,7 +11940,7 @@ keep the verbose versions.
 The States enum helps us track what the Transition is supposed to be doing
 using simple switch-statements .
 
-357
+358
 
 // game.cpp
 // New Update() part 2
@@ -11981,7 +11990,7 @@ We check if our Transition state is not Inactive . meaning that it is
 currently running a fade. If it is we
 1) add dt to time_elapsed then if time_elapsed has reached our
 
-358
+359
 
 duration we reset it and depending on the State of our Transition
 we either make the transition Inactive or transition from FadeTo
@@ -12007,7 +12016,7 @@ Lets finally look at our ChangeScene() function
 // game.h
 void ChangeScene(GameData* data, SCENE_TYPES new_scene);
 
-359
+360
 
 // game.cpp
 void ChangeScene(GameData* data, SCENE_TYPES new_scene){
@@ -12049,7 +12058,7 @@ We use our handy ? operator to decide which Transition state to select based
 on if we are entering the first ever scene of the game whether or not the fade
 should instantly begin as fading out or if we should fade in first.
 We reset _time_elapsed then depending on the scene we’re entering we do
-360
+361
 
 scene specific setups. We also assert(false) if we ever tried to change to
 NONE . a (false) assert will always crash our program.
@@ -12078,7 +12087,7 @@ making good use of the multi-caret editing from the previous chapter.
 4) make changes as normal
 5) press , to remove all but the normal caret
 There is very little in the way of creativity at this part of refactoring.
-361
+362
 
 Next lets look at our Draw()
 // game.cpp
@@ -12127,7 +12136,7 @@ By doing this we ensure that it covers the entire screen. (at least for as long
 as our screen is wider than it is tall)
 The alpha calculations inside FadeTo and FadeFrom are very similar,
 
-362
+363
 
 except that for FadeFrom we take the value and we subtract it from 1 .
 Meaning that we start at 1 and go down towards zero, as opposed to counting
@@ -12181,7 +12190,7 @@ RenderEntities() to the GAME case.
 With these changes we can start our game from the titlescreen then press any
 key, watch the screen fade to black before putting us into gameplay!
 
-363
+364
 
 30
 
@@ -12212,7 +12221,7 @@ if(cell_id == ID::GROUND){
 We are removing both our ID::GROUND and ID::WALL from our code. then
 we’ll change the name of ID to ENTITY_ID as we are no longer storing IDs
 for our terrain. Now they are exclusive for our Entities. This will touch a lot
-364
+365
 
 of our codebase. But at this point you should be familiar enough using Helix
 to search for, find and update these parts of the code once everything is set
@@ -12240,7 +12249,7 @@ interested potentially in having more behaviour associated with a tile besides
 whether or not we can walk on it. Additionally we can not even know for
 sure if ID 5 is a ground tile or maybe a bush or a wall. This is because each
 tileset we add needs their own ids meaning that the first tileset starts from
-365
+366
 
 0 then the next starts from the previous tilesets final id and goes from there.
 We’ve decided to use Tiled in this project for two reasons
@@ -12265,7 +12274,7 @@ name is just for cataloguing.
 We’ll be setting up a tilesetLibrary.h/.cpp that will hook into our
 AssetManagement namespace and add a way for us to load each tileset
 
-366
+367
 
 // tilesetlibrary.h
 #pragma once
@@ -12303,7 +12312,7 @@ don’t have any of those you can decide if you find the forward declaration
 hard to understand. In that case just substitute it for our normal include..
 we also specify using namespace nlohmann this is the namespace holding
 our Json parser by adding this using we dont have to write nlohmann::
-367
+368
 
 before being allowed to access the json struct.
 We store our different tilesets in our TILESETS enum. Currently we just
@@ -12356,7 +12365,7 @@ static const TilesetDataEntry all_tilesets_data[]{
 {TILESETS::Dungeon, "assets/tilesets/dungeon_tileset.tsj"}
 };
 
-368
+369
 
 here we simplify accessing nlohmann and std then we set up our static
 array of TileSetDataEntry . Right now there is just one. But its contents
@@ -12390,7 +12399,7 @@ tileset_02 has 51 tiles and `firstgid` is 7
 tileset_03 has 2 tiles and `firstgid` is 58
 If the tilesets had been added in another order their firstgid values would
 also change.
-369
+370
 
 Get_Tileset_ID_Offset_From_Tilemap() takes in a cell id as a parameter then finds the tileset with the highest firstgid that is still lower than
 the id we specified. This means that if we pass in id 44 then we find
@@ -12424,7 +12433,7 @@ contained to the parsing of json files for our game engine. If we can swallow
 the fact that we don’t have full knowledge of the underlying data type hidden
 by auto and that as long as we know how to fetch data from the json
 using ["name_of_data"] and .get<variableType>() then we can move
-370
+371
 
 forward.
 the strings "tilesets" and "firstgid" are the exact names that I found
@@ -12480,7 +12489,7 @@ calls
 LoadTileset for each of them. it also passes Tileset* tilesetBuffer
 that we will add to an pass in from GameData in gameState.h
 LoadTileset then tries and find the file found at entry->path and uses
-371
+372
 
 the nlohmann json parser to turn it from text into something we can use
 in code. We store the full parsed json data in auto jsonResult .
@@ -12507,7 +12516,7 @@ inspected or .tsj file) the name was walkable the type was bool and
 the value was true/false . So using .Get<bool>() we on the value
 element we can get back true or false .
 I will happily suggest spending extra time learning how to parse a JSON. But
-372
+373
 
 as this step only happens during the Initialization of our program means that
 we know immediatly if things have worked or not. And thankfully a LLM is
@@ -12543,7 +12552,7 @@ entity.h
 we’re
 
 updating
-373
+374
 
 the
 
@@ -12586,7 +12595,7 @@ Behaviour behaviour;
 
 in entity.cpp we used to assert that ID was not NONE . We will change
 this to look at active instad
-374
+375
 
 // entity.cpp
 void InitializeBaseBehaviour(Entity* entity){
@@ -12634,7 +12643,7 @@ As you can see, our CreateLevel() now takes a Tileset* pointer as a
 parameter. This is the tileset the level is using to draw its contents.
 CreateLevel() and CreateEntities() in level.cpp has changed a lot
 to work with our new tilemap logic.
-375
+376
 
 // levels.cpp
 void CreateLevel(Arena* arena, LevelData* level, Tileset* tileset, const char*
@@ -12681,7 +12690,7 @@ that we need to find the actual layer in Tiled that we have used to draw our
 levels. In Tiled we currently have 3 layers
 • blueprint
 • level
-376
+377
 
 • entities
 To make sure we fetch our data from the correct place we loop over each
@@ -12702,7 +12711,7 @@ You can see that we assign a pointer reference to levelData for
 level->tileset we have to update our LevelData struct to hold this
 pointer.
 
-377
+378
 
 // levels.h
 struct LevelData{
@@ -12724,7 +12733,7 @@ also update our GetCellID in both .h and .cpp to match this new return
 value.
 Lets look at CreateEntities() next
 
-378
+379
 
 // levels.cpp
 void CreateEntities(LevelData* lvl_data, Arena* arena){
@@ -12766,7 +12775,7 @@ we flip the found bool to true.
 But not similar to our CreateLevel() we don’t assert that found was true,
 instead we return early. I’ve opted for this as I want to be able to test that a
 tileset is working properly even if I have not added an entities layer inside
-379
+380
 
 Tiled
 Once we have our entities we go over each one and call AddEntity() as
@@ -12801,7 +12810,7 @@ int tileset_cell_count_y = NOT_SET;
 
 We might opt for having a different struct all together for our Tilesets later.
 But for now I’m ok with expanding our Sprite struct.
-380
+381
 
 We have also added our tilemap to our SPRITE_ID enum
 // spriteLibrary.h
@@ -12845,7 +12854,7 @@ values set for our new tileset variables. I counted the amount of rows and
 columns of the tileset by hand for this step. Later we might automate this as
 our .tsj file does know the amount of rows/columns it stores.
 
-381
+382
 
 // spriteLibrary.cpp
 void LoadSprite(Sprite* spriteBuffer, SpriteDataEntry entry, SDL_Renderer* renderer){
@@ -12884,7 +12893,7 @@ In Levels.h/.cpp we’ll add a small helper function
 // levels.h
 bool IsWalkable(int x, int y, LevelData* level);
 
-382
+383
 
 // levels.cpp
 bool IsWalkable(int x, int y, LevelData* level){
@@ -12933,7 +12942,7 @@ flipped
 
 RenderSprite_World()
 We’ll be calling this function from levelRenderer.cpp
-383
+384
 
 as
 
@@ -12973,7 +12982,7 @@ calculate which tile to render from the grid that is the tileset.
 Lets finally look at the render function inside rendering.cpp to see how we
 render the tiles of our level
 
-384
+385
 
 void RenderTile_World(Sprite* tileset_atlas_sprite, int cell_id, LevelData* lvl,
 ↪
@@ -13018,7 +13027,7 @@ We convert our x and y coordinates to world space then we set up our
 destination rect as usual. Accounting for the pivot, camera, scale and global
 UPSCALE_FACTOR.
 
-385
+386
 
 Finally
 
@@ -13049,7 +13058,7 @@ now, after this pretty intense chapter we are rewarded with some actually
 decent graphics to look at. And it makes such a difference! Now adding more
 tilesets and making changes to them in Tiled will be easy!
 
-386
+387
 
 31
 
@@ -13088,7 +13097,7 @@ PREV = NOW;
 }
 
 Now lets add a slider to our dev_gui.cpp
-387
+388
 
 // dev_gui.cpp
 void DrawFPS(GameData* data){
@@ -13134,7 +13143,7 @@ to set up a
 
 pointer-pointer array holding all relevant targets. We’ll be recreating
 this array each frame rather than storing it alongside entityBuffer we’re
-388
+389
 
 doing this so that we never run the risk of having the two arrays drift out of
 sync by us forgetting to update one when we update the other.
@@ -13181,7 +13190,7 @@ gameplay->activePlayerBuffer[index++] = &level->entityBuffer[i];
 }
 }
 
-389
+390
 
 So this is an array that sits in sequence in memory (as all arrays do) but
 they point to pointers to entities that are not in an ordered sequence inside
@@ -13225,7 +13234,7 @@ things now.
 2) Push this command
 3) Limit our top level TryMove() call to only work on this specific entity.
 
-390
+391
 
 // command.h
 struct SwapActiveEntityCommand : Command {
@@ -13258,7 +13267,7 @@ Though we have outlined this process multiple times in the course material.
 If you struggle with this step, return to earlier chapters on creating new
 commands and repeat those steps.
 
-391
+392
 
 // game.cpp
 if(KeyPressed(input, SDL_SCANCODE_X) && player_count > 0){
@@ -13295,7 +13304,7 @@ deep rabbithole of refactoring. In the Chapter 32 assets.zip you’ll find
 a new sprite selection_marker.png we’ll put this ontop of our selected
 entity.
 
-392
+393
 
 You can also see that we have deleted the Medusa_Idle_side/front/back
 and replaced them with a spritesheet called medusa_rotate.png . This is
@@ -13336,7 +13345,7 @@ this->frame = 0;
 }
 
 Ok, this struct is a little strange. Mostly it just references a Sprite by
-393
+394
 
 pointer. But it has a frame as well. We’ll use the frame to get the appropriate
 sprite using our clever 1D to 2D algorithm later.
@@ -13373,7 +13382,7 @@ static const SpriteDataEntry all_sprite_data[] = {
 The Medusa rotate spritesheet has 8 frames layed out in a line, that’s why we
 pass 8, 1 as the two last parameters. This is just as with dungeon_tileset .
 You should also cleanup SPRITE_ID and remove the old Medusa entries.
-394
+395
 
 // spriteLibrary.h
 Sprite* GetSprite(SPRITE_ID sprite_id, Sprite* spriteBuffer);
@@ -13411,7 +13420,7 @@ accidentally pass another variable by mistake and many variables can “decay”
 into bools. Meaning that they get converted to true if they are for example
 not a nullptr .
 
-395
+396
 
 // command.cpp
 enum class FromRedo {No, Yes};
@@ -13460,7 +13469,7 @@ break;
 our FromRedo enum now forces us to pass it explicitly fixing the issue where
 a bool could decay. Not hove each PostMove and Rotation call is held inside
 a if FromRedo::No and that our progress_01 = 1 only happens on a
-396
+397
 
 FromRedo::Yes .
 We are also storing the facing_previous direction inside our Entity now.
@@ -13485,7 +13494,7 @@ Behaviour behaviour;
 You can also see that we assign entity->action to MOVING/ROTATING
 depending on the command.
 
-397
+398
 
 // entity.h
 enum class Actions { // new
@@ -13514,7 +13523,7 @@ entity.
 We also set entity->action to NONE during AddEntity() inside
 levels.cpp .
 
-398
+399
 
 // levels.cpp
 void AddEntity(ENTITY_ID entity_id, int x, int y, LevelData *level){
@@ -13556,7 +13565,7 @@ RenderSprite_World .
 You can also see how we use SpriteRenderInfo instead of Sprite* . As
 we allow a Sprite* to degrade into a SpriteRenderInfo with our third
 constructor made earlier we have opted for maximum clarity in the case of
-399
+400
 
 RenderTile . Forcing us to specify the cell_id each time it’s called.
 RenderTile this acecpts a Sprite with more than one tile inside it and a
@@ -13582,7 +13591,7 @@ tileset into it.
 ok, now we’re going to look at the pretty large RenderSprite_World()
 funtion. I’ve added comments to break up the code into blocks
 
-400
+401
 
 // rendering.cpp
 void RenderSprite_World(SpriteRenderInfo spriteRenderInfo /* other parameters hidden for
@@ -13632,7 +13641,7 @@ SDL_RenderTextureRotated(renderer, sprite->texture, &tilesetRect, &rect, 0, 0, f
 
 GetSpriteCount() is a new helper function in spriteLibrary.h/
 
-401
+402
 
 // spriteLibrary.h
 inline int GetSpriteCount(Sprite* sprite){
@@ -13674,7 +13683,7 @@ RenderTile(sprite, id, level, renderer, &gameData->camera, x, y, 1, 1);
 
 from RenderLevel() we call RenderTile()
 
-402
+403
 
 // levelRenderer.cpp
 void RenderEntities(GameData* data, SDL_Renderer* renderer){
@@ -13732,7 +13741,7 @@ ground_y);
 RenderSprite_OnTile(sprite, lvl, renderer, &data->camera, x_animated, y_animated, 1,
 1, false);
 
-403
+404
 
 This function is also growing longer. At the moment it’s a non-issue, but
 with a few more edge-cases we would want to do something about it.
@@ -13757,7 +13766,7 @@ In Game.cpp we’re doing 2 things:
 rotating.
 2) only allow the activeEntity to Rotate and TryMove
 
-404
+405
 
 bool are_entities_acting = false;
 LevelData *level = GetCurrentLevel(gameplay);
@@ -13800,7 +13809,7 @@ we’ve updated are_entities_moving to a more general _acting . We’ve
 also added a new function IsActing() to entity.h/.cpp to make checking
 their acting status easier.
 
-405
+406
 
 //entity.h
 bool IsActing(Entity* e);
@@ -13818,7 +13827,7 @@ As this happens before any input has been parsed we are yet to update
 current to a new value. We have also moved the IS_PUSHING reset code
 from our for-loop that calls TryMove() .
 
-406
+407
 
 // game.cpp
 // at the end of UpdateGame()
@@ -13860,7 +13869,7 @@ fetch a pointer to it using our helper function GetActiveEntity() . Then
 we can check if it is supposed to rotate, and if yes we push a RotateCommand
 onto the stack. This will set entity->action to Actions::Rotate .
 We have more than a few if-statements that we evaluate. And if the
-407
+408
 
 condition is met we return early. Meaning that no code below it runs. This
 is the same as nesting if-statements inside each other but instead we have
@@ -13882,7 +13891,7 @@ animation to pick based on progress_01 took a fair bit of trial and error.
 It’s not the easiest to wrap your mind around but as the case is very narrow
 it’s not a bad idea to talk through the code with an LLM.
 
-408
+409
 
 // spriteLibrary.cpp
 // Part 1
@@ -13927,7 +13936,7 @@ our first if statement just checks if we’re petrified and returns the rock spr
 This will be modified to a cooler looking thing later. Then we do our brutalistic
 check that is exclusive to a rotating Medusa. We fetch the frame index for the
 final poses based on the layout of our medusa_rotate.png . We do this for
-409
+410
 
 both _current and _previous facing directions as we want to interpolate
 between them.
@@ -13953,7 +13962,7 @@ back to frame 0. We then make a lerp that goes between our start and
 end based on progress_01 and because our end can exist outside of our
 spritesheet bounds we need to modulo it against our sprite_count .
 
-410
+411
 
 //spriteLibrary.cpp
 // part 3
@@ -13995,12 +14004,12 @@ next position. But we also have the boilerplate in place to help us animate
 more entities later. we have also added gameplay logic to handle selecting
 which entity to use and we have simplified some code.
 
-411
+412
 
 A lot of systems touched each other in this chapter! Good job getting through
 this one!
 
-412
+413
 
 32
 
@@ -14027,7 +14036,7 @@ We are including mainmenu.h in gameState.h and if we were to include
 gameState.h inside mainmenu.h we would get a chain of circular dependencies. To fix this we’re forward declaring all the structs we’ll be using
 in this file.
 
-413
+414
 
 //mainmenu.h
 struct MainMenu {
@@ -14064,7 +14073,7 @@ struct GameData;
 We do some normal inclusion of SDL3 headers and forward declare Sprite
 and GameData . To be honest I don’t think we necesserily need to forward
 declare in this case.
-414
+415
 
 // button.h
 enum class ButtonMode {
@@ -14101,7 +14110,7 @@ and return the total count of buttons with is_active set to true .
 We’ll be checking our collision from collision.h . Our bounds collision
 detection is the most basic type of collision we can detect
 
-415
+416
 
 // collision.h
 #pragma once
@@ -14140,7 +14149,7 @@ return CheckCollisionInsideBounds(button->rect, x, y);
 
 we make sure the button is correctly set up or at least not supposed to be
 triggered (null pointer or not active). Then we call our new collision detection
-416
+417
 
 function and return the bool result.
 // button.cpp
@@ -14174,7 +14183,7 @@ these with some actual graphics. We are also doing a bit more defensive
 programming with assert in this chapter than usual. But it’s good pratice
 to do so.
 
-417
+418
 
 // button.cpp
 void PressButton(Button *button, GameData *data){
@@ -14216,7 +14225,7 @@ now only our main menu have buttons inside the game. But once we add
 more we’ll continue to create these helper functions to assist us with our
 boilerplate. But right now we could easily take our one callsite and just add
 the code inside this function to it. It is really only a good idea to create a
-418
+419
 
 function when the code inside it is called from more than 1 place. Every
 function and file adds obsuscation to our code by not having the logic live
@@ -14249,7 +14258,7 @@ darker. We use this to make all buttons that are not the selected button a
 bit darker. We assing this overlayed color usign SDL_SetTextureColorMod .
 lastly we render the texture to the backbuffer.
 We’re simplifying access to our running boolean by passing it into our
-419
+420
 
 GameData struct
 //gameState.h
@@ -14299,7 +14308,7 @@ ChangeScene(data, SCENE_TYPES::MAINMENU);
 
 in Update() we call into mainmenu
 
-420
+421
 
 // game.cpp
 case SCENE_TYPES::MAINMENU:
@@ -14344,7 +14353,7 @@ mainmenu->initialized = true;
 During initialization we make sure we haven’t already done our initialization.
 Then we currently hard-code our button_count meaning that if we want to
 setup a new button we need to remember to increase this number. There are
-421
+422
 
 a multitude of ways of refactoring out this error-prone step. We might do
 that later. Otherwise it’s a simple exersice for you, the reader.
@@ -14379,7 +14388,7 @@ to it in spriteLibrary.cpp
 we’ve opted to omit the pivot as we want our program to automatically set
 this to the dead center of the texture.
 We pass NULL as our parameter for our const Camera* camera when
-422
+423
 
 calling RenderSprite_World() this will currently break but we can easily
 allow for this behaviour by making a small adjustment to the function
@@ -14419,7 +14428,7 @@ the texture up and down depending on the size of the game window
 SCREEN_HEIGHT . This means that the larger the difference is between the
 game window and the height of the texture the more scale increases. This
 ensures that the titlescreen background fills the entire window.
-423
+424
 
 When
 
@@ -14445,7 +14454,7 @@ passing it along. i == mainmenu->activeButtonIndex will be true only
 for the active button and false for all others. Letting us add the light grey
 overlay color on all non selected buttons.
 
-424
+425
 
 // mainmenu.cpp
 // updateMenu part 1
@@ -14489,7 +14498,7 @@ commiting to the variables that PressButton needs and then walking up
 this call-chain fixing so we only send those variables as parameters. For now
 we’ll pass everything
 we collect Input* and MainMenu* pointers to reduce the length of each
-425
+426
 
 line of code that references them. We then fetch how many active buttons
 we have and allocate our pointer pointer array of activeButtons to our
@@ -14517,7 +14526,7 @@ float mouse_y_delta; // new
 double mouse_magnitude; // new
 };
 
-426
+427
 
 // main.cpp
 gameData->input.keys_current = SDL_GetKeyboardState(nullptr); // old
@@ -14550,7 +14559,7 @@ theorem.
 I’ve saved two printf calls that you can uncomment if you want to have a
 look at what happens when you move the mouse around.
 
-427
+428
 
 // mainmenu.cpp
 // UpdateMenu() part 2
@@ -14590,7 +14599,7 @@ addition will get stripped by the modulo operator - but it will ensure that
 even when we remove using direction = -1 we never reach a negative
 number.
 we then point to the button that is selected from buttonIndex and store it
-428
+429
 
 in selected .
 If we have a selected we check if we are pressing enter aka return or
@@ -14598,7 +14607,7 @@ if we are hovering over the button and pressing left mouse button. In either
 case we call PressButton .
 With this we’ve added buttons and the collision and pressing of said buttons!
 
-429
+430
 
 33
 
@@ -14622,7 +14631,7 @@ So we’ll create two helper functions inside our AssetManagement namespace .
 These will be created then substituted in the two currently places where we
 currently duplicate our code.
 
-430
+431
 
 // levels.cpp
 namespace AssetManagement{
@@ -14665,7 +14674,7 @@ like this type of coding for our own code, but as we’re working with this json
 parser and it has this c++ structure we’re sorta forced into doing the same
 if we want to have a relatively clean code layout.
 we also have a few callsites where we do a convertion from 1D to 2D by
-431
+432
 
 using divided by and modulo operators. This is not the simplest code to
 remember and a small helper function would be very beneficial.
@@ -14684,7 +14693,7 @@ then it sets x and y to the correct values. As these are pointers the value
 will be updated for the variable living at the callsite.
 now we can simplify CreateLevel() and CreateEntities()
 
-432
+433
 
 // levels.cpp
 void CreateLevel(Arena* arena, LevelData* level, Tileset* tileset, const char*
@@ -14718,7 +14727,7 @@ level->cells[i] = local_id;
 It’s the same function in all regards but we now use our helper functions to
 reduce to volume of code.
 
-433
+434
 
 // levels.cpp
 void CreateEntities(LevelData* lvl_data, Arena* arena){
@@ -14761,7 +14770,7 @@ tilesetRect.y *= height; // new
 in the supplied assets chapter 34 assets.zip you’ll find a new .tmj file
 called testing_goal.tmj . This level has a new layer inside Tiled called
 
-434
+435
 
 goals . On this layer we exclusively place a new goal tile . This sits ontop
 of the rendered level and in our game the victory condition for a level will be
@@ -14797,7 +14806,7 @@ where we currently pass x and y separately we instead pass in a Position .
 But this has little value currently so lets hold off. blink_timer will increase
 by deltaTime each frame for as long as an entity is standing on the goal
 square. Otherwise we’ll reset it to 0.
-435
+436
 
 With our helper functions we’ll add more logic to the end of CreateLevel()
 to allocate our goals array.
@@ -14843,7 +14852,7 @@ means that we could in theory add any tile to the grid and it would get
 converted to a goal. This is not ideal but we can live with it for now. If we
 ever need more markers we can think about refactoring. With only one single
 tile in the tileset used for our goal we need to add +1 to the id_offset as
-436
+437
 
 our tilemap doesn’t start with an empty zero-indexed tile. So in this example
 .tmj the only non-zero cell in our goals layer has an id of 90 and the
@@ -14872,7 +14881,7 @@ corresponds to which variable.
 At the end of RenderLevel() in levelRenderer we can make sure we
 render all of our goals
 
-437
+438
 
 // levelRenderer.cpp
 for(int i = 0; i < level->goalCount; i++){
@@ -14907,7 +14916,7 @@ only increment blink_timer if an entity existed and it has finished whatever
 action it might have been taking. For example, walking onto the goal square.
 Lastly, lets make sure we actually play the new level
 
-438
+439
 
 // game.cpp
 void InitializeGame(Gameplay* gameplay, Arena* arena_levels, Tileset* tilesetBuffer){
@@ -14940,7 +14949,7 @@ spot.
 We’ll look over all goals and if we have met the condition for each we’ll
 advance our CurrentLevelIndex and call StartLevel()
 
-439
+440
 
 // game.cpp
 // inside UpdateGame()
@@ -14977,7 +14986,7 @@ void UpdateGame(Gameplay* gameplay, Input* input, Arena* arena_scratch, Arena*
 arena_commands, Arena* arena_entities, const float dt){
 
 as well as pass these parameters in at the callsite in Update()
-440
+441
 
 // game.cpp
 case SCENE_TYPES::GAME:
@@ -15012,7 +15021,7 @@ the same assets .ZIP that you unpacked earlier are level_01.tsj and
 level_02.tsj .
 Let’s make those the levels we initialize
 
-441
+442
 
 // game.cpp
 void InitializeGame(Gameplay* gameplay, Arena* arena_levels, Tileset* tilesetBuffer){
@@ -15043,7 +15052,7 @@ return;
 }
 // other code hidden
 
-442
+443
 
 34
 
@@ -15073,7 +15082,7 @@ of each into your project in the project folder with the same name. For
 my include folder I decided to put all fmod .h files into a FMOD
 subdirectory.
 
-443
+444
 
 In the lib folder, look for the x64 folder inside. In my own projects lib
 folder I’ve opted for putting the FMOD .lib files into a FMOD subdirectory
@@ -15085,7 +15094,7 @@ You can unzip the chapter 35 assets.zip and replace the old content
 inside your assets folder with it.
 lets set up audioSystem.h that will manage FMOD
 
-444
+445
 
 // audioSystem.h
 #pragma once
@@ -15130,7 +15139,7 @@ will be used just like
 SpriteDataEntry
 
 audioSystem.cpp later. We’ll use it to load our sound files.
-445
+446
 
 in our
 
@@ -15160,7 +15169,7 @@ codebase. To avoid having to pass AudioSystem everywhere we’re making a
 global pointer to an AudioSystem available for every file that includes
 audioSystem.h . The extern keyword promises that the actual pointer
 will be found during compilation from another file. We’ll keep this global
-446
+447
 
 pointer synced to the AudioSystem we’ll put inside GameData so that any
 file can point to it and use our audio system. every program has by its nature
@@ -15189,7 +15198,7 @@ AudioSystem audio; // new
 
 then inside game.cpp
 
-447
+448
 
 // game.cpp
 void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
@@ -15218,7 +15227,7 @@ Just make sure the audio segment is smaller than the game memory as we’re
 creating a subarena for the audio from the main memory.
 Lets look at our implementation in audioSystem.cpp
 
-448
+449
 
 // audioSystem.cpp
 // part 1
@@ -15241,7 +15250,7 @@ We then set up a compile time known array of SoundDataEntry . For now
 we only have one ::JUMP and our fallback that both link to fallback.wav .
 But later we’ll add more.
 
-449
+450
 
 // audioSystem.h
 // part 2
@@ -15303,7 +15312,7 @@ audio->sound_system .
 finally we intiailize the FMOD_SYSTEM letting FMOD handle the setup behind
 the scenes. With all of this done we can assign our global pointer to point at
 our audio and flip our initialized flag to true .
-450
+451
 
 That is the entire setup to have FMOD in our project. The next steps are
 about loading our sound effects, finding a free channel and actually playing
@@ -15337,7 +15346,7 @@ We could make a more advanced system later where audio has different
 priorities and if no channel is found it just grabs the channel containing the
 audio with the lowest priority. But for now we’re going to ignore this.
 
-451
+452
 
 // audioSystem.cpp
 // Part 4
@@ -15375,7 +15384,7 @@ channel tells it how loud the sfx should be.
 FMOD does not automatically keep itself working. We need to make sure we
 update it each frame.
 
-452
+453
 
 // audioSystem.cpp
 // part 5
@@ -15413,7 +15422,7 @@ We loop over all SoundDataEntry from all_sound_data . to not have to
 worry about for-looping to a _amount variable we can use the other
 syntax for a for-loop that is “more modern” in c++. this will grab our array
 and intuit the size itself. And by putting & after the variable type we are
-453
+454
 
 using it by reference instead of by value or by pointer meaning that
 the compiler does the heavy lifting and goes and grabs it for us.
@@ -15440,7 +15449,7 @@ gameplay->input_buffer_read_count++; // old
 Now we can build our game and hear our fallback sound effect each time the
 player takes a step!
 
-454
+455
 
 35
 
@@ -15492,7 +15501,7 @@ new
 {SPRITE_ID::Goal, "assets/sprites/goal.png",8, 8, 8, 1}
 };
 
-455
+456
 
 Each of these animations are four frames long.
 Then lets extend our SpriteRenderInfo struct to hold a value for if the
@@ -15532,7 +15541,7 @@ to skip adding this parameter and still pass Sprite as if it was a full
 SpriteRenderInfo struct with default values.
 Because we want our animations to play all the time, even when the
 player has made no inputs we have to have some way of giving our
-456
+457
 
 GetSprite_FromEntityState function knowledge about elapsed time.
 We’re going to make a consession here, if the game can’t be played at a
@@ -15565,7 +15574,7 @@ gameData->ticks_total = ALLOC(arena_main, uint64_t);
 Then in game.cpp we will give it a base value of 0 at Intialization then
 increase it by 1 each time we call Update()
 
-457
+458
 
 // game.cpp
 void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
@@ -15624,7 +15633,7 @@ uint64_t* ticks_total);
 
 and then use it in that function to calculate the relevant frame. Note, this
 function is still very messy.
-458
+459
 
 // spriteLibrary.cpp
 // in GetSprite_FromEntityState()
@@ -15667,7 +15676,7 @@ For medusa we check the relevant Direction then fetch the corresponding
 spritesheet. We then calculate the correct frame by the following equation:
 (total_ticks * framerate) / game_update_speed_in_frames % frames_in_animation .
 
-459
+460
 
 This will for as long as we maintain a stable framerate select frame
 0,1,2 or 3
@@ -15710,7 +15719,7 @@ But we can do better. The magic number for framerate in our frame
 algorithm can be put into our Sprite struct and we can use the fact that
 we have our helper function GetSpriteCount to get the amount of frames.
 
-460
+461
 
 // spriteLibrary.h
 struct Sprite{
@@ -15757,7 +15766,7 @@ And finally we need to assign it to our idle animations SpriteDataEntry
 {SPRITE_ID::Medusa_Idle_Back, "assets/sprites/medusa_idle_back.png", 12, 24, 4, 1, 8},
 
 I’ve opted to show a different way of styling our {}. If we add a . and the
-461
+462
 
 name of the variable we can designate them by name, making it easier to
 understand which variable we’re actually adding to. This might become more
@@ -15794,7 +15803,7 @@ everything still works just as before!
 One tiny thing before we end this chapter. Our camera does not exactly place
 our level in the center of the screen. We need 1 more step
 
-462
+463
 
 // camera.cpp
 void camera::GridToWorld(float* x, float* y,
@@ -15810,7 +15819,7 @@ void camera::GridToWorld(float* x, float* y,
 
 that I believe should do the trick!
 
-463
+464
 
 const LevelData* lvl){
 
@@ -15847,7 +15856,7 @@ We create a new enum to hold all of our songs, then we create a separate
 FMOD_SOUND and FMOD_CHANNEL that we’ll use exclusively for music. a new
 function PlaySong() will be the only function call we’ll need.
 
-464
+465
 
 // audioSystem.cpp
 void PlaySong(SONG_ID id){
@@ -15887,7 +15896,7 @@ creating the stream to let FMOD know that we want this stream to loop once
 finished. SetLoopCount just controls how many times it’s allowed to loop.
 Then we call PlaySound() as normal.
 In Game.cpp we call our play function
-465
+466
 
 // game.cpp
 void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
@@ -15913,7 +15922,7 @@ ChangeScene(data, SCENE_TYPES::MAINMENU);
 
 That’s it! Now we can play music by streaming our audio!
 
-466
+467
 
 37
 
@@ -15952,7 +15961,7 @@ static const SpriteDataEntry all_sprite_data[] = {
 {SPRITE_ID::Menu_Front, "assets/sprites/mainmenu_front.png"},
 };
 
-467
+468
 
 // mainmenu.h
 struct MainMenu {
@@ -15985,7 +15994,7 @@ break;
 
 With this we can add the necessary logic to mainmenu.cpp
 
-468
+469
 
 // mainmenu.cpp
 void InitializeMenu(MainMenu* mainmenu, Sprite* spriteBuffer, Memory::Arena*
@@ -16015,7 +16024,7 @@ mainmenu->initialized = true;
 
 we fetch the relevant sprites.
 
-469
+470
 
 // mainmenu.cpp
 void DrawMenu(MainMenu* mainmenu, SDL_Renderer* renderer, Sprite* spriteBuffer, Input*
@@ -16066,7 +16075,7 @@ order for a different effect all together.
 We also multiply scale by 1.2 as we need to be zoomed in a little to avoid
 our sprites cutting of at the edge of the 1920x1080 window. You can try and
 remove the scale multiplication and watch as we reach the edge of our sprites.
-This is the basics of parallax. We adjust the position of something in relation470
+This is the basics of parallax. We adjust the position of something in relation471
 
 ship to some movement of a camera based on how far away from the camera
 it is. Currently we just divide the offset by a value that will represent the
@@ -16074,7 +16083,7 @@ depth of the object. The larger the fraction the further away the layer is.
 And no fraction at all means that it’s at the horizon-distance.
 That’s it!
 
-471
+472
 
 38
 
@@ -16103,7 +16112,7 @@ SDL_TTF .
 we also need SDL3_ttf.dll and SDL3_ttf.lib . These are going into
 their own subdirectory inside our lib folder. I’ve named their subdirectory
 SDL_TTF just as I did for our include folder.
-472
+473
 
 Thankfully this will work out of the gate requiring no adjustments to our
 cmakelists.txt .
@@ -16136,7 +16145,7 @@ in a new fontLibrary.h we’ll add structs to hold individual letters that
 we call glyphs when working with fonts as well as a struct to hold our
 font atlas
 
-473
+474
 
 // fontLibrary.h
 #pragma once
@@ -16170,14 +16179,14 @@ keyboard. There is more to font handling and especially when it comes to
 localization. But for our needs and the font we’ve selected this will be plenty.
 We’ve added a new function to our AssetManagement namespace . This
 
-474
+475
 
 will grab a font and construct the contents of a FontAtlas based on it.
 With only one function in our .h file we have only one function to write in a
 fontLibrary.cpp . We could have inlined the function but we have not
 done so for other xxxLibrary.h/.cpp pairs so I’m opting for consistency.
 
-475
+476
 
 // fontLibrary.cpp
 #include "fontLibrary.h"
@@ -16230,7 +16239,7 @@ SDL_DestroySurface(glyph_surface);
 
 }
 
-476
+477
 
 }
 fontAtlas->atlasTexture = SDL_CreateTextureFromSurface(renderer, atlas_surface);
@@ -16263,7 +16272,7 @@ height in order to guarantee that the next row of glyph don’t overlap with
 the once from the row above.
 In a standard ascii table the glyphs from 0-31 are reserved for what is called
 control codes these are not meant to be rendered but instead used to help
-477
+478
 
 control hardware and data. We have no use for these can they can only cause
 headaches. So we start our for-loop at the 32'nd index instead. I put
@@ -16298,7 +16307,7 @@ onto. It has both the position and the size of the rect itself.
 We then call BlitSurface , this takes the pixels from one SDL_Surface and
 adds them to another SDL_Surface at a specified position. the NULL value
 
-478
+479
 
 makes the program take the entire glyph_surface instead of a portion of
 it.
@@ -16330,7 +16339,7 @@ TTF_CloseFont(font);
 After that we take the now finished SDL_Surface atlas_surface and using
 CreateTextureFromSurface we store a pointer to a VRAM-living texture in
 atlasTexture . After that we destroy the now redundant atlas_surface
-479
+480
 
 and call CloseFont() to free all the memory on the heap that we used to
 run this function.
@@ -16363,7 +16372,7 @@ We make sure to set a large enough ptsize to actually see the glyphs clearly.
 Rendering text will be a bit different. We’ll add a bespoke function for it in
 rendering.h/.cpp
 
-480
+481
 
 // rendering.h
 struct Button;
@@ -16387,7 +16396,7 @@ This happens in mainmenu.cpp and game.cpp and button.cpp . Pressing
 space+D will list all of the current errors frong clangd . You should be able
 to find each callsite by going through this list.
 
-481
+482
 
 // rendering.cpp
 static const char STOP_CHAR = '\0';
@@ -16432,7 +16441,7 @@ width and rendering the next letter.
 if our Alignment is set to Centered then we first loop over all glyphs
 and collect their combined width. We can then shift draw_position_x
 by half that to have the text centered. We are also allow our Camera*
-482
+483
 
 parameter being passed as nullptr . In that case we skip adjusting the
 draw_position_x/y by the camera offset.
@@ -16463,7 +16472,7 @@ SCREEN_HEIGHT / 2.0, Alignment::Centered);
 break;
 
 This is the basics of working with fonts and rendering text!
-483
+484
 
 39
 
@@ -16497,7 +16506,7 @@ we’ve refactored this to be a Sprite* instead.
 we use is_dynamic to control if we want to render our button using the
 normal method or a new render function we’ll add to rendering.h
 
-484
+485
 
 // rendering.h
 void RenderButton_Dynamic(Button* button, bool is_selected, SDL_Renderer* renderer);
@@ -16553,7 +16562,7 @@ array when we stop calling Updates points at garbage memory. By setting
 activeButtonCount to 0 after we are done with a Draw call we can at
 least know that if we never call Update again then we will at least not have
 any value here to cause a loop through the garbage array. This is not a robust
-485
+486
 
 fix, just a temporary measure so we can focus on what we’re working on.
 In SetupButton() we’re assigning is_dynamic to our Start Game button.
@@ -16599,7 +16608,7 @@ With the change from SDL_Texture* to Sprite* we need to update
 our callsites that used the SDL_Texture This was only two functions
 SetupButton() in button.cpp and RenderButton in rendering.cpp .
 
-486
+487
 
 void SetupButton(Button* button, ButtonType type, Sprite* spriteBuffer, SDL_FRect rect,
 ↪
@@ -16643,7 +16652,7 @@ refactored
 
 We are adding a new sprite to our assets folder
 
-487
+488
 
 // spriteLibrary.h
 enum class SPRITE_ID{
@@ -16681,7 +16690,7 @@ We also prepare our
 
 colorOverlay to darken the button if it is not the selected one.
 
-488
+489
 
 // rendering.cpp
 // RenderButton_Dynamic Part 2
@@ -16707,7 +16716,7 @@ textures in this one function to reconstruct the entire button.
 the right_x, bottom_y etc variables are used to calculate the x and y
 position of the different parts of the button.
 
-489
+490
 
 // rendering.cpp
 // RenderButton_Dynamic Part 3
@@ -16790,7 +16799,7 @@ part_w/h when it comes to setting the width and height . Try and intuit
 where the piece will be in the 3x3 grid and use the parameters to figure out
 how it would look.
 
-490
+491
 
 // rendering.cpp
 // RenderButton_Dynamic Part 4
@@ -16854,7 +16863,7 @@ SDL_RenderTexture(renderer, texture, &centersrc,
 );
 
 Finally we take the src and dst pairs and render the atlas to the screen
-491
+492
 
 in 9 steps. Each one responsible for one of the 3x3 squares. You can comment
 out these RenderTexture() calls to see what part of the button the draw.
@@ -16892,7 +16901,7 @@ RenderText(button->font, button->text, renderer, nullptr, rect.x + (rect.w / 2.0
 rect.y + (rect.h / 2.0) - glyph_height, Alignment::Centered);
 }
 
-492
+493
 
 we do some short equations to find the center of the button. Then we shift
 the text upwards by half the height of a “random” uppercase letter.
@@ -16912,7 +16921,7 @@ very very long is a sign that the function accepts to many variables. But that
 is not in itself a sign that we need to change it. But we should keep an eye
 on it
 
-493
+494
 
 // button.cpp
 void SetupButton(Button* button, ButtonType type, Sprite* spriteBuffer, SDL_FRect rect,
@@ -16957,7 +16966,7 @@ Then we assign button->font/text to the supplied parameters.
 To have our font available at the callsite in InitializeMenu() we need to
 add it as a parameter
 
-494
+495
 
 // mainmenu.h
 void InitializeMenu(MainMenu* mainmenu, Sprite* spriteBuffer, FontAtlas* font,
@@ -16999,7 +17008,7 @@ mainmenu->initialized = true;
 
 and add it when calling InitializeMenu()
 
-495
+496
 
 // game.cpp
 void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
@@ -17030,7 +17039,7 @@ ChangeScene(data, SCENE_TYPES::MAINMENU);
 
 Now we can give a button text to render. That’s cool!
 
-496
+497
 
 40 Intermission I - Creating a release candidate
 Sometime, not very likely for this project, we will want to be able to collect
@@ -17063,7 +17072,7 @@ TARGETS are references to things that Cmake builds, in this case our .exe
 and .dll are added. We also add the RUNTIME parameter to ${DLL_NAME}
 so cmake doesn’t also add the "nameofgame"_game.lib the .lib files is
 only used during linking to give access to the contents of the .dll once
-497
+498
 
 linking is finished this is not a file that is needed. DESTINATION . (note the
 ‘.’) means that the place where the files will show up is at the same folder
@@ -17081,7 +17090,7 @@ and a new buildPresets . We do this by putting a comma ‘,’ at the end
 of the square brackets for the default presets then copying the entire preset
 block and changing the contents inside.
 
-498
+499
 
 {
 
@@ -17128,7 +17137,7 @@ our release preset still uses /build as the binaryDir . This is on purpose
 as we want to first build to our build folder then use our install() to copy
 over the relevant stuff.
 
-499
+500
 
 "CMAKE_BUILD_TYPE": "Release",
 
@@ -17171,7 +17180,7 @@ our
 
 powershell $profile
 
-500
+501
 
 release()
 
@@ -17214,7 +17223,7 @@ $sourceDir = $config.path
 $buildDir = "$SourceDir/build"
 $releaseDir = "$SourceDir/release"
 
-501
+502
 
 Remove-Item -Recurse -Force $buildDir -ErrorAction SilentlyContinue
 Remove-Item -Recurse -Force $releaseDir -ErrorAction SilentlyContinue
@@ -17264,12 +17273,12 @@ new
 
 buildPresets and configurePresets in cmakePresets.json and this
 
-502
+503
 
 new release function are all the things we need to create our optimized
 and stripped down release candidate.
 
-503
+504
 
 41 Intermission II - Debugging in Visual Studio
 We want to be able to understand the flow of our code, and peek at variables to
@@ -17293,7 +17302,7 @@ we can pause our program at a critical moment to explore the state of our
 variables as well as stepping through our code as it runs, line by line.
 We add breakpoints by pressing the leftmost side of a line of code. When
 done properly a little red circle will indicate the breakpoint . We can press
-504
+505
 
 that red circle again to remove it.
 With a breakpoint set we can press “play” or F5 and once our code hits
@@ -17320,7 +17329,7 @@ We might also want to pause execution on a line of code, but only if a certain
 variable has a specific value. For example a TakeDamage() function might
 only be something we want to evaluate if the damage taken would kill the
 player. For this we have conditional breakpoints . After we have created
-505
+506
 
 a breakpoint we can right-click it and select condition inside this new
 window we can add a little boolean logic like health <= damage . Then the
@@ -17328,7 +17337,7 @@ code will only pause if the incoming damage would reduce the health variable
 to 0 or below.
 There is more we can do with breakpoints but this covers the fundamentals!
 
-506
+507
 
 42
 
@@ -17357,7 +17366,7 @@ If someone on our team has pushed a commit to our repository on
 Github using Git then we in turn can fetch the commits on github
 that are not yet synced to our computer. A fetch checks the difference
 between our machine and our repository then allowing us to pull aka
-507
+508
 
 download those commits .
 When we have changes we commit them then push them. When we want
@@ -17399,6 +17408,6 @@ documentation:
 https://docs.github.com/en/desktop
 With this we can do the very basics in Github. Later you will learn about
 branches and pull requests and merge conflicts .
-508
+509
 
 
