@@ -4,10 +4,10 @@
 
 ---
 
-## Innehållsförteckning
+## Contents
 
-- [1 Acknowledgments](#1-acknowledgments)
-- [2 Foreword - How to learn how to program](#2-foreword-how-to-learn-how-to-program)
+- [Acknowledgments](#acknowledgments)
+- [Foreword - How to learn how to program](#foreword-how-to-learn-how-to-program)
 - [SDL3 - part I (Linux)](#sdl3-part-i-linux)
 - [Introduction to C/C++ - Part I (Linux)](#introduction-to-cc-part-i-linux)
 - [Introduction to Neovim - Part I (Linux)](#introduction-to-neovim-part-i-linux)
@@ -21,37 +21,37 @@
 - [Sokoban Programming I](#sokoban-programming-i)
 - [Sokoban Programming II](#sokoban-programming-ii)
 - [Sokoban Programming III](#sokoban-programming-iii)
-- [16 Command Pattern](#16-command-pattern)
-- [17 Developer Tools with DearImGui](#17-developer-tools-with-dearimgui)
-- [18 Better undo/redo](#18-better-undoredo)
-- [19 Animation Part I](#19-animation-part-i)
-- [20 Repeat Inputs](#20-repeat-inputs)
-- [21 Camera](#21-camera)
-- [22 Asset Management Part I](#22-asset-management-part-i)
-- [23 Mouse input](#23-mouse-input)
-- [24 Level Editor](#24-level-editor)
-- [25 Sokoban programming IV](#25-sokoban-programming-iv)
-- [26 Animation Part II](#26-animation-part-ii)
-- [27 Scratch Arena and Sprite Sorting](#27-scratch-arena-and-sprite-sorting)
-- [28 Spawn Commands and active/inactive entities](#28-spawn-commands-and-activeinactive-entities)
-- [29 Scenes and transitions Part I](#29-scenes-and-transitions-part-i)
-- [30 Tilemap parsing](#30-tilemap-parsing)
-- [31 Sokoban Programming V](#31-sokoban-programming-v)
-- [32 Buttons Part I](#32-buttons-part-i)
-- [33 Sokoban Programming VI](#33-sokoban-programming-vi)
-- [34 FMOD and Audio](#34-fmod-and-audio)
-- [35 Animation III](#35-animation-iii)
-- [36 Music](#36-music)
-- [37 Parallax](#37-parallax)
-- [38 Text](#38-text)
-- [39 Buttons Part II](#39-buttons-part-ii)
-- [40 Intermission I - Creating a release candidate](#40-intermission-i-creating-a-release-candidate)
-- [41 Intermission II - Debugging in Visual Studio](#41-intermission-ii-debugging-in-visual-studio)
-- [42 Intermission III - Github Part I](#42-intermission-iii-github-part-i)
+- [Command Pattern](#command-pattern)
+- [Developer Tools with DearImGui](#developer-tools-with-dearimgui)
+- [Better undo/redo](#better-undoredo)
+- [Animation Part I](#animation-part-i)
+- [Repeat Inputs](#repeat-inputs)
+- [Camera](#camera)
+- [Asset Management Part I](#asset-management-part-i)
+- [Mouse input](#mouse-input)
+- [Level Editor](#level-editor)
+- [Sokoban programming IV](#sokoban-programming-iv)
+- [Animation Part II](#animation-part-ii)
+- [Scratch Arena and Sprite Sorting](#scratch-arena-and-sprite-sorting)
+- [Spawn Commands and active/inactive entities](#spawn-commands-and-activeinactive-entities)
+- [Scenes and transitions Part I](#scenes-and-transitions-part-i)
+- [Tilemap parsing](#tilemap-parsing)
+- [Sokoban Programming V](#sokoban-programming-v)
+- [Buttons Part I](#buttons-part-i)
+- [Sokoban Programming VI](#sokoban-programming-vi)
+- [FMOD and Audio](#fmod-and-audio)
+- [Animation III](#animation-iii)
+- [Music](#music)
+- [Parallax](#parallax)
+- [Text](#text)
+- [Buttons Part II](#buttons-part-ii)
+- [Intermission I - Creating a release candidate](#intermission-i-creating-a-release-candidate)
+- [Intermission II - Debugging in Visual Studio](#intermission-ii-debugging-in-visual-studio)
+- [Intermission III - Github Part I](#intermission-iii-github-part-i)
 
 ---
 
-# 1 Acknowledgments
+# Acknowledgments
 
 I would like to thank colleagues and friends for input and support during the creation of this material.
 All content and intellectual property remain the sole work of the author.
@@ -60,7 +60,7 @@ All content and intellectual property remain the sole work of the author.
 2
 
 
-# 2 Foreword - How to learn how to program
+# Foreword - How to learn how to program
 
 This course starts at the deep end, we will be doing a lot of manual work, learning from the ground
 up. This is difficult but rewarding. Your task, as a student is too:
@@ -114,7 +114,8 @@ Best of luck, I believe in you!
 
 SDL3 is not a .EXE. it's a collection of shared objects (.so) and header files that can be called on to access basic features like creating windows or accept input from the keyboard.
 
-> NOTE: This course teaches game programming just about as "from scratch" as is educationally viable. Once we know how these systems operate and move through the semester we will off-load a bunch of this heavy lifting onto game engines and well groomed applications with a lot of large and shiny helpful buttons. This course aims to empower you by teaching you
+> [!NOTE]
+> This course teaches game programming just about as "from scratch" as is educationally viable. Once we know how these systems operate and move through the semester we will off-load a bunch of this heavy lifting onto game engines and well groomed applications with a lot of large and shiny helpful buttons. This course aims to empower you by teaching you
 > 1) how things work "behind the scenes"
 > 2) how to not become dependant on a ready-made game engine
 > 3) if you can do this, then nothing a LIA will throw at you will feel difficult in comparison
@@ -165,7 +166,8 @@ No manual downloading or copying of DLLs needed.
 
 For this course, we will be writing our code in **your editor (e.g. nvim)** (Neovim). You can also use VS Code or any editor you prefer.
 
-> NOTE: your editor (e.g. nvim) is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
+> [!NOTE]
+> your editor (e.g. nvim) is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
 
 ## bash and environment variables
 
@@ -310,7 +312,8 @@ sudo dnf install cmake ninja-build clang
 sudo pacman -S cmake ninja clang
 ```
 
-> NOTE: LLVM contains a compiler called `clang++`. We will be using it from bash.
+> [!NOTE]
+> LLVM contains a compiler called `clang++`. We will be using it from bash.
 
 ### Check installation
 
@@ -471,7 +474,9 @@ We need to update our directory to somewhere we can create and access a small .c
 
 We will instead create a little function in `~/.bashrc` to help us get things set up.
 
-> **NOTE:** I like the convenience of the following setup as I will show you a bunch of coding examples throughout the course.
+> [!NOTE]
+> 
+> I like the convenience of the following setup as I will show you a bunch of coding examples throughout the course.
 
 ```bash
 practice() {
@@ -548,7 +553,8 @@ All C++ programs need an entry point. This is the function called `main`. It has
 
 We want to be able to write text from our program into our terminal so we want to use the `println` function (this stands for **print on new line**). The `println` function is made available by the inclusion of `<print>` at the top of the program.
 
-> **NOTE:** `<print>` and `std::println` are C++23 features. We must pass `-std=c++23` to clang++ to use them.
+> [!NOTE]
+> `<print>` and `std::println` are C++23 features. We must pass `-std=c++23` to clang++ to use them.
 
 `std::` that comes before `println` is a safeguard put in place by the ISO C++ Standards Committee way back in the 90's. All functions added to the standard library are put into a namespace called `std` (stands for **standard**). This has two purposes:
 
@@ -574,11 +580,13 @@ int main() {
 
 We could then remove `std::` and just write `println()`.
 
-> **NOTE:** Namespaces will be part of all games you will work on, including those using C# and game engines like Unity.
+> [!NOTE]
+> Namespaces will be part of all games you will work on, including those using C# and game engines like Unity.
 
 You might have noticed that we add a semicolon to the end of all lines in C++. This is a required step dating back to the C programming language and the inception of C++. It was added for clarity, to show when we are at the end of a line. It's something we just have to accept, for both C++ and C# (unfortunately).
 
-> **NOTE:** Thankfully our intellisense will catch us if we miss a `;`. And if it doesn't then our compiler will spit out a pretty clear error message when it fails to compile our program.
+> [!NOTE]
+> Thankfully our intellisense will catch us if we miss a `;`. And if it doesn't then our compiler will spit out a pretty clear error message when it fails to compile our program.
 
 `main()` is a function, `println()` is a function. All functions have a pair of parenthesis after its name, this parenthesis hold the **parameters** we can send to the function.
 
@@ -615,7 +623,8 @@ But notice those strange `<<` — we will not be seeing them in any other settin
 
 Let's learn about scope. The newly created integer variable `result` is only available inside the curly braces of the function. Once the code reaches the end of the last line, all locally scoped variables are cleaned up.
 
-> **NOTE:** A variable is a named piece of memory that stores something for us (a number, a word, a sentence, etc.)
+> [!NOTE]
+> A variable is a named piece of memory that stores something for us (a number, a word, a sentence, etc.)
 
 Updating our `main()` function we can take a look at our program:
 
@@ -636,7 +645,8 @@ Now we can clearly see the difference between the function itself and calling th
 
 **BUT!** There is one problem: in C++ (not in C#) we can't use a function by another function before it has been seen by the compiler, and that happens in a top-down fashion. This feels silly and like something the computer should be able to handle, and here we touch on the idea of how programming languages are written by people and have different philosophies and trade-offs. By forcing the declaration of functions to be done in sequence the compiler can work faster.
 
-> **NOTE:** With even simple Unity projects taking AGES to compile, I would like to stress the importance of a design decision as this one.
+> [!NOTE]
+> With even simple Unity projects taking AGES to compile, I would like to stress the importance of a design decision as this one.
 
 Swapping the position of the `AddNumbers()` and `main()` functions, then compiling and running our program, it spits out 15 — the combined total of the two values we passed to the function (5 and 10) that are then printed to the console via the `println()` function. After that we hit the `return 0` and the program closes.
 
@@ -679,7 +689,8 @@ void Add(int a, int b){
 }
 ```
 
-> **NOTE:** I also simplified the function name in the .h file and our .cpp file to just `Add`.
+> [!NOTE]
+> I also simplified the function name in the .h file and our .cpp file to just `Add`.
 
 Because our .cpp includes this .h file, we get it added to the top of the file during compilation.
 
@@ -758,7 +769,8 @@ double precisionValue = 0.75443341234114;
 bool isThisCool = false;
 ```
 
-> **NOTE:** We will need to use the assignment operator `=` whenever we want to store the right side value in a left side variable.
+> [!NOTE]
+> We will need to use the assignment operator `=` whenever we want to store the right side value in a left side variable.
 
 There is a bit of syntax we need to learn, and it's in regards to `float` type variables. The following way of writing decimal numbers `0.34` is interpreted as a `double` by the computer and then converted to a `float` when assigned to it. This means that our computer does a little conversion each time we assign a float like this. To tell the computer that the decimal number we've written is really a `float` we append an `f` to the end of the decimal chain:
 
@@ -794,7 +806,8 @@ What follows is a common part of programming: an `if` statement followed by an `
 
 The **assignment operator** `=` is different from the **equality operator** `==`. The equality operator doesn't assign a new value to the left hand side, instead it checks that the value on the left side and the right side are the same. So this if-statement asks if the value stored in `isPlayerDead` is the same as `true`. And with the `playerHealth` above 0 the value of `isPlayerDead` is `false`. The if-statement then looks like this: `if(false == true)` and because these are not equal to each other we skip the if-scope and jump directly to the else-scope.
 
-> **NOTE:** If we increased `enemyDamage` above or equal to the value of `playerHealth`, then the if-statement would evaluate to `true == true` and the code inside the if-scope would execute instead of the else-scope.
+> [!NOTE]
+> If we increased `enemyDamage` above or equal to the value of `playerHealth`, then the if-statement would evaluate to `true == true` and the code inside the if-scope would execute instead of the else-scope.
 
 ## Nesting
 
@@ -819,7 +832,8 @@ void DealDamage(int damageAmount, bool isHardcore){
 
 Here we have an if statement within another if statement. Still no problem to read and parse. Though you can imagine that with 1-2 more if-statements our code would begin to drift right at an alarming rate.
 
-> **NOTE:** The sideways drift towards right is sometimes referred to as a "pyramid of death".
+> [!NOTE]
+> The sideways drift towards right is sometimes referred to as a "pyramid of death".
 
 We can use a `return` to do an **early return** as well as ask the opposite question:
 
@@ -862,7 +876,8 @@ Your editor (e.g. nvim) (Neovim) is a code editor, and unlike a full IDE it is n
 
 When we dive into programming applications in SDL3 we will be using your editor (e.g. nvim) to edit our code.
 
-> **NOTE:** Debugging is another lecture.
+> [!NOTE]
+> Debugging is another lecture.
 
 If you have computer experience then you will quickly find that your editor (e.g. nvim) is unlike any other software you've used. Just writing in it, before knowing how it works will feel alien and strange. You may eventually decide to move away from your editor (e.g. nvim) and towards more mainstream and less opinionated editors. But for this course, you will be using the software that I use myself.
 
@@ -883,7 +898,8 @@ Your editor (e.g. nvim) uses a way of typing that was first introduced with the 
 
 We enter Insert Mode using `i` or `a` or `o` or `O` (note how upper and lowercase are distinct from each other). We exit Insert Mode, Visual Mode, and Command Mode going back to Normal Mode by pressing Escape.
 
-> **NOTE:** On Linux, keyboard layout is handled by your system. For programming, an English (US) layout is recommended for easy access to symbols like `{}`, `[]`, `|`, `~`, etc.
+> [!NOTE]
+> On Linux, keyboard layout is handled by your system. For programming, an English (US) layout is recommended for easy access to symbols like `{}`, `[]`, `|`, `~`, etc.
 
 We will be pressing Escape a lot, and because the Escape key is so far away from the keyboard's home row we can remap Caps Lock to Escape. This is done on Linux via your desktop environment or window manager. For example, on systems using X11:
 
@@ -895,7 +911,8 @@ On Wayland compositors, this is usually configured in the compositor's config fi
 
 Now we turn Caps ON and OFF using Escape and exit Insert Mode and Visual Mode using Caps Lock. This will, like many new things, feel strange at first. But this remapping is very common when using your editor (e.g. nvim) or other VIM-style software. And now we're using our computer as developers not hobbyists, and that should naturally come with changes to how we use our hardware.
 
-> **NOTE:** I suggest unplugging your mouse when learning your editor (e.g. nvim) if you can't help but reach for it all the time.
+> [!NOTE]
+> I suggest unplugging your mouse when learning your editor (e.g. nvim) if you can't help but reach for it all the time.
 
 Your editor (e.g. nvim) and VIM style systems are so notorious that there are even a slew of memes relating to the fact that people don't know how to exit them. ("how to quit vim" on Google will yield a number of results). So let's learn how to close down your editor (e.g. nvim). This is done from the **Command Mode**, which we access by typing `:`. Once we have done so, we can type a massive number of commands.
 
@@ -911,7 +928,8 @@ colorscheme your-chosen-theme
 
 Then save with `:w` and quit with `:q`.
 
-> **NOTE:** You can also type `:wq` to save and quit in one command, or `:wqa` to save all files and quit.
+> [!NOTE]
+> You can also type `:wq` to save and quit in one command, or `:wqa` to save all files and quit.
 
 We will be working with C++ files, and it would be very nice to catch errors before we try and compile. Luckily we can do just that. Once we compile, it's clang that finds and spits out any errors. But using what is known as a **language server** we can run background processes that look at and understand our code. This info is then given to your editor (e.g. nvim) so it can display red errors for us.
 
@@ -927,7 +945,8 @@ But more directly, we can check if clangd is available:
 clangd --version
 ```
 
-> **NOTE:** `clangd` is not the same as `clang`. It actually stands for **clang daemon**. A daemon is a silent background process that just listens to requests that come in then shuts down when not needed anymore. This specific language server daemon is a repackaged part of clang that editors can talk to.
+> [!NOTE]
+> `clangd` is not the same as `clang`. It actually stands for **clang daemon**. A daemon is a silent background process that just listens to requests that come in then shuts down when not needed anymore. This specific language server daemon is a repackaged part of clang that editors can talk to.
 
 Install clangd using your package manager:
 
@@ -949,7 +968,8 @@ Once we have clangd up and running, it runs in the background each time we open 
 - **A)** Get diagnostics inside your editor (e.g. nvim) (red underlines, error messages)
 - **B)** Use `K` (in Normal Mode) to hover over a symbol and see documentation, and use the built-in LSP integration to see fixes
 
-> **NOTE:** If you use a distribution like LazyVim, you get telescope, autocompletion, and LSP diagnostics out of the box. For heavier projects, you can also use an IDE with built-in clangd integration.
+> [!NOTE]
+> If you use a distribution like LazyVim, you get telescope, autocompletion, and LSP diagnostics out of the box. For heavier projects, you can also use an IDE with built-in clangd integration.
 
 
 # Introduction to SDL3 - Part II (Linux)
@@ -977,13 +997,15 @@ Now we have 2 ways of ensuring that clangd can read this .json and use it to sup
 
 We will create the `.clangd` file (option 2).
 
-> **NOTE:** `clangd` is used as a file extension here, and the lack of any text before the `.` tells us that the file has no name.
+> [!NOTE]
+> `clangd` is used as a file extension here, and the lack of any text before the `.` tells us that the file has no name.
 
 In our root directory (`goto projectname`) we add the `.clangd` file using `touch .clangd`. We then open it inside your editor (e.g. nvim) with `your-editor .clangd`.
 
 We will write our `.clangd` file using a different data format than JSON. The format is called **YAML** and has even less boilerplate than JSON, making it extremely human readable. But without braces to set the scope of a piece of data, YAML instead relies on **indentation** to sort data. An indentation is what pushes new lines of text to the right on your monitor.
 
-> **NOTE:** Like when we put an if-statement inside another if-statement, then we began drifting to the right.
+> [!NOTE]
+> Like when we put an if-statement inside another if-statement, then we began drifting to the right.
 
 For now, our `.clangd` file will be very small:
 
@@ -998,7 +1020,8 @@ We want to add the ability to completely empty our `build/` folder before compil
 
 By adding a new parameter and new logic to our function `build` we can pass it as a parameter when calling `build projectname clean`. The type of parameter inside bash is called an **argument** — when it is not passed the check is skipped and when present it triggers the clean.
 
-> **NOTE:** This true/false data type is what we call a `bool` (boolean) in C++.
+> [!NOTE]
+> This true/false data type is what we call a `bool` (boolean) in C++.
 
 > **WARNING:** Before we look at the function below: we are going to start using pretty strong commands to add or delete files from our computer. It's a good idea to, in the future, have backups for important stuff if you start experimenting with these functions on your own. Our function below is not an issue as we are doing a lot to ensure that we are in the proper directory.
 
@@ -1039,7 +1062,8 @@ build() {
 
 We've added a few new things. Like in other functions we've made we've sorted the `sourceDir` and `buildDir` in two variables. We have also added the `clean` parameter check — if the second argument is `"clean"`, we delete the build directory.
 
-> **NOTE:** In both bash syntax and C++ we can skip the `== true` in an if-statement, as it is implied unless specified otherwise.
+> [!NOTE]
+> In both bash syntax and C++ we can skip the `== true` in an if-statement, as it is implied unless specified otherwise.
 
 `echo` is a function that writes the parameter string to the console. This is a common method we will use in SDL3 later to check what is going on when our program is running.
 
@@ -1048,7 +1072,8 @@ We've added a few new things. Like in other functions we've made we've sorted th
 - **A)** The files in subdirectories (folders) are also deleted (`-r` for recursive)
 - **B)** Even hidden files and read-only files are removed without prompting (`-f` for force)
 
-> **NOTE:** "Recurse" stands for **recursive** — a common programming method we will use in later course material.
+> [!NOTE]
+> "Recurse" stands for **recursive** — a common programming method we will use in later course material.
 
 Knowing more about if-statements and scope we can better understand that with this function we only do the `rm -rf` calls if `clean` was set to true.
 
@@ -1068,7 +1093,8 @@ For a game this loop is broken down into 3 distinct steps: **Input**, **Update**
 
 Then the loop starts over again. The more times this loop can be finished in a second, the higher our FPS is.
 
-> **NOTE:** This loop is present in all games and every game engine is built on it — even though Unity hides the Draw part of the loop from us.
+> [!NOTE]
+> This loop is present in all games and every game engine is built on it — even though Unity hides the Draw part of the loop from us.
 
 The control flow statement is known as a **while** and its syntax looks like this:
 
@@ -1109,14 +1135,17 @@ int main() {
 
 Alright, so now our program doesn't quit automatically. Note how we've `#include` a new .h file. The reason the .h file is not added on its own but instead we've passed a path is because SDL3's system headers are in `/usr/include/SDL3/` so our `#include` points at a specific file by passing in its path.
 
-> **NOTE:** The reason why our path is `<SDL3/SDL.h>` and not `<include/SDL3/SDL.h>` is because the compiler knows to look in system include paths. In our `CMakeLists.txt` we also set the include directory with:
+> [!NOTE]
+> The reason why our path is `<SDL3/SDL.h>` and not `<include/SDL3/SDL.h>` is because the compiler knows to look in system include paths. In our `CMakeLists.txt` we also set the include directory with:
 > `target_include_directories(${PROJECT_NAME} PRIVATE include)`
 
-> **NOTE:** Remember the not-so-elegant syntax of the standard library header `<iostream>` or `cout`? Well now we can use the much more convenient `SDL_Log()` instead!
+> [!NOTE]
+> Remember the not-so-elegant syntax of the standard library header `<iostream>` or `cout`? Well now we can use the much more convenient `SDL_Log()` instead!
 
 We have no way of interrupting our program as there is nothing we can do within the scope of our while that will turn `running` from `true` to `false`.
 
-> **NOTE:** A while loop that never terminates or pauses will hog 100% of our CPU and make the program appear frozen, as it tries to keep running the same code over and over. It's up to us to either terminate a while loop or in this case, add logic to it so it has to yield.
+> [!NOTE]
+> A while loop that never terminates or pauses will hog 100% of our CPU and make the program appear frozen, as it tries to keep running the same code over and over. It's up to us to either terminate a while loop or in this case, add logic to it so it has to yield.
 
 All code is eventually represented as binary machine code. All languages like C# and C++ are an intermediary step that lets us write instructions in a far(!) more readable format. The chain is actually that C++ gets compiled into assembly first, and then the assembly instructions are compiled into machine code. Our `while()` loop eventually becomes a `jmp` assembly instruction telling the program to jump to another line. Another way of coding a while loop is like this:
 
@@ -1142,11 +1171,13 @@ main:
 
 What this means is that when our program compiles, there is 0% difference between the while-loop and the goto solution. I touch on this to begin teaching you about what happens during the compilation step, introduce assembly and help empower you to dispel a lot of noise coming out of the programming community.
 
-> **NOTE:** It is considered bad practice to use `goto` and recruiters will probably not like seeing it. But just to be clear, it's the exact same thing.
+> [!NOTE]
+> It is considered bad practice to use `goto` and recruiters will probably not like seeing it. But just to be clear, it's the exact same thing.
 
 We will add some SDL boilerplate code to allow pressing Escape in order to flip `running` to `false` and terminate the while loop and the program. Though before we can do this, we need to learn about one of the most essential parts of C++: a **pointer**.
 
-> **NOTE:** Pointers can be difficult to understand at first, re-reading is recommended.
+> [!NOTE]
+> Pointers can be difficult to understand at first, re-reading is recommended.
 
 Let's look at a basic `int`:
 
@@ -1189,7 +1220,8 @@ Let's break it down:
 - `int number = 5;` — this is a newly created variable. It is stored in memory somewhere with the value 5.
 - `int* aNumber` — this is a pointer variable. It points not to a number, but the place in memory where we will store a number. To pass a point in memory to a function that expects a pointer we must pass the variable by pointer using `&`.
 
-> **NOTE:** Without passing our `number` variable as a pointer we are actually just performing operations on a new number that lives only within the scope of the `AddOne()` function. As soon as we leave that scope the number stops existing.
+> [!NOTE]
+> Without passing our `number` variable as a pointer we are actually just performing operations on a new number that lives only within the scope of the `AddOne()` function. As soon as we leave that scope the number stops existing.
 
 - `&number` — we take `number`, and instead of passing it by value we get its place in memory and pass that along instead.
 - `*number += 1;` — this takes the reference to the memory address that the pointer was pointing to (where `number` lives) and dereferences it, grabbing the value stored in it so we can manipulate and change it.
@@ -1251,7 +1283,8 @@ int AddOne(int theNumber){
 
 With this setup the Log function will output a 6, as the updated value of 5 → 6 lives inside the scope of the `AddOne` function but the value is later returned and then using the `=` operator assigned back into the `number` variable inside `main()`.
 
-> **NOTE:** A `=` operator always assigns the value on its right to whatever is on its left.
+> [!NOTE]
+> A `=` operator always assigns the value on its right to whatever is on its left.
 
 Now that we know more about pointers and while loops we can better understand the SDL syntax (boilerplate) necessary to start working on a more proper example. What follows is a lot of new code, but we've touched on this syntax in many cases. We will break it all down once we've seen it in its entirety.
 
@@ -1299,7 +1332,8 @@ Let's begin by looking at our entry point.
 
 The `main()` function has a lot of new parts to it. A lot of it is boilerplate that SDL3 requires in order to start communicating with our computer. `SDL_Init()` accepts a series of so-called **flags** as parameters that tell it what systems from SDL3 to activate. In our case we've told it to initialize the "VIDEO" subsystem. This is required in order to create a window and get keyboard inputs to register as `SDL_Event`s we can query.
 
-> **NOTE:** "Query" means "ask questions about".
+> [!NOTE]
+> "Query" means "ask questions about".
 
 A flag is actually a datatype known as an **enum**. It is a series of numbers that are all represented as a name. What makes it a flag as well as an enum is that the numbers associated with each enum are one power of 2 larger than the previous.
 
@@ -1359,7 +1393,8 @@ If we want to pass both `SDL_INIT_EVENTS` and `SDL_INIT_VIDEO` to our `SDL_Init(
 SDL_Init( SDL_INIT_EVENTS | SDL_INIT_VIDEO );
 ```
 
-> **NOTE:** You can find all the SDL_INIT flags here: [SDL_INIT flags](https://wiki.libsdl.org/SDL3/SDL_Init)
+> [!NOTE]
+> You can find all the SDL_INIT flags here: [SDL_INIT flags](https://wiki.libsdl.org/SDL3/SDL_Init)
 
 Let's keep looking at our program:
 
@@ -1406,7 +1441,8 @@ We have another function besides our `main()`. It has the return type of `bool` 
 
 The nested while loop inside `main()` first stores a variable of the type `SDL_Event`, then it passes that place in memory to the `SDL_PollEvent()` function, and by passing it by reference the `SDL_PollEvent` can make changes to the variable that is stored in that same variable that we passed into the function. So that when we call our `HandleRunning()` function we pass along that same `event` variable, now potentially modified by our `PollEvent()`.
 
-> **NOTE:** The documentation for PollEvent can be found here: [SDL_PollEvent](https://wiki.libsdl.org/SDL3/SDL_PollEvent)
+> [!NOTE]
+> The documentation for PollEvent can be found here: [SDL_PollEvent](https://wiki.libsdl.org/SDL3/SDL_PollEvent)
 
 Looking at our `HandleRunning()` function we can see a series of `if` and `if-else` statements asking questions about (querying) the `SDL_Event` parameter that was passed into it. As we are only interested in if the Escape key was pressed we can avoid nesting by returning `true` (meaning **keep running**) if the event was not a keyboard event to begin with. Then if we did not return we know for a fact that it is a keyboard event we're querying. Then we check the pretty nasty looking `key.key` and compares the key value with the SDL enum called `SDLK_ESCAPE` and if it is a match we return `false`.
 
@@ -1414,7 +1450,8 @@ Looking at our `HandleRunning()` function we can see a series of `if` and `if-el
 
 The value returned from the function is then stored into our `running` variable and if it was `false` it will stop the while-loop from continuing to run. Now we can actually quit our game by pressing Escape.
 
-> **NOTE:** In the future we would of course not just close the program anytime someone accidentally presses Escape — but for now we'll use this brutish approach.
+> [!NOTE]
+> In the future we would of course not just close the program anytime someone accidentally presses Escape — but for now we'll use this brutish approach.
 
 So now we do the following things inside our program:
 
@@ -1467,7 +1504,8 @@ Your editor (e.g. nvim)'s tab-completion will help you find files. Type part of 
 
 If you attempt to open a file that doesn't exist, your editor (e.g. nvim) will create a new buffer with that name. It is not yet saved to disk.
 
-> **NOTE:** When your editor (e.g. nvim) stores text before it has been written, it is being stored in something known as a **buffer**.
+> [!NOTE]
+> When your editor (e.g. nvim) stores text before it has been written, it is being stored in something known as a **buffer**.
 
 Once you press:
 
@@ -1545,7 +1583,8 @@ To browse files in the project directory:
 - `:e .` — open netrw (built-in file browser) in the current directory
 - Or if you have LazyVim or a similar distribution: `<leader>ff` to open telescope/fzf fuzzy finder
 
-> **NOTE:** For heavier projects, you can also use an IDE with its own project-wide file navigation and refactoring tools.
+> [!NOTE]
+> For heavier projects, you can also use an IDE with its own project-wide file navigation and refactoring tools.
 
 
 # Core Loop - Part I (Linux)
@@ -1554,7 +1593,8 @@ To browse files in the project directory:
 
 With the skillset we have currently we can begin constructing a core loop for a program.
 
-> **NOTE:** As it lacks a win-state or any sense of actual logic we'll call it a program for now and a game once we add those elements.
+> [!NOTE]
+> As it lacks a win-state or any sense of actual logic we'll call it a program for now and a game once we add those elements.
 
 We're going to create a skeleton version of our core loop, including:
 
@@ -1564,7 +1604,8 @@ We're going to create a skeleton version of our core loop, including:
 
 We will be setting up parts of this in our `main.cpp` but we'll also create other files that our `main.cpp` will call into.
 
-> **NOTE:** Once we have gotten this core loop to work we will be changing a lot (almost all) of how we structure our program in the next couple of lectures. We will be re-writing things a couple of times, each time digging deeper into performance-focused C++ code!
+> [!NOTE]
+> Once we have gotten this core loop to work we will be changing a lot (almost all) of how we structure our program in the next couple of lectures. We will be re-writing things a couple of times, each time digging deeper into performance-focused C++ code!
 
 At the end of this lecture we will have a colored rectangle that we can control on the screen using the arrow keys.
 
@@ -1645,7 +1686,8 @@ All functions are collected in a **namespace** — a namespace acts as a contain
 
 We can write `using namespace Core;` at the top of our `main.cpp` and remove the `Core::` prefix from all function calls if we want.
 
-> **NOTE:** In this project we don't have any other functions with these same names, so removing the namespace entirely would not cause compile errors.
+> [!NOTE]
+> In this project we don't have any other functions with these same names, so removing the namespace entirely would not cause compile errors.
 
 Each function will have the following job:
 
@@ -1956,7 +1998,8 @@ set(EXE_EXCLUSIVE
 
 Here we store all .cpp files we want to have included with our executable in a single array that we've named `EXE_EXCLUSIVE` — should we need more files to be compiled into our executable we will have to manually modify this list.
 
-> **NOTE:** Another method is to take all the .cpp files we want to have and store them in a separate subdirectory then point our functions towards that folder. But this time we'll do the manual work.
+> [!NOTE]
+> Another method is to take all the .cpp files we want to have and store them in a separate subdirectory then point our functions towards that folder. But this time we'll do the manual work.
 
 ```cmake
 file(GLOB_RECURSE LIB_FILES "${CMAKE_SOURCE_DIR}/lib/*.a")
@@ -1980,7 +2023,8 @@ target_link_libraries(${LIB_NAME} PRIVATE ${LIB_FILES})
 
 The `add_executable` and `add_library` functions are the only part that is different between these. They specify if we should compile the following files into an executable or a shared library. We specify the name of the file using our handy variables `PROJECT_NAME` and `LIB_NAME` then the `EXE_EXCLUSIVE` and `LIB_EXCLUSIVE` file lists are added respectively.
 
-> **NOTE:** .so stands for shared object (Linux equivalent of DLL)
+> [!NOTE]
+> .so stands for shared object (Linux equivalent of DLL)
 
 ```cmake
 # Copy shared libraries
@@ -2013,7 +2057,8 @@ reload() {
 3. We read the contents of our Cache looking for the line of text that includes the `CMAKE_PROJECT_NAME:STATIC` text. We then store the name of our game in the `projectName` variable
 4. We then tell cmake to build the project again, but only the target named `NameOfOurProject_game`
 
-> **NOTE:** This reload function relies on us having built our project beforehand.
+> [!NOTE]
+> This reload function relies on us having built our project beforehand.
 
 So if we follow the syntax of having `_game` as a suffix for our created shared library for all projects then this will work just fine. If we ever need more flexibility with our naming scheme we can store info like this name in for example our `projects.json`.
 
@@ -2092,11 +2137,13 @@ In this program we:
    Then we use these structs to hold variables, and our `GameData` struct holds `Character` structs itself. But notice how the variable name is `characters` in plural, but we only store a single pointer — this should mean that we are only storing a single character. We are actually storing a collection of characters inside memory by pointing to the first character only. We'll get back to how that is set up once we have a better understanding of the program in its entirety.
 
 2. We create our `MemoryArena` struct
-   > **NOTE:** lets conceptualize a memory arena as a continuous block of memory, each thing laid out next to the previous.
+   > [!NOTE]
+>lets conceptualize a memory arena as a continuous block of memory, each thing laid out next to the previous.
 
 This struct holds very little in terms of stuff, but is very powerful. Our three variables are:
 
-- `unsigned char* base;` — This a pointer to the first address in memory of our arena. We need to use an `unsigned char*` instead of a `void*` as this allows us to add a number to our base to move further down our block of memory. If we had our pointer as a `void*` it would need to be cast all the time before we attempt to do arithmetic (+, -, x, etc). > **NOTE:** we will learn about casting a bit later in this lecture
+- `unsigned char* base;` — This a pointer to the first address in memory of our arena. We need to use an `unsigned char*` instead of a `void*` as this allows us to add a number to our base to move further down our block of memory. If we had our pointer as a `void*` it would need to be cast all the time before we attempt to do arithmetic (+, -, x, etc). > [!NOTE]
+>we will learn about casting a bit later in this lecture
 - `size_t size;` — `size_t` is a type of variable, like an int, that holds a whole number, but `size_t` is larger than an `int` and especially made to help us store how big something is. `size_t` is also unsigned, meaning that compared to a int it can't store a negative number. This variable is meant to tell us how large our memory block is, whilst the `unsigned char*` pointer above just tells us where it starts.
 - `size_t used;` — We update this variable each time we specify what the next piece of memory is used for. So we know we aren't overwriting other parts of our memory when adding new things to it. Also, by resetting this to 0 we actually delete all memory in the arena all at once. We do this in the `Arena_Reset()` function
 
@@ -2138,7 +2185,8 @@ Arena_Initialize(&arena, blob_of_memory, memory_size);
 
 Here we take our `blob_of_memory`, AKA the pointer to the first byte in the memory chunk, along with the size of the memory chunk and the arena and pass all of these to our `Arena_Initialize()` function.
 
-> **NOTE:** this has just set some initial state for our arena, it is yet to have anything actually useful inside of it
+> [!NOTE]
+> this has just set some initial state for our arena, it is yet to have anything actually useful inside of it
 
 ```cpp
 gameData = (Game_Data*)Add_To_Arena(&arena, sizeof(Game_Data));
@@ -2169,7 +2217,8 @@ A single instance of our `Character` struct takes up a certain amount of memory.
 
 Now inside our memory arena we have laid out the memory for 10 characters sequentially. And because we know the size of a `Character` and we know they are packed next to each other in memory we can use the array `[]` symbols to fetch one of the ten characters by specifying its position in the memory 0-9.
 
-> **NOTE:** remember that arrays start at 0 instead of at 1. This means that element 9 is the 10th and last element.
+> [!NOTE]
+> remember that arrays start at 0 instead of at 1. This means that element 9 is the 10th and last element.
 
 ```cpp
 gameData->characters[3].health = 32;
@@ -2397,7 +2446,8 @@ void Update(GameData* data,float dt){
 
 Now that we know more about pointers we can see that our `keys` variable holds a pointer to the first byte of the place in memory where all keys (bool's) are laid out sequentially. The `const` keyword means that the variables we find at the memory being pointed to can not be changed by us accidentally in code.
 
-> **NOTE:** we would need to store the result of the keys from the previous tick if we want to know if a key has been released or just pressed down this tick. But that is for a later lecture
+> [!NOTE]
+> we would need to store the result of the keys from the previous tick if we want to know if a key has been released or just pressed down this tick. But that is for a later lecture
 
 Enough stalling, lets start digging into our new `main.cpp`:
 
@@ -2703,7 +2753,8 @@ With this updated cmakelists.txt we can start working with asset files.
 
 The next step is taking our big monolith memory arena and placing another arena inside of it, segmenting a section of memory to be the exclusive area to hold pointers to our sprites.
 
-> **NOTE:** sprites aka textures live on the GPU inside our VRAM compared to our game data that lives on the CPU. We will need to convert each .PNG file into `SDL_GPUTexture` storing it in VRAM and accessing it by pointer reference inside our memory arena.
+> [!NOTE]
+> sprites aka textures live on the GPU inside our VRAM compared to our game data that lives on the CPU. We will need to convert each .PNG file into `SDL_GPUTexture` storing it in VRAM and accessing it by pointer reference inside our memory arena.
 
 At the top of our `main()` we will be adding a new memory arena by allocating it directly inside our top-level memory arena:
 
@@ -3711,7 +3762,7 @@ And with this we can now push a box around the level recursively! We're making s
 
 
 
-# 16 Command Pattern
+# Command Pattern
 
 Now that we have our desired functionality we will (once again) refactor it. We're going to take the concepts for moving our entities on the level and create a structure that allows us to undo and redo our movement.
 When we move our player (or box) their x and y both update, but they have no memory of where they stood previously. We need to keep some sort of data that tracks entities and where they have gone. Then we need to be able to go back (and forth) in this chain using Z on our keyboard.
@@ -4031,7 +4082,7 @@ So if we press Z we undo, and if we press Z whilst holding Left Shift we redo.
 With this we have implemented undo/redo functionality by leveraging the battle-tested Command Pattern and despite there being quite a lot of text in this chapter to help explain what we're doing there is surprisingly little actual new code and we only had to make changes to a handful of our previously existing script files.
 
 
-# 17 Developer Tools with DearImGui
+# Developer Tools with DearImGui
 
 So far, we've added quite a few quality of life features to our game. We can store a game state , we can undo/redo actions , we can hot-reload our code by splitting our program into an exe and a shared library (`.so`).
 But! The largest differentiating factor between our development environment and an off-the-shelf engine like Unity or Unreal Engine is the lack of a visual development ui. Something where info about our game and buttons, gizmos, sliders and text boxes could live.
@@ -4093,7 +4144,7 @@ target_include_directories(${DLL_NAME} PRIVATE include src_external)
 ```
 
 > [!NOTE]
-> On Linux, shared libraries use the `.so` extension instead of `.dll`. The `add_library(... SHARED ...)` command in CMake handles this automatically.
+>  On Linux, shared libraries use the `.so` extension instead of `.dll`. The `add_library(... SHARED ...)` command in CMake handles this automatically.
 
 Later we will look at how we can limit access to Dear ImGui if we build a Release version rather than a Debug version. But for now, these are all the additions we need to add to our `cmakelists.txt`
 Next we'll create `dev_gui.h/cpp` .
@@ -4278,7 +4329,7 @@ __declspec(dllexport) void Initialize(GameData* data, SDL_Window* window, SDL_Re
 ```
 
 > [!NOTE]
-> On Linux, replace `__declspec(dllexport)` with `__attribute__((visibility("default")))` or use a CMake `set(CMAKE_CXX_VISIBILITY_PRESET hidden)` approach with explicit visibility. Alternatively, use a `-fvisibility=default` flag or a macro like `#define EXPORT __attribute__((visibility("default")))`.
+>  On Linux, replace `__declspec(dllexport)` with `__attribute__((visibility("default")))` or use a CMake `set(CMAKE_CXX_VISIBILITY_PRESET hidden)` approach with explicit visibility. Alternatively, use a `-fvisibility=default` flag or a macro like `#define EXPORT __attribute__((visibility("default")))`.
 
 and
 
@@ -4337,7 +4388,7 @@ void PreDraw(ImGuiContext* saved_context);
 ```
 
 > [!NOTE]
-> we need to update the function signature in our `dev_gui.cpp` as well.
+>  we need to update the function signature in our `dev_gui.cpp` as well.
 
 Then we pass the context we stored during `Initialize()` to `PreDraw()`
 
@@ -4366,7 +4417,7 @@ With this we've added Dear ImGui to our game engine and created our first dev to
 Now as we expand our dev GUI we can visualize and help us build ANYTHING we want!
 
 
-# 18 Better undo/redo
+# Better undo/redo
 
 Currently you might have noticed that after we push a block and press undo. We end up in a state that we can't naturally create in game without undoing first. Our block is still pushed away but our player has taken an undo step backwards.
 We will solve this by adding a new variable to `GameData` and our base `Command` called `timestamp` .
@@ -4482,7 +4533,7 @@ And because our Dear ImGui does not itself change variables but only calls our g
 Now our undo and redo can't put the game in an unnatural state.
 
 
-# 19 Animation Part I
+# Animation Part I
 
 This chapter covers code related to animating our entities, as well as how to buffer inputs for a smoother gameplay experience.
 Before we do that we will do a small piece of housekeeping. We're moving our `memcpy()` function from the bottom of `Update()` in `Game.cpp` to `main.cpp` . We'll call `memcpy()` on the line after we call `dll->Update()` . The reasoning being that this is part of the foundation of our game engine and should never be accidentally removed or skipped due to us making big changes to `game.cpp`
@@ -4819,7 +4870,7 @@ void Push(CommandBuffer* buffer, AnyCommand cmd, uint32_t timestamp) {
 With these final changes our entities now slide across the game board and our inputs can be buffered, meaning that we can press our arrow keys as fast as we want and inputs will be registered and acknowledged once the animations have caught up to them!
 
 
-# 20 Repeat Inputs
+# Repeat Inputs
 
 In this chapter we'll add the ability to hold down a key and get our entities to keep moving, and undos to keep undoing. Sparing us from having to press a key each time we want to perform an action (though that functionality will of course remain)
 We're also going to do some housekeeping and move key press logic out of `game.cpp` and firmly into its own script - as this fits better as part of our boilerplate.
@@ -5064,7 +5115,7 @@ If we are allowed inside the if-statement we reset the timer for the specific ke
 Now we can hold our undo and movement keys instead of clicking all the time. We have also put our input logic inside our boilerplate and simplified calling `Pressed/Held/Released` .
 
 
-# 21 Camera
+# Camera
 
 In this chapter we'll implement a naive camera as well as refactor rendering code to simplify asking questions about positions as well as simplifying the render functions inside `levelRenderer.h/cpp` .
 A camera in a 2D game is, at its simplest, a position in space. We'll be taking that position and shifting everything we render by that amount multiplied by -1 . This means that as the camera shifts right, everything drawn shifts left.
@@ -5247,14 +5298,14 @@ We still perform our lerp logic inside `RenderEntities()` to get the point betwe
 That's it. We have done a bit of cleanup and layed the foundation for a camera and simplified our render logic!
 
 
-# 22 Asset Management Part I
+# Asset Management Part I
 
 We're going to refactor out our `image.h/cpp` and create at least a slightly more robust way of loading sprites. The fact that we currently have our `Image*` pointers lying flat inside our `GameData` then loaded one-by-one in our `Initialize()` function inside `game.cpp` makes it very obvious that we should refactor as this solution is very transparent BUT more cumbersome than necessary.
 Another issue is that we have to pass each `Image*` manually when we want to pass them to a function or pass the entire `GameData` struct.
 We're making two changes to start with, we're removing everything inside `image.h/cpp` and instead creating `spriteLibarary.h/cpp` . We're also taking our `Image` struct and changing its name to `Sprite` .
 
 > [!NOTE]
-> We're renaming `Image` to `Sprite` using the built in rename command in your editor (e.g. nvim). This is performed by having the caret over the word and pressing `space+r` . Then in the command line at the bottom of the screen we just erase/type the name we want to change it to. Finally pressing `enter` confirms the change. This will update the word across our entire codebase. (which is nice).
+>  We're renaming `Image` to `Sprite` using the built in rename command in your editor (e.g. nvim). This is performed by having the caret over the word and pressing `space+r` . Then in the command line at the bottom of the screen we just erase/type the name we want to change it to. Finally pressing `enter` confirms the change. This will update the word across our entire codebase. (which is nice).
 
 We'll soon be moving from our generic Sokoban game, with a player and a box, and adding some actual game design to this base shell. One of the first changes we're making is adding more contextually relevant IDs inside `entity.h`
 
@@ -5502,7 +5553,7 @@ now instead of each function needing a switch case to fetch the correct `Image*`
 With these changes we have refactored our asset loading system and how we fetch sprites.
 
 
-# 23 Mouse input
+# Mouse input
 
 Before we can write our level editor we're going to need a way of accessing the state of our mouse. We can do this very naively by not storing the mouse state between frames, but then any code that would check if a mouse button was pressed would fire every single tick.
 We're going to return to our `input.h/cpp` and add the relevant variables to track our `mouseState` and then a few functions to simplify checking the current mouse state. In a lot of ways this will be similar to how we work with keys, but a bit less "cool".
@@ -5653,7 +5704,7 @@ dll.draw(gameData, renderer);
 Now our game engine can handle basic mouse inputs. In the next chapter we'll be using this to help us create a level editor
 
 
-# 24 Level Editor
+# Level Editor
 
 our use of the Tiled level creator has many positives, it's a visual way of laying out our levels and it provides us with a tool that an artist can learn to manage on their own. It exports to a handy .JSON file that is easy for us to consume through code.
 but, there is some friction in our pipeline currently. I would like to avoid touching Tiled when I am testing mechanics and making the first implementation of new entities.
@@ -5977,7 +6028,7 @@ void Update(GameData* data, float dt) {
 Now our level editor is set up, we can now go ahead and test logic without having to enter Tiled and set up/export/parse!
 
 
-# 25 Sokoban programming IV
+# Sokoban programming IV
 
 We're going to be adding functionality specific for the certain game we're making. To outline it we're creating a cast of characters that have different gameplay abilities. The starting point will be the game Heroes of Sokoban 1, 2 and 3 by Jonah Ostroff (https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html)
 The heroes of sokoban are:
@@ -6964,7 +7015,7 @@ That's it. Nice to end on a win.
 This chapter was long, and probably more difficult, great job getting to the end of it!
 
 
-# 26 Animation Part II
+# Animation Part II
 
 It's time to start using our known gamestate to select appropriate sprites to render to the screen. In the beginning of this course we set our tile size, both in our .PNGs and in `common.h` to 32. At this stage when we're adding our tileset and version 1.0 of our entities I've opted for 16x16 tiles as the base unit.
 This means that the first step is to adjust `common.h` as well as grab all the .pngs from the .ZIP file `SOKOBAN_CHAPTER_027_SPRITES.zip` and replace the contents of `assets/sprites` with these new .png files.
@@ -7276,7 +7327,7 @@ void RenderEntity_OnTile(Sprite* sprite, LevelData* lvl, SDL_Renderer* renderer,
 It has the same exact parameters as `RenderSprite_Grid()` . Also, note how all three of these functions now has a `bool flipped = false` parameter. Note that these are optional parameters so their values will be set to their defaults if not explicitly set.
 
 > [!NOTE]
-> with the addition of a new parameter we need to update the function both in our .h and our .cpp file.
+>  with the addition of a new parameter we need to update the function both in our .h and our .cpp file.
 
 Lets look at the changes to `rendering.cpp`
 
@@ -7373,7 +7424,7 @@ else {
 now we have crispy pixel art, that can be flipped along the x-axis and that leverages the pivot positions we've set to place the entity in the correct position.
 
 
-# 27 Scratch Arena and Sprite Sorting
+# Scratch Arena and Sprite Sorting
 
 You might have noticed an issue where the order entities are being drawn to the screen is sometimes wrong. With a lower entity being drawn behind an entity above it.
 We are going to make a copy of our `EntityBuffer` and sort it. This in regular C++ would require us to create a new array then free it. If we don't free it we are causing a stackoverflow due to us having assigned memory that we never allow our computer to recapture and reuse. We'll fix this need to create->free all together by using a scratch arena
@@ -7496,7 +7547,7 @@ We pass `IsEntityBelowOtherEntity` as the function itself, that's why we don't a
 With this we've added our scratch arena and added draw order to our entities!
 
 
-# 28 Spawn Commands and active/inactive entities
+# Spawn Commands and active/inactive entities
 
 Currently our game breaks if we move with a character then remove it from our dev menues. We don't get the figure back when we undo/redo. Lets fix that. The issue is that as we undo an action the unit that we spawned doesn't go away. It stays on the board and the undo no longer represent the actual game state we previously had.
 We'll need two new Commands . `AddCommand` and `RemoveCommand` .
@@ -7681,7 +7732,7 @@ void Update(Editor* editor, Input* input, LevelData* level, CommandBuffer* buffe
 Now our history works as intended with our add/remove. To clarify why this was important to do now. We already were and will continue to test our game by making temporary levels using our `levelEditor`. It will be extremely bothersome to have our history malfunction and cause issues that we might confuse with mistakes in newly written code. That's why we make sure to squash this bug right away.
 
 
-# 29 Scenes and transitions Part I
+# Scenes and transitions Part I
 
 We can't start our game inside gameplay forever. We're going to create a titlescreen and transition between it and gameplay. We'll also lay some groundwork to simplify adding more of these scenes. (like game credits and a main menu).
 Right now our `GameData` struct has everything the game could be interested in inside this growing monolothic struct. We're going to make some changes that will require updating a lot of our code. We're taking variables inside the struct that are part of the different scenes and breaking them into their own "substructs"
@@ -8134,7 +8185,7 @@ We can see how we've just lifted the `RenderLevel()` and `RenderEntities()` to t
 With these changes we can start our game from the titlescreen then press any key, watch the screen fade to black before putting us into gameplay!
 
 
-# 30 Tilemap parsing
+# Tilemap parsing
 
 Graphics is very much a non-trivial part of game development. We'll be doing quite extensive refactoring to our codebase to work with a less fragile and more expressive output from Tiled.
 You'll find a copy of the chapters `assets` folder in the course material named `chapter 31 assets.zip` . Replace your `assets` folder with this new one.
@@ -8705,7 +8756,7 @@ Finally we make sure to pass along `&tilesetRect` to our `SDL_RenderTexture` whe
 now, after this pretty intense chapter we are rewarded with some actually decent graphics to look at. And it makes such a difference! Now adding more tilesets and making changes to them in Tiled will be easy!
 
 
-# 31 Sokoban Programming V
+# Sokoban Programming V
 
 ### 31.1 Control deltatime
 
@@ -9433,7 +9484,7 @@ With all of this done we now have spritesheet animations for medusa rotating imp
 A lot of systems touched each other in this chapter! Good job getting through this one!
 
 
-# 32 Buttons Part I
+# Buttons Part I
 
 We're going to create the skeleton of a main menu in this chapter. We'll need buttons, a way to render them and the logic to allow us to press them.
 Our `GameData` struct and the variables inside `gameState.h` have started to grow. And our refactoring step of putting scene specific variables in their own struct did help I want to go further. So at this stage, as we're adding the variables for our main menu, we'll be putting them inside its own .h/.cpp file. So to start with lets set up `mainmenu.h/.cpp`
@@ -9913,7 +9964,7 @@ If we have a selected we check if we are pressing enter aka `return` or if we ar
 With this we've added buttons and the collision and pressing of said buttons!
 
 
-# 33 Sokoban Programming VI
+# Sokoban Programming VI
 
 Before we add goal squares to our project we will be needing code that checks a new layer of our .TMJ file. Currently we have 2 places where we loop over every layer in our `auto result` from `CreateLevel()` and `CreateEntities()` . By adding a third place where we need to type this same for-loop structure we've hit a good benchmark for a helper function.
 
@@ -10275,7 +10326,7 @@ void UpdateGame(Gameplay* gameplay, Input* input, Arena* arena_scratch, Arena* a
 ```
 
 
-# 34 FMOD and Audio
+# FMOD and Audio
 
 We'll be implementing audio. We are just going to dip our toes into audio systems programming which is really a whole discipline in and of itself. And just as with VFX programming and animation systems there are a lot of terms and concepts that someone has to understand in order to fully grasp the boilerplate.
 We'll be working with a middleware called FMOD . This is an industry standard tool that many (many) of the largest commercial titles use. There are two ways of using FMOD
@@ -10287,7 +10338,7 @@ We'll be using FMOD core even though FMOD studio is far an away the more common 
 To download FMOD core you need to create a free account over at https://www.fmod.com/download#fmodengine . Once that is done you should have downloaded the FMOD Engine installer. Once that is loaded and run you'll find that included in the install directory `FMOD SoundSystem\FMOD Studio API Windows\api\core` is the core folder with an `inc` and a `lib` folder. Copy over the contents of each into your project in the project folder with the same name.
 
 > [!NOTE]
-> On Linux, the FMOD API is installed at a path like `/opt/fmodstudio/api/core/` or wherever you extract it. The `lib` folder will contain `.so` files instead of `.lib`/`.dll`. You'll need to link against `libfmod.so` in your CMakeLists.txt using `target_link_libraries` and set the `LD_LIBRARY_PATH` or use `rpath` to point to the FMOD library location.
+>  On Linux, the FMOD API is installed at a path like `/opt/fmodstudio/api/core/` or wherever you extract it. The `lib` folder will contain `.so` files instead of `.lib`/`.dll`. You'll need to link against `libfmod.so` in your CMakeLists.txt using `target_link_libraries` and set the `LD_LIBRARY_PATH` or use `rpath` to point to the FMOD library location.
 
 For my `include` folder I decided to put all fmod .h files into a `FMOD` subdirectory.
 In the `lib` folder, look for the `x64` folder inside. In my own projects `lib` folder I've opted for putting the FMOD `.so` files into a `FMOD` subdirectory as well.
@@ -10535,7 +10586,7 @@ if(!IsActing(entity)) {
 Now we can build our game and hear our fallback sound effect each time the player takes a step!
 
 
-# 35 Animation III
+# Animation III
 
 Lets add some idle animations to Medusa!
 in `chapter 36 asset.zip` you'll find the three new spritesheets we'll be working with. Lets set them up in our `spriteLibrary.h/.cpp`
@@ -10837,7 +10888,7 @@ void camera::GridToWorld(float* x, float* y, const LevelData* lvl) {
 that I believe should do the trick!
 
 
-# 36 Music
+# Music
 
 With FMOD core implemented it's easy to set up music playback. But because a music track can be very large and a game might have a lot of tracks playing throughout the game we can't really pre-load all music as we do for our sound effects. Instead we'll be streaming the music a few bytes at a time.
 
@@ -10916,7 +10967,7 @@ void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer) {
 That's it! Now we can play music by streaming our audio!
 
 
-# 37 Parallax
+# Parallax
 
 Parallax is the effect of things further away not moving out of your field of view as fast as objects that are closer to you. Hold out a finger and slide your head from left to right. Your finger will move more relative to your head than the wall behind it.
 We use Parallax to produce depth in 2D scenes. This is featured prominently in 2D sidescrollers. We'll be replicating the effect found in a game called Arco for our main menu.
@@ -11029,7 +11080,7 @@ This is the basics of parallax. We adjust the position of something in relations
 That's it!
 
 
-# 38 Text
+# Text
 
 We can of course already render text if each time we want to do so we just create a bespoke sprite and use that as a text-proxy. But this is not a good way of doing it an neither is it industry standard. What we'll be doing is rendering text one character at a time by taking a font and converting it to a `SDL_Texture` .
 The process will be us creating what is called a Texture Atlas a texture atlas is similar to a spritesheet because it has multiple individual things all layed out in a larger grid.
@@ -11037,7 +11088,7 @@ To convert a font into a texture we need to work with some external library (or 
 the `SDL_TTF` github is at: https://github.com/libsdl-org/SDL_ttf after navigating to Releases we're downloading `SDL3_ttf-devel-3.2.2-VC.zip`
 
 > [!NOTE]
-> On Linux, you can install SDL_ttf via your package manager. For Arch Linux: `sudo pacman -S sdl3_ttf`. For Debian/Ubuntu: `sudo apt install libsdl3-ttf-dev`. The `.so` files and headers will be installed to system paths, so you may not need to manually copy them. You'll need to link against `SDL3_ttf::SDL3_ttf` in CMake.
+>  On Linux, you can install SDL_ttf via your package manager. For Arch Linux: `sudo pacman -S sdl3_ttf`. For Debian/Ubuntu: `sudo apt install libsdl3-ttf-dev`. The `.so` files and headers will be installed to system paths, so you may not need to manually copy them. You'll need to link against `SDL3_ttf::SDL3_ttf` in CMake.
 
 after having unziped our file we will find the `SDL_textengine.h` and `SDL_ttf.h` in `include` and add it to our own. I've opted to put these two .h files into their own subdirectory inside `include` that I've named `SDL_TTF` .
 we also need `libSDL3_ttf.so` and `libSDL3_ttf.a` (on Linux). These are going into their own subdirectory inside our `lib` folder. I've named their subdirectory `SDL_TTF` just as I did for our `include` folder.
@@ -11284,7 +11335,7 @@ case SCENE_TYPES::MAINMENU:
 This is the basics of working with fonts and rendering text!
 
 
-# 39 Buttons Part II
+# Buttons Part II
 
 we could always use a fixed-size bespoke button texture. But when the text that we overlay ontop of the button has different sizes we don't want our text to go outside of the bounds of the button texture. We could always make the text smaller. But a much more established way is to introduce nine-slicing . This means that we create our buttons as a 3x3 atlas . We then render each of the four corners at the appropriate positions then stretch the sprites between the corners until they fill the entire space.
 This is not really "difficult" it just requires us to be a bit extra alert when programming the position code, there is a bunch of small equations to get the actual sizes and positions.
@@ -11655,7 +11706,7 @@ void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer) {
 Now we can give a button text to render. That's cool!
 
 
-# 40 Intermission I - Creating a release candidate
+# Intermission I - Creating a release candidate
 
 Sometime, not very likely for this project, we will want to be able to collect only the files we want to ship to our consumers. Our cache folder, ninja output and cmake files that are generated alongside our shared library and executable are not something we should ship to our consumers.
 We can increase the capabilities of our `cmakelists.txt` and our `cmakepresets.json` to give us access to a new parameter `--install` that we can call when compliling our project.
@@ -11669,7 +11720,7 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/assets DESTINATION .)
 ```
 
 > [!NOTE]
-> On Linux, `install(TARGETS ... RUNTIME DESTINATION .)` will place the executable and shared library (`.so`) files correctly. The `DLL_FILES` variable should reference the `.so` files you need to ship (e.g., `libSDL3.so`, `libfmod.so`). You may need to set `LD_LIBRARY_PATH` or use `rpath` so the executable can find the `.so` files at runtime.
+>  On Linux, `install(TARGETS ... RUNTIME DESTINATION .)` will place the executable and shared library (`.so`) files correctly. The `DLL_FILES` variable should reference the `.so` files you need to ship (e.g., `libSDL3.so`, `libfmod.so`). You may need to set `LD_LIBRARY_PATH` or use `rpath` so the executable can find the `.so` files at runtime.
 
 We're adding the following four `install()` function calls at the very bottom of our `cmakelists.txt` . These functions only run if the `--install` parameter has been passed to the compiler. Meaning that if we run `cmake --build` as we usually do, these won't fire.
 `TARGETS` are references to things that Cmake builds, in this case our executable and shared library are added. We also add the `RUNTIME` parameter to `${DLL_NAME}` so cmake doesn't also add the `"nameofgame"_game.a` the `.a` files is only used during linking to give access to the contents of the shared library once linking is finished this is not a file that is needed. `DESTINATION .` (note the '.') means that the place where the files will show up is at the same folder that we will specify when calling `--install` from a newly created function inside our `~/.bashrc`
@@ -11746,7 +11797,7 @@ We also need a `buildPreset` so we can tell which `configurePreset` should be us
 lastly we need to create our `release()` function inside `~/.bashrc`
 
 > [!NOTE]
-> Add the following to your `~/.bashrc` or `~/.zshrc` instead of `$profile`. You'll also need the `goto` and `GetConfig` helper functions if you use them.
+>  Add the following to your `~/.bashrc` or `~/.zshrc` instead of `$profile`. You'll also need the `goto` and `GetConfig` helper functions if you use them.
 
 ```bash
 function release() {
@@ -11828,12 +11879,12 @@ then we do the new part, we tell cmake to `--install` from our build folder and 
 the `install()` functions in `cmakelists.txt` , our new `buildPresets` and `configurePresets` in `cmakePresets.json` and this new `release` function are all the things we need to create our optimized and stripped down release candidate.
 
 
-# 41 Intermission II - Debugging in Visual Studio
+# Intermission II - Debugging in Visual Studio
 
 We want to be able to understand the flow of our code, and peek at variables to look at their values. We do this by using a debugger.
 
 > [!NOTE]
-> On Linux, we don't use Visual Studio. Instead, we can use:
+>  On Linux, we don't use Visual Studio. Instead, we can use:
 > - **GDB** (GNU Debugger) — a command-line debugger, usable with your editor (e.g. nvim with `vim-dap` or `gdb` integration)
 > - **LLDB** — the LLVM debugger, works great with Clang
 > - **VS Code** with the C++ extension as a lightweight debugger GUI
@@ -11865,7 +11916,7 @@ We might also want to pause execution on a line of code, but only if a certain v
 There is more we can do with breakpoints but this covers the fundamentals!
 
 
-# 42 Intermission III - Github Part I
+# Intermission III - Github Part I
 
 What if we chuked our laptop into the sea? Then everything we had been working on would be lost. This won't do.
 We could use an external harddrive or store backups of our project on a cloud service like Dropbox, and for a solo-made game that, honestly, could work. But on larger or more serious projects we can levarage the Git ecosystem to keep our project saved on the cloud, up-to-date and synced across multiple computers.
@@ -11877,7 +11928,7 @@ If someone on our team has pushed a commit to our repository on Github using Git
 When we have changes we commit them then push them. When we want to download the latest changes from github then we fetch them to see if any existed, then pull them into our machine.
 
 > [!NOTE]
-> On Linux, we can use Git via the terminal directly (no need for PowerShell). The basic commands are the same:
+>  On Linux, we can use Git via the terminal directly (no need for PowerShell). The basic commands are the same:
 > - `git init` to create a new repository
 > - `git add .` to stage all changes
 > - `git commit -m "message"` to commit
@@ -11895,7 +11946,7 @@ https://desktop.github.com/download/
 Besides the Github Desktop client we will also need an account on github.com.
 
 > [!NOTE]
-> This account will be your portfolio, this if maintained nicely will be a huge asset for you when applying for internships and work. So please pick a sensible account name.
+>  This account will be your portfolio, this if maintained nicely will be a huge asset for you when applying for internships and work. So please pick a sensible account name.
 
 Once our account is set up we can log in to Github Desktop.
 Now we can use file->new repository to start working on a new project. Or if we have the URL to a github project that we've been invited to collaborate on we can clone that repository from file->clone repository

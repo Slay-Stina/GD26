@@ -4,10 +4,10 @@
 
 ---
 
-## Innehållsförteckning
+## Contents
 
-- [1 Acknowledgments](#1-acknowledgments)
-- [2 Foreword - How to learn how to program](#2-foreword-how-to-learn-how-to-program)
+- [Acknowledgments](#acknowledgments)
+- [Foreword - How to learn how to program](#foreword-how-to-learn-how-to-program)
 - [SDL3 - part I](#sdl3-part-i)
 - [Introduction to C/C++ - Part I](#introduction-to-cc-part-i)
 - [Introduction to the Helix Editor - Part I](#introduction-to-the-helix-editor-part-i)
@@ -21,43 +21,43 @@
 - [Sokoban Programming I](#sokoban-programming-i)
 - [Sokoban Programming II](#sokoban-programming-ii)
 - [Sokoban Programming III](#sokoban-programming-iii)
-- [16 Command Pattern](#16-command-pattern)
-- [17 Developer Tools with DearImGui](#17-developer-tools-with-dearimgui)
-- [18 Better undo/redo](#18-better-undoredo)
-- [19 Animation Part I](#19-animation-part-i)
-- [20 Repeat Inputs](#20-repeat-inputs)
-- [21 Camera](#21-camera)
-- [22 Asset Management Part I](#22-asset-management-part-i)
-- [23 Mouse input](#23-mouse-input)
-- [24 Level Editor](#24-level-editor)
-- [25 Sokoban programming IV](#25-sokoban-programming-iv)
-- [26 Animation Part II](#26-animation-part-ii)
-- [27 Scratch Arena and Sprite Sorting](#27-scratch-arena-and-sprite-sorting)
-- [28 Spawn Commands and active/inactive entities](#28-spawn-commands-and-activeinactive-entities)
-- [29 Scenes and transitions Part I](#29-scenes-and-transitions-part-i)
-- [30 Tilemap parsing](#30-tilemap-parsing)
-- [31 Sokoban Programming V](#31-sokoban-programming-v)
-- [32 Buttons Part I](#32-buttons-part-i)
-- [33 Sokoban Programming VI](#33-sokoban-programming-vi)
-- [34 FMOD and Audio](#34-fmod-and-audio)
-- [35 Animation III](#35-animation-iii)
-- [36 Music](#36-music)
-- [37 Parallax](#37-parallax)
-- [38 Text](#38-text)
-- [39 Buttons Part II](#39-buttons-part-ii)
-- [40 Intermission I - Creating a release candidate](#40-intermission-i-creating-a-release-candidate)
-- [41 Intermission II - Debugging in Visual Studio](#41-intermission-ii-debugging-in-visual-studio)
-- [42 Intermission III - Github Part I](#42-intermission-iii-github-part-i)
+- [Command Pattern](#command-pattern)
+- [Developer Tools with DearImGui](#developer-tools-with-dearimgui)
+- [Better undo/redo](#better-undoredo)
+- [Animation Part I](#animation-part-i)
+- [Repeat Inputs](#repeat-inputs)
+- [Camera](#camera)
+- [Asset Management Part I](#asset-management-part-i)
+- [Mouse input](#mouse-input)
+- [Level Editor](#level-editor)
+- [Sokoban programming IV](#sokoban-programming-iv)
+- [Animation Part II](#animation-part-ii)
+- [Scratch Arena and Sprite Sorting](#scratch-arena-and-sprite-sorting)
+- [Spawn Commands and active/inactive entities](#spawn-commands-and-activeinactive-entities)
+- [Scenes and transitions Part I](#scenes-and-transitions-part-i)
+- [Tilemap parsing](#tilemap-parsing)
+- [Sokoban Programming V](#sokoban-programming-v)
+- [Buttons Part I](#buttons-part-i)
+- [Sokoban Programming VI](#sokoban-programming-vi)
+- [FMOD and Audio](#fmod-and-audio)
+- [Animation III](#animation-iii)
+- [Music](#music)
+- [Parallax](#parallax)
+- [Text](#text)
+- [Buttons Part II](#buttons-part-ii)
+- [Intermission I - Creating a release candidate](#intermission-i-creating-a-release-candidate)
+- [Intermission II - Debugging in Visual Studio](#intermission-ii-debugging-in-visual-studio)
+- [Intermission III - Github Part I](#intermission-iii-github-part-i)
 
 ---
 
-# 1 Acknowledgments
+# Acknowledgments
 
 I would like to thank colleagues and friends for input and support during the creation of this material.
 All content and intellectual property remain the sole work of the author.
 © 2026 Max Friberg. All rights reserved.
 
-# 2 Foreword - How to learn how to program
+# Foreword - How to learn how to program
 
 This course starts at the deep end, we will be doing a lot of manual work, learning from the ground
 up. This is difficult but rewarding. Your task, as a student is too:
@@ -2786,7 +2786,7 @@ So far we've just rendered an SDL_FRect to the screen. But we of course want to 
 3. Prepare a portion of memory to store our images
 4. Use SDL3_Image.dll from its corresponding SDL3_Image.h file downloaded earlier
    > [!NOTE]
-> In case you don't have both these files, then go ahead and download SDL3_image-devel-3.2.4-VC from https://github.com/libsdl-org/SDL_image/releases
+   > In case you don't have both these files, then go ahead and download SDL3_image-devel-3.2.4-VC from https://github.com/libsdl-org/SDL_image/releases
 5. Swap our SDL_FRect to a texture
 
 Opening any drawing software we can create a 32x32px square and fill it with whatever shapes and colors we please. I've created a red square with an 'X' running through it. I've saved it as "fallback.png" as this will be the sprite that gets loaded whenever I attempt to load a sprite that doesn't exist. I do this so I can continue testing and developing even if I lack the necessary assets still.
@@ -4462,7 +4462,7 @@ And with this we can now push a box around the level recursively! We're making s
 
 
 
-# 16 Command Pattern
+# Command Pattern
 
 Now that we have our desired functionality we will (once again) refactor it. We're going to take the concepts for moving our entities on the level and create a structure that allows us to undo and redo our movement.
 When we move our player (or box) their x and y both update, but they have no memory of where they stood previously. We need to keep some sort of data that tracks entities and where they have gone. Then we need to be able to go back (and forth) in this chain using Z on our keyboard.
@@ -4782,7 +4782,7 @@ So if we press Z we undo, and if we press Z whilst holding Left Shift we redo.
 With this we have implemented undo/redo functionality by leveraging the battle-tested Command Pattern and despite there being quite a lot of text in this chapter to help explain what we're doing there is surprisingly little actual new code and we only had to make changes to a handful of our previously existing script files.
 
 
-# 17 Developer Tools with DearImGui
+# Developer Tools with DearImGui
 
 So far, we've added quite a few quality of life features to our game. We can store a game state , we can undo/redo actions , we can hot-reload our code by splitting our program into an exe and a dll .
 But! The largest differentiating factor between our development environment and an off-the-shelf engine like Unity or Unreal Engine is the lack of a visual development ui. Something where info about our game and buttons, gizmos, sliders and text boxes could live.
@@ -5112,7 +5112,7 @@ With this we've added Dear ImGui to our game engine and created our first dev to
 Now as we expand our dev GUI we can visualize and help us build ANYTHING we want!
 
 
-# 18 Better undo/redo
+# Better undo/redo
 
 Currently you might have noticed that after we push a block and press undo. We end up in a state that we can't naturally create in game without undoing first. Our block is still pushed away but our player has taken an undo step backwards.
 We will solve this by adding a new variable to `GameData` and our base `Command` called `timestamp` .
@@ -5228,7 +5228,7 @@ And because our Dear ImGui does not itself change variables but only calls our g
 Now our undo and redo can't put the game in an unnatural state.
 
 
-# 19 Animation Part I
+# Animation Part I
 
 This chapter covers code related to animating our entities, as well as how to buffer inputs for a smoother gameplay experience.
 Before we do that we will do a small piece of housekeeping. We're moving our `memcpy()` function from the bottom of `Update()` in `Game.cpp` to `main.cpp` . We'll call `memcpy()` on the line after we call `dll->Update()` . The reasoning being that this is part of the foundation of our game engine and should never be accidentally removed or skipped due to us making big changes to `game.cpp`
@@ -5565,7 +5565,7 @@ void Push(CommandBuffer* buffer, AnyCommand cmd, uint32_t timestamp) {
 With these final changes our entities now slide across the game board and our inputs can be buffered, meaning that we can press our arrow keys as fast as we want and inputs will be registered and acknowledged once the animations have caught up to them!
 
 
-# 20 Repeat Inputs
+# Repeat Inputs
 
 In this chapter we'll add the ability to hold down a key and get our entities to keep moving, and undos to keep undoing. Sparing us from having to press a key each time we want to perform an action (though that functionality will of course remain)
 We're also going to do some housekeeping and move key press logic out of `game.cpp` and firmly into its own script - as this fits better as part of our boilerplate.
@@ -5810,7 +5810,7 @@ If we are allowed inside the if-statement we reset the timer for the specific ke
 Now we can hold our undo and movement keys instead of clicking all the time. We have also put our input logic inside our boilerplate and simplified calling `Pressed/Held/Released` .
 
 
-# 21 Camera
+# Camera
 
 In this chapter we'll implement a naive camera as well as refactor rendering code to simplify asking questions about positions as well as simplifying the render functions inside `levelRenderer.h/cpp` .
 A camera in a 2D game is, at its simplest, a position in space. We'll be taking that position and shifting everything we render by that amount multiplied by -1 . This means that as the camera shifts right, everything drawn shifts left.
@@ -5993,7 +5993,7 @@ We still perform our lerp logic inside `RenderEntities()` to get the point betwe
 That's it. We have done a bit of cleanup and layed the foundation for a camera and simplified our render logic!
 
 
-# 22 Asset Management Part I
+# Asset Management Part I
 
 We're going to refactor out our `image.h/cpp` and create at least a slightly more robust way of loading sprites. The fact that we currently have our `Image*` pointers lying flat inside our `GameData` then loaded one-by-one in our `Initialize()` function inside `game.cpp` makes it very obvious that we should refactor as this solution is very transparent BUT more cumbersome than necessary.
 Another issue is that we have to pass each `Image*` manually when we want to pass them to a function or pass the entire `GameData` struct.
@@ -6247,7 +6247,7 @@ now instead of each function needing a switch case to fetch the correct `Image*`
 With these changes we have refactored our asset loading system and how we fetch sprites.
 
 
-# 23 Mouse input
+# Mouse input
 
 Before we can write our level editor we're going to need a way of accessing the state of our mouse. We can do this very naively by not storing the mouse state between frames, but then any code that would check if a mouse button was pressed would fire every single tick.
 We're going to return to our `input.h/cpp` and add the relevant variables to track our `mouseState` and then a few functions to simplify checking the current mouse state. In a lot of ways this will be similar to how we work with keys, but a bit less "cool".
@@ -6398,7 +6398,7 @@ dll.draw(gameData, renderer);
 Now our game engine can handle basic mouse inputs. In the next chapter we'll be using this to help us create a level editor
 
 
-# 24 Level Editor
+# Level Editor
 
 our use of the Tiled level creator has many positives, it's a visual way of laying out our levels and it provides us with a tool that an artist can learn to manage on their own. It exports to a handy .JSON file that is easy for us to consume through code.
 but, there is some friction in our pipeline currently. I would like to avoid touching Tiled when I am testing mechanics and making the first implementation of new entities.
@@ -6722,7 +6722,7 @@ void Update(GameData* data, float dt) {
 Now our level editor is set up, we can now go ahead and test logic without having to enter Tiled and set up/export/parse!
 
 
-# 25 Sokoban programming IV
+# Sokoban programming IV
 
 We're going to be adding functionality specific for the certain game we're making. To outline it we're creating a cast of characters that have different gameplay abilities. The starting point will be the game Heroes of Sokoban 1, 2 and 3 by Jonah Ostroff (https://sites.math.washington.edu/~ostroff/puzzles/Heroes_of_Sokoban.html)
 The heroes of sokoban are:
@@ -7709,7 +7709,7 @@ That's it. Nice to end on a win.
 This chapter was long, and probably more difficult, great job getting to the end of it!
 
 
-# 26 Animation Part II
+# Animation Part II
 
 It's time to start using our known gamestate to select appropriate sprites to render to the screen. In the beginning of this course we set our tile size, both in our .PNGs and in `common.h` to 32. At this stage when we're adding our tileset and version 1.0 of our entities I've opted for 16x16 tiles as the base unit.
 This means that the first step is to adjust `common.h` as well as grab all the .pngs from the .ZIP file `SOKOBAN_CHAPTER_027_SPRITES.zip` and replace the contents of `assets/sprites` with these new .png files.
@@ -8117,7 +8117,7 @@ else {
 now we have crispy pixel art, that can be flipped along the x-axis and that leverages the pivot positions we've set to place the entity in the correct position.
 
 
-# 27 Scratch Arena and Sprite Sorting
+# Scratch Arena and Sprite Sorting
 
 You might have noticed an issue where the order entities are being drawn to the screen is sometimes wrong. With a lower entity being drawn behind an entity above it.
 We are going to make a copy of our `EntityBuffer` and sort it. This in regular C++ would require us to create a new array then free it. If we don't free it we are causing a stackoverflow due to us having assigned memory that we never allow our computer to recapture and reuse. We'll fix this need to create->free all together by using a scratch arena
@@ -8240,7 +8240,7 @@ We pass `IsEntityBelowOtherEntity` as the function itself, that's why we don't a
 With this we've added our scratch arena and added draw order to our entities!
 
 
-# 28 Spawn Commands and active/inactive entities
+# Spawn Commands and active/inactive entities
 
 Currently our game breaks if we move with a character then remove it from our dev menues. We don't get the figure back when we undo/redo. Lets fix that. The issue is that as we undo an action the unit that we spawned doesn't go away. It stays on the board and the undo no longer represent the actual game state we previously had.
 We'll need two new Commands . `AddCommand` and `RemoveCommand` .
@@ -8425,7 +8425,7 @@ void Update(Editor* editor, Input* input, LevelData* level, CommandBuffer* buffe
 Now our history works as intended with our add/remove. To clarify why this was important to do now. We already were and will continue to test our game by making temporary levels using our `levelEditor`. It will be extremely bothersome to have our history malfunction and cause issues that we might confuse with mistakes in newly written code. That's why we make sure to squash this bug right away.
 
 
-# 29 Scenes and transitions Part I
+# Scenes and transitions Part I
 
 We can't start our game inside gameplay forever. We're going to create a titlescreen and transition between it and gameplay. We'll also lay some groundwork to simplify adding more of these scenes. (like game credits and a main menu).
 Right now our `GameData` struct has everything the game could be interested in inside this growing monolothic struct. We're going to make some changes that will require updating a lot of our code. We're taking variables inside the struct that are part of the different scenes and breaking them into their own "substructs"
@@ -8878,7 +8878,7 @@ We can see how we've just lifted the `RenderLevel()` and `RenderEntities()` to t
 With these changes we can start our game from the titlescreen then press any key, watch the screen fade to black before putting us into gameplay!
 
 
-# 30 Tilemap parsing
+# Tilemap parsing
 
 Graphics is very much a non-trivial part of game development. We'll be doing quite extensive refactoring to our codebase to work with a less fragile and more expressive output from Tiled.
 You'll find a copy of the chapters `assets` folder in the course material named `chapter 31 assets.zip` . Replace your `assets` folder with this new one.
@@ -9449,9 +9449,9 @@ Finally we make sure to pass along `&tilesetRect` to our `SDL_RenderTexture` whe
 now, after this pretty intense chapter we are rewarded with some actually decent graphics to look at. And it makes such a difference! Now adding more tilesets and making changes to them in Tiled will be easy!
 
 
-# 31 Sokoban Programming V
+# Sokoban Programming V
 
-### 31.1 Control deltatime
+### Control deltatime
 
 We're going to continue working on the core of our game as we introduce some sprite animations, gameplay logic and refactoring to support our changes.
 First, lets add a feature to allow us to speed up and slow down the entire game.
@@ -9518,7 +9518,7 @@ void DEV::Draw(GameData* data, SDL_Renderer* renderer) {
 
 With that we can change our game's speed with a simple slider
 
-### 31.2 Select an active entity
+### Select an active entity
 
 Currently all of our entities that respond to inputs are allowed to move at the same time during a key press. This is good for some type of game, but not the one we're making. We want to press X to swap which entity is the one we're moving.
 We're going to make use of our `arena_scratch` to set up a pointer-pointer array holding all relevant targets. We'll be recreating this array each frame rather than storing it alongside `entityBuffer` we're doing this so that we never run the risk of having the two arrays drift out of sync by us forgetting to update one when we update the other.
@@ -10177,7 +10177,7 @@ With all of this done we now have spritesheet animations for medusa rotating imp
 A lot of systems touched each other in this chapter! Good job getting through this one!
 
 
-# 32 Buttons Part I
+# Buttons Part I
 
 We're going to create the skeleton of a main menu in this chapter. We'll need buttons, a way to render them and the logic to allow us to press them.
 Our `GameData` struct and the variables inside `gameState.h` have started to grow. And our refactoring step of putting scene specific variables in their own struct did help I want to go further. So at this stage, as we're adding the variables for our main menu, we'll be putting them inside its own .h/.cpp file. So to start with lets set up `mainmenu.h/.cpp`
@@ -10658,7 +10658,7 @@ If we have a selected we check if we are pressing enter aka `return` or if we ar
 With this we've added buttons and the collision and pressing of said buttons!
 
 
-# 33 Sokoban Programming VI
+# Sokoban Programming VI
 
 Before we add goal squares to our project we will be needing code that checks a new layer of our .TMJ file. Currently we have 2 places where we loop over every layer in our `auto result` from `CreateLevel()` and `CreateEntities()` . By adding a third place where we need to type this same for-loop structure we've hit a good benchmark for a helper function.
 
@@ -11020,7 +11020,7 @@ void UpdateGame(Gameplay* gameplay, Input* input, Arena* arena_scratch, Arena* a
 ```
 
 
-# 34 FMOD and Audio
+# FMOD and Audio
 
 We'll be implementing audio. We are just going to dip our toes into audio systems programming which is really a whole discipline in and of itself. And just as with VFX programming and animation systems there are a lot of terms and concepts that someone has to understand in order to fully grasp the boilerplate.
 We'll be working with a middleware called FMOD . This is an industry standard tool that many (many) of the largest commercial titles use. There are two ways of using FMOD
@@ -11275,7 +11275,7 @@ if(!IsActing(entity)) {
 Now we can build our game and hear our fallback sound effect each time the player takes a step!
 
 
-# 35 Animation III
+# Animation III
 
 Lets add some idle animations to Medusa!
 in `chapter 36 asset.zip` you'll find the three new spritesheets we'll be working with. Lets set them up in our `spriteLibrary.h/.cpp`
@@ -11577,7 +11577,7 @@ void camera::GridToWorld(float* x, float* y, const LevelData* lvl) {
 that I believe should do the trick!
 
 
-# 36 Music
+# Music
 
 With FMOD core implemented it's easy to set up music playback. But because a music track can be very large and a game might have a lot of tracks playing throughout the game we can't really pre-load all music as we do for our sound effects. Instead we'll be streaming the music a few bytes at a time.
 
@@ -11656,7 +11656,7 @@ void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer) {
 That's it! Now we can play music by streaming our audio!
 
 
-# 37 Parallax
+# Parallax
 
 Parallax is the effect of things further away not moving out of your field of view as fast as objects that are closer to you. Hold out a finger and slide your head from left to right. Your finger will move more relative to your head than the wall behind it.
 We use Parallax to produce depth in 2D scenes. This is featured prominently in 2D sidescrollers. We'll be replicating the effect found in a game called Arco for our main menu.
@@ -11769,7 +11769,7 @@ This is the basics of parallax. We adjust the position of something in relations
 That's it!
 
 
-# 38 Text
+# Text
 
 We can of course already render text if each time we want to do so we just create a bespoke sprite and use that as a text-proxy. But this is not a good way of doing it an neither is it industry standard. What we'll be doing is rendering text one character at a time by taking a font and converting it to a `SDL_Texture` .
 The process will be us creating what is called a Texture Atlas a texture atlas is similar to a spritesheet because it has multiple individual things all layed out in a larger grid.
@@ -12023,7 +12023,7 @@ case SCENE_TYPES::MAINMENU:
 This is the basics of working with fonts and rendering text!
 
 
-# 39 Buttons Part II
+# Buttons Part II
 
 we could always use a fixed-size bespoke button texture. But when the text that we overlay ontop of the button has different sizes we don't want our text to go outside of the bounds of the button texture. We could always make the text smaller. But a much more established way is to introduce nine-slicing . This means that we create our buttons as a 3x3 atlas . We then render each of the four corners at the appropriate positions then stretch the sprites between the corners until they fill the entire space.
 This is not really "difficult" it just requires us to be a bit extra alert when programming the position code, there is a bunch of small equations to get the actual sizes and positions.
@@ -12394,7 +12394,7 @@ void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer) {
 Now we can give a button text to render. That's cool!
 
 
-# 40 Intermission I - Creating a release candidate
+# Intermission I - Creating a release candidate
 
 Sometime, not very likely for this project, we will want to be able to collect only the files we want to ship to our consumers. Our cache folder, ninja output and cmake files that are generated alongside our .dll and exe are not something we should ship to our consumers.
 We can increase the capabilities of our `cmakelists.txt` and our `cmakepresets.json` to give us access to a new parameter `--install` that we can call when compliling our project.
@@ -12560,7 +12560,7 @@ then we do the new part, we tell cmake to `--install` from our build folder and 
 the `install()` functions in `cmakelists.txt` , our new `buildPresets` and `configurePresets` in `cmakePresets.json` and this new `release` function are all the things we need to create our optimized and stripped down release candidate.
 
 
-# 41 Intermission II - Debugging in Visual Studio
+# Intermission II - Debugging in Visual Studio
 
 We want to be able to understand the flow of our code, and peek at variables to look at their values. We do this by using a debugger. We will be downloading the IDE Visual Studio and installing its Community version.
 Download link: https://visualstudio.microsoft.com/
@@ -12581,7 +12581,7 @@ We might also want to pause execution on a line of code, but only if a certain v
 There is more we can do with breakpoints but this covers the fundamentals!
 
 
-# 42 Intermission III - Github Part I
+# Intermission III - Github Part I
 
 What if we chuked our laptop into the sea? Then everything we had been working on would be lost. This won't do.
 We could use an external harddrive or store backups of our project on a cloud service like Dropbox, and for a solo-made game that, honestly, could work. But on larger or more serious projects we can levarage the Git ecosystem to keep our project saved on the cloud, up-to-date and synced across multiple computers.
