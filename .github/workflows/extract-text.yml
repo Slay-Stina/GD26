@@ -1,6 +1,9 @@
 name: Extract text from PDF
 
-on: [push]
+on:
+  push:
+    paths:
+      - "kursmaterial.pdf"
 
 permissions:
   contents: write
@@ -15,10 +18,7 @@ jobs:
         run: sudo apt-get install -y poppler-utils
 
       - name: Extract text from PDF
-        run: |
-          if [ -f kursmaterial.pdf ]; then
-            pdftotext kursmaterial.pdf kursmaterial.txt
-          fi
+        run: pdftotext kursmaterial.pdf kursmaterial.txt
 
       - name: Commit text file
         run: |
@@ -26,6 +26,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git add kursmaterial.txt
           if ! git diff --cached --quiet; then
-            git commit -m "update kursmaterial.txt"
+            msg=$(git log -1 --format="%s" HEAD)
+            git commit -m "txt: $msg"
             git push
           fi
