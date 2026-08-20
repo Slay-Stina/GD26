@@ -18,31 +18,31 @@ Max Friberg
 
 4 Introduction to C/C++ - Part I
 
-39
+38
 
 5 Introduction to the Helix Editor - Part I
 
-53
+52
 
 6 Introduction to SDL3 - Part II
 
-57
+56
 
 7 Introduction to the Helix Editor - Part II
 
-76
+75
 
 8 Core Loop - Part I
 
-80
+79
 
 9 DLLs Memory and Hot Reloading - Part I
 
-94
+92
 
 10 DLLs Memory and Hot Reloading - Part II
 
-107
+106
 
 11 Rendering images
 130
@@ -292,32 +292,15 @@ folder that only release (to for example Steam) files are added to.
 Once we have these folders we need to add the prerequisite .h and .DLL files
 to it. These have to be downloaded from Github where the makers of SDL
 are distributing them.
-SDL on Github: https://github.com/libsdl-org/SDL
-from
-
-this
-
-link
-
-we
-
-can
-
-find
-
-the
-
-release
-
-page:
-
-https://github.com/libsdl-org/SDL/releases
+SDL on Github: SDL
+from this link we can find the release page: Release Page
 We will be downloading the SDL3-devel-3.4.2-VC.zip this .ZIP file,
 extracted using for example 7-ZIP has the basic scripts and DLLs we need
 to work with SDL3. We are using x86_64-w64-VC this is the 64 bit version.
 The naming standards for x32 and x64 versions are confusing. If you see a
 i686 that is “the same” as x32. And we dont use x32
-NOTE: https://www.7-zip.org/
+NOTE: 7-ZIP
+
 9
 
 Back in our project root folder, inside the lib folder we’ve created we will
@@ -338,7 +321,7 @@ root
 -- assets
 -- src
 For this course, we will be writing our code in the Helix Editor
-https://docs.helix-editor.com/install.html
+Helix
 we will be going to the provided github link to download the pre-built
 binary. As we are on an x64 windows machine we will download the following
 version helix-25.07.1-x86_64-windows.zip and extracting the folder to
@@ -350,51 +333,17 @@ specific adress on our computer soon
 running the hx.exe will bring up the helix editor. To quit the editor (dont
 panic) type a : to bring up the command line, type a single q and press
 enter.
-Additionally, for simpler text editing and pseudo-code examples we will
-be working with Sublime Text. Sublime Text can be downloaded here:
-https://www.sublimetext.com/
-we
-
-will
-
-line
-
-be
-
-using
-
-starting
-
-the
-
-helix
-
-Windows
-
-Powershell.
-
-editor
-
-from
-
-the
-
-command
-
-If
-
-your
-
-computer
-
-doesn’t already have powershell installed, then download it from
-
-https://learn.microsoft.com/en-us/powershell/scripting/install/install-powershel
+Additionally, for simpler text editing and pseudo-code examples we will be
+working with Sublime Text. Sublime Text can be downloaded here: Sublime
+Text
+we will be starting the helix editor from the command line using Windows
+Powershell. If your computer doesn’t already have powershell installed, then
+download it from Powershell
 NOTE: here we have a x86 and a x64 version. We are on an 64-bit operating
 system so we will be using that one. The x86 version would give us the 32-bit
 version
 We will run Powershell from the more modern Windows Terminal. Downloaded here
-https://apps.microsoft.com/detail/9n0dx20hk701?hl=en-US&gl=SE
+Windows Terminal
 This supports tabs and more
 There is some (and we have already started doing this) heavy lifting when
 setting up a development environment for the first time. Once we have
@@ -403,10 +352,10 @@ start having fun
 as I mentioned earlier, we want to start the Helix Editor from our terminal
 using windows powershell. But powershell as no idea where
 A) The Helix editor is
+B) Where our projects live
 11
 
-B) Where our projects live
-To give Powershell access to our helix editor, we will need to create our first
+To give Powershell access to our helix editor, we will need to create our first
 User Environment Variable. From the Control Panel on Windows we can find
 the System Properties, from there we have the Environment Variables. By
 adding a new entry to the Path list we can give Windows the ability to look
@@ -430,10 +379,10 @@ created on our system. By typing $profile in Powershell it spits back its
 path.
 Right now it’s empty, we will need to add the functions ourselves. In Powershell
 we can type hx $profile this will start the Helix Editor and open the
+Powershell profile.
 12
 
-Powershell profile.
-Note: Helix is a text editor focused on manipulating code and can be uncomfortable to work with in the beginning. Until you have a more firm
+Note: Helix is a text editor focused on manipulating code and can be uncomfortable to work with in the beginning. Until you have a more firm
 grasp of programming we will be using this editor for the course. By adding
 another User Environment Variable pointing at the folder where we installed
 Sublime Text we can type subl $profile instead of hx $profile to open
@@ -455,59 +404,26 @@ specific mode from the bottom right of the screen, selecting powershell
 from the dropdown menu.
 Note: Syntax refers to the way code has to be written and structured for the
 functions to execute and actually compile
+To create our first function we need to create the functions name.
 
 13
 
-To create our first function we need to create the functions name.
-function hello {
+function hello {
 }
 
 this is an empty function that we’ve named hello. Any code on a line between
 the curly braces { } will be executed in sequence when the function runs.
 Right now it’s empty so nothing will happen if we run it.
-NOTE: The powershell script langauge can be used to control so much
-about your computer. Though it’s not something we use to make games.
-unless: https://powershellisfun.com/2024/02/22/powershell-games/
-Reading
-to
-
-documentation
-
-understand
-
-any
-
-work or engine.
-
-is
-
-daunting
-
-programming
-
-but
-
-critical
-
-language
-
-or
-
-when
-
-wanting
-
-game
-
-frame-
-
-The powershell documentation can be found here:
-
-https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.managem
+NOTE: The powershell script langauge can be used to control so much about
+your computer. Though it’s not something we use to make games. strange
+powershell games
+Reading documentation is daunting but critical when wanting to understand
+any programming language or game framework or engine. The powershell
+documentation can be found here: Powershell documentation
 by adding Hello, sailor! to the body of our hello function we have created
 our first function (!)
 function hello {
-'hello, sailor!'
+`hello, sailor!`
 }
 
 when we’ve made changes to our Powershell profile our functions are only
@@ -517,11 +433,11 @@ After the profile has been reloaded (or the program restarted) try typing
 hello and watch the terminal respond. we’ve called our first function
 starting your lifelong conversation with your computer!
 We will create one more function right now, then return to our $profile to
+add more functions later.
+The first useful function we‘ll make is a “dev” function. it’s job is to start
 14
 
-add more functions later.
-The first useful function we‘ll make is a “dev” function. it’s job is to start
-our text editor and open our game projects main script file. Called main.cpp
+our text editor and open our game projects main script file. Called main.cpp
 We haven’t made this main.cpp yet, so lets go ahead and do that! in the src
 folder we created in the beginning of this lecture. in the adress bar, press to
 the right of the final word, then press backspace to erase the content of the
@@ -538,10 +454,7 @@ we eventually run our game, the code found in the main file will be executed
 first. Currently it’s empty, but that’s fine.
 Back to our dev function in the powershell $profile we will create the following
 function:
-
-15
-
-function dev {
+function dev {
 param([Parameter(Mandatory=$true)][string]$project)
 $config = GetConfig $project
 if ($null -eq $config) { return }
@@ -554,7 +467,9 @@ hx $config.main_file
 
 You are not meant to know what all this means yet. So lets look at a
 pseudo-code version that explains what we want to happen in plain english.
-1) require the person calling this function to also provide a project name
+15
+
+1) require the person calling this function to also provide a project name
 2) get a JSON file based on the provided project name
 3) if the project had not been added to the JSON the “return” (aka do
 nothing)
@@ -567,10 +482,7 @@ about JSON files. Later in the semester we will use JSON files to save our
 game data, both in SDL3 and Unity. Learning how to work with JSON files
 will be part of your skillset
 Lets look at a JSON file now:
-
-16
-
-{
+{
 
 }
 
@@ -589,12 +501,15 @@ We can spot two entries “radio” and “pilot”. each with their own collect
 data. Reading this JSON should be pretty simple. We are storing the address
 path to the project folder, along with the name of our entry point (main.cpp
 script). The build system can be ignored for now.
-Going back to our pseudo code we can imagine our user supplying either
+
+16
+
+Going back to our pseudo code we can imagine our user supplying either
 radio or pilot as the project name, and the code then fetching the relevant
 path and main_file name in order to properly start the helix editor. therefore
 turning:
 dev pilot into hx D:/Projects/Pilot/src/main.cpp
-But just having a JSON file somewhere on our computer won‘t make powershell
+But just having a JSON file somewhere on our computer won’t make powershell
 know how to access its content. We need
 1) Create a new file with the .json extention - we know how to do this now
 2) Store the path to this JSON file in our $profile
@@ -602,10 +517,7 @@ know how to access its content. We need
 project name we provide it
 Heading over to our PROJECTS folder we can use powershell and New-Item
 to create projects.json. All Json files start by adding a pair of curly braces
-
-17
-
-{
+{
 }
 
 followed by the relevant content. it’s all a collection of names and data. And
@@ -614,7 +526,10 @@ deeper. A collection of data is stored as "name": data and if there are
 multiple ones we use a , at the end to list them.
 NOTE: we decide the names on our own, there is nothing magic with me
 calling them path or main_file it’s just to make it human readable
-{
+
+17
+
+{
 
 }
 
@@ -638,19 +553,18 @@ the multitude of JSON parsers available we will rarely encounter XML files
 through the course material, if ever.
 We want to store the location of our JSON inside our $profile so we can access
 it easier. Lets create a variable to hold its value. A variable is a piece of
-
-18
-
-memory that holds specific data, in our case a collection of characters called
+memory that holds specific data, in our case a collection of characters called
 a string. We want to store the path to our projects.JSON so first we copy its
 path to our clipboard (CTRL-C)
 At the top of our $profile lets add:
-$ConfigPath = THE/COPIED/PATH/TO/THE/projects.json
+$ConfigPath = "THE/COPIED/PATH/TO/THE/projects.json"
 
 now whenever we type $ConfigPath somewhere in our $profile we are actually
 referencing the string with our path in the background.
 NOTE: once again, there is nothing magic with the way we’ve named the
-variable $ConfigPath, it could have been $SpiderMonkey, but that would be
+18
+
+variable $ConfigPath, it could have been $SpiderMonkey, but that would be
 silly.
 And now, with our JSON file prepared and its path known to $profile as a
 variable we can create a new function that uses this variable and the fact that
@@ -668,15 +582,16 @@ in the variable $projectName
 work with
 3) we return, meaning we pass the following data back to whoever called
 the function, the data stored in the JSON file under the specified
-19
-
-$projectName
+$projectName
 Now we have returned a single data block from our JSON holding two pieces
 of data
 1) the path to the project
 2) the name of our entry point script (main.cpp)
 lets go back to our dev function
-function dev {
+
+19
+
+function dev {
 param([Parameter(Mandatory=$true)][string]$project)
 $config = GetConfig $project
 if ($null -eq $config) { return }
@@ -698,20 +613,18 @@ special environment variable that we call GAMEPROJECT
 3) call on helix using hx and now that we’ve set the machines location
 to the src folder we can ask it to look for our main_file (main.cpp) in
 that location and open it when starting the editor.
-NOTE: there is a hard to read if-statement in this function. This checks
-that the JSON block actually existed before trying to use it.
-20
-
-If it
-
-wasn t found we return‘ if we dont add anything to the right-hand side of a
-return statement that is the same as just not executing the rest of the
-function, stopping at that line instead.
+NOTE: there is a hard to read if-statement in this function. This checks that
+the JSON block actually existed before trying to use it. If it wasn’t found we
+return if we dont add anything to the right-hand side of a return statement
+that is the same as just not executing the rest of the function, stopping at
+that line instead.
 Lets go through a checklist
 1) we have a PROJECTS folder on our computer
 2) inside that folder we have one or more project folders
 3) those projects each contain a series of folders (src, include, library, build,
-assets)
+20
+
+assets)
 4) the src folder has a single file in it main.cpp
 5) we have a projects.json file containing data blocks containing the path to
 our project as well as the name of its main entry point script (main.cpp)
@@ -729,19 +642,19 @@ We need a few more things before we can consider our setup for SDL complete
 build our game
 2) We need to add some code to our entry point so we can get something
 to happen
-21
-
-3) We need to use CMake to generate build system files (build.ninja files
+3) We need to use CMake to generate build system files (build.ninja files
 for Ninja)
 4) We need to use our build system (Ninja) to invoke the compiler (Clang)
 to compile our .cpp files, link them with SDL .lib files, and produce an
 executable .exe
 Lets get cracking! first lets download the required software
-cmake (Windows x64 Installer): https://cmake.org/download/
-ninja (ninja-win.zip): https://github.com/ninja-build/ninja/releases
-LLVM https://github.com/llvm/llvm-project/releases/tag/llvmorg-22.1.8
+cmake (Windows x64 Installer): CMake
+21
+
+ninja (ninja-win.zip): Ninja
+LLVM LLVM
 Visual Studio Build Tools with Desktop Development with C++
-https://aka.ms/vs/stable/vs_BuildTools.exe
+Visual Studio Build Tools
 NOTE: LLVM contains and works with a compiler called clang , that is what
 we will be using in powershell later NOTE: we will talk about clangd (with
 a d ) later, that’s a different thing.
@@ -756,16 +669,16 @@ testing if we can access our software through the command line is to type the
 following
 `software` --version
 
-22
-
-into Powershell, substituting software for whatever we want to check
+into Powershell, substituting software for whatever we want to check
 hx --version subl --version cmake --version
 We want to ensure that our clang is of the type MSVC and not MinGW.
 This can be confirmed with by calling clang --version and making sure
 the target is: x86_64-pc-windows-msvc
 If powershell throws an error here we have either not installed the software or
 we dont have a User environment variable pointing to its folder. We can also
-use the command where.exe software to find where we the .EXE is located
+22
+
+use the command where.exe software to find where we the .EXE is located
 on our computer.
 NOTE: I strongly recommend setting up a logical folder structure for where to
 keep these things. And if you change that location at a later date, remember
@@ -776,21 +689,22 @@ LLVM the installer adds the installation location as a SYSTEM environment
 variable for us. This works very similarly to a USER environment variable.
 If we just look at our User environment variables we might be surprised
 that even though we cant find the LLVM folder listed, we can still run clang
-–version and Powershell shows us the correct info instead of throwing an
-error. To list all the environment variables on our computer we can run
-$env:PATH -split ';' this takes each environment variable and prints it
-to its own line.
+–version and Powershell shows us the correct info instead of throwing an error.
+To list all the environment variables on our computer we can run “$env:PATH
+-split ‘;’ ” this takes each environment variable and prints it to its own line.
 NOTE: if we remove the -split ';' then all paths just get printed to the
 same line - much harder to read
-So with cmake and llvm hopefully automatically added to our system envi23
-
-ronment variables we just have to add a new user environment variable path
+So with cmake and llvm hopefully automatically added to our system environment variables we just have to add a new user environment variable path
 to our Ninja folder.
 These three pieces of software are responsible for taking our project and
-producing a .EXE. Each software used in order. cmake: Build System
-Generator ninja: Build system clang: Compiler
+producing a .EXE. Each software used in order.
+cmake: Build System Generator
+ninja: Build system
+clang: Compiler
 cmake uses a text file we write ourselves, called CMakeLists.txt to learn
-what content our project consists of, and what we want to do with these files
+23
+
+what content our project consists of, and what we want to do with these files
 and assets.
 ninja then takes this set of instructions from cmake and using a compiler
 (clang++) performs actions on the files of the project based on the instructions
@@ -802,23 +716,25 @@ binary (machine code) that the computer can run. All coding languages
 eventually compile into machine code, as computers cant work directly with
 the english syntax that we write.
 A (very) crude way of looking at it is:
-Programmer = Architect - makes blueprints cmake = General
-contractor - Interprets blueprints, writes work orders for your
-specific site Ninja = Foreman - Schedules workers, coordinates
-tasks, maximizes parallel work Clang = worker - Actually builds
-the house Visual Studio Build Tools - necessary to work with
-windows and c++. Bricks and mortar
-we have a dev and a getConfig function. it’s time to use our toolchain to
-24
+> Programmer = Architect - makes blueprints
 
-prepare a function that builds our project
+> cmake = General contractor - Interprets blueprints, writes work orders for you
+
+> Ninja = Foreman - Schedules workers, coordinates tasks, maximizes parallel wor
+> Clang = worker - Actually builds the house
+
+> Visual Studio Build Tools - necessary to work with windows and c++. Bricks and
+we have a dev and a getConfig function. it’s time to use our toolchain to
+prepare a function that builds our project
 We can do this in two ways
 1) tell cmake what we want directly in the function
 2) create a JSON file with our settings and giving it this to work with
 instead
 Below is a breakdown of method #1. Though this can be skipped as we will
 be working with method #2.
-function build {
+24
+
+function build {
 param (
 [parameter(Mandatory=$true)][string]$project
 )
@@ -846,9 +762,7 @@ is the same as:
 cmake -S $SourceDir -B $BuildDir -G Ninja -DCMAKE_CXX_COMPILER=clang++
 
 NOTE: we’ve added parameters to our own functions before, if we wanted
-25
-
-to have more than 1 parameter then we would keep adding them after one
+to have more than 1 parameter then we would keep adding them after one
 another just like the expanded cmake line above. Storing all the parameters
 in an array makes the line easier to read as well as simplify changing one of
 these parameters as they live on separate lines.
@@ -856,9 +770,11 @@ cmake $cmakeArgs prepares our cmake generator with links and references
 to the correct folders and instructions on what generator (ninja) and what
 compiler (clang++) we plan to use
 NOTE: this line -DCMAKE_CXX_COMPILER=clang++ is pretty hard to parse
-and remember how to write, that’s why we have the documentation, lectures,
+25
+
+and remember how to write, that’s why we have the documentation, lectures,
 AI-help and forums. How were you supposed to know that the syntax had
-to be written like that? you really weren‘t sadly, you basically just have to
+to be written like that? you really weren’t sadly, you basically just have to
 learn it, remember it or at least remember where to look it up.
 For this course we will be working with method #2 instead:
 We will create two files in the root folder of our project
@@ -873,9 +789,7 @@ version and a release version as simple as swapping between -debug and
 -release when calling our cmake –build command
 we want to use Powershell’s New-Item function to create the two files listed
 above. But remember that any Powershell function will be executed in the
-26
-
-directory (folder) we‘re currently working in.
+directory (folder) we‘re currently working in.
 To simplify our lives, we will create - you guessed it - another function
 function goto {
 param(
@@ -886,7 +800,9 @@ Set-Location -Path $config.path
 }
 
 now we can type goto project_name“ and the working directory will change
-to the root folder of that project. Now if we use New-Item our newly created
+26
+
+to the root folder of that project. Now if we use New-Item our newly created
 files will be created in that directory.
 NOTE: the reason we use a JSON preset file is:
 1) it is easily shared inside a team rather than each programmer having
@@ -902,13 +818,13 @@ conditional checks to help protect us from “butter-fingering”
 now that we are in the same working directory as our newly created JSON
 file we can open it in sublime text using subl CMakePresets.json
 NOTE: to learn more about CMakePresets, check out the documentation:
-https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
+CmakePreset Documentation
+lets create the minimum required configure preset and build preset to get
+started
 
 27
 
-lets create the minimum required configure preset and build preset to get
-started
-{
+{
 
 }
 
@@ -944,11 +860,11 @@ NOTE: This is known as boilerplate code and just has to be there for
 everything to function.
 some of these we can name as we please, but most need to be written very
 exactly. The “version” field is not the version of our preset or the version of
+our game, it tells cmake what version of JSON we are using. This should
+always be 3. “configurePresets” and the name of the fields inside it “name”,
 28
 
-our game, it tells cmake what version of JSON we are using. This should
-always be 3. “configurePresets” and the name of the fields inside it “name”,
-“generator” and the array “cacheVariables” have to be named exactly as they
+“generator” and the array “cacheVariables” have to be named exactly as they
 are - but we do get to put in whatever name we want for our preset on the
 “name” row. Here we use the name “default”.
 NOTE: cmake syntax and powershell syntax are not the exact same, sadly. So
@@ -976,13 +892,13 @@ our build function is done, we have a preset that can be loaded to provide
 cmake with the settings we want. But we still have two more steps before we
 can build anything
 1) add instructons to our CMakeLists.txt file that we created alongside
+our CMakePresets.json file
+2) write a super small SDL game inside our main entry point (main.cpp)
 29
 
-our CMakePresets.json file
-2) write a super small SDL game inside our main entry point (main.cpp)
-without any information in our CMakeLists.txt our compiler has no idea what
+without any information in our CMakeLists.txt our compiler has no idea what
 files it should add to our game, and how those files should be bundled. It
-won‘t make sure that any sprite or sound effect we’ve added to our asset
+won’t make sure that any sprite or sound effect we’ve added to our asset
 folder will be available in our game and no code will be compiled to our .EXE
 and without a main.cpp to try and find a main() function inside of (this is
 the entry point) it will fail to create the EXE
@@ -991,10 +907,7 @@ NOTE: in case we’ve restarted our terminal or moved directory we can use
 our handy goto project_name function to get our directory back to the
 root folder
 Below is our minimal version of the CMakeLists.txt
-
-30
-
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.25)
 project(Heartburner LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 # Automatically find all .cpp files in src/
@@ -1015,7 +928,9 @@ ${DLL_FILES}
 )
 
 Before learning how this works we will take a break just to summarize all of
-the things you‘ve begun to learn
+30
+
+the things you‘ve begun to learn
 • JSON syntax
 • Powershell coding syntax
 • cmake syntax
@@ -1027,9 +942,7 @@ the things you‘ve begun to learn
 • file and folder structure for game projects
 • how to work with text editors (Helix and Sublime Text)
 • the relationship between build systems (cmake, ninja) and compilers
-31
-
-(clang++)
+(clang++)
 • how to download and integrate external libraries (SDL3)
 • how to create and use functions with parameters
 • how to work with variables and strings
@@ -1043,7 +956,10 @@ That is seriously impressive! we’ve begun to lay the groundwork necessary to
 start making awesome games! In the next segment we will talk a bit more
 about cmakelists.txt, then create the most minimal program then compile
 and run it!
-Our CmakeLists.txt does only what is absolutely necessary to build a mockapplication. But let‘s talk about what is there and what is missing
+
+31
+
+Our CmakeLists.txt does only what is absolutely necessary to build a mockapplication. But let’s talk about what is there and what is missing
 cmake_minimum_required(VERSION 3.25)
 project(Heartburner LANGUAGES CXX)
 
@@ -1054,10 +970,8 @@ by using the variable ${PROJECT_NAME} this is created automatically in
 the background from the project() function.
 NOTE: We are maknig a C++ project, that is our langauge. The reason it
 says CXX and not C++ is because way back in the olden days, the operating
-system couldn t handle +‘ symbols in text, so they used X instead.
-32
-
-set(CMAKE_CXX_STANDARD 20)
+system couldn’t handle + symbols in text, so they used X instead.
+set(CMAKE_CXX_STANDARD 20)
 
 Languages, like C++ and C#, get new updates with additional functionality.
 This line tells cmake that we‘re using version 20 of C++. The reason we dont
@@ -1072,7 +986,9 @@ the extention .cpp. here the asterix * acts as a joker, allowing any word to
 be substituted for it. If we had multiple .cpp files (and we will later) this
 is required. SOURCES is the name we give a new variable (later used with
 ${SOURCES} ) this is created by the file() function. the GLOB_RECURSE
-parameter tells the build system to fetch all files even if they are in subdirectories (folders) depper than src this way we can clean up our src folder
+parameter tells the build system to fetch all files even if they are in subdi32
+
+rectories (folders) depper than src this way we can clean up our src folder
 later by putting multiple scripts in different folders instead of having 100+
 all layed out in the src folder.
 # Create executable
@@ -1086,10 +1002,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 Ok, so now we have to talk a bit about the structure of C++. We write two
 types of files
-
-33
-
-1) .cpp files
+1) .cpp files
 2) .h (header) files
 Header files contain, with only a few exceptions, no code that will ever be run
 in the executable, rather a header file contains a list of names of functions
@@ -1103,7 +1016,9 @@ syntax at the top of the .cpp file. So when we write a .cpp file we dont add
 the content of .h ourselves at the top, this is done at compile time.
 The code above lets the build system know where it can find .h files inside our
 project so the compiler can add their contents to the top of all the .cpp files
-NOTE: C# does not have .h files just .cs files (cs stands for c-sharp aka C#)
+33
+
+NOTE: C# does not have .h files just .cs files (cs stands for c-sharp aka C#)
 # find and link all .lib files in lib/
 file(GLOB_RECURSE LIB_FILES "${CMAKE_SOURCE_DIR}/lib/*.lib")
 target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB_FILES})
@@ -1116,9 +1031,7 @@ does, and relies on another program to call into it.
 They are used during linking so that a program can reference functions
 implemented in the DLL, which will be loaded and executed at runtime.
 NOTE: Linking is a step that comes after compilation, where the different
-34
-
-parts of a program are connected so they can reference each other and work
+parts of a program are connected so they can reference each other and work
 together correctly.
 NOTE: Some files may have the extension .dll.a. these work the same as .lib
 files, but indicate that you have downloaded the wrong version of the specific
@@ -1135,7 +1048,10 @@ ${DLL_FILES}
 )
 
 Since our program actually needs to run code found in .dll files we need to
-make sure that these files are copied over to the build folder. First we collect
+
+34
+
+make sure that these files are copied over to the build folder. First we collect
 all of them from our lib folder and store them in a variable we’ve named
 DLL_FILES then once our build is finished we ensure all of these are copied
 over to the build folder.
@@ -1147,9 +1063,7 @@ and is configured for C++. Now we will:
 2) use our powershell function to build the executable (.exe) by using our
 preset (cmakepreset.json) and our build instructions (cmakelists.txt) to
 tell our build system (ninja) to use our compiler (clang++) to compile
-35
-
-the scripts into machine code and then link them together.
+the scripts into machine code and then link them together.
 3) run our first program!
 lets start development
 dev pilot
@@ -1159,7 +1073,10 @@ NOTE: if the lecture series hasn’t gone over VIM motions and helix, change
 the dev function to not call hx but instead subl . This will open the sublime
 text editor instead of helix if necessary.
 inside our main.cpp we will add the following code
-#include <windows.h>
+
+35
+
+#include <windows.h>
 int main() {
 Sleep(2000);
 return 0;
@@ -1175,10 +1092,7 @@ the top of our main.cpp when building.
 then we create a function called main it has to be called exactly main, as
 our compiler will hunt for this function to make it our entry point. The code
 inside main() is the first code being executed when running our .exe later
-
-36
-
-the int infront of main is the c++ way of declaring it a function. In
+the int infront of main is the c++ way of declaring it a function. In
 powershell we wrote function explicitly. int actually stands for integer (whole
 numbers) meaning that this function will eventually return a number - in this
 case it returns a 0
@@ -1189,7 +1103,9 @@ and the program closes.
 NOTE: we use different integers to represent different conditions that caused
 the program to end. a 0 means it exited without any errors.
 NOTE: c++ requires us to end each line of code with a semicolon ;
-So our program will do nothing (but still exist) for 2000 milliseconds AKA 2
+36
+
+So our program will do nothing (but still exist) for 2000 milliseconds AKA 2
 seconds, then return 0 and at that point the program closes.
 if we go ahead and save our main.cpp file then build our project using
 build pilot we will get an executable in our build folder. Double-clicking
@@ -1202,9 +1118,7 @@ At this point the next steps ahead of us are:
 • learn the basics of C++
 • making fun systems through code
 • add images and sound effects
-37
-
-• add more instructions to our cmakelists.txt
+• add more instructions to our cmakelists.txt
 • add more presets to our cmakepresets.json
 • add more helpful functions to our powershell $profile
 • make the powershell functions we’ve already made more robust
@@ -1212,7 +1126,7 @@ It was hard, it was complex but this was the first, and biggest, step you will
 take on your journey to be a programmer! Going back to repeat steps and
 learning the ins-and-outs of these systems will be vital to actually understanding them. But now, just like our little program, it’s time to Sleep();
 
-38
+37
 
 4
 
@@ -1231,7 +1145,7 @@ together.
 we need to update our directory to somewhere we can create and access a
 small .cpp file. This can be done by using the basic building blocks found in
 terminal programming
-NOTE: a full exhaustive list can be found here ‘https://learn.microsoft.com/en-us/windows-server/administration/windowscommands/windows-commands’
+NOTE: a full exhaustive list can be found here Windows Commands
 We will instead create a little function in $profile (powershell) to help us get
 things set up.
 NOTE: I like the convenience of the following setup as I will show you a
@@ -1242,11 +1156,11 @@ New-Item example.cpp -Force
 subl example.cpp
 }
 
-39
-
-this function sets our working directory to a folder I’ve already created NOTE:
+this function sets our working directory to a folder I’ve already created NOTE:
 the path will not be the same on your computer, it depends on where you
-decided to create your folder I create a new file called example.cpp I then run
+38
+
+decided to create your folder I create a new file called example.cpp I then run
 Sublime Text opening up that newly created file NOTE: the -Force parameter
 will force our computer to re-create the file, therefore making it empty
 now we need a function to help us compile and run this small program
@@ -1279,11 +1193,11 @@ else {
 get outta here!
 }
 
-40
-
-With this in mind, lets break down this function: using our system environment
+With this in mind, lets break down this function: using our system environment
 variable Path to the folder containing clang++ we get to call into it without
-specifying ITS/FULL/PATH What follows are a set of instructions to clang:
+39
+
+specifying ITS/FULL/PATH What follows are a set of instructions to clang:
 * ‘example.cpp’ (the name of the file we want to compile) * ‘-std=c++23’
 (tells clang++ to use c++ version 23, this will help us make some simpler
 code later) * ‘-o example.exe’ (specifies the name of the output file, namely
@@ -1310,11 +1224,11 @@ return 0;
 All C++ programs needs an entry point. this is the function called main. It
 has the int (integer) return type and at the last line of the main() function
 we return a ‘0’ meaning ‘the code ran without issue’.
-41
-
-We want to be able to write text from our program into our terminal so
+We want to be able to write text from our program into our terminal so
 we want to use the println function (this stands for ‘print on new line’).
-The println function is made available by the inclusion of at the top of the
+40
+
+The println function is made available by the inclusion of at the top of the
 program.
 ‘std::’ that comes before println is a safeguard put in place by the ISO C++
 Standards Committee way back in the 90’s. All functions added to the
@@ -1340,12 +1254,12 @@ return 0;
 We could then remove ‘std::’ and just write println().
 NOTE: namespaces will be part of all games you will work on, including
 those using C# and game engines like Unity
-
-42
-
-You might have noticed that we add a semicolon to the end of all lines in
+You might have noticed that we add a semicolon to the end of all lines in
 C++. This is a required step dating back to the C programming langauge
-and the inception of C++. It was added for clarity, to show when we are at
+
+41
+
+and the inception of C++. It was added for clarity, to show when we are at
 the end of a line. It’s something we just have to accept, for both C++ and
 C# (unfortunately).
 NOTE: Thankfully our intellisense will catch us if we miss a ‘;’. And if it
@@ -1371,11 +1285,11 @@ can’t work with an integer directly. Other methods like ‘cout’ can. By add
 ‘ “{}”,’ as the first parameter to println it can take the second parameter (in
 our case the nubmer 15) and replace the placeholder “{}” with it later. But
 don’t worry, there was really no way for you to know this, and no way from
-43
-
-reading the code for us to understand this syntax, some parts of how code is
+reading the code for us to understand this syntax, some parts of how code is
 written we kinda just gotta learn.
-if we use the following program instead, including instead of and working
+42
+
+if we use the following program instead, including instead of and working
 with the older ‘cout’ syntax we can get the same result with a program that
 looks like this instead:
 #include <iostream>
@@ -1399,7 +1313,7 @@ variable is a named piece of memory that stores something for us (a number,
 a word, a sentence etc)
 updating our main() function we can take a look at our program:
 
-44
+43
 
 #include <print>
 using namespace std;
@@ -1430,7 +1344,7 @@ two values we passed to the function (5 and 10) that are then printed to the
 console via the println() function. After that we hit the return 0 and the
 program closes.
 What we’ve created is sorta the world slowest and worst calculator. But it
-45
+44
 
 has taught us a few things:
 1) what the difference between an int and a void function is
@@ -1455,7 +1369,7 @@ We will use ‘New-Item’ to create a new .h file called example.h and the code
 written above will be the only content of this .h file (for now)
 back in our example.cpp we can now include this .h file at the top.
 
-46
+45
 
 #include <print>
 #include "example.h"
@@ -1489,7 +1403,7 @@ return result;
 
 our function no longer prints anything, instead it returns the integer we’ve
 named result. We have to do 2 things to get our program to compile and get
-47
+46
 
 the number to print to the console First: update our .h file so the function
 declaration matches the changes we made in the .cpp file (changed void to
@@ -1522,7 +1436,7 @@ Time to come clean, the ‘Add’ function is still not a good function. Doing
 basic arithemtic does not require a function. It can be done in just a normal
 line of code
 
-48
+47
 
 println("{}", 5 + 10);
 
@@ -1552,7 +1466,7 @@ it. This means that our computer does a little conversion each time we assign
 a float like this. To tell the computer that the decimal number we’ve written
 is really a float we append a ‘f’ to the end of the decimal chain. Like this:
 
-49
+48
 
 float aFloatFromTheStart = 0.34f;
 
@@ -1588,7 +1502,7 @@ by an else statement. The question being answered in the parenthesis of the
 if-statement is responsible for deciding if the code flow enters the scope of
 the ‘if’ or the ‘else’.
 The assignment operator ‘=’ is differnt from the equality operator ‘==’ the
-50
+49
 
 equality operator doesn’t assign a new value to the left hand side, instead it
 checks that the value on the left side and the right side are the same. So this
@@ -1622,7 +1536,7 @@ here we have an if statement within another if statement. Still no problem to
 read and parse. Though you can imagine that with 1-2 more if-statements
 our code would begin to drift right at an alarming rate. NOTE: the sideways
 drift towards right is sometimes refered to as a “pyramid of death”
-51
+50
 
 We can use a ‘return’ to do an “early return” as well as ask the opposite
 question:
@@ -1647,7 +1561,7 @@ to #include standard library headers vs our own .h files * Return types
 * Variable types * Assignment vs equality operators * If/else statements *
 Nesting and early returns
 
-52
+51
 
 5
 
@@ -1677,7 +1591,7 @@ When working in Helix we also get access to Helix-specific menues by using
 the correct keystrokes in Normal Mode.
 In Insert Mode the keys are used to type text like in any editor. Pressing
 Escape will return us out of Insert Mode and back into Normal Mode
-53
+52
 
 In Select Mode we can select multiple pieces of text to be copied, moved and
 otherwise manipulated.
@@ -1703,7 +1617,7 @@ now we turn caps ‘ON’ and ‘off’ using ecape and exit ‘Insert Mode’ a
 Mode’ using caps lock. This will, like many new things, feel strange at first.
 But this remapping is very common when using Helix or other VIM-style
 software. And now we’re using our computer as developers not hobbyists,
-54
+53
 
 and that should naturally come with changes to how we use our hardware.
 NOTE: I suggest unplugging your mouse when learning Helix if you can’t
@@ -1730,7 +1644,7 @@ using the ‘write’ command rather than our usual ‘ctrl+S’. So go ahead an
 open the command line again, type ‘w’ and press enter
 NOTE: you can also type ‘write’ or even ‘write-quit-all’ to save all your files
 at once then quit helix. or use the short form ‘wqa’
-55
+54
 
 //////////////////////////////////////////////////////////////////////////////////////
 We will be working with C++ files, and it would be very nice to catch errors
@@ -1741,6 +1655,7 @@ understands our code. This info is then given to Helix so it can display red
 errors for us.
 In powershell we can run
 hx --health
+
 this will list all programming languages as well as any known language servers.
 Find the cpp row. If clangd (yes with a ‘d’) is not set as the langauge server
 then we need to download it and add it to our environment variable paths.
@@ -1756,7 +1671,7 @@ we open a .h or .cpp file. Then it lets us A) get diagnostics inside helix (red
 underlines, error message) B) we can use SPACE+A when our caret is over a
 part of our code with an error and clangd will offer fixes
 
-56
+55
 
 6
 
@@ -1773,6 +1688,7 @@ Up until now we’ve hand-rolled our .JSON files, but the far more common
 way is using a ‘JSON serializer’ to convert our data into a JSON format for
 us.
 adding:
+// cmake
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 to our cmakelists.txt will create a ‘compile_commands.json’ in our build
@@ -1785,10 +1701,10 @@ We will create the ‘.clangd’ file (option 2)
 NOTE: clangd is used as a file extention here, and the lack of any text before
 the ‘.’ tells us that the file has no name.
 in our root directory (goto ‘projectname’) we add the .clangd file using
-‘New-Item .clangd’. We then open it inside sublime text with subl .clangd.
-57
+56
 
-We will write our .clangd file using a different data format than .JSON. The
+‘New-Item .clangd’. We then open it inside sublime text with subl .clangd.
+We will write our .clangd file using a different data format than .JSON. The
 format is called YAML and has even less boilerplate than JSON, making it
 extremely human readable. But without braces to set the scope of a piece
 of data YAML instead relies on indentation to sort data. An indentation is
@@ -1796,6 +1712,7 @@ what pushes new lines of text to the right on your monitor.
 NOTE: like when we put an if-statement inside another if-statement, then we
 began drifting to the right.
 For now, our .clangd file will be very small
+// cmake
 CompileFlags:
 CompilationDatabase: build/
 
@@ -1812,14 +1729,14 @@ inside powershell is called a ’switch’ when it is not passed as a parameter 
 switch is set to false and when present it is set to true.
 NOTE: this true/false data type is what we call a bool (boolean) in C++.
 WARNING: before we look at the function below: we are going to start using
-pretty strong commands to add or delete files from our computer. It’s a
+57
+
+pretty strong commands to add or delete files from our computer. It’s a
 good idea to, in the future, have backups for important stuff if you start
-
-58
-
-experimenting with these functions on your own. Our function below is not
+experimenting with these functions on your own. Our function below is not
 an issue as we are doing a lot to ensure that we are in the proper directory.
 Here’s our updated ‘function build’
+// $profile
 function build {
 param(
 [Parameter(Mandatory=$true)][string]$project,
@@ -1851,11 +1768,11 @@ we’ve added a few new things. Like in other functions we’ve made we’ve
 sotred the sourceDirectory and buildDirectory in two variables. We have also
 added the ‘[switch]$clean’ parameter at the top and using in if-statement we
 check if $clean was true.
-NOTE: in both powershell syntax and C++ we can skip the ‘== true’ in
-an if-statement, as it is implied unless specified otherwise. So in powershell
-59
+58
 
-syntax ‘if(𝑐𝑙𝑒𝑎𝑛)′ 𝑖𝑠𝑡ℎ𝑒𝑠𝑎𝑚𝑒𝑎𝑠′ 𝑖𝑓(clean -eq $true)’ and in C++ ‘if(clean)’ is
+NOTE: in both powershell syntax and C++ we can skip the ‘== true’ in
+an if-statement, as it is implied unless specified otherwise. So in powershell
+syntax ‘if(𝑐𝑙𝑒𝑎𝑛)′ 𝑖𝑠𝑡ℎ𝑒𝑠𝑎𝑚𝑒𝑎𝑠′ 𝑖𝑓(clean -eq $true)’ and in C++ ‘if(clean)’ is
 the same as ‘if(clean == true)’.
 ‘Write-Host’ is a function that writes the parameter string to the console.
 This is a common method we will use in SDL3 later to check what is going
@@ -1876,10 +1793,10 @@ standard pratice.
 Now with our build function updated and our cmakelists.txt instructing us
 to generate a ‘compile_commands.json’ we can get much more helpful info
 from clangd, we just need to compile our program once so the ‘compile_commands.json’ is populated with the info we need.
-Now we can begin programming in our main.cpp and adding a few SDL3
-60
+59
 
-specific lines of code to spawn a window and fill it with a nice background
+Now we can begin programming in our main.cpp and adding a few SDL3
+specific lines of code to spawn a window and fill it with a nice background
 color.
 Remember how we previously had to ‘Sleep()’ our program for 2000 milliseconds in order to even see that our program ran before reaching the ‘return 0’
 line at the end of our entry point? we will be using a new form of control
@@ -1903,11 +1820,11 @@ Just like an if-statement is has the parenthesis where an expression is evaluate
 As long as that expression is true then the code inside the while loop runs.
 At the end of the while loops scope it jumps back to the beginning of the
 scope and runs it again.
-A naive version would look like
 
-61
+60
 
-while (game_is_running){
+A naive version would look like
+while (game_is_running){
 1. Handle_Input
 2. Update_The_Game
 3. Draw_The_Game
@@ -1937,11 +1854,11 @@ include folder as directory that is included in the project with:
 
 NOTE: Remember the not-so-elegant syntax of the standard library header
 or ‘cout’ from well now we can use the much more convenient ‘SDL_Log()’
-instead!
 
-62
+61
 
-We have no way of interupting our program as there is nothing we can do
+instead!
+We have no way of interupting our program as there is nothing we can do
 within the scope of our ‘while’ that will turn ‘running’ from ‘true’ to ‘false’.
 NOTE: a while loop that never terminates or pauses will hog 100% of our
 CPU and make the program appear frozen, as is tries to keep running the
@@ -1967,7 +1884,7 @@ Using the handy-dandy https://godbolt.org/ website we can actually compare
 our C++ code for both example (while() and goto) and running both main()
 functions (without SDL stuff) we get the same output:
 
-63
+62
 
 main:
 .L2:
@@ -2005,7 +1922,7 @@ theNumber += 1;
 
 then lets run this small program:
 
-64
+63
 
 int number = 5;
 AddOne(number);
@@ -2037,7 +1954,7 @@ Lets break it down:
 int number = 5; <- this is a newly created variable. It is stored in memory
 somewhere with the value ‘5’
 
-65
+64
 
 int* aNumber <- this is a pointer variable. It points not to a number, but the
 place in memory where we will store a number. To pass a point in memory
@@ -2066,7 +1983,7 @@ Here we make it so the function is expecting a ‘int&’ this handles the passb
 single ‘&’ the program knows that any value being passed to the function
 is really passed by reference, and any changes to the passed variable in the
 
-66
+65
 
 function will be made on the dereferenced value stored in that reference we
 passed along. It’s more invisible and has both its advantages and disadvantages, it’s less explicit because we ‘hide’ the fact that ‘AddOne()’ works by
@@ -2098,7 +2015,7 @@ The “simplified” way of passing by reference requires less specific C++ synt
 And that convenience styled syntax is often refered to as ‘syntactic sugar’.
 Understanding how we pass something as either the memory address or the
 actual value is key to working with C++. So we will mostly be working with
-67
+66
 
 ‘2.’ as a learning tool. Though much of the C++ you will come across uses
 ‘3.’. So eventually you will still have to learn and understand both.
@@ -2127,7 +2044,7 @@ more proper example. What follows is a lot of new code, but we’ve touched
 on this syntax in many cases. We will break it all down once we’ve seen it in
 its entirety.
 
-68
+67
 
 #include "SDL3/SDL_init.h"
 #include "SDL3/SDL_events.h"
@@ -2166,7 +2083,7 @@ if we press the ‘escape’ key 4) It nests a while loop within another while l
 .h files from SDL
 Lets begin by looking at our entry point:
 The ‘main()’ function has a lot of new parts to it. A lot of it is boilerplate
-69
+68
 
 that SDL3 requires in order to start communicating with our computer.
 ‘SDL_Init()’ accepts a series of so called “flags” as parameters that tell it
@@ -2201,7 +2118,7 @@ of 2 we can combine them together and the number that is the result of
 that addition can only be the result of that exact combination. In our
 “WeaponBuffs” example, if we wanted to have a weapon with both a ‘Poison’
 and an ‘ICE’ buff then this would be stored (in the background) as a ‘5’, an
-70
+69
 
 no other combination of flags can produce that number.
 enums are a great way of storing similar attributes in a way that is very easy
@@ -2228,17 +2145,18 @@ if ANY of the ‘bits’ in the ‘byte’ was a ‘1’
 POISON 00000001 ICE 00000100 = Result 00000101
 And now we can clearly see why an enum that is used as a flag needs to have
 each entry as a ‘power of 2’. And the ‘Result’ above ‘00000101’ is actually
-71
+70
 
 the byte representation of the number ‘5’.
 If we want to pass both ‘SDL_INIT_EVENTS’ and ‘SDL_INIT_VIDEO’
 to our ‘SDL_Init()’ function then we add a bitwise ‘OR’ between the flags.
 SDL_Init( SDL_INIT_EVENTS | SDL_INIT_VIDEO );
+
 NOTE: you can find all the SDL_INIT flags here:
 sdl.org/SDL3/SDL_Init
 Lets keep looking at our program:
 
-72
+71
 
 https://wiki.lib-
 
@@ -2278,7 +2196,7 @@ the type being an SDL_Window. We know we’re storing a pointer and not
 the actual data as the ‘SDL_Window’ is followed by a * . This line on
 its own has not created a window for us. We need to actually create that
 window using the ‘SDL_CreateWindow()’ function. This function accepts 4
-73
+72
 
 parameters. The first being the name of the window, then its the width and
 the height, followed by whatever option flags we want to pass along. Lets
@@ -2306,7 +2224,7 @@ https://wiki.libsdl.org/SDL3/SDL_PollEvent
 looking at our ‘HandleRunning()’ function we can see a series of if and if-else
 statements asking questions about (querying) the SDL_Event parameter that
 was passed into it. As we are only interested in if the ‘escape’ key was pressed
-74
+73
 
 we can avoid nesting by returning true (meaning ‘keep running’) if the event
 was not a keyboard event to begin with. Then if we did not return we know
@@ -2329,7 +2247,7 @@ So now we do the following things inside our program:
 With this we’ve layed the foundation for a core loop (input, update, draw,
 repeat) !
 
-75
+74
 
 7
 
@@ -2344,27 +2262,25 @@ Helix can help us create files and give us the ability to get an overview of our
 code by splitting our editor into multiple smaller ‘panes’.
 To split our view into two panes that sit side by side we press the following
 button sequence (when in Normal Mode)
-‘space’ - open the Helix menu ‘w’ - open the window sub-menu ‘v’ - hotkey
+space - open the Helix menu w - open the window sub-menu v - hotkey
 to split the editor with a vertical right split
 once we do this, the same file will be opened in both panes, if we modify one
 the other will update instantly. Though useful when working with very long
 files the far more common case is to have multiple different files open at once.
 We can check what folder newly created files will get created in by pressing
 the following sequence:
-‘:’ - open the helix console ‘pwd’ - shortcut for the command “show-directory”
+: - open the helix console pwd - shortcut for the command “show-directory”
 ‘pwd’ stands for “print working directory”
 If we have set things up correctly in powershell then this will print the path
 to our ‘src’ folder at the bottom of our Helix editor.
 We can switch between our active pane by pressing
-‘space’ - open helix menu ‘w’ - open window submenu ‘left/right arrow’ -
+space - open helix menu w - open window submenu left/right arrow 75
 
-76
-
-navigate to the left or right pane ‘h/l key’ - can also be used to navigate to
+navigate to the left or right pane h/l key - can also be used to navigate to
 the left or right pane
 once we are on a pane we can press
-‘:’ ‘o’ note the space after the o. ‘o’ is the shortcut for the ‘open’ command
-‘a-specific-file-name’ ‘enter’
+: o note the space after the o. o is the shortcut for the open command
+a-specific-file-name enter
 The helix fuzzy-search will look for and list all the files that match what you
 put in as the file name. You can flip between them using tab. With the
 file-name selected pressing enter will open it.
@@ -2374,47 +2290,49 @@ lives only within helix.
 NOTE: when Helix stores text before it has been written it is being stored in
 something known as a ‘buffer’
 Once you press
-‘:’ ‘w’ - write
+: w - write
 You will have executed a ‘write’ command. This will save the file to disk,
 creating it if necessary. This allows us to open and create files as needed,
 without leaving Helix to use Powershells New-Item function.
 If we are done with a pane, we need to decide if we want to ‘write’ its content
 to disk or if we want to discard the changes we’ve written.
-if we try and close our pane using ‘:’ ‘q’ - quit
+if we try and close our pane using : q - quit
 Helix will warn us and nothing will happen (if we have unsaved changes)
 we can combine our write and quit (quit actually doesn’t quit, it closes the
-77
+76
 
 current view/pane)
-‘:’ ‘wq’ - write-quit
+: wq - write-quit
 once we have multiple panes open at once, with multiple files, we can write
-all of them to disk at once using ‘:’ ‘wa’ - write-all
+all of them to disk at once using : wa - write-all
 so lets say that we’re just starting our workday, we want to begin devvin’ in
 helix and start working on a new script called “bomb”
-‘win’ press the windows key to open the start menu ‘pw’ type ‘pw’ to search
-for powershell ‘enter’ press enter to start powershell ‘dev project-name’ type
-dev and then the name of our project to open it in helix ‘enter’ press enter to
-execute the dev command opening helix ‘:’ in helix, our dev function opened
-our main.cpp. use ‘:’ to open the helix command ‘o bomb.cpp’ this command
-will open a new buffer for a file we call bomb.cpp (not yet saved to disk)
-‘enter’ executes the open file command ‘space’ open the helix menu ‘w’ opens
-the helix window submenu ‘v’ split the editor into two panes
-‘:’ open the helix command line again ‘o bomb.h’ will open a new buffer for a
-new file ‘enter’ executes the open file command ‘write some code in the .h file’
-- an empty buffer won’t save to disk ‘space’ open the helix menu ‘w’ open the
-helix window submenu ‘h’ swap to the pane of the left (holding the buffer
-for bomb.cpp) ‘write some code in the .cpp file’ - an empty buffer won’t save
-to disk ‘:’ open the helix command line ‘wa’ this is the write-all command
-‘enter’ executes the write-all command, saving bomb.cpp and bomb.h to disk
+win press the windows key to open the start menu pw type ‘pw’ to search
+for powershell enter press enter to start powershell dev project-name
+type dev and then the name of our project to open it in helix enter press
+enter to execute the dev command opening helix : in helix, our dev function
+opened our main.cpp. use ‘:’ to open the helix command o bomb.cpp this
+command will open a new buffer for a file we call bomb.cpp (not yet saved to
+disk) enter executes the open file command space open the helix menu
+w opens the helix window submenu v split the editor into two panes
+: open the helix command line again o bomb.h will open a new buffer for
+a new file enter executes the open file command write some code in the .h
+file’ - an empty buffer won’t save to disk space open the helix menu w open
+the helix window submenu h swap to the pane of the left (holding the buffer
+for bomb.cpp) write some code in the .cpp file’ - an empty buffer won’t save
+to disk : open the helix command line wa this is the write-all command
+enter executes the write-all command, saving bomb.cpp and bomb.h to disk
 in the src folder
-To open and look through the currently active buffers we can press ‘space’ ‘b’
-then step through them using ‘tab’ and select which one to open with ‘enter’
-To open and look through all files in the project we can press ‘space’ ‘f’ then
+To open and look through the currently active buffers we can press space
+b then step through them using tab and select which one to open with
+enter
+
+77
+
+To open and look through all files in the project we can press space f then
+step through them using tab and select which one to open with enter :
+
 78
-
-step through them using ‘tab’ and select which one to open with ‘enter’:
-
-79
 
 8
 
@@ -2422,13 +2340,13 @@ Core Loop - Part I
 
 With the skillset we have currently we can begin constructing a core loop for
 a program.
-NOTE: as it lacks a win-state or any sense of actual logic we’ll call it a
+NOTE: as it lacks a win-state or any sense of actual logic we‘ll call it a
 program for now and a game once we add those elements.
 We’re going to create a skeleton version of our core loop, including:
 1) Recieving inputs
 2) Updating logic based on time and our inputs
 3) Displaying our game state
-we will be setting up parts of this in our main.cpp but we’ll also create other
+we will be setting up parts of this in our main.cpp but we‘ll also create other
 files that our main.cpp will call into.
 NOTE: once we have gotten this core loop to work we will be changing a lot
 (almost all) of how we structure our program in the next couple of lectures.
@@ -2440,12 +2358,16 @@ We could do all the following code inside our main() function, inside our
 while-loop. But we will be creating a new pair of .h and .cpp files and inside
 our while-loop we will call their functions.
 Lets look at our main.cpp function
+
+79
+
+80
+
+// main.cpp
 #include "SDL3/SDL_init.h"
 #include "SDL3/SDL_events.h"
 #include "SDL3/SDL_timer.h"
-80
-
-#include "game.h"
+#include "game.h"
 SDL_Window* window;
 SDL_Renderer* renderer;
 Uint64 NOW;
@@ -2466,9 +2388,7 @@ SDL_Init(SDL_INIT_EVENTS);
 bool running = true;
 window = SDL_CreateWindow("pilot", 650, 400, 0);
 renderer = SDL_CreateRenderer(window, NULL);
-81
-
-Core::Initialize();
+Core::Initialize();
 while(running){
 NOW = SDL_GetTicksNS();
 float dt = NOW - PREV;
@@ -2478,46 +2398,62 @@ SDL_Event event;
 while(SDL_PollEvent(&event)){
 running = HandleRunning(event);
 }
+
+}
+
 Core::Update(dt);
 Core::Draw(renderer);
-}
+
 Core::OnQuit(renderer);
 SDL_Quit();
 return 0;
 }
-A lot of new stuff happening. 1) we #include new .h files the ‘game.h’
-we wrote ourselves We’ve also written a game.cpp file that has the actual
-82
 
-implementations of each function outlined in game.h
+81
+
+A lot of new stuff happening. 1) we #include new .h files the game.h
+we wrote ourselves We’ve also written a game.cpp file that has the actual
+implementations of each function outlined in game.h
 2) we store pointer variables to both a window and a renderer the renderer
 is tasked with taking textures and bitmap images and placing them into
 our window this is how we will color our window and render a rectangle
-inside of it this logic is found inside the ‘Draw()’ function we’ve written
+inside of it this logic is found inside the Draw() function we’ve written
 inside game.cpp and declared inside game.h It is because we #include
 game.h that we can find and call this function note that we pass our
-renderer pointer to the ‘Draw()’ function.
-3) we have 2 new variables ‘NOW’ and ‘PREV’. These are used to track
-how much time elapsed between the current and previous frame We
-check this by subtracting one from the other The Uint64 is, like an int
-but can only hold positive values It is also 64 bits in memory compared
-to the (usually) 32 bits of an int. Meaning that it can store larger
-numbers The ‘U’ stands for “unsigned” this means it only holds positive
-numbers note how we pass deltatime aka ‘dt’ to our Update function
-4) We use SDL functions ‘SDL_GetTicksNS()’ and ‘SDL_NS_TO_SECONDS()’ to work with a central part of all game logic, ‘dt’ standing for
-‘deltatime’ Deltatime is used to scale values in relation to how quickly
-the computer can finish processing a ‘tick’ the more ‘ticks’ the higher
-the framerate and the smaller our deltatime is. Delta time is the time
-between the current and the last ‘tick’. Meaning that if it took a long
-time between ticks, then any equation that is multiplied by deltatime
-will be larger than if the time between ticks was very small. The result
-of this is that no matter how strong or how slow our computers are,
-our bullets will still fly at the same speed. Without deltatime, a gun in
-a fast computer would shoot faster bullets.
-83
+renderer pointer to the Draw() function.
+3) we have 2 new variables NOW and PREV . These are used to track how
+much time elapsed between the current and previous frame We check
+this by subtracting one from the other The Uint64 is, like an int but
+can only hold positive values It is also 64 bits in memory compared to
+the (usually) 32 bits of an int. Meaning that it can store larger numbers
+The U stands for “unsigned” this means it only holds positive numbers
+note how we pass deltatime aka dt to our Update function
+4) We
 
-5) We call ‘Initialize’ ‘Update’ and ‘Draw’ from a namespace we’ve named
-‘Core’
+use
+
+SDL
+
+functions
+
+SDL_GetTicksNS()
+
+and
+
+SDL_NS_TO_SECONDS() to work with a central part of all game logic,
+dt standing for deltatime Deltatime is used to scale values in
+relation to how quickly the computer can finish processing a tick the
+more ticks the higher the framerate and the smaller our deltatime
+is. Delta time is the time between the current and the last tick .
+Meaning that if it took a long time between ticks, then any equation
+that is multiplied by deltatime will be larger than if the time between
+ticks was very small. The result of this is that no matter how strong or
+82
+
+how slow our computers are, our bullets will still fly at the same speed.
+Without deltatime, a gun in a fast computer would shoot faster bullets.
+5) We call Initialize Update and Draw from a namespace we’ve
+named Core
 Lets begin by looking at our game.h
 #include "SDL3/SDL_render.h"
 namespace Core{
@@ -2526,35 +2462,52 @@ void Update(float dt);
 void Draw(SDL_Renderer* renderer);
 void OnQuit(SDL_Renderer* renderer);
 }
+
 This .h file outlines the functions that we will be writin the bodies for inside
 our game.cpp. It tells us what paremeters will be passed in and what type of
-function they are. ‘void’ means that the function doesn’t return any value.
+function they are. void means that the function doesn’t return any value.
 Because we know we will need to pass a pointer to the renderer in two of
-these functions we have to #include the ‘SDL_render.h’ inside our .h file.
+these functions we have to #include the SDL_render.h inside our .h file.
 This means that all files that include game.h also include SDL_render.h
-All functions are collected in a ‘namespace’ a namespace acts as a container for
+All functions are collected in a namespace a namespace acts as a container for
 code, allowing multiple scripts to have the same name for functions. Imagine
-if we include 2 .h files, each with their own ‘Initialize()’ function, without
+if we include 2 .h files, each with their own Initialize() function, without
 a namespace we would get an error during compilation telling us that it is
-unclear which function should be called. But keeping our ‘Initialize()’ function
-inside a namespace forces us to specify the namespace as we call the function.
-We have already encountered a namespace earlier in this lecture series, when
-we decided to write the handy
+unclear which function should be called. But keeping our Initialize()
+function inside a namespace forces us to specify the namespace as we call the
+function. We have already encountered a namespace earlier in this lecture
+series, when we decided to write the handy
 using namespace std;
 
-84
+this allowed us to call the functions inside the namespace named std without
+83
 
-this allowed us to call the functions inside the namespace named ‘std’ without
-first writing ‘std::’. We can write ‘using namespace Core’ at the top of our
-main.cpp and remove the Core:: prefix from all function calls if we want.
+first writing std:: . We can write using namespace Core at the top of
+our main.cpp and remove the Core:: prefix from all function calls if we want.
 NOTE: and in this project we don’t have any other functions with these same
 names, so removing the namespace entirely would not cause compile errors.
 Each function will have the following job:
-Initialization() -> Set up the necessary stuff Update() -> perform changes to
-the game using deltatime and keyboard inputs Draw() -> With the changes
-from Update, render the relevant stuff to the screen OnQuit() -> clean up
-before the application quits
+Initialization()
+
+-> Set up the necessary stuff
+
+Update()
+
+-> perform changes to the game using deltatime and keyboard
+
+Draw()
+
+-> With the changes from Update, render the relevant stuff t
+
+OnQuit()
+
+-> clean up before the application quits
+
 Lets look at our game.cpp to find how each of these functions are implemented:
+
+84
+
+// game.cpp
 #include "game.h"
 #include "SDL3/SDL_keyboard.h"
 #include "SDL3/SDL_render.h"
@@ -2568,9 +2521,7 @@ yPos = 100;
 box.h = 50;
 box.w = 50;
 box.x = xPos;
-85
-
-box.y = yPos;
+box.y = yPos;
 }
 void Core::Update(float dt){
 auto keys = SDL_GetKeyboardState(NULL);
@@ -2589,84 +2540,95 @@ yPos += SPEED * dt;
 box.x = xPos;
 box.y = yPos;
 }
-86
-
-void Core::Draw(SDL_Renderer* renderer){
+void Core::Draw(SDL_Renderer* renderer){
 SDL_SetRenderDrawColor(renderer, 0, 70, 0, 255);
 SDL_RenderClear(renderer);
 SDL_SetRenderDrawColor(renderer, 150, 0, 30, 255);
 SDL_RenderFillRect(renderer,&box);
-SDL_RenderPresent(renderer);
 }
+
+SDL_RenderPresent(renderer);
+
 void Core::OnQuit(SDL_Renderer* renderer){
 SDL_DestroyRenderer(renderer);
 }
 
-At the top of game.cpp we write our list of variables that will be used. two for
-the position of our box, one for the actual box itself. and one is a ‘constexpr’
-variable called ‘SPEED’. Adding constexpr to a variable means that its value
+85
+
+At the top of game.cpp we write our list of variables that will be used. two for
+the position of our box, one for the actual box itself. and one is a constexpr
+variable called SPEED . Adding constexpr to a variable means that its value
 can’t change when the program is running. Meaning that nothing or no one
 could accidentaly write code that changes this value. The only place where
-the value of a ‘constexpr’ can be set is at the same line it is being created.
-Our ‘Initialize()’ function takes all of our variables (except SPEED) and
+the value of a constexpr can be set is at the same line it is being created.
+Our Initialize() function takes all of our variables (except SPEED) and
 gives them an initial value. It also sets the internal values of x and y of the
 SDL_FRect to match our xPos and yPos variables as well as its width and
-height ‘w’ and ‘h’.
-an SDL_FRect is a ‘struct’ holding the following data: float x; - horizontal
-87
-
-position float y; - vertical position float w; - width float h; - height
-a ‘struct’ is just a collection of variables that we want to bundle together. An
-apple struct could have the following variables
+height w and h .
+an SDL_FRect is a `struct` holding the following data:
+float x; - horizontal position
+float y; - vertical position
+float w; - width
+float h; - height
+a struct is just a collection of variables that we want to bundle together.
+An apple struct could have the following variables
 int prince
 float weight
 string speciesName
 bool isRotten
+
 Using structs is how we pass more complex data around without sending each
 variable one after the other
 SDL can, using the info inside a SDL_FRect and the renderer, display a
-rectangle on the screen using a function called ‘SDL_RenderFillRect()’ inside
-our ‘Draw()’.
-Just like how we can create a new function or a new variable we can also
+rectangle on the screen using a function called SDL_RenderFillRect() inside
+our Draw() .
+
+86
+
+Just like how we can create a new function or a new variable we can also
 create structs ourselves. The syntax is very simple
 struct the_structs_name{
 int a_number,
 float a_decimal_number,
 bool a_true_or_false_thing
 };
-That’s it, now we can pass and store multiple variables together. This will be
+
+That‘s it, now we can pass and store multiple variables together. This will be
 used later to define things like bullets, enemies, players and more!
 for example:
 struct Bullet {
 int damage,
-88
-
-bool fired,
+bool fired,
 float travel_speed,
 float size
 };
+
 When we work with a struct, we can access its different internal variables by
-just using a ‘.’
+just using a .
 Bullet a_bullet;
 a_bullet.damage = 5;
 a_bullet.fired = false;
 a_bullet.travel_speed = 100;
 // and so on
+
 and if a function expects a Bullet struct we can pass it like so:
 void FireBullet(bullet* a_bullet){
 }
+
 But as we’re passing our bullet struct as a pointer instead of by value we do
 have to learn a bit more unintuitive C++ syntax. To access the values saved
-inside a pointer we can’t use ‘.’ we need to use ‘->’. Like this:
-void FireBullet(Bullet* a_bullet){
+inside a pointer we can’t use . we need to use -> . Like this:
+
+87
+
+void FireBullet(Bullet* a_bullet){
 a_bullet->fired = true;
 }
-So we use: ‘.’ when accessing the values on the actual variable ‘->’ when
-accessing the values the pointer is pointing to ‘::’ when accessing functions
-from a namespace
-89
 
-Lets look at our Update() function
+So we use: . when accessing the values on the actual variable -> when
+accessing the values the pointer is pointing to :: when accessing functions
+from a namespace
+Lets look at our Update() function
 void Core::Update(float dt){
 const bool* keys = SDL_GetKeyboardState(NULL);
 if(keys[SDL_SCANCODE_RIGHT]){
@@ -2684,41 +2646,74 @@ yPos += SPEED * dt;
 box.x = xPos;
 box.y = yPos;
 }
-The first line holds a lot of new info for us: ‘const bool* keys’ is similar to
-‘bool* keys’ which is a pointer to a place in memory where we store a bool.
-90
 
-Adding const to it make it so that the value of the bool stored in memory at
+The first line holds a lot of new info for us: const bool* keys is similar to
+bool* keys which is a pointer to a place in memory where we store a bool.
+Adding const to it make it so that the value of the bool stored in memory at
 the address the pointer points to can’t be changed - SDL does this because
 we are not supposed to change the status of the keyboard in code, we just
 read what it is.
-But there is one more wrinkle. as SDL is written in C and not C++ we
+
+88
+
+But there is one more wrinkle. as SDL is written in C and not C++ we
 have some unintuitive syntax here. bool* keys (note the plural) is actually a
 pointer to the first bool out of many stored in sequence in memory. So if we
-had a micro-keyboard with only ‘A’ ‘B’ ‘C’ ‘D’ ‘E’. Then if we held the ‘B’
-key down our memory would look like this:
-TrueOrFalse: [0][1][0][0][0] Key A B C D E Index 0 1 2 3 4
-our bool* points to the first memory address (‘A’) then we can check the
-value of a specific memory address using ‘[]’ and an index
-keys[0] (this is the true or false for ‘A’) keys[1] (this is the true or false for
-‘B’) keys[4] (this is the true or false for ‘E’)
+had a micro-keyboard with only A B C D E . Then if we held the B key
+down our memory would look like this:
+TrueOrFalse:
+
+[0][1][0][0][0]
+
+Key
+
+A
+
+B
+
+C
+
+D
+
+E
+
+Index
+
+0
+
+1
+
+2
+
+3
+
+4
+
+our bool* points to the first memory address ( A ) then we can check the value
+of a specific memory address using [] and an index
+keys[0] (this is the true or false for `A`)
+keys[1] (this is the true or false for `B`)
+keys[4] (this is the true or false for `E`)
 The first memory address is at index 0, not index 1. C++ and C# begins
 indexing at 0. Other languages like LUA for example start at 1.
-But it would be really hard to remember the index of lets say the letter ‘U’.
+But it would be really hard to remember the index of lets say the letter U .
 Thankfully SDL has an enum that helps us write in plain english and have
 the compiler substitute that for a number
-keys[SDL_SCANCODE_B] (https://wiki.libsdl.org/SDL3/SDL_Scancode)
-turns out the index for ‘B’ was 5 and that is exactly what the number to
+keys[SDL_SCANCODE_B]
+
+Scancodes
+turns out the index for B was 5 and that is exactly what the number to
 SDL_SCANCODE_B was given.
 So each tick SDL checks the status of all the keys on our keyboard then sets
 their value in memory to true or false, then we can check their status by
-91
+89
 
 pointing to the first place in memory then shifting by the specific index to
 find the value of the key we are looking for.
 if(keys[SDL_SCANCODE_RIGHT]){
 xPos += SPEED * dt;
 }
+
 here we check if the right arrow key is held down, and if it is we add to the
 xPos variable equal to our SPEED variable scaled by deltatime. This ensures
 that a fast and a slow computer will have the same speed applied to xPos
@@ -2726,44 +2721,47 @@ over time.
 We do the same for the other arrow keys. The only quirk is that the top
 left corner of our window is at position 0,0. So when we increase the value
 of yPos we actually move downwards. So we need to remember that when
-selecting to add ‘+=’ or to remove ‘-=’
+selecting to add += or to remove -=
 once we have changed the value of xPos and/or yPos we update the .x and .y
 value of our SDL_FRect “box”
-The ‘draw()’ function passes the render pointer to a bunch of SDL functions
-found in the ‘SDL_render.h’
+The draw() function passes the render pointer to a bunch of SDL functions
+found in the SDL_render.h
 void Core::Draw(SDL_Renderer* renderer){
 SDL_SetRenderDrawColor(renderer, 0, 70, 0, 255);
 SDL_RenderClear(renderer);
 SDL_SetRenderDrawColor(renderer, 150, 0, 30, 255);
 SDL_RenderFillRect(renderer, &box);
-SDL_RenderPresent(renderer);
-92
+}
 
-}
-‘SDL_SetRenderDrawColor’ sets the color through RGB (and ‘alpha’ for
+SDL_RenderPresent(renderer);
+
+SDL_SetRenderDrawColor sets the color through RGB (and alpha for
 transparency of the renderer) each of these are represented as a value between
 0 and 255.
-‘SDL_RenderClear’ clears whatever was previously drawn to the screen and
+
+90
+
+SDL_RenderClear clears whatever was previously drawn to the screen and
 fills it with the color we set for the renderer previously
-‘SDL_RenderFillRect’ passes our SDL_FRect as a pointer, it then takes the
+SDL_RenderFillRect passes our SDL_FRect as a pointer, it then takes the
 values of the struct and uses those to draw a rectangle on the screen. We’ve
-changed the ‘RenderDrawColor’ so the rectangle shows up as a different color
+changed the RenderDrawColor so the rectangle shows up as a different color
 than the background
-‘SDL_RenderPresent’ is what actually puts every pixel on the window. First
+SDL_RenderPresent is what actually puts every pixel on the window. First
 all pixels are prepared, then all of them are drawn at once using this function.
-From the documentation (https://wiki.libsdl.org/SDL3/SDL_RenderPresent): “SDL’s rendering functions operate on a backbuffer; that is, calling a
-rendering function such as SDL_RenderLine() does not directly put a line on
-the screen, but rather updates the backbuffer. As such, you compose your
-entire scene and present the composed backbuffer to the screen as a complete
-picture.
-Therefore, when using SDL’s rendering API, one does all drawing intended
+Documentation: “SDL‘s rendering functions operate on a backbuffer; that
+is, calling a rendering function such as SDL_RenderLine() does not directly
+put a line on the screen, but rather updates the backbuffer. As such, you
+compose your entire scene and present the composed backbuffer to the screen
+as a complete picture.
+Therefore, when using SDL‘s rendering API, one does all drawing intended
 for the frame, and then calls this function once per frame to present the final
 drawing to the user.”
 So our basic draw loop is 1) RenderClear 2) Draw everything 3) RenderPresent
 There we go, we have created our first core loop, with input handling, updating
 game logic and finally drawing things to the screen!
 
-93
+91
 
 9
 
@@ -2775,9 +2773,9 @@ in upcoming lectures we will focus on 3 things:
 1) Learning how to write gameplay code
 2) Learning more about performance
 3) Learning more about C++
-This lecture will teach us how to expand our ‘Cmakelists.txt’ to generate not
-only our ‘.exe’ but also a ‘.dll’ that will be responsible for holding most of our
-game, making our .exe just a very small entry point.
+This lecture will teach us how to expand our Cmakelists.txt to generate
+not only our .exe but also a .dll that will be responsible for holding most
+of our game, making our .exe just a very small entry point.
 Why do we want to do this? Because we want to enable something called
 hot-reloading.
 (https://zylinski.se/posts/hot-reload-gameplay-code/) “Hot reloading gameplay code means that you swap out the code that controls the behavior of
@@ -2792,7 +2790,7 @@ Here’s the breakdown of how we will achieve this:
 1) change our cmakelists.txt to compile our project differently, creating
 the .exe and our new .dll
 
-94
+92
 
 2) set up what is called a memory arena to hold all the memory we are
 allowing our game to use
@@ -2812,7 +2810,7 @@ the .DLL
 4) We use comments to help distinguish the different parts of our cmakelists.txt
 Here it is in full
 
-95
+93
 
 cmake_minimum_required(VERSION 3.25)
 project(Heartburner LANGUAGES CXX)
@@ -2846,7 +2844,7 @@ ${DLL_FILES}
 set(DLL_NAME ${PROJECT_NAME}_game)
 This lets us define a new variable called DLL_NAME and make it the same as
 ↪
-'PROJECT_NAME' but with '_game' appended to the end of it. Now we can use this name
+`PROJECT_NAME` but with `_game` appended to the end of it. Now we can use this name
 ↪
 in all places where we want to specify that we're talking about the .DLL and not the
 ↪
@@ -2858,10 +2856,10 @@ ${CMAKE_SOURCE_DIR}/src/arena.cpp
 )
 
 Here we store all .cpp files we want to have included with our .EXE in a
-single array that we’ve named ‘EXE_EXCLUSIVE’ should we need more
-96
+single array that we’ve named EXE_EXCLUSIVE should we need more files to
+94
 
-files to be compiled into our .EXE we will have to manually modify this list.
+be compiled into our .EXE we will have to manually modify this list.
 NOTE: Another method is to take all the .cpp files we want to have and store
 them in a separate subdirectory then point our functions towards that folder.
 But this time we’ll do the manual work.
@@ -2883,16 +2881,16 @@ add_library(${DLL_NAME} SHARED ${DLL_EXCLUSIVE})
 target_include_directories(${DLL_NAME} PRIVATE include)
 target_link_libraries(${DLL_NAME} PRIVATE ${LIB_FILES})
 
-the ‘add_executable’ and ‘add_library’ functions are the only part that is
-different between these. They specify if we should compile the following files
-into a .exe or a .dll. We specify the name of the file using our handy variables
-‘PROJECT_NAME’ and ‘DLL_NAME’ then the EXE_EXCLUSIVE and
+the add_executable and add_library functions are the only part that
+is different between these. They specify if we should compile the following
+files into a .exe or a .dll. We specify the name of the file using our handy
+variables PROJECT_NAME and DLL_NAME then the EXE_EXCLUSIVE and
 DLL_EXCLUSIVE file lists are added respectively.
-NOTE: ‘dll’ stands for dynamically linked library
-NOTE: our ‘add_library’ creates both a .dll and a .lib file as both are needed
+NOTE: dll stands for dynamically linked library
+NOTE: our add_library creates both a .dll and a .lib file as both are needed
 for us to work with our .dll
 
-97
+95
 
 # Copy DLLs
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -2902,8 +2900,9 @@ ${DLL_FILES}
 )
 
 unchanged from before, this function takes all the .dll files we located in our
-‘lib’ folder and copies them over to our build folder.
+lib folder and copies them over to our build folder.
 Inside our powershell $profile we’ve added a new function
+// $profile
 function reload {
 param([Parameter(Mandatory=$true)][string]$project)
 $config = GetConfig $project
@@ -2917,20 +2916,20 @@ $projectName = $projectLine.Line.Split("=")[1]
 cmake --build $BuildDir --target "${projectName}_game"
 
 1) It uses our GetConfig function to fetch the path to our build folder
-2) Inside the build folder, it looks for a file called ‘CMakeCache.txt’ this
-is automatically added by cmake when it is being configured inside
-our ‘build’ function ‘cmake –preset $preset_name’ NOTE: this reload
+2) Inside the build folder, it looks for a file called CMakeCache.txt this
+is automatically added by cmake when it is being configured inside our
+build function cmake --preset $preset_name NOTE: this reload
 function relies on us having built our project beforehand.
 3) We read the contents of our Cache looking for the line of text that
-includes the ‘CMAKE_PROJECT_NAME:STATIC’ text. Because on
-that line, just afterwards is a ‘=’ followed by the name of our project
-set by our cmakelists.txt We then store the name of our game in the
-$projectName variable by splitting the line we found at the position of
-the first (and only) ‘=’ then takes the second text. NOTE: arrays start
-a 0, so index ‘1’ is actually the second entry
-98
+includes the CMAKE_PROJECT_NAME:STATIC text. Because on that line,
+just afterwards is a = followed by the name of our project set by our
+cmakelists.txt We then store the name of our game in the $projectName
+variable by splitting the line we found at the position of the first (and
+only) = then takes the second text. NOTE: arrays start a 0, so index
+96
 
-4) We then tell cmake to build the project again, but only the target named
+1 is actually the second entry
+4) We then tell cmake to build the project again, but only the target named
 “NameOfOurProject_game”. So if our game is called “Asteroids” in our
 cmakelists.txt then $projectName will be “Asteroids_game” this is the
 name of our .dll, ensuring that that is the only thing being compiled.
@@ -2941,14 +2940,16 @@ projects.json.
 Now we’ve configured our CmakeLists.txt and added a powershell function to
 help us later. The next step is to begin learning about memory management
 and how to set up a memory arena as well as learning more about pointers.
-We’ll be returning to our ‘practice’ ‘example.cpp’ that we added a long time
+we’ll be returning to our practice example.cpp that we added a long time
 ago to try small projects. This is a single file script that shows how we can
 work with what is called a memory arena and we’ll look at how we can think
 about memory and pointers pointing to memory.
 
-99
+97
 
-#include <iostream>
+// practice project
+// part 1
+#include <iostream>
 #include <windows.h>
 using namespace std;
 struct MemoryArena {
@@ -2958,7 +2959,7 @@ size_t used;
 };
 void* Arena_Add(MemoryArena* arena, size_t size){
 if(arena->used + size > arena->size){
-return nullptr; // Safety so we can't go beyond our arena size
+return nullptr; // Safety so we can`t go beyond our arena size
 }
 
 }
@@ -2983,6 +2984,11 @@ int damage;
 bool is_alive;
 char* name;
 };
+
+98
+
+// practice project
+// part 2
 struct Game_Data {
 Character* characters;
 int character_count;
@@ -2993,25 +2999,37 @@ MemoryArena arena;
 int main(){
 size_t memory_size = (1024 * 1024 * 4); // 4mb
 void* blob_of_memory = malloc(memory_size);
-
-100
-
 if(blob_of_memory == nullptr){
 return 1;
 }
 Arena_Initialize(&arena, blob_of_memory, memory_size);
 gameData = (Game_Data*)Arena_Add(&arena, sizeof(Game_Data));
+gameData->character_count = 10;
+gameData->score = 0;
+void* characters_start_point = Arena_Add(&arena, sizeof(Character) *
+↪
+gameData->character_count);
+gameData->characters = (Character*)characters_start_point;
+gameData->characters[3].health = 32;
+cout << gameData->characters[3].health << endl;
+Sleep(2000);
+}
 
-In this program we:
+return 0;
+
+In this program we:
 1) create a few structs
 • MemoryArena
 • GameData
 • Character
-Then we use these structs to hold variables, and our GameData struct holds
-Character structs itself. But notice how the variable name is ‘characters’ in
+
+99
+
+Then we use these structs to hold variables, and our GameData struct holds
+Character structs itself. But notice how the variable name is characters in
 plural, but we only store a single pointer this should mean that we are only
 storing a single character. We are actually storing a collection of characters
-inside memory by pointing to the first character only. We’ll get back to how
+inside memory by pointing to the first character only. we’ll get back to how
 that is set up once we have a better understanding of the program in its
 entirety.
 2) we create our MemoryArena struct
@@ -3021,20 +3039,20 @@ This struct holds very little in terms of stuff, but is very powerful. Our three
 variables are * unsigned char* base; This a pointer to the first address in
 memory of our arena. We need to use an unsigned char* instead of a void* as
 this allows us to add a number to our base to move further down our block
-of memory. If we had our pointer as a void* it would need to be ‘cast’ all the
-time before we attempt to do arithemtic (+, -, x, etc). NOTE: we will learn
-about casting a bit later in this lecture
-• size_t size; ‘size_t’ is a type of variable, like an int, that holds a whole
+of memory. If we had our pointer as a void* it would need to be cast all
+the time before we attempt to do arithemtic (+, -, x, etc). NOTE: we will
+learn about casting a bit later in this lecture
+• size_t size; size_t is a type of variable, like an int, that holds a whole
 number, but size_t is larger than an int and especially made to help
 us store how big something is. size_t is also unsigned, meaning that
-101
-
-compared to a int it can’t store a negative number.
+compared to a int it can‘t store a negative number.
 This variable is meant to tell us how large our memory block is, whilst
 the unsigned char* pointer above just tells us where it starts.
 • size_t used; We update this variable each time we specify what the next
-piece of memory is used for. So we know we aren’t overwriting other
-parts of our memory when adding new things to it. Also, by resetting
+piece of memory is used for. So we know we aren‘t overwriting other
+100
+
+parts of our memory when adding new things to it. Also, by resetting
 this to 0 we actually delete all memory in the arena all at once. We do
 this in the Arena_Reset() function
 3) We’ve created three functions
@@ -3042,29 +3060,30 @@ this in the Arena_Reset() function
 memory as used.
 • Arena_Initialize() This function sets up the memory arena by setting
 up the values of our struct.
-• Arena_Reset() This function sets the size of our ‘size_t used’ variable
+• Arena_Reset() This function sets the size of our size_t used variable
 to 0, meaning that to the memory arena no part of memory is tagged
 and should something new be added into memory then it will write it
 at the start of the memory block.
 But before we can use this memory arena we need to find a place in memory
 where we can store our continous chunk. In other applications where we
-create and free memory ‘willy-nilly’ our memory lives all over our ‘heap’ in
-this program we will store all our memory in one location and once we’re
+create and free memory willy-nilly our memory lives all over our heap
+in this program we will store all our memory in one location and once we’re
 done with it we will free it all at once. The upside to this is
 1) we know that our program will not crash due to insufficient memory, if
 it starts up then we know we managed to allocate enough memory.
 2) our memory lives in tidy blocks on our heap, making accessing them
-102
-
-faster as the CPU doesn’t have to go back to RAM as often to fetch a
+faster as the CPU doesn‘t have to go back to RAM as often to fetch a
 chunk of memory. This is perhaps the biggest performance win between
 our data-oriented approach and the object-oriented approach found in
 game engines like Unity.
-size_t memory_size = (1024 * 1024 * 4); // 4mb
+
+101
+
+size_t memory_size = (1024 * 1024 * 4); // 4mb
 void* blob_of_memory = malloc(memory_size);
 
 this code, that runs as the very first thing we do in our programs entry point
-finds a chunk of unused data that is 4mb large and sets it aside for us. It’s
+finds a chunk of unused data that is 4mb large and sets it aside for us. It‘s
 just filled with junk data right now - but it is ours and no other program or
 background operation will use it.
 Later, This blob of memory will be owned by our .EXE and passed to our
@@ -3072,10 +3091,10 @@ Later, This blob of memory will be owned by our .EXE and passed to our
 the memory is owned my our .EXE, if we ever recompile the .DLL nothing
 will happen to our data, allowing our changed functions to immediatly start
 using the same memory without us needing to restart our game.
-the ’void*’ variable is a pointer to the first bit in memory at the start of our
-memory chunk. Used alongside our ‘memory_size’ we know the start of our
+the void* variable is a pointer to the first bit in memory at the start of our
+memory chunk. Used alongside our memory_size we know the start of our
 memory chunk and how large it is.
-the ‘malloc’ function sets aside a specified size in memory then returns a
+the malloc function sets aside a specified size in memory then returns a
 pointer to the first bit. 1kb (kilobyte) is 1024 bytes, a mb is 1024 of those.
 Then multiplying that by 4 we get our total of 4mb. A small footprint for
 our program, but in this example we’re using almost none of it at all.
@@ -3084,18 +3103,18 @@ cout << "failed to allocate memory" << endl;
 return 1;
 }
 
-This if-statement checks if our pointer returned from malloc actually suc103
+This if-statement checks if our pointer returned from malloc actually succesfully managed to find a place in memory to point to. If not we enter the
+scope of the if-statement and our main() returns with an error code of 1 after
+printing an error. from the Microsoft C++ documentation: “malloc returns
+a void pointer to the allocated space, or NULL if there’s insufficient memory
+102
 
-cesfully managed to find a place in memory to point to. If not we enter
-the scope of the if-statement and our main() returns with an error code of
-1 after printing an error. from the Microsoft C++ documentation: “malloc
-returns a void pointer to the allocated space, or NULL if there’s insufficient
-memory available”. NULL is from C, a langauge that C++ builds off of. The
-modern C++ style wants us to use ‘nullptr’ instead. It is safer as NULL is
-just another way of saying 0, whilst nullptr is not a number but the result
-of a non-viable operation. Meaning that if we accidentally had a NULL in
-our code and we tried to use it in arithemtic we would be allowed to. But
-a nullptr will throw an error, which is better, because we want to stop such
+available”. NULL is from C, a langauge that C++ builds off of. The modern
+C++ style wants us to use nullptr instead. It is safer as NULL is just
+another way of saying 0, whilst nullptr is not a number but the result of a
+non-viable operation. Meaning that if we accidentally had a NULL in our
+code and we tried to use it in arithemtic we would be allowed to. But a
+nullptr will throw an error, which is better, because we want to stop such
 udefined behaviour.
 Arena_Initialize(&arena, blob_of_memory, memory_size);
 
@@ -3103,33 +3122,34 @@ here we take our blob_of_memory, AKA the pointer to the first byte in the
 memory chunk, along with the size of the memory chunk and the arena and
 pass all of these to our Arena_Intialize() function. It is then responsible
 for setting up the MemoryArena by assigning these values to the relevant
-variables (‘base’ and ‘size’) as well as setting ‘used’ to 0, meaning that nothing
-has been declared inside this chunk.
+variables ( base and size ) as well as setting used to 0, meaning that
+nothing has been declared inside this chunk.
 Note: this has just set some initial state for our arena, it is yet to have
 anything actually useful inside of it
 gameData = (Game_Data*)Add_To_Arena(&arena, sizeof(Game_Data));
 gameData->character_count = 10;
 gameData->score = 0;
 
-Here we must take a moment to learn about ‘casting’ casting is the process of
-telling our compiler that we want to take data that is one of type, and treat
-it as if it were another type. Not all types can be ‘cast’ to each other, but
-the void* returned from our ‘Add_To_Arena’ function can be cast into any
-104
+Here we must take a moment to learn about casting casting is the process
+of telling our compiler that we want to take data that is one of type, and
+treat it as if it were another type. Not all types can be cast to each other,
+but the void* returned from our Add_To_Arena function can be cast into
+any other pointer. Just as for example a float value can be cast into an int,
+but of course in the process it gets stripped of its decimal value
 
-other pointer. Just as for example a float value can be ‘cast’ into an int, but
-of course in the process it gets stripped of its decimal value
-float decimalValue = 2.5;
+103
+
+float decimalValue = 2.5;
 int cast_to_int = (int)decimalValue;
 printf(decimalValue) // this prints 2.5
-printf(cast_to_int) // this prints '2'
+printf(cast_to_int) // this prints `2`
 
 So what we’re doing is allocating inside the arena enough memory to store
 the Game_Data struct, meaning that our memory holds one pointer to a
 character, and two ints. We store this space in memory using our gameData
 pointer. Now part of our memory arena has been allocated, this increases our
-‘used’ variable by that amount. So any new data allocated to the arena will
-start from this adjusted position (‘base’ + ‘used’) instead of at just ‘base’.
+used variable by that amount. So any new data allocated to the arena will
+start from this adjusted position ( base + used ) instead of at just base .
 Now we need to allocate some memory for our collection of characters
 size_t character_memory_footprint = sizeof(Character) * gameData->character_count;
 void* characters_start_point = Add_To_Arena(&arena, character_memory_footprint);
@@ -3137,7 +3157,7 @@ gameData->characters = (Character*)characters_start_point;
 
 A single instance of our Character struct takes up a certain amount of
 memory. The sizeof() function calculates this for us. We have decided to have
-10 characters allocated into memory. This is stored in our ‘character_count’
+10 characters allocated into memory. This is stored in our character_count
 variable. We can therefore multiply the size of one Character by that amount
 to get the total amount of memory that 10 Characters will need. We then
 use our Add_To_Arena function to tag that amount of memory as being
@@ -3146,19 +3166,19 @@ first byte of our character memory chunk. Lastly we cast this void* into a
 character* so that the compiler knows what type of memory we have stored.
 Now inside our memory arena we have layed out the memory for 10 characters
 sequentially. And because we know the size of a Character and we know they
-are packed next to each other in memory we can use the array ‘[]’ symbols to
-105
-
-fetch one of the ten characters by specifying its position in the memory 0-9.
+are packed next to each other in memory we can use the array [] symbols to
+fetch one of the ten characters by specifying its position in the memory 0-9.
 NOTE: remember that arrays start at 0 instead of at 1. This means that
-element 9 is the 10’th and last element.
+104
+
+element 9 is the 10‘th and last element.
 gameData->characters[3].health = 32;
 cout << gameData->characters[3].health << endl;
 
-Here we find the memory adress of the 4’th character and set the value of
-the health variable stored at this point in memory to 32. Then just to make
-sure we’ve successfully set everything up we print the value stored at that
-point to our console using ‘cout « value « endl;’ So after we’ve assigned our
+Here we find the memory adress of the 4’th character and set the value of the
+health variable stored at this point in memory to 32. Then just to make sure
+we’ve successfully set everything up we print the value stored at that point
+to our console using cout << value << endl; So after we’ve assigned our
 gameData to our memory arena we can stop thinking about the arena and
 just work with the pointer as normal.
 Now that we know more about how a memory arena, casting and memory
@@ -3166,7 +3186,7 @@ layouts work we are ready to bring this into our SDL3 project to add new
 files and set up necessary boilerplate to allow us to work with our .EXE and
 .DLL solution
 
-106
+105
 
 10 DLLs Memory and Hot Reloading - Part
 II
@@ -3193,7 +3213,7 @@ game.h
 The process of breaking out parts of code into its own files is industry standard,
 as it allows clearer boundaries between files and makes reasoning about them
 simpler.
-107
+106
 
 As our .EXE has no access to game.cpp directly we need to specify where it
 can find each of its relevant functions:
@@ -3211,12 +3231,13 @@ way
 Once we have all the necessary boilerplate set up, we can actually ignore most
 of it, working instead as we normally would. So it’s a bit of up front costs for
 a lot of benefit later on.
-The arena.h and arena.cpp files are very similar to our practice example, but
-lifted into their own files
+The arena.h and arena.cpp files are very similar to our practice example,
+but lifted into their own files
 
-108
+107
 
-#pragma once
+// arena.h
+#pragma once
 namespace Memory {
 struct Arena {
 unsigned char* base;
@@ -3234,17 +3255,18 @@ it our .h file will be copied above all files that implement it, meaning that ou
 .DLL or .EXE bloats unecessarily. By adding ‘#pragma once’ our compiler
 knows to only add these once, which is enough.
 We have encapsuled our struct and function declarations in a namespace
-we’ve named ‘Memory’. This means that when we ‘#include “arena.h” ’ we
+we’ve named Memory . This means that when we #include "arena.h" we
 can only access the struct and functions by first specifying the namespace for
-example: ‘Memory::Initialize()’
-the struct ‘Arena’ holds the same three variables as our practice example and
+example: Memory::Initialize()
+the struct Arena holds the same three variables as our practice example and
 the three functions are the same as well. We first call Initialize to make sure
-our size variable is set, our ‘used’ is zeroed and our ‘base’ pointer ‘points’ at
-the first byte in memory.
+our size variable is set, our used is zeroed and our base pointer points
+at the first byte in memory.
 
-109
+108
 
-#include "arena.h"
+// arena.cpp
+#include "arena.h"
 #include <cstring>
 void Memory::Initialize(Arena* arena, void* mem_start, size_t size) {
 arena->base = (unsigned char*)mem_start;
@@ -3261,7 +3283,7 @@ void Memory::Reset(Arena *arena){
 arena->used = 0;
 }
 
-We include ‘arena.h’ at the top so we can create the functions declared in
+We include arena.h at the top so we can create the functions declared in
 the .h file. But to work with those functions we need to remember to specify
 their namespace, otherwise we aren’t connecting our functions to those inside
 the .h file, but instead creating new functions with the same names.
@@ -3277,12 +3299,12 @@ before we’ve set its values. This defensive pattern is called zero-allocation
 it makes all numbers 0 and all pointers become nullptr . Without this code
 we could find ourselves working with data that has been given random values.
 We add #include <cstring> as that is the header that holds memset()
-
-110
+109
 
 that’s it for our memory arena. Mostly it’s all the same stuff, just in its own
 two files and with our defensive pattern added.
 Lets look at our common.h
+// common.h
 #pragma once
 #define KILOBYTES(n) ((size_t)n * 1024)
 #define MEGABYTES(n) (KILOBYTES(n) * 1024)
@@ -3290,9 +3312,9 @@ Lets look at our common.h
 constexpr size_t GAME_MEMORY_ALLOWANCE = MEGABYTES(10);
 
 once again we have our ‘#pragma once’ at the top. what follows are three
-macros that simplify getting the correct ‘size_t’ for different sizes of memory.
-Making it easier to remember that ‘1024 * 1024 * 4’ means we’re working with
-4mb. Now we can write ‘MEGABYTES(4)’ and it is compiled into the same
+macros that simplify getting the correct size_t for different sizes of memory.
+Making it easier to remember that ‘1024 * 1024 * 4’ means we’re working
+with 4mb. Now we can write MEGABYTES(4) and it is compiled into the same
 thing. What define actually does is specify a preprocessor instruction that
 substitutes the text on the left in our project with that on the right. Meaning
 that for the compiler it was always the full text, but we, the programmers,
@@ -3301,16 +3323,18 @@ want to use the specific piece of code.
 Lastly we have set up a variable that can not change at runtime (because of
 the constexpr) this, whenever used, will be substituted by 10 megabytes. This
 part is not strictly necessary, but if we imagine our common.h to eventually
-hold a bunch of ‘settings’ for our project. Then keeping the memory budget
+hold a bunch of settings for our project. Then keeping the memory budget
 here starts to look more reasonable. we will be adding constexpr to values
 which have the 2 following conditions:
 1) the value is not meant to change
 2) we know the value at compile time
-We only use this header file in our main.cpp currently to simplify our ‘malloc’
-111
 
-(memory allocation)
+110
+
+We only use this header file in our main.cpp currently to simplify our malloc
+(memory allocation)
 and our minimal gameState.h
+// gamestate.h
 #pragma once
 #include "SDL3/SDL_rect.h"
 struct GameData {
@@ -3319,7 +3343,7 @@ float move_speed;
 };
 
 and just to hammer it home, we have ‘#pragma once’ at the very top of our
-.h file. Then we include ‘SDL3/SDL_rect’ so we can use the ‘SDL_FRect’
+.h file. Then we include ‘SDL3/SDL_rect’ so we can use the SDL_FRect
 struct.
 Inside our GameData struct we currently just specify two variables, our
 rectangle and how fast we are going to want it to move. Note how we don’t
@@ -3329,6 +3353,10 @@ Ok, we’ve looked at four out of seven files, but those were the short and simp
 ones. game.cpp and game.h have some new logic but 90% of our boilerplate
 code lives inside our main.cpp.
 lets tackle game.h and game.cpp next
+
+111
+
+// game.h
 #pragma once
 #include "SDL3/SDL_render.h"
 #include "gameState.h"
@@ -3340,15 +3368,14 @@ __declspec(dllexport) void Update(GameData* data, float dt);
 __declspec(dllexport) void OnQuit(SDL_Renderer* renderer);
 }
 
-112
-
-Note the #pragma once .
+Note the #pragma once .
 
 If we look past the very strange looking
 
 extern "C" and the __declspec(dllexport) prefix attached to each
 function declaration then this .h file looks very standard. Here it is just for
 posterity
+// just an example without __declspec
 #pragma once
 #include "SDL3/SDL_render.h"
 #include "gameState.h"
@@ -3369,7 +3396,9 @@ the name will be changed in a linking process called name-mangling.
 __declspec(dllexport) has that very strange syntax as it is not part of
 normal C++ but an addition my Microsoft to flag the function as relevant to
 the compiler, in this case making sure the function is made available to other
-programs that are interested in calling it. The syntax is very strange, but
+112
+
+programs that are interested in calling it. The syntax is very strange, but
 fortunately we will basically only use it in this specific case. Meaning that as
 long as we can remember that the header file required some strange additions
 then we can search for those again later if we forget the exact syntax - that’s
@@ -3377,9 +3406,8 @@ very common.
 
 113
 
-114
-
-#include "game.h"
+// game.cpp
+#include "game.h"
 extern "C" {
 void Initialize(GameData* data){
 data->rect.x = 100;
@@ -3430,7 +3458,7 @@ void OnQuit(SDL_Renderer* renderer){
 SDL_DestroyRenderer(renderer);
 }
 
-115
+114
 
 our game.cpp is similar to last time. The changes are we work directly on
 the SDL_FRect struct instead of our own xPos and yPos variables that
@@ -3441,6 +3469,7 @@ names be name-mangled and no longer have the same name as each other
 to the linker. If the names were to differ to the linker then we would not be
 able to call them by #include the header.
 lets look at the Update() function again:
+// game.cpp
 void Update(GameData* data,float dt){
 const bool* keys = SDL_GetKeyboardState(NULL);
 if(keys[SDL_SCANCODE_RIGHT]){
@@ -3465,8 +3494,7 @@ are layed out sequentially. The const keyword means that the variables we
 find at the memory being pointed to can not be changed by us accidentally
 in code. It has become read-only meaning that we can read the value but
 not write to it.
-
-116
+115
 
 Then we can use the array syntax [] along with an enum to handle the
 pointer offset to fetch the memory address of the specific keyboard key we are
@@ -3478,6 +3506,7 @@ NOTE: we would need to store the result of the keys from the previous tick
 if we want to know if a key has been released or just pressed down this tick.
 But that is for a later lecture
 Enough stalling, lets start digging into our new main.cpp
+// main.cpp
 #include <windows.h>
 #include <fileapi.h>
 #include <cstdio>
@@ -3497,19 +3526,23 @@ sticking to best practices when it comes to ordering our .h files.
 (that are passed by using <> )
 2) After those we include all headers we have not written ourselves. In
 this case the SDL3 headers.
-3) After that we add our custom made headers
-117
 
-SDL_Window* window;
+116
+
+3) After that we add our custom made headers
+// main.cpp
+SDL_Window* window;
 SDL_Renderer* renderer;
 
 We will be passing the pointer to the renderer to our DLL, we also need to
 have an SDL_Window to assign the renderer to.
-Uint64 NOW;
-Uint64 PREV;
+// main.cpp
+Uint64 NOW = 0;
+Uint64 PREV = 0;
 
 Unsigned integers to store the time between ticks so we can calculate our
 deltatime
+// main.cpp
 constexpr const char* NAME_OF_DLL = "Heartburner_game.dll";
 constexpr const char* NAME_OF_TEMP_DLL = "Heartburner_temp.dll";
 
@@ -3525,16 +3558,16 @@ A const char* means that the characters stored at the memory address
 are not allowed to change. In other words, the text itself is read-only.
 However, without additional qualifiers, the pointer itself could still be reassigned to point somewhere else. That means the variable could later be made
 to reference a different string.
-The constexpr keyword makes the variable a compile-time constant .
+117
+
+The constexpr keyword makes the variable a compile-time constant .
 This implies that the pointer itself cannot change after initialization, and the
 compiler knows its value during compilation.
-118
-
-now if we try and write
+now if we try and write
 NAME_OF_DLL = "a_new_name";
 
 we get this error
-Cannot assign to variable 'NAME_OF_DLL' with const-qualified type 'const char *const'
+Cannot assign to variable `NAME_OF_DLL` with const-qualified type 'const char *const'
 
 If we never make any mistakes when coding, then all of these qualifiers are
 unecessary. But we are adding these to
@@ -3542,6 +3575,7 @@ unecessary. But we are adding these to
 2) Write hireable C++
 3) learn about const and constexpr
 4) help other programmers know the intention of our program
+// main.cpp
 typedef void (*Function_Initialize) (GameData* data);
 typedef bool (*Function_HandleEvents) (GameData* data, SDL_Event event);
 typedef void (*Function_Update) (GameData* data, float dt);
@@ -3577,16 +3611,16 @@ function and call it later. These five function pointers have the same exact
 return type and parameters as the functions inside game.h .
 typedef allows us to take the structure of our specific functions, meaning
 their return type and parameters and allows us to store them with a more
-easily typed name, like Function_Initialize
+118
+
+easily typed name, like Function_Initialize
 Without our typedef we would need to write
-
-119
-
-void (*initFunc)(GameData* data) = MyInitFunction;
+void (*initFunc)(GameData* data) = MyInitFunction;
 
 with our top-level typedef we can just use the name we’ve provided as a
 substitute for all the behind-the-scenes stuff.
 Function_Initialize initFunc = MyInitFunction
+// main.cpp
 constexpr const char* NAME_OF_FUNC_INIT = "Initialize";
 constexpr const char* NAME_OF_FUNC_HANDLE_EVENT = "HandleEvents";
 constexpr const char* NAME_OF_FUNC_UPDATE = "Update";
@@ -3600,6 +3634,7 @@ type-o anywhere. If we never wrote any type-o’s and always remembered
 exactly the names of functions then we would not need these variables. But
 since we rarely remember things as well as we imagine we do, then we use
 these types of safeguards.
+// main.cpp
 struct DLL_INFO{
 HMODULE dll;
 FILETIME timestamp;
@@ -3613,12 +3648,12 @@ Function_OnQuit quit;
 We create a struct that holds all the data we will need to work with our .DLL.
 the HMODULE is, behind the scenes, a pointer to either a .DLL or a .EXE.
 Now by having access to it in memory we can tell it to do thing, like calling
-functions.
+119
+
+functions.
 FILETIME is a data type “Containing a 64-bit value representing the number
 of 100-nanosecond intervals since January 1, 1601 (UTC).” This might seem
-120
-
-like insane precision for us, but we use it because there are handy windows
+like insane precision for us, but we use it because there are handy windows
 functions that we can use to compare two FILETIME variables and we can also
 easily get the time a file was changed in the form of a FILETIME removing
 the need to convert it from another data type. Our timestamp will be used
@@ -3627,6 +3662,7 @@ and if it has been we re-link our dll and start sending the games data to it
 instead.
 Then we have our function pointers that we will be pointing to the
 functions inside the .DLL can calling from our .EXE
+// main.cpp
 FILETIME GetTimestamp(){
 WIN32_FIND_DATA data;
 HANDLE handle = FindFirstFile(NAME_OF_DLL, &data);
@@ -3644,17 +3680,21 @@ required to pass it by pointer using the address-of operator &
 meaning that we pass not the value but instead the place in memory. once
 the FindFirstFile() function has filled the data struct with information
 we can get the FILETIME .
-FindFirstFile allocates some memory when called. This is stored in a
+120
+
+FindFirstFile allocates some memory when called. This is stored in a
 HANDLE variable, this is done no matter what by our operating system when
 it is asked to look for a file like this. This little chunk of memory needs to be
 told that it is no longer necessary to keep around by using the FindClose()
-121
-
-function. If we don’t free the memory from our HANDLE we will eventually
+function. If we don’t free the memory from our HANDLE we will eventually
 run out of memory as every possible address in our memory is filled with an
 old no longer relevant HANDLE. Freeing memory is a core part of working
 with C++, but our memory arena lets us do most of that in one place rather
 than putting allocations and freeing calls all over our codebase.
+
+121
+
+// main.cpp
 bool LoadDLL(DLL_INFO* info, int depth = 0){
 printf("loading dll");
 if(depth > 20){
@@ -3693,13 +3733,13 @@ This function has the job of finding our compiled .DLL, create a copy of it
 called NAME_OF_TEMP_DLL then store that .DLL in our provided DLL_INFO
 struct. We then take the function pointers in our DLL_INFO struct and
 point them to the functions we tagged as __declspec(dllexport) in our
-122
-
-game.h .
+game.h .
 The first thing, when reading the function that might seem strange is that the
 function does something bizarre that we haven’t ecountered before. In case
 the CopyFile function fails and the success bool is set to false, then we
-wait for 50 miliseconds then we return the result of calling the function again,
+122
+
+wait for 50 miliseconds then we return the result of calling the function again,
 but incrementing the depth parameter by 1 as it is being passed to the
 re-run of the function. This is called a recursive function call meaning
 that the function has called itself. When trying to copy a .DLL there can, if
@@ -3721,13 +3761,13 @@ the top again, trying once more to copy the .DLL. If this once again
 is unsuccessful it will call another instance of the function and return
 whatever result that function gave back in its own return . Hopefully
 now the value being returned is the return true at the end of the
-123
-
-function meaning that we succesfully allocated our DLL_INFO . Each
+function meaning that we succesfully allocated our DLL_INFO . Each
 time a function calls itself we pass along depth but first we add 1 to it.
 Meaning that if ten of these functions call one another still trying to get
 a successful copy, then depth will have a value of 10 . If it ever reaches
-20 the function returns false without calling itself again. This will
+123
+
+20 the function returns false without calling itself again. This will
 stop the recursive loop. This means that the function will keep calling
 itself unless one of two things happen.
 3) the .DLL succesfully gets copied and its values stored in our DLL_INFO
@@ -3739,6 +3779,7 @@ and vise-versa. And recursive functions are powerful but can be a bit hard to
 conceptualize at first. I tend to find it helpful to think about each function
 digging deeper then once we reach one of the two stop conditions we crawl
 back out of the stack.
+// main.cpp
 void UnloadDLL(DLL_INFO* info){
 FreeLibrary(info->dll);
 info->dll = nullptr;
@@ -3751,12 +3792,13 @@ HMODULE pointer and null s it. Meaning that the pointer no longer points
 at anything at all. It’s important to note that just because we’ve freed
 the memory associated with our HMODULE then that doesn’t mean that the
 memory is gone, we’ve just told our computer that it is allowed to overwrite
+it, until it does we could theoretically still use it. Then lastly we take the
+temporary copy of our .DLL created in the LoadDLL function and deletes
+the file.
 
 124
 
-it, until it does we could theoretically still use it. Then lastly we take the
-temporary copy of our .DLL created in the LoadDLL function and deletes
-the file.
+// main.cpp
 void* AllocateGameMemory(){
 void* blob = malloc(GAME_MEMORY_ALLOWANCE);
 if(blob == nullptr){
@@ -3773,6 +3815,7 @@ This function uses malloc to tag a block of memory, it then returns a pointer
 to the first byte of that memory so it can be referenced by our memory arena .
 If malloc was unsucessful then it returns nullptr and if it does we have
 reached a fatal error and we will be terminating our program.
+// main.cpp
 void SDL_Setup(){
 SDL_Init(SDL_INIT_EVENTS);
 window = SDL_CreateWindow("pilot", 650, 400, 0);
@@ -3784,6 +3827,7 @@ some code we used to have one after the other in our main() function. We’ve
 just collected them in reasonable functions to make the main() function
 shorter and more descriptive. We could take the content of these functions
 and add them back into our main() as we had in an earlier lecture.
+// main.cpp
 void CalculateDeltaTime(float& dt){
 NOW = SDL_GetTicksNS();
 dt = NOW - PREV;
@@ -3791,15 +3835,16 @@ dt = SDL_NS_TO_SECONDS(dt);
 PREV = NOW;
 }
 
+this function does the exact same thing, taking a pointer to a float and
+setting it to the calcualated deltatime . Here we’ve used the float& rather
 125
 
-this function does the exact same thing, taking a pointer to a float and
-setting it to the calcualated deltatime . Here we’ve used the float& rather
-than float* this is what we called passing by reference rather than
+than float* this is what we called passing by reference rather than
 passing by pointer it is just syntactic sugar that lets us work with the
 value found at the memory address without the -> and dereferencing it. If
 this looks confusing then rewriting the function to accept a pointer instead of
 a reference is as simple as this:
+// main.cpp
 void CalculateDeltaTime(float* dt){
 NOW = SDL_GetTicksNS();
 *dt = NOW - PREV;
@@ -3808,6 +3853,7 @@ PREV = NOW;
 }
 
 Just a bit more to keep straight but as you can see it is very similar.
+// main.cpp
 void DLL_CheckStatus(DLL_INFO* dll){
 FILETIME timestamp = GetTimestamp();
 bool is_timestamp_changed = CompareFileTime(&dll->timestamp, &timestamp) != 0;
@@ -3824,7 +3870,8 @@ using LoadDLL() .
 
 126
 
-int main() {
+// main.cpp
+int main() {
 void* game_memory = AllocateGameMemory();
 if(game_memory == nullptr){
 return 1;
@@ -3865,9 +3912,9 @@ return 0;
 
 Here we do the same steps as in our previous lecture, but our initialize()
 update() and draw() functions are all called from our DLL_INFO struct
-using the function pointers we set in LoadDLL() we also run the func127
+127
 
-tions SDL_Setup and AllocateGameMemory to do initial setups that were
+using the function pointers we set in LoadDLL() we also run the functions SDL_Setup and AllocateGameMemory to do initial setups that were
 previously written as-is in our main() . Whenever we call a function we
 could imagine taking all the code inside that function and just copy-pasting
 it into the call site. As a summary, this is what our main() does
@@ -3917,6 +3964,9 @@ is
 
 running,
 
+SDL_SetRenderDrawColor()
+128
+
 change
 
 the
@@ -3927,11 +3977,8 @@ of
 
 our
 
-SDL_SetRenderDrawColor()
-4) compile our .DLL using reload name_of_project prompting clang
-128
-
-to just rebuild the .DLL
+4) compile our .DLL using reload name_of_project prompting clang
+to just rebuild the .DLL
 5) back in our still running program we can see that the changes we made
 to our game.cpp is directly visible in the game, without us having to
 close the game and running it again.
