@@ -8366,7 +8366,7 @@ now, after this pretty intense chapter we are rewarded with some actually decent
 
 # Sokoban Programming V
 
-### 31.1 Control deltatime
+### Control deltatime
 
 We're going to continue working on the core of our game as we introduce some sprite animations, gameplay logic and refactoring to support our changes.
 First, lets add a feature to allow us to speed up and slow down the entire game.
@@ -8433,7 +8433,7 @@ void DEV::Draw(GameData* data, SDL_Renderer* renderer) {
 
 With that we can change our game's speed with a simple slider
 
-### 31.2 Select an active entity
+### Select an active entity
 
 Currently all of our entities that respond to inputs are allowed to move at the same time during a key press. This is good for some type of game, but not the one we're making. We want to press X to swap which entity is the one we're moving.
 We're going to make use of our `arena_scratch` to set up a pointer-pointer array holding all relevant targets. We'll be recreating this array each frame rather than storing it alongside `entityBuffer` we're doing this so that we never run the risk of having the two arrays drift out of sync by us forgetting to update one when we update the other.
