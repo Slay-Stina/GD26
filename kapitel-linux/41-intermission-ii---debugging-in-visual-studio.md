@@ -4,8 +4,8 @@ We want to be able to understand the flow of our code, and peek at variables to 
 
 > [!NOTE]
 > On Linux, we don't use Visual Studio. Instead, we can use:
-> - **GDB** (GNU Debugger) — a command-line debugger, usable with your editor (e.g. nvim with `vim-dap` or `gdb` integration)
-> - **LLDB** — the LLVM debugger, works great with Clang
+> - **GDB** (GNU Debugger) -- a command-line debugger, usable with Helix (with `vim-dap` or `gdb` integration)
+> - **LLDB** -- the LLVM debugger, works great with Clang
 > - **VS Code** with the C++ extension as a lightweight debugger GUI
 > - **Qt Creator** or **CLion** as full IDEs with debugging support
 >

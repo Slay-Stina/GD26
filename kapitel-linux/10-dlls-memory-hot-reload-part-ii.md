@@ -8,13 +8,13 @@ In our previous example we had everything in one placeholder practice example.cp
 
 At the end of this lecture we will have the following files in our src folder:
 
-- `arena.cpp` — holds the implementation of functions from arena.h
-- `arena.h` — holds the declaration of functions for our memory arena as well as the arena struct
-- `common.h` — A helper .h file containing some helpful macros to figure out memory sizes in kb, mb and gb
-- `game.cpp` — Acts as the "entry point" for the shared library and performs our Input, Update, Draw routines
-- `game.h` — Holds the definitions for the functions used in game.cpp and has them tagged in such a way that we can find them from our main executable
-- `gameState.h` — a .h file containing the struct with all variables used inside the game
-- `main.cpp` — our executable entry point, initializes everything, sets up memory and the game loop. Calls into our shared library through functions found in game.h
+- `arena.cpp` -- holds the implementation of functions from arena.h
+- `arena.h` -- holds the declaration of functions for our memory arena as well as the arena struct
+- `common.h` -- A helper .h file containing some helpful macros to figure out memory sizes in kb, mb and gb
+- `game.cpp` -- Acts as the "entry point" for the shared library and performs our Input, Update, Draw routines
+- `game.h` -- Holds the definitions for the functions used in game.cpp and has them tagged in such a way that we can find them from our main executable
+- `gameState.h` -- a .h file containing the struct with all variables used inside the game
+- `main.cpp` -- our executable entry point, initializes everything, sets up memory and the game loop. Calls into our shared library through functions found in game.h
 
 The process of breaking out parts of code into its own files is industry standard, as it allows clearer boundaries between files and makes reasoning about them simpler.
 
@@ -52,9 +52,9 @@ namespace Memory {
 }
 ```
 
-At the top of this .h file we write `#pragma once` — we will be doing this for ALL .h files we ever write. This is a not-so-nice feature of C++ where without it our .h file will be copied above all files that implement it, meaning that our executable or shared library bloats unnecessarily. By adding `#pragma once` our compiler knows to only add these once, which is enough.
+At the top of this .h file we write `#pragma once` -- we will be doing this for ALL .h files we ever write. This is a not-so-nice feature of C++ where without it our .h file will be copied above all files that implement it, meaning that our executable or shared library bloats unnecessarily. By adding `#pragma once` our compiler knows to only add these once, which is enough.
 
-We have encapsulated our struct and function declarations in a namespace we've named `Memory`. This means that when we `#include "arena.h"` we can only access the struct and functions by first specifying the namespace — for example: `Memory::Initialize()`
+We have encapsulated our struct and function declarations in a namespace we've named `Memory`. This means that when we `#include "arena.h"` we can only access the struct and functions by first specifying the namespace -- for example: `Memory::Initialize()`
 
 The struct `Arena` holds the same three variables as our practice example and the three functions are the same as well. We first call `Initialize` to make sure our `size` variable is set, our `used` is zeroed and our `base` pointer points at the first byte in memory.
 

@@ -54,7 +54,7 @@ We then call `.write` and `.read` and because `.write` expects to get a `const c
 
 We need to call `file.close()` at the end of each function as the filestreams we've created have allocated memory on our computer and needs to be freed so other memory can be allowed to overwrite it.
 
-With these functions set up we just have to call them when we press the keyboard. Inside our `while(running)` we expand our `while(SDL_PollEvent(&event))` to include two if-statements — one for pressing F9 and one for pressing F10:
+With these functions set up we just have to call them when we press the keyboard. Inside our `while(running)` we expand our `while(SDL_PollEvent(&event))` to include two if-statements -- one for pressing F9 and one for pressing F10:
 
 ```cpp
 while(SDL_PollEvent(&event)){
@@ -73,7 +73,7 @@ if(event.type == SDL_EVENT_KEY_DOWN){
 }
 ```
 
-We first check if the event was a `SDL_EVENT_KEY_DOWN` to not try and get the keystroke info from another event entirely. Then we check `event.key.key` — the first `key` in `event.key` is a struct `SDL_KeyboardEvent`, the second `key` in `event.key.key` is a variable inside `SDL_KeyboardEvent` that is of the type `SDL_Keycode` also unfortunately named `key`. We compare the keycode to the specified `SDLK` enum and if we get a match we call the specified function.
+We first check if the event was a `SDL_EVENT_KEY_DOWN` to not try and get the keystroke info from another event entirely. Then we check `event.key.key` -- the first `key` in `event.key` is a struct `SDL_KeyboardEvent`, the second `key` in `event.key.key` is a variable inside `SDL_KeyboardEvent` that is of the type `SDL_Keycode` also unfortunately named `key`. We compare the keycode to the specified `SDLK` enum and if we get a match we call the specified function.
 
 And with that we're actually done. We have everything needed to save and load our gamestate. Now we can go into our game, make any changes we want, save the gamestate with F9 then whenever we press F10 we are instantly back at that exact point again.
 

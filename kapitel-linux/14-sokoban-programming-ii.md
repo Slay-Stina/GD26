@@ -23,11 +23,11 @@ enum class ID : uint8_t {
 };
 ```
 
-We're working with a new concept here — `enum` — and right from the start we're using two different versions: `enum` and `enum class`. An `enum` is a named number. Looking at `ID` we can see that each of our tiles have been designated a number.
+We're working with a new concept here -- `enum` -- and right from the start we're using two different versions: `enum` and `enum class`. An `enum` is a named number. Looking at `ID` we can see that each of our tiles have been designated a number.
 
 By adding the `class` attribute we make it so we can only access our enums by first specifying the class like so: `ID::GROUND`. This is very similar to a namespace.
 
-We also have a new operator `<<` used for our `Behaviour` — it's known as one of many **bitwise operators**. A `uint32_t` holds 32 bits to create its number as opposed to a `uint8_t` that holds 8 bits.
+We also have a new operator `<<` used for our `Behaviour` -- it's known as one of many **bitwise operators**. A `uint32_t` holds 32 bits to create its number as opposed to a `uint8_t` that holds 8 bits.
 
 Each time we add 1 we flip the rightmost bit to 1. If it was already 1 we flip it back to 0 then flip the bit to the left of it to 1. This means that each bit to the left of the previous is tasked with holding a number twice as large.
 
@@ -44,7 +44,7 @@ enum Behaviour : uint32_t {
 };
 ```
 
-Keep in mind that we did not "miss" 3 — we are not allowed to use that number as it could be created by combining 1 and 2 together.
+Keep in mind that we did not "miss" 3 -- we are not allowed to use that number as it could be created by combining 1 and 2 together.
 
 Inside our `struct Entity {}` we've added a new variable as well as changing our `uint8_t id` to `ID id`:
 

@@ -69,13 +69,13 @@ int main() {
 }
 ```
 
-> **Linux:** We use `#include <SDL3/SDL.h>` which includes everything SDL3 provides — no need for separate includes like `"SDL3/SDL_init.h"`, `"SDL3/SDL_events.h"`, or `"SDL3/SDL_timer.h"`.
+> **Linux:** We use `#include <SDL3/SDL.h>` which includes everything SDL3 provides -- no need for separate includes like `"SDL3/SDL_init.h"`, `"SDL3/SDL_events.h"`, or `"SDL3/SDL_timer.h"`.
 
 A lot of new stuff happening:
 
-1. We `#include` a new .h file — the `game.h` we wrote ourselves. We've also written a `game.cpp` file that has the actual implementations of each function outlined in `game.h`.
-2. We store pointer variables to both a **window** and a **renderer**. The renderer is tasked with taking textures and bitmap images and placing them into our window — this is how we will color our window and render a rectangle inside of it. This logic is found inside the `Draw()` function we've written inside `game.cpp` and declared inside `game.h`. It is because we `#include game.h` that we can find and call this function. Note that we pass our renderer pointer to the `Draw()` function.
-3. We have 2 new variables `NOW` and `PREV`. These are used to track how much time elapsed between the current and previous frame. We check this by subtracting one from the other. The `Uint64` is like an `int` but can only hold positive values. It is also 64 bits in memory compared to the (usually) 32 bits of an `int`, meaning that it can store larger numbers. The `U` stands for **"unsigned"** — this means it only holds positive numbers. Note how we pass deltatime (aka `dt`) to our `Update` function.
+1. We `#include` a new .h file -- the `game.h` we wrote ourselves. We've also written a `game.cpp` file that has the actual implementations of each function outlined in `game.h`.
+2. We store pointer variables to both a **window** and a **renderer**. The renderer is tasked with taking textures and bitmap images and placing them into our window -- this is how we will color our window and render a rectangle inside of it. This logic is found inside the `Draw()` function we've written inside `game.cpp` and declared inside `game.h`. It is because we `#include game.h` that we can find and call this function. Note that we pass our renderer pointer to the `Draw()` function.
+3. We have 2 new variables `NOW` and `PREV`. These are used to track how much time elapsed between the current and previous frame. We check this by subtracting one from the other. The `Uint64` is like an `int` but can only hold positive values. It is also 64 bits in memory compared to the (usually) 32 bits of an `int`, meaning that it can store larger numbers. The `U` stands for **"unsigned"** -- this means it only holds positive numbers. Note how we pass deltatime (aka `dt`) to our `Update` function.
 4. We use SDL functions `SDL_GetTicksNS()` and `SDL_NS_TO_SECONDS()` to work with a central part of all game logic: `dt` standing for **deltatime**. Deltatime is used to scale values in relation to how quickly the computer can finish processing a tick. The more ticks, the higher the framerate and the smaller our deltatime is. Delta time is the time between the current and the last tick. Meaning that if it took a long time between ticks, then any equation that is multiplied by deltatime will be larger than if the time between ticks was very small. The result of this is that no matter how strong or how slow our computers are, our bullets will still fly at the same speed. Without deltatime, a gun on a fast computer would shoot faster bullets.
 5. We call `Initialize`, `Update` and `Draw` from a namespace we've named `Core`.
 
@@ -93,7 +93,7 @@ namespace Core{
 
 This .h file outlines the functions that we will be writing the bodies for inside our `game.cpp`. It tells us what parameters will be passed in and what type of function they are. `void` means that the function doesn't return any value. Because we know we will need to pass a pointer to the renderer in two of these functions we have to `#include <SDL3/SDL.h>` inside our .h file. This means that all files that include `game.h` also include `SDL3/SDL.h`.
 
-All functions are collected in a **namespace** — a namespace acts as a container for code, allowing multiple scripts to have the same name for functions. Imagine if we include 2 .h files, each with their own `Initialize()` function. Without a namespace we would get an error during compilation telling us that it is unclear which function should be called. But keeping our `Initialize()` function inside a namespace forces us to specify the namespace as we call the function. We have already encountered a namespace earlier in this lecture series, when we decided to write the handy `using namespace std;` — this allowed us to call the functions inside the namespace named `std` without first writing `std::`.
+All functions are collected in a **namespace** -- a namespace acts as a container for code, allowing multiple scripts to have the same name for functions. Imagine if we include 2 .h files, each with their own `Initialize()` function. Without a namespace we would get an error during compilation telling us that it is unclear which function should be called. But keeping our `Initialize()` function inside a namespace forces us to specify the namespace as we call the function. We have already encountered a namespace earlier in this lecture series, when we decided to write the handy `using namespace std;` -- this allowed us to call the functions inside the namespace named `std` without first writing `std::`.
 
 We can write `using namespace Core;` at the top of our `main.cpp` and remove the `Core::` prefix from all function calls if we want.
 
@@ -102,10 +102,10 @@ We can write `using namespace Core;` at the top of our `main.cpp` and remove the
 
 Each function will have the following job:
 
-- **Initialize()** → Set up the necessary stuff
-- **Update()** → Perform changes to the game using deltatime and keyboard inputs
-- **Draw()** → With the changes from Update, render the relevant stuff to the screen
-- **OnQuit()** → Clean up before the application quits
+- **Initialize()** -> Set up the necessary stuff
+- **Update()** -> Perform changes to the game using deltatime and keyboard inputs
+- **Draw()** -> With the changes from Update, render the relevant stuff to the screen
+- **OnQuit()** -> Clean up before the application quits
 
 Let's look at our `game.cpp` to find how each of these functions are implemented:
 
@@ -160,10 +160,10 @@ Our `Initialize()` function takes all of our variables (except `SPEED`) and give
 
 An `SDL_FRect` is a **struct** holding the following data:
 
-- `float x;` — horizontal position
-- `float y;` — vertical position
-- `float w;` — width
-- `float h;` — height
+- `float x;` -- horizontal position
+- `float y;` -- vertical position
+- `float w;` -- width
+- `float h;` -- height
 
 A struct is just a collection of variables that we want to bundle together. An apple struct could have the following variables:
 
@@ -220,7 +220,7 @@ void FireBullet(Bullet* a_bullet){
 }
 ```
 
-But as we're passing our bullet struct as a pointer instead of by value we do have to learn a bit more unintuitive C++ syntax. To access the values saved inside a pointer we can't use `.` — we need to use `->`:
+But as we're passing our bullet struct as a pointer instead of by value we do have to learn a bit more unintuitive C++ syntax. To access the values saved inside a pointer we can't use `.` -- we need to use `->`:
 
 ```cpp
 void FireBullet(Bullet* a_bullet){
@@ -256,7 +256,7 @@ void Core::Update(float dt){
 }
 ```
 
-The first line holds a lot of new info for us: `const bool* keys` is similar to `bool* keys` which is a pointer to a place in memory where we store a bool. Adding `const` to it makes it so that the value of the bool stored in memory at the address the pointer points to can't be changed — SDL does this because we are not supposed to change the status of the keyboard in code, we just read what it is.
+The first line holds a lot of new info for us: `const bool* keys` is similar to `bool* keys` which is a pointer to a place in memory where we store a bool. Adding `const` to it makes it so that the value of the bool stored in memory at the address the pointer points to can't be changed -- SDL does this because we are not supposed to change the status of the keyboard in code, we just read what it is.
 
 But there is one more wrinkle. As SDL is written in C and not C++ we have some unintuitive syntax here. `bool* keys` (note the plural) is actually a pointer to the first bool out of many stored in sequence in memory. So if we had a micro-keyboard with only A B C D E, then if we held the B key down our memory would look like this:
 
@@ -280,7 +280,7 @@ But it would be really hard to remember the index of let's say the letter `U`. T
 keys[SDL_SCANCODE_B]
 ```
 
-Scancodes — it turns out the index for B was 5 and that is exactly what the number for `SDL_SCANCODE_B` was given.
+Scancodes -- it turns out the index for B was 5 and that is exactly what the number for `SDL_SCANCODE_B` was given.
 
 So each tick SDL checks the status of all the keys on our keyboard then sets their value in memory to `true` or `false`, then we can check their status by pointing to the first place in memory then shifting by the specific index to find the value of the key we are looking for.
 
@@ -308,7 +308,7 @@ void Core::Draw(SDL_Renderer* renderer){
 }
 ```
 
-- `SDL_SetRenderDrawColor` sets the color through RGB (and alpha for transparency of the renderer) — each of these are represented as a value between 0 and 255.
+- `SDL_SetRenderDrawColor` sets the color through RGB (and alpha for transparency of the renderer) -- each of these are represented as a value between 0 and 255.
 - `SDL_RenderClear` clears whatever was previously drawn to the screen and fills it with the color we set for the renderer previously.
 - `SDL_RenderFillRect` passes our `SDL_FRect` as a pointer, it then takes the values of the struct and uses those to draw a rectangle on the screen. We've changed the RenderDrawColor so the rectangle shows up as a different color than the background.
 - `SDL_RenderPresent` is what actually puts every pixel on the window. First all pixels are prepared, then all of them are drawn at once using this function.
@@ -321,4 +321,4 @@ So our basic draw loop is:
 2. Draw everything
 3. `RenderPresent`
 
-There we go — we have created our first **core loop**, with input handling, updating game logic and finally drawing things to the screen!
+There we go -- we have created our first **core loop**, with input handling, updating game logic and finally drawing things to the screen!

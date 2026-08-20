@@ -10,9 +10,9 @@
 - [Foreword - How to learn how to program](#foreword-how-to-learn-how-to-program)
 - [SDL3 - part I (Linux)](#sdl3-part-i-linux)
 - [Introduction to C/C++ - Part I (Linux)](#introduction-to-cc-part-i-linux)
-- [Introduction to Neovim - Part I (Linux)](#introduction-to-neovim-part-i-linux)
+- [Introduction to Helix - Part I (Linux)](#introduction-to-helix-part-i-linux)
 - [Introduction to SDL3 - Part II (Linux)](#introduction-to-sdl3-part-ii-linux)
-- [Introduction to Neovim - Part II (Linux)](#introduction-to-neovim-part-ii-linux)
+- [Introduction to Helix - Part II (Linux)](#introduction-to-helix-part-ii-linux)
 - [Core Loop - Part I (Linux)](#core-loop-part-i-linux)
 - [DLLs Memory and Hot Reloading - Part I](#dlls-memory-and-hot-reloading-part-i)
 - [DLLs Memory and Hot Reloading - Part II](#dlls-memory-and-hot-reloading-part-ii)
@@ -51,11 +51,12 @@
 
 ---
 
+
 # Acknowledgments
 
 I would like to thank colleagues and friends for input and support during the creation of this material.
 All content and intellectual property remain the sole work of the author.
-© 2026 Max Friberg. All rights reserved.
+(c) 2026 Max Friberg. All rights reserved.
 
 
 # Foreword - How to learn how to program
@@ -130,11 +131,11 @@ root/
 └── src/
 ```
 
-- **build/** — holds the compiled version of our game
-- **include/** — holds header files (.h)
-- **lib/** — holds any static libraries we might need
-- **assets/** — sound effects, PNGs, etc
-- **src/** — all script files (.cpp, .h) that we create ourselves
+- **build/** -- holds the compiled version of our game
+- **include/** -- holds header files (.h)
+- **lib/** -- holds any static libraries we might need
+- **assets/** -- sound effects, PNGs, etc
+- **src/** -- all script files (.cpp, .h) that we create ourselves
 
 ## Setting up SDL3
 
@@ -160,10 +161,10 @@ No manual downloading or copying of DLLs needed.
 
 ## Editor
 
-For this course, we will be writing our code in **your editor (e.g. nvim)** (Neovim). You can also use VS Code or any editor you prefer.
+For this course, we will be writing our code in **Helix**. You can also use VS Code or any editor you prefer.
 
 > [!NOTE]
-> your editor (e.g. nvim) is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
+> Helix is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
 
 ## bash and environment variables
 
@@ -176,7 +177,7 @@ We can create small functions that bash can call on. A function is a collection 
 Open it with:
 
 ```bash
-your-editor ~/.bashrc
+hx ~/.bashrc
 ```
 
 Add our functions at the bottom of the file.
@@ -235,7 +236,7 @@ dev() {
     cd "$path/src" || return 1
 
     export GAMEPROJECT="$project"
-    your-editor main.cpp
+    hx main.cpp
 }
 ```
 
@@ -244,7 +245,7 @@ This function:
 2. If the project doesn't exist in JSON, return with an error
 3. Changes directory to the project's `src/` folder
 4. Saves the project name to an environment variable
-5. Opens the main file in your editor
+5. Opens the main file in Helix
 
 ## JSON configuration
 
@@ -425,7 +426,7 @@ int main() {
 }
 ```
 
-> **Linux:** The book uses `#include <windows.h>` and `Sleep(2000)` — windows.h doesn't exist on Linux. SDL3 has `SDL_Delay()` which does the same thing.
+> **Linux:** The book uses `#include <windows.h>` and `Sleep(2000)` -- windows.h doesn't exist on Linux. SDL3 has `SDL_Delay()` which does the same thing.
 
 Build and run:
 
@@ -447,7 +448,7 @@ You have now learned:
 - How to set up a development environment
 - Environment variables
 - File and folder structure for game projects
-- How to work with text editors (your editor (e.g. nvim))
+- How to work with text editors (Helix)
 - The relationship between build systems (CMake, Ninja) and compilers (Clang++)
 - How to install and integrate external libraries (SDL3 via package manager + find_package)
 - How to create and use functions with parameters
@@ -462,7 +463,7 @@ You have now learned:
 
 > **Linux:** This chapter is adapted for Linux.
 
-Remember SDL3, CMake, and Ninja — we're going to ignore those for now as we will need to learn more about C++ before we can honestly start working with SDL3. Soon 95%+ percent of all code we'll write will be C++, only writing bash script or CMake syntax from time to time.
+Remember SDL3, CMake, and Ninja -- we're going to ignore those for now as we will need to learn more about C++ before we can honestly start working with SDL3. Soon 95%+ percent of all code we'll write will be C++, only writing bash script or CMake syntax from time to time.
 
 The next step is to create a new empty .cpp file, open it, write some code, then use clang to compile it. Once that is done we run it. The reason we can do this is that we're just compiling a single C++ script, no need for a build system generator (CMake), instructions (CMakeLists.txt) or a build system (Ninja) because we require no linking or multiple files that need to be compiled together.
 
@@ -479,11 +480,11 @@ practice() {
   cd "$projectDir/PRACTICE" || return 1
   local name="${1:-example}"
   touch "$name.cpp"
-  your-editor "$name.cpp"
+  hx "$name.cpp"
 }
 ```
 
-This function sets our working directory to a folder I've already created. The path will not be the same on your computer, it depends on where you decided to create your folder. I create a new file called `example.cpp`. I then run your editor (e.g. nvim) opening up that newly created file.
+This function sets our working directory to a folder I've already created. The path will not be the same on your computer, it depends on where you decided to create your folder. I create a new file called `example.cpp`. I then run Helix opening up that newly created file.
 
 Now we need a function to help us compile and run this small program:
 
@@ -523,11 +524,11 @@ else {
 
 With this in mind, let's break down the function: using our system environment variable `PATH` to the folder containing `clang++` we get to call into it without specifying ITS/FULL/PATH. What follows are a set of instructions to clang:
 
-- `example.cpp` — the name of the file we want to compile
-- `-std=c++23` — tells clang++ to use C++ version 23, this will help us make some simpler code later
-- `-o example` — specifies the name of the output file, namely `example`. Without `-o`, the program is given the default name `a.out`.
-- `&&` — run the next command only if the previous command succeeded (exit code 0)
-- `./"$name"` — look for a file in this directory called `example` and run it. On Linux, executables have no `.exe` extension.
+- `example.cpp` -- the name of the file we want to compile
+- `-std=c++23` -- tells clang++ to use C++ version 23, this will help us make some simpler code later
+- `-o example` -- specifies the name of the output file, namely `example`. Without `-o`, the program is given the default name `a.out`.
+- `&&` -- run the next command only if the previous command succeeded (exit code 0)
+- `./"$name"` -- look for a file in this directory called `example` and run it. On Linux, executables have no `.exe` extension.
 
 After saving our `~/.bashrc` file we need to reload it before these two newly created functions can be found. Running this simple line of code does the trick:
 
@@ -599,7 +600,7 @@ void AddNumbers(int a, int b){
 
 A return type of `void` means that the function doesn't return anything. And therefore a `return X` line is not added (as that would create an error). By introducing two integers (`int a` and `int b`) to the parenthesis of the function we have declared that anyone using this function must provide two integers separated by a `,`.
 
-There are many ways of printing something to the console. The `println` function can't work with an integer directly. Other methods like `cout` can. By adding `"{}"` as the first parameter to `println` it can take the second parameter (in our case the number 15) and replace the placeholder `"{}"` with it later. But don't worry, there was really no way for you to know this, and no way from reading the code for us to understand this syntax — some parts of how code is written we kinda just gotta learn.
+There are many ways of printing something to the console. The `println` function can't work with an integer directly. Other methods like `cout` can. By adding `"{}"` as the first parameter to `println` it can take the second parameter (in our case the number 15) and replace the placeholder `"{}"` with it later. But don't worry, there was really no way for you to know this, and no way from reading the code for us to understand this syntax -- some parts of how code is written we kinda just gotta learn.
 
 If we use the following program instead, including `<iostream>` instead of `<print>` and working with the older `cout` syntax, we can get the same result with a program that looks like this instead:
 
@@ -615,7 +616,7 @@ int main(){
 }
 ```
 
-But notice those strange `<<` — we will not be seeing them in any other setting than these practice functions. Thankfully SDL3 has a helpful function that works like `println` but can accept more types of data without needing the strange placeholder `"{}"`.
+But notice those strange `<<` -- we will not be seeing them in any other setting than these practice functions. Thankfully SDL3 has a helpful function that works like `println` but can accept more types of data without needing the strange placeholder `"{}"`.
 
 Let's learn about scope. The newly created integer variable `result` is only available inside the curly braces of the function. Once the code reaches the end of the last line, all locally scoped variables are cleaned up.
 
@@ -644,7 +645,7 @@ Now we can clearly see the difference between the function itself and calling th
 > [!NOTE]
 > With even simple Unity projects taking AGES to compile, I would like to stress the importance of a design decision as this one.
 
-Swapping the position of the `AddNumbers()` and `main()` functions, then compiling and running our program, it spits out 15 — the combined total of the two values we passed to the function (5 and 10) that are then printed to the console via the `println()` function. After that we hit the `return 0` and the program closes.
+Swapping the position of the `AddNumbers()` and `main()` functions, then compiling and running our program, it spits out 15 -- the combined total of the two values we passed to the function (5 and 10) that are then printed to the console via the `println()` function. After that we hit the `return 0` and the program closes.
 
 What we've created is sorta the world's slowest and worst calculator. But it has taught us a few things:
 
@@ -796,7 +797,7 @@ int main(){
 
 First we create two variables, both `int`s. Then we use a minus `-` and an assignment operator `=` to subtract the value of `enemyDamage` from `playerHealth` and store the result back in `playerHealth`. If we just typed `playerHealth - enemyDamage` without the assignment operator then the resulting value `4` would not be stored anywhere and no change would be assigned to `playerHealth`.
 
-We then create a `bool` variable. The statement after the assignment operator can only be either `true` or `false` — either `playerHealth` is above or equal to 0 or it isn't.
+We then create a `bool` variable. The statement after the assignment operator can only be either `true` or `false` -- either `playerHealth` is above or equal to 0 or it isn't.
 
 What follows is a common part of programming: an `if` statement followed by an `else` statement. The question being answered in the parenthesis of the `if`-statement is responsible for deciding if the code flow enters the scope of the `if` or the `else`.
 
@@ -859,38 +860,38 @@ In this lecture we've looked at:
 - Nesting and early returns
 
 
-# Introduction to Neovim - Part I (Linux)
+# Introduction to Helix - Part I (Linux)
 
 > **Linux:** This chapter is adapted for Linux.
 
-Your editor (e.g. nvim) (Neovim) is a code editor, and unlike a full IDE it is not also a debugger or has integrated build systems. Compared to an IDE, your editor (e.g. nvim) is:
+Helix is a code editor, and unlike a full IDE it is not also a debugger or has integrated build systems. Compared to an IDE, Helix is:
 
 - **Light-weight** (memory footprint)
 - **Fast** (starts almost instantly)
-- **Tailored for use with VIM-style motions and modes** — made to not use the mouse at all
+- **Tailored for use with VIM-style motions and modes** -- made to not use the mouse at all
 - **Terminal-based**
 
-When we dive into programming applications in SDL3 we will be using your editor (e.g. nvim) to edit our code.
+When we dive into programming applications in SDL3 we will be using Helix to edit our code.
 
 > [!NOTE]
 > Debugging is another lecture.
 
-If you have computer experience then you will quickly find that your editor (e.g. nvim) is unlike any other software you've used. Just writing in it, before knowing how it works will feel alien and strange. You may eventually decide to move away from your editor (e.g. nvim) and towards more mainstream and less opinionated editors. But for this course, you will be using the software that I use myself.
+If you have computer experience then you will quickly find that Helix is unlike any other software you've used. Just writing in it, before knowing how it works will feel alien and strange. You may eventually decide to move away from Helix and towards more mainstream and less opinionated editors. But for this course, you will be using the software that I use myself.
 
-Your editor (e.g. nvim) uses a way of typing that was first introduced with the vi text editor in 1976. It utilizes sequential keystrokes to change text by leveraging different editor modes:
+Helix uses a way of typing that was first introduced with the vi text editor in 1976. It utilizes sequential keystrokes to change text by leveraging different editor modes:
 
 1. **Normal Mode**
 2. **Insert Mode**
 3. **Visual Mode**
 4. **Command Mode**
 
-**Normal Mode** is used to move the caret around. The Caret is the point in your file where text will be added as you type. In Normal Mode the user can't add any text by typing. This is the part that is the most confusing to new users as pressing keys will move the caret around or enter other modes. Arrow keys work in your editor (e.g. nvim) by default. When working in your editor (e.g. nvim) we also get access to editor-specific commands by using the correct keystrokes in Normal Mode.
+**Normal Mode** is used to move the caret around. The Caret is the point in your file where text will be added as you type. In Normal Mode the user can't add any text by typing. This is the part that is the most confusing to new users as pressing keys will move the caret around or enter other modes. Arrow keys work in Helix by default. When working in Helix we also get access to editor-specific commands by using the correct keystrokes in Normal Mode.
 
-**Insert Mode** — the keys are used to type text like in any editor. Pressing Escape will return us out of Insert Mode and back into Normal Mode.
+**Insert Mode** -- the keys are used to type text like in any editor. Pressing Escape will return us out of Insert Mode and back into Normal Mode.
 
-**Visual Mode** — we can select multiple pieces of text to be copied, moved and otherwise manipulated.
+**Visual Mode** -- we can select multiple pieces of text to be copied, moved and otherwise manipulated.
 
-**Command Mode** — accessed by typing `:` in Normal Mode. Here we type commands like `:q` to quit, `:w` to save, `:e filename` to open a file.
+**Command Mode** -- accessed by typing `:` in Normal Mode. Here we type commands like `:q` to quit, `:w` to save, `:e filename` to open a file.
 
 We enter Insert Mode using `i` or `a` or `o` or `O` (note how upper and lowercase are distinct from each other). We exit Insert Mode, Visual Mode, and Command Mode going back to Normal Mode by pressing Escape.
 
@@ -905,16 +906,16 @@ setxkbmap -option caps:escape
 
 On Wayland compositors, this is usually configured in the compositor's config file. Search for "remap caps lock to escape" + your desktop environment to find the right method.
 
-Now we turn Caps ON and OFF using Escape and exit Insert Mode and Visual Mode using Caps Lock. This will, like many new things, feel strange at first. But this remapping is very common when using your editor (e.g. nvim) or other VIM-style software. And now we're using our computer as developers not hobbyists, and that should naturally come with changes to how we use our hardware.
+Now we turn Caps ON and OFF using Escape and exit Insert Mode and Visual Mode using Caps Lock. This will, like many new things, feel strange at first. But this remapping is very common when using Helix or other VIM-style software. And now we're using our computer as developers not hobbyists, and that should naturally come with changes to how we use our hardware.
 
 > [!NOTE]
-> I suggest unplugging your mouse when learning your editor (e.g. nvim) if you can't help but reach for it all the time.
+> I suggest unplugging your mouse when learning Helix if you can't help but reach for it all the time.
 
-Your editor (e.g. nvim) and VIM style systems are so notorious that there are even a slew of memes relating to the fact that people don't know how to exit them. ("how to quit vim" on Google will yield a number of results). So let's learn how to close down your editor (e.g. nvim). This is done from the **Command Mode**, which we access by typing `:`. Once we have done so, we can type a massive number of commands.
+Helix and VIM style systems are so notorious that there are even a slew of memes relating to the fact that people don't know how to exit them. ("how to quit vim" on Google will yield a number of results). So let's learn how to close down Helix. This is done from the **Command Mode**, which we access by typing `:`. Once we have done so, we can type a massive number of commands.
 
-Quitting your editor (e.g. nvim) from the command line is done by typing `q` and pressing Enter. You can also type `quit` or `wq` (write and quit) or `q!` (quit without saving).
+Quitting Helix from the command line is done by typing `q` and pressing Enter. You can also type `quit` or `wq` (write and quit) or `q!` (quit without saving).
 
-You deserve a treat. Reopen your editor (e.g. nvim) (if you closed it previously), write some sample code, just practice the `main()` function syntax. Once happy with a few lines, open the Command Mode and type `:colorscheme` followed by a space, then Tab to cycle through the different color themes. Once you have found one you like, remember its name because we will make sure that each time you open your cool light-weight ultra-fast editor you will be greeted by it.
+You deserve a treat. Reopen Helix (if you closed it previously), write some sample code, just practice the `main()` function syntax. Once happy with a few lines, open the Command Mode and type `:colorscheme` followed by a space, then Tab to cycle through the different color themes. Once you have found one you like, remember its name because we will make sure that each time you open your cool light-weight ultra-fast editor you will be greeted by it.
 
 Open the command line, type `:e $MYVIMRC` to open your config. Go into Insert Mode and type:
 
@@ -927,12 +928,12 @@ Then save with `:w` and quit with `:q`.
 > [!NOTE]
 > You can also type `:wq` to save and quit in one command, or `:wqa` to save all files and quit.
 
-We will be working with C++ files, and it would be very nice to catch errors before we try and compile. Luckily we can do just that. Once we compile, it's clang that finds and spits out any errors. But using what is known as a **language server** we can run background processes that look at and understand our code. This info is then given to your editor (e.g. nvim) so it can display red errors for us.
+We will be working with C++ files, and it would be very nice to catch errors before we try and compile. Luckily we can do just that. Once we compile, it's clang that finds and spits out any errors. But using what is known as a **language server** we can run background processes that look at and understand our code. This info is then given to Helix so it can display red errors for us.
 
 In bash we can run:
 
 ```bash
-your-editor --headless -c "LspInfo" -c "q"
+hx --headless -c "LspInfo" -c "q"
 ```
 
 But more directly, we can check if clangd is available:
@@ -957,11 +958,11 @@ sudo dnf install clang-tools-extra
 sudo pacman -S clang
 ```
 
-The `clang` package on Arch includes both `clang` and `clangd` — no manual path configuration needed.
+The `clang` package on Arch includes both `clang` and `clangd` -- no manual path configuration needed.
 
 Once we have clangd up and running, it runs in the background each time we open a `.h` or `.cpp` file. Then it lets us:
 
-- **A)** Get diagnostics inside your editor (e.g. nvim) (red underlines, error messages)
+- **A)** Get diagnostics inside Helix (red underlines, error messages)
 - **B)** Use `K` (in Normal Mode) to hover over a symbol and see documentation, and use the built-in LSP integration to see fixes
 
 > [!NOTE]
@@ -996,7 +997,7 @@ We will create the `.clangd` file (option 2).
 > [!NOTE]
 > `clangd` is used as a file extension here, and the lack of any text before the `.` tells us that the file has no name.
 
-In our root directory (`goto projectname`) we add the `.clangd` file using `touch .clangd`. We then open it inside your editor (e.g. nvim) with `your-editor .clangd`.
+In our root directory (`goto projectname`) we add the `.clangd` file using `touch .clangd`. We then open it inside Helix with `hx .clangd`.
 
 We will write our `.clangd` file using a different data format than JSON. The format is called **YAML** and has even less boilerplate than JSON, making it extremely human readable. But without braces to set the scope of a piece of data, YAML instead relies on **indentation** to sort data. An indentation is what pushes new lines of text to the right on your monitor.
 
@@ -1014,7 +1015,7 @@ Make sure that you adhere to the indentation, pushing `CompilationDatabase` one 
 
 We want to add the ability to completely empty our `build/` folder before compilation, just to ensure that everything we're doing is working as intended and not relying on a previous compilation step adding necessary things for us that are now no longer present.
 
-By adding a new parameter and new logic to our function `build` we can pass it as a parameter when calling `build projectname clean`. The type of parameter inside bash is called an **argument** — when it is not passed the check is skipped and when present it triggers the clean.
+By adding a new parameter and new logic to our function `build` we can pass it as a parameter when calling `build projectname clean`. The type of parameter inside bash is called an **argument** -- when it is not passed the check is skipped and when present it triggers the clean.
 
 > [!NOTE]
 > This true/false data type is what we call a `bool` (boolean) in C++.
@@ -1056,7 +1057,7 @@ build() {
 }
 ```
 
-We've added a few new things. Like in other functions we've made we've sorted the `sourceDir` and `buildDir` in two variables. We have also added the `clean` parameter check — if the second argument is `"clean"`, we delete the build directory.
+We've added a few new things. Like in other functions we've made we've sorted the `sourceDir` and `buildDir` in two variables. We have also added the `clean` parameter check -- if the second argument is `"clean"`, we delete the build directory.
 
 > [!NOTE]
 > In both bash syntax and C++ we can skip the `== true` in an if-statement, as it is implied unless specified otherwise.
@@ -1069,13 +1070,13 @@ We've added a few new things. Like in other functions we've made we've sorted th
 - **B)** Even hidden files and read-only files are removed without prompting (`-f` for force)
 
 > [!NOTE]
-> "Recurse" stands for **recursive** — a common programming method we will use in later course material.
+> "Recurse" stands for **recursive** -- a common programming method we will use in later course material.
 
 Knowing more about if-statements and scope we can better understand that with this function we only do the `rm -rf` calls if `clean` was set to true.
 
 We are using `[[ -d "$sourceDir" ]]` to ensure that a directory exists before we try and use it. And if `sourceDir` is not found we `return`, just like in SDL/C++. This way of adding checks and not just letting code run "willy-nilly" is standard practice.
 
-Now with our build function updated and our `CMakeLists.txt` instructing us to generate a `compile_commands.json`, we can get much more helpful info from clangd — we just need to compile our program once so the `compile_commands.json` is populated with the info we need.
+Now with our build function updated and our `CMakeLists.txt` instructing us to generate a `compile_commands.json`, we can get much more helpful info from clangd -- we just need to compile our program once so the `compile_commands.json` is populated with the info we need.
 
 Now we can begin programming in our `main.cpp` and adding a few SDL3 specific lines of code to spawn a window and fill it with a nice background color.
 
@@ -1090,7 +1091,7 @@ For a game this loop is broken down into 3 distinct steps: **Input**, **Update**
 Then the loop starts over again. The more times this loop can be finished in a second, the higher our FPS is.
 
 > [!NOTE]
-> This loop is present in all games and every game engine is built on it — even though Unity hides the Draw part of the loop from us.
+> This loop is present in all games and every game engine is built on it -- even though Unity hides the Draw part of the loop from us.
 
 The control flow statement is known as a **while** and its syntax looks like this:
 
@@ -1127,7 +1128,7 @@ int main() {
 }
 ```
 
-> **Linux:** We use `#include <SDL3/SDL.h>` instead of separate includes like `"SDL3/SDL_log.h"` — `SDL.h` includes everything from SDL3.
+> **Linux:** We use `#include <SDL3/SDL.h>` instead of separate includes like `"SDL3/SDL_log.h"` -- `SDL.h` includes everything from SDL3.
 
 Alright, so now our program doesn't quit automatically. Note how we've `#include` a new .h file. The reason the .h file is not added on its own but instead we've passed a path is because SDL3's system headers are in `/usr/include/SDL3/` so our `#include` points at a specific file by passing in its path.
 
@@ -1213,14 +1214,14 @@ The `&` before the variable name will pass the variable **by pointer** instead o
 
 Let's break it down:
 
-- `int number = 5;` — this is a newly created variable. It is stored in memory somewhere with the value 5.
-- `int* aNumber` — this is a pointer variable. It points not to a number, but the place in memory where we will store a number. To pass a point in memory to a function that expects a pointer we must pass the variable by pointer using `&`.
+- `int number = 5;` -- this is a newly created variable. It is stored in memory somewhere with the value 5.
+- `int* aNumber` -- this is a pointer variable. It points not to a number, but the place in memory where we will store a number. To pass a point in memory to a function that expects a pointer we must pass the variable by pointer using `&`.
 
 > [!NOTE]
 > Without passing our `number` variable as a pointer we are actually just performing operations on a new number that lives only within the scope of the `AddOne()` function. As soon as we leave that scope the number stops existing.
 
-- `&number` — we take `number`, and instead of passing it by value we get its place in memory and pass that along instead.
-- `*number += 1;` — this takes the reference to the memory address that the pointer was pointing to (where `number` lives) and dereferences it, grabbing the value stored in it so we can manipulate and change it.
+- `&number` -- we take `number`, and instead of passing it by value we get its place in memory and pass that along instead.
+- `*number += 1;` -- this takes the reference to the memory address that the pointer was pointing to (where `number` lives) and dereferences it, grabbing the value stored in it so we can manipulate and change it.
 
 There is another way of passing by reference that adds less new symbols, keeps things tidier and makes the compiler handle more of the heavy lifting for us:
 
@@ -1234,7 +1235,7 @@ void AddOne(int& theNumber){
 }
 ```
 
-Here we make it so the function is expecting an `int&`. This handles the pass-by-reference and dereferencing for us during compilation. Just by adding this single `&` the program knows that any value being passed to the function is really passed by reference, and any changes to the passed variable in the function will be made on the dereferenced value stored in that reference we passed along. It's more invisible and has both its advantages and disadvantages — it's less explicit because we hide the fact that `AddOne()` works by reference until we go to the function itself and spot the `int&`.
+Here we make it so the function is expecting an `int&`. This handles the pass-by-reference and dereferencing for us during compilation. Just by adding this single `&` the program knows that any value being passed to the function is really passed by reference, and any changes to the passed variable in the function will be made on the dereferenced value stored in that reference we passed along. It's more invisible and has both its advantages and disadvantages -- it's less explicit because we hide the fact that `AddOne()` works by reference until we go to the function itself and spot the `int&`.
 
 The three ways we can pass something in C++ to a function:
 
@@ -1277,7 +1278,7 @@ int AddOne(int theNumber){
 }
 ```
 
-With this setup the Log function will output a 6, as the updated value of 5 → 6 lives inside the scope of the `AddOne` function but the value is later returned and then using the `=` operator assigned back into the `number` variable inside `main()`.
+With this setup the Log function will output a 6, as the updated value of 5 -> 6 lives inside the scope of the `AddOne` function but the value is later returned and then using the `=` operator assigned back into the `number` variable inside `main()`.
 
 > [!NOTE]
 > A `=` operator always assigns the value on its right to whatever is on its left.
@@ -1359,9 +1360,9 @@ When working with flags, by having each enum element as its own power of 2 we ca
 
 Enums are a great way of storing similar attributes in a way that is very easy to work with and very easy to read.
 
-SDL3's `SDL_Init()` function accepts multiple flags if we want. To send in multiple flags at once as a parameter to the function we use something called a **bitwise operator**, specifically `|` — it is called a **bitwise OR**. The OR operator combines bits if at least one of them is a 1. Let's take a little detour and learn about bits.
+SDL3's `SDL_Init()` function accepts multiple flags if we want. To send in multiple flags at once as a parameter to the function we use something called a **bitwise operator**, specifically `|` -- it is called a **bitwise OR**. The OR operator combines bits if at least one of them is a 1. Let's take a little detour and learn about bits.
 
-When we are down in machine code, everything is represented as either a 0 or a 1. Our computer calls these **bits** — each bit can either be **on** or **off** (AKA 1 or 0). The `bool` variables we've created earlier can also either be `true` or `false` so in that sense they are similar, though a `bool` is stored in memory as a **byte** which is the same thing as **8 bits**. Our computer works on bytes rather than bits so even though all the necessary info about a bool just requires 1 bit we are still required to store all 8.
+When we are down in machine code, everything is represented as either a 0 or a 1. Our computer calls these **bits** -- each bit can either be **on** or **off** (AKA 1 or 0). The `bool` variables we've created earlier can also either be `true` or `false` so in that sense they are similar, though a `bool` is stored in memory as a **byte** which is the same thing as **8 bits**. Our computer works on bytes rather than bits so even though all the necessary info about a bool just requires 1 bit we are still required to store all 8.
 
 In the case of our WeaponBuffs we can take each enum and because we used a sequence of powers of 2 we get a very pleasing pattern of bits:
 
@@ -1431,7 +1432,7 @@ This function accepts 4 parameters. The first being the name of the window, then
 
 [SDL_CreateWindow documentation](https://wiki.libsdl.org/SDL3/SDL_CreateWindow)
 
-We should become comfortable with reading documentation, as this is really the only way of knowing how these kind of systems work. As we can see, the `SDL_WindowFlags` enum can accept either a `0` (for NONE) or one or more flags combined with a bitwise OR (`|`). We can also read that the function returns a `SDL_Window*` — this is then stored in the `SDL_Window* window` pointer variable we created at the top of our program.
+We should become comfortable with reading documentation, as this is really the only way of knowing how these kind of systems work. As we can see, the `SDL_WindowFlags` enum can accept either a `0` (for NONE) or one or more flags combined with a bitwise OR (`|`). We can also read that the function returns a `SDL_Window*` -- this is then stored in the `SDL_Window* window` pointer variable we created at the top of our program.
 
 We have another function besides our `main()`. It has the return type of `bool` and is tasked with checking each event that SDL creates and when it finds that we've pressed the Escape key it returns `false` instead of `true`. This flips `running` to `false` and the infinite repeating while loop is terminated and the program quits by returning 0.
 
@@ -1447,7 +1448,7 @@ Looking at our `HandleRunning()` function we can see a series of `if` and `if-el
 The value returned from the function is then stored into our `running` variable and if it was `false` it will stop the while-loop from continuing to run. Now we can actually quit our game by pressing Escape.
 
 > [!NOTE]
-> In the future we would of course not just close the program anytime someone accidentally presses Escape — but for now we'll use this brutish approach.
+> In the future we would of course not just close the program anytime someone accidentally presses Escape -- but for now we'll use this brutish approach.
 
 So now we do the following things inside our program:
 
@@ -1459,7 +1460,7 @@ So now we do the following things inside our program:
 With this we've laid the foundation for a core loop (**Input, Update, Draw, repeat**)!
 
 
-# Introduction to Neovim - Part II (Linux)
+# Introduction to Helix - Part II (Linux)
 
 > **Linux:** This chapter is adapted for Linux.
 
@@ -1468,72 +1469,72 @@ So far we've mostly been working in our `main.cpp` file. Though this is the most
 1. Work with .h files for function declarations
 2. Split our program up into multiple .cpp files
 
-Your editor (e.g. nvim) can help us create files and give us the ability to get an overview of our code by splitting our editor into multiple smaller **windows** (also called panes).
+Helix can help us create files and give us the ability to get an overview of our code by splitting our editor into multiple smaller **windows** (also called panes).
 
 To split our view into two panes that sit side by side we press the following (when in **Normal Mode**):
 
-- `:split` — split horizontally (top/bottom)
-- `:vsplit` — split vertically (left/right)
+- `:split` -- split horizontally (top/bottom)
+- `:vsplit` -- split vertically (left/right)
 
 Once we do this, the same file will be opened in both panes. If we modify one, the other will update instantly. Though useful when working with very long files, the far more common case is to have multiple different files open at once.
 
 We can check what folder newly created files will get created in by pressing:
 
-- `:pwd` — prints the current working directory
+- `:pwd` -- prints the current working directory
 
-If we have set things up correctly (via our `dev` function) then this will print the path to our `src` folder at the bottom of your editor.
+If we have set things up correctly (via our `dev` function) then this will print the path to our `src` folder at the bottom of Helix.
 
 We can switch between our active panes by pressing:
 
-- `Ctrl+w h` — move to the left pane
-- `Ctrl+w l` — move to the right pane
-- `Ctrl+w j` — move to the pane below
-- `Ctrl+w k` — move to the pane above
-- `Ctrl+w w` — cycle through panes
+- `Ctrl+w h` -- move to the left pane
+- `Ctrl+w l` -- move to the right pane
+- `Ctrl+w j` -- move to the pane below
+- `Ctrl+w k` -- move to the pane above
+- `Ctrl+w w` -- cycle through panes
 
 Once we are on a pane we can open a file:
 
-- `:e filename` — open a file (relative to current working directory)
-- `:tabnew filename` — open a file in a new tab
+- `:e filename` -- open a file (relative to current working directory)
+- `:tabnew filename` -- open a file in a new tab
 
-Your editor (e.g. nvim)'s tab-completion will help you find files. Type part of the filename and press Tab to cycle through matches.
+Helix's tab-completion will help you find files. Type part of the filename and press Tab to cycle through matches.
 
-If you attempt to open a file that doesn't exist, your editor (e.g. nvim) will create a new buffer with that name. It is not yet saved to disk.
+If you attempt to open a file that doesn't exist, Helix will create a new buffer with that name. It is not yet saved to disk.
 
 > [!NOTE]
-> When your editor (e.g. nvim) stores text before it has been written, it is being stored in something known as a **buffer**.
+> When Helix stores text before it has been written, it is being stored in something known as a **buffer**.
 
 Once you press:
 
-- `:w` — write (save)
+- `:w` -- write (save)
 
-You will have executed a write command. This will save the file to disk, creating it if necessary. This allows us to open and create files as needed, without leaving your editor (e.g. nvim) to use bash's `touch` command.
+You will have executed a write command. This will save the file to disk, creating it if necessary. This allows us to open and create files as needed, without leaving Helix to use bash's `touch` command.
 
 If we are done with a pane, we need to decide if we want to write its content to disk or if we want to discard the changes we've written.
 
 If we try and close our pane using:
 
-- `:q` — quit current window
+- `:q` -- quit current window
 
-Your editor (e.g. nvim) will warn us and nothing will happen (if we have unsaved changes).
+Helix will warn us and nothing will happen (if we have unsaved changes).
 
 We can combine our write and quit:
 
-- `:wq` — write and quit
+- `:wq` -- write and quit
 
 Once we have multiple windows open at once, with multiple files, we can write all of them to disk at once using:
 
-- `:wa` — write-all
+- `:wa` -- write-all
 
 To delete a buffer (close a file without closing the window):
 
-- `:bd` — buffer delete
+- `:bd` -- buffer delete
 
 To list all open buffers:
 
-- `:ls` — list buffers, then `:b N` (where N is the buffer number) to switch to it
+- `:ls` -- list buffers, then `:b N` (where N is the buffer number) to switch to it
 
-So let's say that we're just starting our workday, we want to begin devvin' in your editor (e.g. nvim) and start working on a new script called "bomb":
+So let's say that we're just starting our workday, we want to begin devvin' in Helix and start working on a new script called "bomb":
 
 ```
 Super key
@@ -1543,11 +1544,11 @@ Super key
 `enter`
     press enter to start the terminal
 `dev project-name`
-    type dev and then the name of our project to open it in your editor
+    type dev and then the name of our project to open it in Helix
 `enter`
-    press enter to execute the dev command opening your editor
+    press enter to execute the dev command opening Helix
 `:e bomb.cpp`
-    in your editor, our dev function opened our main.cpp. `:e` to open a new buffer for bomb.cpp
+    in Helix, our dev function opened our main.cpp. `:e` to open a new buffer for bomb.cpp
 `enter`
     executes the open file command
 `:vsplit`
@@ -1570,13 +1571,13 @@ Super key
 
 To list all open buffers:
 
-- `:ls` — list buffers with their numbers
-- `:b 2` — switch to buffer number 2
-- `:bd 3` — delete buffer number 3
+- `:ls` -- list buffers with their numbers
+- `:b 2` -- switch to buffer number 2
+- `:bd 3` -- delete buffer number 3
 
 To browse files in the project directory:
 
-- `:e .` — open netrw (built-in file browser) in the current directory
+- `:e .` -- open netrw (built-in file browser) in the current directory
 - Or if you have LazyVim or a similar distribution: `<leader>ff` to open telescope/fzf fuzzy finder
 
 > [!NOTE]
@@ -1654,13 +1655,13 @@ int main() {
 }
 ```
 
-> **Linux:** We use `#include <SDL3/SDL.h>` which includes everything SDL3 provides — no need for separate includes like `"SDL3/SDL_init.h"`, `"SDL3/SDL_events.h"`, or `"SDL3/SDL_timer.h"`.
+> **Linux:** We use `#include <SDL3/SDL.h>` which includes everything SDL3 provides -- no need for separate includes like `"SDL3/SDL_init.h"`, `"SDL3/SDL_events.h"`, or `"SDL3/SDL_timer.h"`.
 
 A lot of new stuff happening:
 
-1. We `#include` a new .h file — the `game.h` we wrote ourselves. We've also written a `game.cpp` file that has the actual implementations of each function outlined in `game.h`.
-2. We store pointer variables to both a **window** and a **renderer**. The renderer is tasked with taking textures and bitmap images and placing them into our window — this is how we will color our window and render a rectangle inside of it. This logic is found inside the `Draw()` function we've written inside `game.cpp` and declared inside `game.h`. It is because we `#include game.h` that we can find and call this function. Note that we pass our renderer pointer to the `Draw()` function.
-3. We have 2 new variables `NOW` and `PREV`. These are used to track how much time elapsed between the current and previous frame. We check this by subtracting one from the other. The `Uint64` is like an `int` but can only hold positive values. It is also 64 bits in memory compared to the (usually) 32 bits of an `int`, meaning that it can store larger numbers. The `U` stands for **"unsigned"** — this means it only holds positive numbers. Note how we pass deltatime (aka `dt`) to our `Update` function.
+1. We `#include` a new .h file -- the `game.h` we wrote ourselves. We've also written a `game.cpp` file that has the actual implementations of each function outlined in `game.h`.
+2. We store pointer variables to both a **window** and a **renderer**. The renderer is tasked with taking textures and bitmap images and placing them into our window -- this is how we will color our window and render a rectangle inside of it. This logic is found inside the `Draw()` function we've written inside `game.cpp` and declared inside `game.h`. It is because we `#include game.h` that we can find and call this function. Note that we pass our renderer pointer to the `Draw()` function.
+3. We have 2 new variables `NOW` and `PREV`. These are used to track how much time elapsed between the current and previous frame. We check this by subtracting one from the other. The `Uint64` is like an `int` but can only hold positive values. It is also 64 bits in memory compared to the (usually) 32 bits of an `int`, meaning that it can store larger numbers. The `U` stands for **"unsigned"** -- this means it only holds positive numbers. Note how we pass deltatime (aka `dt`) to our `Update` function.
 4. We use SDL functions `SDL_GetTicksNS()` and `SDL_NS_TO_SECONDS()` to work with a central part of all game logic: `dt` standing for **deltatime**. Deltatime is used to scale values in relation to how quickly the computer can finish processing a tick. The more ticks, the higher the framerate and the smaller our deltatime is. Delta time is the time between the current and the last tick. Meaning that if it took a long time between ticks, then any equation that is multiplied by deltatime will be larger than if the time between ticks was very small. The result of this is that no matter how strong or how slow our computers are, our bullets will still fly at the same speed. Without deltatime, a gun on a fast computer would shoot faster bullets.
 5. We call `Initialize`, `Update` and `Draw` from a namespace we've named `Core`.
 
@@ -1678,7 +1679,7 @@ namespace Core{
 
 This .h file outlines the functions that we will be writing the bodies for inside our `game.cpp`. It tells us what parameters will be passed in and what type of function they are. `void` means that the function doesn't return any value. Because we know we will need to pass a pointer to the renderer in two of these functions we have to `#include <SDL3/SDL.h>` inside our .h file. This means that all files that include `game.h` also include `SDL3/SDL.h`.
 
-All functions are collected in a **namespace** — a namespace acts as a container for code, allowing multiple scripts to have the same name for functions. Imagine if we include 2 .h files, each with their own `Initialize()` function. Without a namespace we would get an error during compilation telling us that it is unclear which function should be called. But keeping our `Initialize()` function inside a namespace forces us to specify the namespace as we call the function. We have already encountered a namespace earlier in this lecture series, when we decided to write the handy `using namespace std;` — this allowed us to call the functions inside the namespace named `std` without first writing `std::`.
+All functions are collected in a **namespace** -- a namespace acts as a container for code, allowing multiple scripts to have the same name for functions. Imagine if we include 2 .h files, each with their own `Initialize()` function. Without a namespace we would get an error during compilation telling us that it is unclear which function should be called. But keeping our `Initialize()` function inside a namespace forces us to specify the namespace as we call the function. We have already encountered a namespace earlier in this lecture series, when we decided to write the handy `using namespace std;` -- this allowed us to call the functions inside the namespace named `std` without first writing `std::`.
 
 We can write `using namespace Core;` at the top of our `main.cpp` and remove the `Core::` prefix from all function calls if we want.
 
@@ -1687,10 +1688,10 @@ We can write `using namespace Core;` at the top of our `main.cpp` and remove the
 
 Each function will have the following job:
 
-- **Initialize()** → Set up the necessary stuff
-- **Update()** → Perform changes to the game using deltatime and keyboard inputs
-- **Draw()** → With the changes from Update, render the relevant stuff to the screen
-- **OnQuit()** → Clean up before the application quits
+- **Initialize()** -> Set up the necessary stuff
+- **Update()** -> Perform changes to the game using deltatime and keyboard inputs
+- **Draw()** -> With the changes from Update, render the relevant stuff to the screen
+- **OnQuit()** -> Clean up before the application quits
 
 Let's look at our `game.cpp` to find how each of these functions are implemented:
 
@@ -1745,10 +1746,10 @@ Our `Initialize()` function takes all of our variables (except `SPEED`) and give
 
 An `SDL_FRect` is a **struct** holding the following data:
 
-- `float x;` — horizontal position
-- `float y;` — vertical position
-- `float w;` — width
-- `float h;` — height
+- `float x;` -- horizontal position
+- `float y;` -- vertical position
+- `float w;` -- width
+- `float h;` -- height
 
 A struct is just a collection of variables that we want to bundle together. An apple struct could have the following variables:
 
@@ -1805,7 +1806,7 @@ void FireBullet(Bullet* a_bullet){
 }
 ```
 
-But as we're passing our bullet struct as a pointer instead of by value we do have to learn a bit more unintuitive C++ syntax. To access the values saved inside a pointer we can't use `.` — we need to use `->`:
+But as we're passing our bullet struct as a pointer instead of by value we do have to learn a bit more unintuitive C++ syntax. To access the values saved inside a pointer we can't use `.` -- we need to use `->`:
 
 ```cpp
 void FireBullet(Bullet* a_bullet){
@@ -1841,7 +1842,7 @@ void Core::Update(float dt){
 }
 ```
 
-The first line holds a lot of new info for us: `const bool* keys` is similar to `bool* keys` which is a pointer to a place in memory where we store a bool. Adding `const` to it makes it so that the value of the bool stored in memory at the address the pointer points to can't be changed — SDL does this because we are not supposed to change the status of the keyboard in code, we just read what it is.
+The first line holds a lot of new info for us: `const bool* keys` is similar to `bool* keys` which is a pointer to a place in memory where we store a bool. Adding `const` to it makes it so that the value of the bool stored in memory at the address the pointer points to can't be changed -- SDL does this because we are not supposed to change the status of the keyboard in code, we just read what it is.
 
 But there is one more wrinkle. As SDL is written in C and not C++ we have some unintuitive syntax here. `bool* keys` (note the plural) is actually a pointer to the first bool out of many stored in sequence in memory. So if we had a micro-keyboard with only A B C D E, then if we held the B key down our memory would look like this:
 
@@ -1865,7 +1866,7 @@ But it would be really hard to remember the index of let's say the letter `U`. T
 keys[SDL_SCANCODE_B]
 ```
 
-Scancodes — it turns out the index for B was 5 and that is exactly what the number for `SDL_SCANCODE_B` was given.
+Scancodes -- it turns out the index for B was 5 and that is exactly what the number for `SDL_SCANCODE_B` was given.
 
 So each tick SDL checks the status of all the keys on our keyboard then sets their value in memory to `true` or `false`, then we can check their status by pointing to the first place in memory then shifting by the specific index to find the value of the key we are looking for.
 
@@ -1893,7 +1894,7 @@ void Core::Draw(SDL_Renderer* renderer){
 }
 ```
 
-- `SDL_SetRenderDrawColor` sets the color through RGB (and alpha for transparency of the renderer) — each of these are represented as a value between 0 and 255.
+- `SDL_SetRenderDrawColor` sets the color through RGB (and alpha for transparency of the renderer) -- each of these are represented as a value between 0 and 255.
 - `SDL_RenderClear` clears whatever was previously drawn to the screen and fills it with the color we set for the renderer previously.
 - `SDL_RenderFillRect` passes our `SDL_FRect` as a pointer, it then takes the values of the struct and uses those to draw a rectangle on the screen. We've changed the RenderDrawColor so the rectangle shows up as a different color than the background.
 - `SDL_RenderPresent` is what actually puts every pixel on the window. First all pixels are prepared, then all of them are drawn at once using this function.
@@ -1906,7 +1907,7 @@ So our basic draw loop is:
 2. Draw everything
 3. `RenderPresent`
 
-There we go — we have created our first **core loop**, with input handling, updating game logic and finally drawing things to the screen!
+There we go -- we have created our first **core loop**, with input handling, updating game logic and finally drawing things to the screen!
 
 
 > **Linux:** This chapter is adapted for Linux.
@@ -1992,7 +1993,7 @@ set(EXE_EXCLUSIVE
 )
 ```
 
-Here we store all .cpp files we want to have included with our executable in a single array that we've named `EXE_EXCLUSIVE` — should we need more files to be compiled into our executable we will have to manually modify this list.
+Here we store all .cpp files we want to have included with our executable in a single array that we've named `EXE_EXCLUSIVE` -- should we need more files to be compiled into our executable we will have to manually modify this list.
 
 > [!NOTE]
 > Another method is to take all the .cpp files we want to have and store them in a separate subdirectory then point our functions towards that folder. But this time we'll do the manual work.
@@ -2049,7 +2050,7 @@ reload() {
 ```
 
 1. It uses a config file to fetch the path to our build folder
-2. Inside the build folder, it looks for a file called `CMakeCache.txt` — this is automatically added by cmake when it is being configured
+2. Inside the build folder, it looks for a file called `CMakeCache.txt` -- this is automatically added by cmake when it is being configured
 3. We read the contents of our Cache looking for the line of text that includes the `CMAKE_PROJECT_NAME:STATIC` text. We then store the name of our game in the `projectName` variable
 4. We then tell cmake to build the project again, but only the target named `NameOfOurProject_game`
 
@@ -2130,27 +2131,28 @@ int main(){
 In this program we:
 
 1. Create a few structs: `MemoryArena`, `GameData`, `Character`
-   Then we use these structs to hold variables, and our `GameData` struct holds `Character` structs itself. But notice how the variable name is `characters` in plural, but we only store a single pointer — this should mean that we are only storing a single character. We are actually storing a collection of characters inside memory by pointing to the first character only. We'll get back to how that is set up once we have a better understanding of the program in its entirety.
+   Then we use these structs to hold variables, and our `GameData` struct holds `Character` structs itself. But notice how the variable name is `characters` in plural, but we only store a single pointer -- this should mean that we are only storing a single character. We are actually storing a collection of characters inside memory by pointing to the first character only. We'll get back to how that is set up once we have a better understanding of the program in its entirety.
 
 2. We create our `MemoryArena` struct
    > [!NOTE]
->lets conceptualize a memory arena as a continuous block of memory, each thing laid out next to the previous.
+   > lets conceptualize a memory arena as a continuous block of memory, each thing laid out next to the previous.
 
 This struct holds very little in terms of stuff, but is very powerful. Our three variables are:
 
-- `unsigned char* base;` — This a pointer to the first address in memory of our arena. We need to use an `unsigned char*` instead of a `void*` as this allows us to add a number to our base to move further down our block of memory. If we had our pointer as a `void*` it would need to be cast all the time before we attempt to do arithmetic (+, -, x, etc). > [!NOTE]
->we will learn about casting a bit later in this lecture
-- `size_t size;` — `size_t` is a type of variable, like an int, that holds a whole number, but `size_t` is larger than an `int` and especially made to help us store how big something is. `size_t` is also unsigned, meaning that compared to a int it can't store a negative number. This variable is meant to tell us how large our memory block is, whilst the `unsigned char*` pointer above just tells us where it starts.
-- `size_t used;` — We update this variable each time we specify what the next piece of memory is used for. So we know we aren't overwriting other parts of our memory when adding new things to it. Also, by resetting this to 0 we actually delete all memory in the arena all at once. We do this in the `Arena_Reset()` function
+- `unsigned char* base;` -- This a pointer to the first address in memory of our arena. We need to use an `unsigned char*` instead of a `void*` as this allows us to add a number to our base to move further down our block of memory. If we had our pointer as a `void*` it would need to be cast all the time before we attempt to do arithmetic (+, -, x, etc).
+  > [!NOTE]
+  > we will learn about casting a bit later in this lecture
+- `size_t size;` -- `size_t` is a type of variable, like an int, that holds a whole number, but `size_t` is larger than an `int` and especially made to help us store how big something is. `size_t` is also unsigned, meaning that compared to a int it can't store a negative number. This variable is meant to tell us how large our memory block is, whilst the `unsigned char*` pointer above just tells us where it starts.
+- `size_t used;` -- We update this variable each time we specify what the next piece of memory is used for. So we know we aren't overwriting other parts of our memory when adding new things to it. Also, by resetting this to 0 we actually delete all memory in the arena all at once. We do this in the `Arena_Reset()` function
 
 3. We've created three functions:
-   - `Arena_Add()` — This function tells our memory arena to tag a portion of memory as used.
-   - `Arena_Initialize()` — This function sets up the memory arena by setting up the values of our struct.
-   - `Arena_Reset()` — This function sets the size of our `size_t used` variable to 0, meaning that to the memory arena no part of memory is tagged and should something new be added into memory then it will write it at the start of the memory block.
+   - `Arena_Add()` -- This function tells our memory arena to tag a portion of memory as used.
+   - `Arena_Initialize()` -- This function sets up the memory arena by setting up the values of our struct.
+   - `Arena_Reset()` -- This function sets the size of our `size_t used` variable to 0, meaning that to the memory arena no part of memory is tagged and should something new be added into memory then it will write it at the start of the memory block.
 
-But before we can use this memory arena we need to find a place in memory where we can store our continuous chunk. In other applications where we create and free memory willy-nilly our memory lives all over our heap — in this program we will store all our memory in one location and once we're done with it we will free it all at once. The upside to this is:
+But before we can use this memory arena we need to find a place in memory where we can store our continuous chunk. In other applications where we create and free memory willy-nilly our memory lives all over our heap -- in this program we will store all our memory in one location and once we're done with it we will free it all at once. The upside to this is:
 
-1. We know that our program will not crash due to insufficient memory — if it starts up then we know we managed to allocate enough memory.
+1. We know that our program will not crash due to insufficient memory -- if it starts up then we know we managed to allocate enough memory.
 2. Our memory lives in tidy blocks on our heap, making accessing them faster as the CPU doesn't have to go back to RAM as often to fetch a chunk of memory.
 
 ```cpp
@@ -2190,7 +2192,7 @@ gameData->character_count = 10;
 gameData->score = 0;
 ```
 
-Here we must take a moment to learn about **casting** — casting is the process of telling our compiler that we want to take data that is one type, and treat it as if it were another type. Not all types can be cast to each other, but the `void*` returned from our `Add_To_Arena` function can be cast into any other pointer.
+Here we must take a moment to learn about **casting** -- casting is the process of telling our compiler that we want to take data that is one type, and treat it as if it were another type. Not all types can be cast to each other, but the `void*` returned from our `Add_To_Arena` function can be cast into any other pointer.
 
 ```cpp
 float decimalValue = 2.5;
@@ -2226,24 +2228,23 @@ Here we find the memory address of the 4th character and set the value of the he
 Now that we know more about how a memory arena, casting and memory layouts work we are ready to bring this into our SDL3 project to add new files and set up necessary boilerplate to allow us to work with our executable and shared library solution.
 
 
-
 > **Linux:** This chapter is adapted for Linux.
 
 # DLLs Memory and Hot Reloading - Part II
 
-It's time to head back to our SDL3 project to set up the boilerplate necessary to use our executable + shared library (.so) system.
+It's time to head back to our SEL3 project to set up the boilerplate necessary to use our executable + shared library (.so) system.
 
 In our previous example we had everything in one placeholder practice example.cpp. Now we will start breaking things into separate .cpp files along with corresponding .h files.
 
 At the end of this lecture we will have the following files in our src folder:
 
-- `arena.cpp` — holds the implementation of functions from arena.h
-- `arena.h` — holds the declaration of functions for our memory arena as well as the arena struct
-- `common.h` — A helper .h file containing some helpful macros to figure out memory sizes in kb, mb and gb
-- `game.cpp` — Acts as the "entry point" for the shared library and performs our Input, Update, Draw routines
-- `game.h` — Holds the definitions for the functions used in game.cpp and has them tagged in such a way that we can find them from our main executable
-- `gameState.h` — a .h file containing the struct with all variables used inside the game
-- `main.cpp` — our executable entry point, initializes everything, sets up memory and the game loop. Calls into our shared library through functions found in game.h
+- `arena.cpp` -- holds the implementation of functions from arena.h
+- `arena.h` -- holds the declaration of functions for our memory arena as well as the arena struct
+- `common.h` -- A helper .h file containing some helpful macros to figure out memory sizes in kb, mb and gb
+- `game.cpp` -- Acts as the "entry point" for the shared library and performs our Input, Update, Draw routines
+- `game.h` -- Holds the definitions for the functions used in game.cpp and has them tagged in such a way that we can find them from our main executable
+- `gameState.h` -- a .h file containing the struct with all variables used inside the game
+- `main.cpp` -- our executable entry point, initializes everything, sets up memory and the game loop. Calls into our shared library through functions found in game.h
 
 The process of breaking out parts of code into its own files is industry standard, as it allows clearer boundaries between files and makes reasoning about them simpler.
 
@@ -2281,9 +2282,9 @@ namespace Memory {
 }
 ```
 
-At the top of this .h file we write `#pragma once` — we will be doing this for ALL .h files we ever write. This is a not-so-nice feature of C++ where without it our .h file will be copied above all files that implement it, meaning that our executable or shared library bloats unnecessarily. By adding `#pragma once` our compiler knows to only add these once, which is enough.
+At the top of this .h file we write `#pragma once` -- we will be doing this for ALL .h files we ever write. This is a not-so-nice feature of C++ where without it our .h file will be copied above all files that implement it, meaning that our executable or shared library bloats unnecessarily. By adding `#pragma once` our compiler knows to only add these once, which is enough.
 
-We have encapsulated our struct and function declarations in a namespace we've named `Memory`. This means that when we `#include "arena.h"` we can only access the struct and functions by first specifying the namespace — for example: `Memory::Initialize()`
+We have encapsulated our struct and function declarations in a namespace we've named `Memory`. This means that when we `#include "arena.h"` we can only access the struct and functions by first specifying the namespace -- for example: `Memory::Initialize()`
 
 The struct `Arena` holds the same three variables as our practice example and the three functions are the same as well. We first call `Initialize` to make sure our `size` variable is set, our `used` is zeroed and our `base` pointer points at the first byte in memory.
 
@@ -2315,394 +2316,7 @@ Like in our practice example we are using the same functions, but have opted for
 memset(front, 0, size);
 ```
 
-This code makes sure that the block of memory that we've allocated here is free from garbage data by putting the value 0 across the board. This defensive pattern is called **zero-allocation** — it makes all numbers 0 and all pointers become `nullptr`.
-
-We add `#include <cstring>` as that is the header that holds `memset()`.
-
-That's it for our memory arena. Mostly it's all the same stuff, just in its own two files and with our defensive pattern added.
-
-Lets look at our `common.h`:
-
-```cpp
-// common.h
-#pragma once
-#define KILOBYTES(n) ((size_t)n * 1024)
-#define MEGABYTES(n) (KILOBYTES(n) * 1024)
-#define GIGABYTES(n) (MEGABYTES(n) * 1024)
-constexpr size_t GAME_MEMORY_ALLOWANCE = MEGABYTES(10);
-```
-
-Once again we have our `#pragma once` at the top. What follows are three macros that simplify getting the correct `size_t` for different sizes of memory.
-
-We use this header file in our `main.cpp` to simplify our `malloc` (memory allocation) and our minimal `gameState.h`:
-
-```cpp
-// gamestate.h
-#pragma once
-#include <SDL3/SDL.h>
-struct GameData {
-  SDL_FRect rect;
-  float move_speed;
-};
-```
-
-> **Linux:** On Linux, include `<SDL3/SDL.h>` instead of individual SDL headers.
-
-Inside our `GameData` struct we currently just specify two variables, our rectangle and how fast we are going to want it to move.
-
-Ok, we've looked at four out of seven files, but those were the short and simple ones. `game.cpp` and `game.h` have some new logic but 90% of our boilerplate code lives inside our `main.cpp`. Lets tackle `game.h` and `game.cpp` next:
-
-```cpp
-// game.h
-#pragma once
-#include <SDL3/SDL.h>
-#include "gameState.h"
-extern "C" {
-  void Initialize(GameData* data);
-  bool HandleEvents(GameData* data, SDL_Event event);
-  void Draw(GameData* data, SDL_Renderer* renderer);
-  void Update(GameData* data, float dt);
-  void OnQuit(SDL_Renderer* renderer);
-}
-```
-
-> **Linux:** On Linux, we use `__attribute__((visibility("default")))` instead of `__declspec(dllexport)`. For simplicity here, we just mark them `extern "C"` and use compiler flags to control visibility. The `__declspec` is Windows-specific and not needed on Linux.
-
-`extern "C"` ensures that during compilation, our functions won't have their names modified in any way. This is essential when we want to access them later by referencing their names exactly, otherwise the name will be changed in a linking process called **name-mangling**. (https://en.wikipedia.org/wiki/Name_mangling)
-
-```cpp
-// game.cpp
-#include "game.h"
-extern "C" {
-  void Initialize(GameData* data){
-    data->rect.x = 100;
-    data->rect.y = 100;
-    data->rect.h = 50;
-    data->rect.w = 50;
-    data->move_speed = 100;
-  }
-  bool HandleEvents(GameData *data, SDL_Event event){
-    if(event.type != SDL_EVENT_KEY_DOWN){
-      return true;
-    }
-    if(event.key.key == SDLK_ESCAPE){
-      return false;
-    }
-    return true;
-  }
-  void Update(GameData* data,float dt){
-    const bool* keys = SDL_GetKeyboardState(NULL);
-    if(keys[SDL_SCANCODE_RIGHT]){
-      data->rect.x += data->move_speed * dt;
-    }
-    if(keys[SDL_SCANCODE_LEFT]){
-      data->rect.x -= data->move_speed * dt;
-    }
-    if(keys[SDL_SCANCODE_UP]){
-      data->rect.y -= data->move_speed * dt;
-    }
-    if(keys[SDL_SCANCODE_DOWN]){
-      data->rect.y += data->move_speed * dt;
-    }
-  }
-  void Draw(GameData* data, SDL_Renderer* renderer){
-    SDL_SetRenderDrawColor(renderer, 250, 70, 8, 255);
-    SDL_RenderClear(renderer);
-    SDL_SetRenderDrawColor(renderer, 150, 0, 100, 255);
-    SDL_RenderFillRect(renderer,&data->rect);
-    SDL_RenderPresent(renderer);
-  }
-  void OnQuit(SDL_Renderer* renderer){
-    SDL_DestroyRenderer(renderer);
-  }
-}
-```
-
-Our `game.cpp` is similar to last time. We wrap each function inside the `extern "C"` scope to mirror the change in the .h file, which is necessary to ensure that both declaration and implementation avoid having the function names be name-mangled.
-
-Lets look at the `Update()` function again:
-
-```cpp
-// game.cpp
-void Update(GameData* data,float dt){
-  const bool* keys = SDL_GetKeyboardState(NULL);
-  if(keys[SDL_SCANCODE_RIGHT]){
-    data->rect.x += data->move_speed * dt;
-  }
-  if(keys[SDL_SCANCODE_LEFT]){
-    data->rect.x -= data->move_speed * dt;
-  }
-  if(keys[SDL_SCANCODE_UP]){
-    data->rect.y -= data->move_speed * dt;
-  }
-  if(keys[SDL_SCANCODE_DOWN]){
-    data->rect.y += data->move_speed * dt;
-  }
-```
-
-Now that we know more about pointers we can see that our `keys` variable holds a pointer to the first byte of the place in memory where all keys (bool's) are laid out sequentially. The `const` keyword means that the variables we find at the memory being pointed to can not be changed by us accidentally in code.
-
-> [!NOTE]
-> we would need to store the result of the keys from the previous tick if we want to know if a key has been released or just pressed down this tick. But that is for a later lecture
-
-Enough stalling, lets start digging into our new `main.cpp`:
-
-```cpp
-// main.cpp
-#include <dlfcn.h>
-#include <cstdio>
-#include <sys/stat.h>
-#include <SDL3/SDL.h>
-#include "common.h"
-#include "arena.h"
-#include "gameState.h"
-```
-
-> **Linux:** On Linux we use `<dlfcn.h>` instead of `<windows.h>`. This gives us `dlopen`, `dlsym`, `dlclose` instead of `LoadLibrary`, `GetProcAddress`, `FreeLibrary`. We also use `<sys/stat.h>` for file timestamps.
-
-We're starting to include quite a lot of headers. We'll stick to best practices when it comes to ordering our .h files:
-
-1. Start with the standard library headers (that are passed by using `<>`)
-2. After those we include all headers we have not written ourselves. In this case the SDL3 headers.
-3. After that we add our custom made headers
-
-```cpp
-// main.cpp
-SDL_Window* window;
-SDL_Renderer* renderer;
-```
-
-We will be passing the pointer to the renderer to our shared library.
-
-```cpp
-// main.cpp
-Uint64 NOW = 0;
-Uint64 PREV = 0;
-```
-
-Unsigned integers to store the time between ticks so we can calculate our delta time.
-
-```cpp
-// main.cpp
-constexpr const char* NAME_OF_LIB = "libHeartburner_game.so";
-constexpr const char* NAME_OF_TEMP_LIB = "libHeartburner_temp.so";
-```
-
-> **Linux:** Shared libraries on Linux use the `.so` extension and typically follow the `lib` prefix convention.
-
-A `char*` is a pointer that points to the first byte of a series of individual characters. The `constexpr` keyword makes the variable a **compile-time constant**.
-
-```cpp
-// main.cpp
-typedef void (*Function_Initialize) (GameData* data);
-typedef bool (*Function_HandleEvents) (GameData* data, SDL_Event event);
-typedef void (*Function_Update) (GameData* data, float dt);
-typedef void (*Function_Draw) (GameData* data, SDL_Renderer* renderer);
-typedef void (*Function_OnQuit) (SDL_Renderer* renderer);
-```
-
-We need a way of accessing the functions we've set as exported in our `game.h`. To do this we need to create what is called **function pointers** — a function pointer is a way of passing a function as a variable.
-
-`typedef` allows us to take the structure of our specific functions, meaning their return type and parameters and allows us to store them with a more easily typed name, like `Function_Initialize`.
-
-```cpp
-// main.cpp
-constexpr const char* NAME_OF_FUNC_INIT = "Initialize";
-constexpr const char* NAME_OF_FUNC_HANDLE_EVENT = "HandleEvents";
-constexpr const char* NAME_OF_FUNC_UPDATE = "Update";
-constexpr const char* NAME_OF_FUNC_DRAW = "Draw";
-constexpr const char* NAME_OF_FUNC_QUIT = "OnQuit";
-```
-
-```cpp
-// main.cpp
-struct LIB_INFO{
-  void* handle;
-  time_t timestamp;
-  Function_Initialize initialize;
-  Function_HandleEvents handleEvents;
-  Function_Update update;
-  Function_Draw draw;
-  Function_OnQuit quit;
-};
-```
-
-> **Linux:** We use `void*` as the handle type (from `dlopen`) instead of Windows `HMODULE`. For timestamps we use `time_t` from `<sys/stat.h>`.
-
-We create a struct that holds all the data we will need to work with our shared library.
-
-```cpp
-// main.cpp
-time_t GetTimestamp(){
-  struct stat attr;
-  stat(NAME_OF_LIB, &attr);
-  return attr.st_mtime;
-}
-```
-
-> **Linux:** We use `stat()` and `st_mtime` to get the last modification time of the file. This is the Linux equivalent of `FindFirstFile` + `ftLastWriteTime`.
-
-```cpp
-// main.cpp
-bool LoadLib(LIB_INFO* info, int depth = 0){
-  printf("loading lib");
-  if(depth > 20){
-    printf("failed to write temp lib");
-    return false;
-  }
-  // Copy the file using shell command
-  char cmd[256];
-  snprintf(cmd, sizeof(cmd), "cp %s %s", NAME_OF_LIB, NAME_OF_TEMP_LIB);
-  int success = system(cmd);
-  if(success != 0){
-    usleep(50000);
-    return LoadLib(info, depth + 1);
-  }
-  info->handle = dlopen(NAME_OF_TEMP_LIB, RTLD_NOW);
-  if(info->handle == nullptr){
-    printf("could not load lib: %s", dlerror());
-    return false;
-  }
-  info->initialize = (Function_Initialize)dlsym(info->handle, NAME_OF_FUNC_INIT);
-  info->handleEvents = (Function_HandleEvents)dlsym(info->handle, NAME_OF_FUNC_HANDLE_EVENT);
-  info->update = (Function_Update)dlsym(info->handle, NAME_OF_FUNC_UPDATE);
-  info->draw = (Function_Draw)dlsym(info->handle, NAME_OF_FUNC_DRAW);
-  info->quit = (Function_OnQuit)dlsym(info->handle, NAME_OF_FUNC_QUIT);
-  info->timestamp = GetTimestamp();
-  return true;
-}
-```
-
-> **Linux:** We use `dlopen` instead of `LoadLibrary`, `dlsym` instead of `GetProcAddress`, and `cp` instead of `CopyFile`. The `RTLD_NOW` flag loads all symbols immediately.
-
-This function has the job of finding our compiled .so, create a copy of it called `NAME_OF_TEMP_LIB` then store that .so in our provided `LIB_INFO` struct. We then take the function pointers in our `LIB_INFO` struct and point them to the functions we exported.
-
-The function uses a **recursive function call** — meaning that the function has called itself. In case the copy fails, we wait for 50 milliseconds then we return the result of calling the function again, incrementing the `depth` parameter by 1. We only allow the function to call itself a total of 20 times before stopping.
-
-```cpp
-// main.cpp
-void UnloadLib(LIB_INFO* info){
-  dlclose(info->handle);
-  info->handle = nullptr;
-  remove(NAME_OF_TEMP_LIB);
-}
-```
-
-> **Linux:** We use `dlclose` instead of `FreeLibrary` and `remove` instead of `DeleteFile`.
-
-```cpp
-// main.cpp
-void* AllocateGameMemory(){
-  void* blob = malloc(GAME_MEMORY_ALLOWANCE);
-  if(blob == nullptr){
-    printf("fatal error: could not allocate memory");
-    return nullptr;
-  }
-  printf("memory succesfully allocated");
-  return blob;
-}
-```
-
-```cpp
-// main.cpp
-void SDL_Setup(){
-  SDL_Init(SDL_INIT_EVENTS);
-  window = SDL_CreateWindow("pilot", 650, 400, 0);
-  renderer = SDL_CreateRenderer(window, NULL);
-}
-```
-
-```cpp
-// main.cpp
-void CalculateDeltaTime(float& dt){
-  NOW = SDL_GetTicksNS();
-  dt = NOW - PREV;
-  dt = SDL_NS_TO_SECONDS(dt);
-  PREV = NOW;
-}
-```
-
-This function does the exact same thing, taking a pointer to a float and setting it to the calculated delta time. Here we've used the `float&` rather than `float*` — this is what we called **passing by reference** rather than passing by pointer.
-
-```cpp
-// main.cpp
-void Lib_CheckStatus(LIB_INFO* lib){
-  time_t timestamp = GetTimestamp();
-  bool is_timestamp_changed = timestamp != lib->timestamp;
-  if(is_timestamp_changed){
-    UnloadLib(lib);
-    LoadLib(lib);
-  }
-}
-```
-
-> **Linux:** We compare `time_t` values directly instead of using `CompareFileTime`.
-
-```cpp
-// main.cpp
-int main() {
-  void* game_memory = AllocateGameMemory();
-  if(game_memory == nullptr){
-    return 1;
-  }
-  Memory::Arena* arena = new Memory::Arena();
-  Memory::Initialize(arena, game_memory, GAME_MEMORY_ALLOWANCE);
-  GameData* gameData = (GameData*)Memory::Allocate(arena, sizeof(GameData));
-  LIB_INFO lib;
-  bool lib_successfully_loaded = LoadLib(&lib);
-  if(lib_successfully_loaded == false){
-    return 2;
-  }
-  SDL_Setup();
-  lib.initialize(gameData);
-  bool running = true;
-  float dt;
-  while(running){
-    Lib_CheckStatus(&lib);
-    CalculateDeltaTime(&dt);
-    SDL_Event event;
-    while(SDL_PollEvent(&event)){
-      running = lib.handleEvents(gameData, event);
-      if(running == false){
-        break;
-      }
-    }
-    lib.update(gameData, dt);
-    lib.draw(gameData, renderer);
-  }
-  lib.quit(renderer);
-  SDL_Quit();
-  return 0;
-}
-```
-
-Here we do the same steps as in our previous lecture, but our `initialize()`, `update()` and `draw()` functions are all called from our `LIB_INFO` struct using the function pointers we set in `LoadLib()`.
-
-As a summary, this is what our `main()` does:
-
-1. We allocate a blob of memory
-2. We create a memory arena and point it to the start of our memory blob
-3. We load our shared library and set up our function pointers
-4. We set up SDL, creating our window and assigning our renderer
-5. We begin our core loop
-6. Inside our core loop we compare timestamps for our shared library
-7. Then we calculate delta time
-8. We collect all SDL_Events and pass them to the `HandleEvent` function in our shared library
-9. We then call `update` followed by `draw` in our shared library
-10. And if our core loop ever terminates we do some cleanup and return 0
-
-We are done! We have now successfully added the boilerplate code necessary to work with our executable and shared library setup, allowing us to start developing a game in our next lecture.
-
-We can now do the following steps:
-
-1. Build the game using `cmake --build build`
-2. Run the game
-3. As the game is running, change the colors of our `SDL_SetRenderDrawColor()`
-4. Compile our shared library using `cmake --build build --target Heartburner_game`
-5. Back in our still running program we can see that the changes we made to our `game.cpp` is directly visible in the game, without us having to close the game and running it again.
-
-This ability to make live-changes to our game is such a huge win for us and will make development of any game so much more streamlined!
-
+End of file : )
 
 
 > **Linux:** This chapter is adapted for Linux.
@@ -2956,7 +2570,6 @@ Now our application enforces a stable framerate!
 A lot of what we do in our `main.cpp` is boilerplate code that will be reusable in just about every project.
 
 
-
 > **Linux:** This chapter is adapted for Linux.
 
 # Savestates
@@ -3013,7 +2626,7 @@ We then call `.write` and `.read` and because `.write` expects to get a `const c
 
 We need to call `file.close()` at the end of each function as the filestreams we've created have allocated memory on our computer and needs to be freed so other memory can be allowed to overwrite it.
 
-With these functions set up we just have to call them when we press the keyboard. Inside our `while(running)` we expand our `while(SDL_PollEvent(&event))` to include two if-statements — one for pressing F9 and one for pressing F10:
+With these functions set up we just have to call them when we press the keyboard. Inside our `while(running)` we expand our `while(SDL_PollEvent(&event))` to include two if-statements -- one for pressing F9 and one for pressing F10:
 
 ```cpp
 while(SDL_PollEvent(&event)){
@@ -3032,12 +2645,11 @@ if(event.type == SDL_EVENT_KEY_DOWN){
 }
 ```
 
-We first check if the event was a `SDL_EVENT_KEY_DOWN` to not try and get the keystroke info from another event entirely. Then we check `event.key.key` — the first `key` in `event.key` is a struct `SDL_KeyboardEvent`, the second `key` in `event.key.key` is a variable inside `SDL_KeyboardEvent` that is of the type `SDL_Keycode` also unfortunately named `key`. We compare the keycode to the specified `SDLK` enum and if we get a match we call the specified function.
+We first check if the event was a `SDL_EVENT_KEY_DOWN` to not try and get the keystroke info from another event entirely. Then we check `event.key.key` -- the first `key` in `event.key` is a struct `SDL_KeyboardEvent`, the second `key` in `event.key.key` is a variable inside `SDL_KeyboardEvent` that is of the type `SDL_Keycode` also unfortunately named `key`. We compare the keycode to the specified `SDLK` enum and if we get a match we call the specified function.
 
 And with that we're actually done. We have everything needed to save and load our gamestate. Now we can go into our game, make any changes we want, save the gamestate with F9 then whenever we press F10 we are instantly back at that exact point again.
 
 Boom!
-
 
 
 > **Linux:** This chapter is adapted for Linux.
@@ -3054,15 +2666,15 @@ To make a Sokoban game we need to:
 2. Have entities on that grid that can move and be interacted with
 3. Load a level and populate it with the relevant entities
 
-I will be creating three .PNG files: `ground.png`, `player.png` and `wall.png` — all are 32x32px squares. We'll add these to our `assets/sprites` folder.
+I will be creating three .PNG files: `ground.png`, `player.png` and `wall.png` -- all are 32x32px squares. We'll add these to our `assets/sprites` folder.
 
 We will be using a software called **Tiled** to create our levels. Download Tiled from tiled.com.
 
 Inside Tiled we'll create a new tileset importing our three PNGs. Then we create two layers: `level` and `entities`. We can then create a map and using our tileset we can draw our level. Once we are happy with our test level we can export it from File > Export As, give it a name and export it as a JSON file that will have the file extension of `.tmj`.
 
-Opening our exported `.tmj` file inside your editor (e.g. nvim) we can look at the different fields. The json element `layers` has two sub-elements, each with a couple of fields — `data` and `id` are the most important to consider at the moment.
+Opening our exported `.tmj` file inside Helix we can look at the different fields. The json element `layers` has two sub-elements, each with a couple of fields -- `data` and `id` are the most important to consider at the moment.
 
-> **Linux:** Use your editor (e.g. nvim) to open `.tmj` files instead of `subl` on Windows.
+> **Linux:** Use Helix to open `.tmj` files instead of `subl` on Windows.
 
 We need a JSON parser. A very good JSON parser comes from nlohmann and is a single .h file. Download the `json.hpp` file from https://github.com/nlohmann/json. Place it in `include/Parsers/`.
 
@@ -3378,7 +2990,6 @@ void Draw(GameData* data, SDL_Renderer* renderer){
 With this we have our level rendering to the screen! In the next chapter we will start adding gameplay logic!
 
 
-
 > **Linux:** This chapter is adapted for Linux.
 
 # Sokoban Programming II
@@ -3404,11 +3015,11 @@ enum class ID : uint8_t {
 };
 ```
 
-We're working with a new concept here — `enum` — and right from the start we're using two different versions: `enum` and `enum class`. An `enum` is a named number. Looking at `ID` we can see that each of our tiles have been designated a number.
+We're working with a new concept here -- `enum` -- and right from the start we're using two different versions: `enum` and `enum class`. An `enum` is a named number. Looking at `ID` we can see that each of our tiles have been designated a number.
 
 By adding the `class` attribute we make it so we can only access our enums by first specifying the class like so: `ID::GROUND`. This is very similar to a namespace.
 
-We also have a new operator `<<` used for our `Behaviour` — it's known as one of many **bitwise operators**. A `uint32_t` holds 32 bits to create its number as opposed to a `uint8_t` that holds 8 bits.
+We also have a new operator `<<` used for our `Behaviour` -- it's known as one of many **bitwise operators**. A `uint32_t` holds 32 bits to create its number as opposed to a `uint8_t` that holds 8 bits.
 
 Each time we add 1 we flip the rightmost bit to 1. If it was already 1 we flip it back to 0 then flip the bit to the left of it to 1. This means that each bit to the left of the previous is tasked with holding a number twice as large.
 
@@ -3425,7 +3036,7 @@ enum Behaviour : uint32_t {
 };
 ```
 
-Keep in mind that we did not "miss" 3 — we are not allowed to use that number as it could be created by combining 1 and 2 together.
+Keep in mind that we did not "miss" 3 -- we are not allowed to use that number as it could be created by combining 1 and 2 together.
 
 Inside our `struct Entity {}` we've added a new variable as well as changing our `uint8_t id` to `ID id`:
 
@@ -3593,7 +3204,6 @@ void Update(GameData* data,float dt){
 With this our player entity can move around the level using the arrow keys!
 
 
-
 > **Linux:** This chapter is adapted for Linux.
 
 # Sokoban Programming III
@@ -3755,7 +3365,6 @@ bool TryMove(Entity* mover, LevelData* level, int xDir, int yDir){
 ```
 
 And with this we can now push a box around the level recursively! We're making steady progress towards the basic logic of a Sokoban game!
-
 
 
 # Command Pattern
@@ -4140,7 +3749,7 @@ target_include_directories(${DLL_NAME} PRIVATE include src_external)
 ```
 
 > [!NOTE]
->  On Linux, shared libraries use the `.so` extension instead of `.dll`. The `add_library(... SHARED ...)` command in CMake handles this automatically.
+> On Linux, shared libraries use the `.so` extension instead of `.dll`. The `add_library(... SHARED ...)` command in CMake handles this automatically.
 
 Later we will look at how we can limit access to Dear ImGui if we build a Release version rather than a Debug version. But for now, these are all the additions we need to add to our `cmakelists.txt`
 Next we'll create `dev_gui.h/cpp` .
@@ -4186,7 +3795,7 @@ void DEV::Initialize(SDL_Window* window, SDL_Renderer* renderer) {
 }
 ```
 
-The `Initialize()` function creates what is known as a context . This is required as it is what is responsible for holding all the info about our ImGui . Because Dear ImGui is code we haven't written ourselves it becomes a bit more difficult to break down every part of it, as what happens in the background is a bit beyond the scope of this lecture series. In your editor you can press `g-d` to jump to the function under the caret. If you're interested you can dive into the ImGui code and see what it does under the hood. But for brevity we need to actually have a context to have ImGui able to do anything.
+The `Initialize()` function creates what is known as a context . This is required as it is what is responsible for holding all the info about our ImGui . Because Dear ImGui is code we haven't written ourselves it becomes a bit more difficult to break down every part of it, as what happens in the background is a bit beyond the scope of this lecture series. In Helix you can press `g-d` to jump to the function under the caret. If you're interested you can dive into the ImGui code and see what it does under the hood. But for brevity we need to actually have a context to have ImGui able to do anything.
 `ImGuiIO` is a part of the context struct. It holds a lot of data that ImGui uses to understand how it is supposed to work. One thing it needs to know is how large the game window is. We use the handy SDL function called `SDL_GetWindowSize` to get the window size, the width and height are stored in the `w` and `h` variables that we pass along by reference . So the `GetWindowSize` function actually sets new values for `w` and `h` that we then pass along to the `ImGuiIO` . `ImVec2` is just a struct that ImGui has created that holds 2 floats but has some additionally functionality that helps ImGui check that everything is working behind the scenes. So we cast our ints to floats as that is the type `ImVec2` expects.
 Next we do setup that comes ready-made with ImGui - send `window*` and `renderer*` to helper functions that hooks ImGui's backend up with SDL3 .
 How were we supposed to know this in advance? we weren't. This is what example projects and code documentation is for.
@@ -4325,7 +3934,7 @@ __declspec(dllexport) void Initialize(GameData* data, SDL_Window* window, SDL_Re
 ```
 
 > [!NOTE]
->  On Linux, replace `__declspec(dllexport)` with `__attribute__((visibility("default")))` or use a CMake `set(CMAKE_CXX_VISIBILITY_PRESET hidden)` approach with explicit visibility. Alternatively, use a `-fvisibility=default` flag or a macro like `#define EXPORT __attribute__((visibility("default")))`.
+> On Linux, replace `__declspec(dllexport)` with `__attribute__((visibility("default")))` or use a CMake `set(CMAKE_CXX_VISIBILITY_PRESET hidden)` approach with explicit visibility. Alternatively, use a `-fvisibility=default` flag or a macro like `#define EXPORT __attribute__((visibility("default")))`.
 
 and
 
@@ -4384,7 +3993,7 @@ void PreDraw(ImGuiContext* saved_context);
 ```
 
 > [!NOTE]
->  we need to update the function signature in our `dev_gui.cpp` as well.
+> we need to update the function signature in our `dev_gui.cpp` as well.
 
 Then we pass the context we stored during `Initialize()` to `PreDraw()`
 
@@ -4480,7 +4089,7 @@ bool TryMove(Entity* mover, LevelData* level, CommandBuffer* cmd_buffer, int xDi
 ```
 
 Now at all locations in `game.cpp` where we call `TryMove()` and `Push()` we need to provide the timestamp from our `GameData* data` .
-Your editor will provide us with errors at all locations where this has not been done yet. To go between errors in your editor (e.g. nvim) we can find all the calls for `TryMove()` and `Push()` . We can also go to the function declaration and with the caret over the function name we can press `g-r` to get a list of everywhere the function is being used.
+Helix will provide us with errors at all locations where this has not been done yet. To go between errors in Helix we can find all the calls for `TryMove()` and `Push()` . We can also go to the function declaration and with the caret over the function name we can press `g-r` to get a list of everywhere the function is being used.
 With this done we need to add logic to our `Undo()` and `Redo()` functions inside `command.cpp`
 
 ```cpp
@@ -5301,7 +4910,7 @@ Another issue is that we have to pass each `Image*` manually when we want to pas
 We're making two changes to start with, we're removing everything inside `image.h/cpp` and instead creating `spriteLibarary.h/cpp` . We're also taking our `Image` struct and changing its name to `Sprite` .
 
 > [!NOTE]
->  We're renaming `Image` to `Sprite` using the built in rename command in your editor (e.g. nvim). This is performed by having the caret over the word and pressing `space+r` . Then in the command line at the bottom of the screen we just erase/type the name we want to change it to. Finally pressing `enter` confirms the change. This will update the word across our entire codebase. (which is nice).
+> We're renaming `Image` to `Sprite` using the built in rename command in Helix. This is performed by having the caret over the word and pressing `space+r` . Then in the command line at the bottom of the screen we just erase/type the name we want to change it to. Finally pressing `enter` confirms the change. This will update the word across our entire codebase. (which is nice).
 
 We'll soon be moving from our generic Sokoban game, with a player and a box, and adding some actual game design to this base shell. One of the first changes we're making is adding more contextually relevant IDs inside `entity.h`
 
@@ -7323,7 +6932,7 @@ void RenderEntity_OnTile(Sprite* sprite, LevelData* lvl, SDL_Renderer* renderer,
 It has the same exact parameters as `RenderSprite_Grid()` . Also, note how all three of these functions now has a `bool flipped = false` parameter. Note that these are optional parameters so their values will be set to their defaults if not explicitly set.
 
 > [!NOTE]
->  with the addition of a new parameter we need to update the function both in our .h and our .cpp file.
+> with the addition of a new parameter we need to update the function both in our .h and our .cpp file.
 
 Lets look at the changes to `rendering.cpp`
 
@@ -7418,6 +7027,7 @@ else {
 
 `(x + y) % 2` will flip-flop between 1 and 0. So by using the handy `?` operator we can select `Ground` or `Ground_alt` alternating. Then if the ID was not ground we just go ahead and fetch the sprite as normal. This is a bit hacky and we'll most likely be refactoring it soon.
 now we have crispy pixel art, that can be flipped along the x-axis and that leverages the pivot positions we've set to place the entity in the correct position.
+
 
 
 # Scratch Arena and Sprite Sorting
@@ -7541,6 +7151,7 @@ note, this has to be placed above our `RenderEntities()` as it is not defined in
 in our `std::sort` the second parameter `SortedEntities + lvl->entityCount` takes the known `Entity**` then moves down our memory block a number of `Entity*` long steps equal to `entityCount` . To arrive at the last element in the array.
 We pass `IsEntityBelowOtherEntity` as the function itself, that's why we don't add `()` and parameters. We're not calling the function we're telling `sort` to call and use it. The function compares two `Entity*` and because this is what the array points to our compiler knows how to work with this.
 With this we've added our scratch arena and added draw order to our entities!
+
 
 
 # Spawn Commands and active/inactive entities
@@ -7726,6 +7337,7 @@ void Update(Editor* editor, Input* input, LevelData* level, CommandBuffer* buffe
 ```
 
 Now our history works as intended with our add/remove. To clarify why this was important to do now. We already were and will continue to test our game by making temporary levels using our `levelEditor`. It will be extremely bothersome to have our history malfunction and cause issues that we might confuse with mistakes in newly written code. That's why we make sure to squash this bug right away.
+
 
 
 # Scenes and transitions Part I
@@ -8181,6 +7793,7 @@ We can see how we've just lifted the `RenderLevel()` and `RenderEntities()` to t
 With these changes we can start our game from the titlescreen then press any key, watch the screen fade to black before putting us into gameplay!
 
 
+
 # Tilemap parsing
 
 Graphics is very much a non-trivial part of game development. We'll be doing quite extensive refactoring to our codebase to work with a less fragile and more expressive output from Tiled.
@@ -8198,7 +7811,7 @@ if(cell_id == ID::GROUND) {
 }
 ```
 
-We are removing both our `ID::GROUND` and `ID::WALL` from our code. then we'll change the name of `ID` to `ENTITY_ID` as we are no longer storing IDs for our terrain. Now they are exclusive for our Entities. This will touch a lot of our codebase. But at this point you should be familiar enough using your editor (e.g. nvim) to search for, find and update these parts of the code once everything is set up in this chapter.
+We are removing both our `ID::GROUND` and `ID::WALL` from our code. then we'll change the name of `ID` to `ENTITY_ID` as we are no longer storing IDs for our terrain. Now they are exclusive for our Entities. This will touch a lot of our codebase. But at this point you should be familiar enough using Helix to search for, find and update these parts of the code once everything is set up in this chapter.
 We can open Tiled project and inspect it. our `testing.tmx` is our level. It uses three tilesets to draw the level.
 
 1. `automap rules` . This is a tileset from Tiled itself. It was used alongside a feature called `automapping` to help with level creation. The important thing to understand for us is that it is part of the project file.
@@ -8312,7 +7925,7 @@ inside `Get_Tileset_ID_Offset_From_Tilemap()` we use `const auto& tileset` it is
 
 `auto` means that we let our compiler figure out the data type of our `tileset` . We do this because the `nlohmann::json` parser uses more complex data structures behind the scenes to help us work with our JSON file. So we'll let the compiler handle the mapping. `&` put after `auto` will make the `tileset` be a reference to the data from `tmj_result` instead of creating a whole new copy of the data. The size of the data behind the scenes is pretty large, so we wan't to avoid creating a copy of it when there is no need.
 This is not my favorite type of programming, but this syntax style will be contained to the parsing of json files for our game engine. If we can swallow the fact that we don't have full knowledge of the underlying data type hidden by `auto` and that as long as we know how to fetch data from the json using `["name_of_data"]` and `.get<variableType>()` then we can move forward.
-the strings `"tilesets"` and `"firstgid"` are the exact names that I found when opening the .tmj file in your editor (e.g. nvim) to inspect the data inside it.
+the strings `"tilesets"` and `"firstgid"` are the exact names that I found when opening the .tmj file in Helix to inspect the data inside it.
 
 ```cpp
 // tilesetLibrary.cpp
@@ -8349,7 +7962,7 @@ namespace AssetManagement {
 `LoadTileset` then tries and find the file found at `entry->path` and uses the `nlohmann` json parser to turn it from text into something we can use in code. We store the full parsed json data in `auto jsonResult` .
 `tile_count` is fetched by taking our full json data and fetching the data held in `tilecount` . This is a number inside our .tsj file. Note. We are creating our tilesets from our .tsj file(s). Not from the actual level file which is our .tmj . The .tsj file is just our tiles and their custom properties exported from Tiled.
 we allocate our `walkableBuffer` and make it as large as the amount of tiles in our tileset.
-We then fetch the json array holding all our tiles by using `["tiles"]` . You can open our .tsj file in your editor (e.g. nvim) to learn what each array is called. A JSON file is so nice because it is human-readable.
+We then fetch the json array holding all our tiles by using `["tiles"]` . You can open our .tsj file in Helix to learn what each array is called. A JSON file is so nice because it is human-readable.
 We then use the same `const auto&` syntax to fetch each of the entries from the json array. We use `auto` everwhere when working with this parser so we can just ignore the underlying types.
 Inside the for-loop we fetch the id of the tile then we loop over all properties stored on that tile. Currently we only store `walkable` but we can imagine having more attributes for a tile. When the property is `walkable` then we know we can read the value stored in that json array element to figure out if the tile is walkable or not. We assign the `walkableBuffer` array at that index to the parsed value . And as we know (because we've opened and inspected or .tsj file) the name was `walkable` the type was `bool` and the value was `true/false` . So using `.Get<bool>()` we on the value element we can get back `true` or `false` .
 I will happily suggest spending extra time learning how to parse a JSON. But as this step only happens during the Initialization of our program means that we know immediatly if things have worked or not. And thankfully a LLM is a great help when figuring out how to parse a JSON like this. If you provide it the JSON file and what data you want to retrieve it will help you figure out how to get there.
@@ -8495,7 +8108,7 @@ We still parse a json file loaded from the specified path. But once we have that
 - `entities`
 
 To make sure we fetch our data from the correct place we loop over each layer until we find one named "level". When we do we flip the `found` bool to true and collect all the cell ids stored in the "data" array.
-Once again, these names are all just lifted from the JSON file. We open it in your editor to easily inspect its contents.
+Once again, these names are all just lifted from the JSON file. We open it in Helix to easily inspect its contents.
 we then loop over all ids until we find one that is not `0` . We will use this non-zero ID to get the `firstgid` offset of our tileset within our .tmj file.
 
 Then we fetch the width and height without any changes compared to before the refactor.
@@ -8750,6 +8363,7 @@ We create our `tilesetRect` then we set the width and height of the rect to the 
 We convert our x and y coordinates to world space then we set up our destination rect as usual. Accounting for the pivot, camera, scale and global `UPSCALE_FACTOR` .
 Finally we make sure to pass along `&tilesetRect` to our `SDL_RenderTexture` where we previously used `NULL` . Because `NULL` meant use the entire texture.
 now, after this pretty intense chapter we are rewarded with some actually decent graphics to look at. And it makes such a difference! Now adding more tilesets and making changes to them in Tiled will be easy!
+
 
 
 # Sokoban Programming V
@@ -9480,6 +9094,7 @@ With all of this done we now have spritesheet animations for medusa rotating imp
 A lot of systems touched each other in this chapter! Good job getting through this one!
 
 
+
 # Buttons Part I
 
 We're going to create the skeleton of a main menu in this chapter. We'll need buttons, a way to render them and the logic to allow us to press them.
@@ -9960,6 +9575,7 @@ If we have a selected we check if we are pressing enter aka `return` or if we ar
 With this we've added buttons and the collision and pressing of said buttons!
 
 
+
 # Sokoban Programming VI
 
 Before we add goal squares to our project we will be needing code that checks a new layer of our .TMJ file. Currently we have 2 places where we loop over every layer in our `auto result` from `CreateLevel()` and `CreateEntities()` . By adding a third place where we need to type this same for-loop structure we've hit a good benchmark for a helper function.
@@ -10322,6 +9938,7 @@ void UpdateGame(Gameplay* gameplay, Input* input, Arena* arena_scratch, Arena* a
 ```
 
 
+
 # FMOD and Audio
 
 We'll be implementing audio. We are just going to dip our toes into audio systems programming which is really a whole discipline in and of itself. And just as with VFX programming and animation systems there are a lot of terms and concepts that someone has to understand in order to fully grasp the boilerplate.
@@ -10334,7 +9951,7 @@ We'll be using FMOD core even though FMOD studio is far an away the more common 
 To download FMOD core you need to create a free account over at https://www.fmod.com/download#fmodengine . Once that is done you should have downloaded the FMOD Engine installer. Once that is loaded and run you'll find that included in the install directory `FMOD SoundSystem\FMOD Studio API Windows\api\core` is the core folder with an `inc` and a `lib` folder. Copy over the contents of each into your project in the project folder with the same name.
 
 > [!NOTE]
->  On Linux, the FMOD API is installed at a path like `/opt/fmodstudio/api/core/` or wherever you extract it. The `lib` folder will contain `.so` files instead of `.lib`/`.dll`. You'll need to link against `libfmod.so` in your CMakeLists.txt using `target_link_libraries` and set the `LD_LIBRARY_PATH` or use `rpath` to point to the FMOD library location.
+> On Linux, the FMOD API is installed at a path like `/opt/fmodstudio/api/core/` or wherever you extract it. The `lib` folder will contain `.so` files instead of `.lib`/`.dll`. You'll need to link against `libfmod.so` in your CMakeLists.txt using `target_link_libraries` and set the `LD_LIBRARY_PATH` or use `rpath` to point to the FMOD library location.
 
 For my `include` folder I decided to put all fmod .h files into a `FMOD` subdirectory.
 In the `lib` folder, look for the `x64` folder inside. In my own projects `lib` folder I've opted for putting the FMOD `.so` files into a `FMOD` subdirectory as well.
@@ -10580,6 +10197,7 @@ if(!IsActing(entity)) {
 ```
 
 Now we can build our game and hear our fallback sound effect each time the player takes a step!
+
 
 
 # Animation III
@@ -10884,6 +10502,7 @@ void camera::GridToWorld(float* x, float* y, const LevelData* lvl) {
 that I believe should do the trick!
 
 
+
 # Music
 
 With FMOD core implemented it's easy to set up music playback. But because a music track can be very large and a game might have a lot of tracks playing throughout the game we can't really pre-load all music as we do for our sound effects. Instead we'll be streaming the music a few bytes at a time.
@@ -10961,6 +10580,7 @@ void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer) {
 ```
 
 That's it! Now we can play music by streaming our audio!
+
 
 
 # Parallax
@@ -11076,6 +10696,7 @@ This is the basics of parallax. We adjust the position of something in relations
 That's it!
 
 
+
 # Text
 
 We can of course already render text if each time we want to do so we just create a bespoke sprite and use that as a text-proxy. But this is not a good way of doing it an neither is it industry standard. What we'll be doing is rendering text one character at a time by taking a font and converting it to a `SDL_Texture` .
@@ -11084,7 +10705,7 @@ To convert a font into a texture we need to work with some external library (or 
 the `SDL_TTF` github is at: https://github.com/libsdl-org/SDL_ttf after navigating to Releases we're downloading `SDL3_ttf-devel-3.2.2-VC.zip`
 
 > [!NOTE]
->  On Linux, you can install SDL_ttf via your package manager. For Arch Linux: `sudo pacman -S sdl3_ttf`. For Debian/Ubuntu: `sudo apt install libsdl3-ttf-dev`. The `.so` files and headers will be installed to system paths, so you may not need to manually copy them. You'll need to link against `SDL3_ttf::SDL3_ttf` in CMake.
+> On Linux, you can install SDL_ttf via your package manager. For Arch Linux: `sudo pacman -S sdl3_ttf`. For Debian/Ubuntu: `sudo apt install libsdl3-ttf-dev`. The `.so` files and headers will be installed to system paths, so you may not need to manually copy them. You'll need to link against `SDL3_ttf::SDL3_ttf` in CMake.
 
 after having unziped our file we will find the `SDL_textengine.h` and `SDL_ttf.h` in `include` and add it to our own. I've opted to put these two .h files into their own subdirectory inside `include` that I've named `SDL_TTF` .
 we also need `libSDL3_ttf.so` and `libSDL3_ttf.a` (on Linux). These are going into their own subdirectory inside our `lib` folder. I've named their subdirectory `SDL_TTF` just as I did for our `include` folder.
@@ -11329,7 +10950,6 @@ case SCENE_TYPES::MAINMENU:
 ```
 
 This is the basics of working with fonts and rendering text!
-
 
 # Buttons Part II
 
@@ -11702,6 +11322,7 @@ void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer) {
 Now we can give a button text to render. That's cool!
 
 
+
 # Intermission I - Creating a release candidate
 
 Sometime, not very likely for this project, we will want to be able to collect only the files we want to ship to our consumers. Our cache folder, ninja output and cmake files that are generated alongside our shared library and executable are not something we should ship to our consumers.
@@ -11716,7 +11337,7 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/assets DESTINATION .)
 ```
 
 > [!NOTE]
->  On Linux, `install(TARGETS ... RUNTIME DESTINATION .)` will place the executable and shared library (`.so`) files correctly. The `DLL_FILES` variable should reference the `.so` files you need to ship (e.g., `libSDL3.so`, `libfmod.so`). You may need to set `LD_LIBRARY_PATH` or use `rpath` so the executable can find the `.so` files at runtime.
+> On Linux, `install(TARGETS ... RUNTIME DESTINATION .)` will place the executable and shared library (`.so`) files correctly. The `DLL_FILES` variable should reference the `.so` files you need to ship (e.g., `libSDL3.so`, `libfmod.so`). You may need to set `LD_LIBRARY_PATH` or use `rpath` so the executable can find the `.so` files at runtime.
 
 We're adding the following four `install()` function calls at the very bottom of our `cmakelists.txt` . These functions only run if the `--install` parameter has been passed to the compiler. Meaning that if we run `cmake --build` as we usually do, these won't fire.
 `TARGETS` are references to things that Cmake builds, in this case our executable and shared library are added. We also add the `RUNTIME` parameter to `${DLL_NAME}` so cmake doesn't also add the `"nameofgame"_game.a` the `.a` files is only used during linking to give access to the contents of the shared library once linking is finished this is not a file that is needed. `DESTINATION .` (note the '.') means that the place where the files will show up is at the same folder that we will specify when calling `--install` from a newly created function inside our `~/.bashrc`
@@ -11793,7 +11414,7 @@ We also need a `buildPreset` so we can tell which `configurePreset` should be us
 lastly we need to create our `release()` function inside `~/.bashrc`
 
 > [!NOTE]
->  Add the following to your `~/.bashrc` or `~/.zshrc` instead of `$profile`. You'll also need the `goto` and `GetConfig` helper functions if you use them.
+> Add the following to your `~/.bashrc` or `~/.zshrc` instead of `$profile`. You'll also need the `goto` and `GetConfig` helper functions if you use them.
 
 ```bash
 function release() {
@@ -11875,14 +11496,15 @@ then we do the new part, we tell cmake to `--install` from our build folder and 
 the `install()` functions in `cmakelists.txt` , our new `buildPresets` and `configurePresets` in `cmakePresets.json` and this new `release` function are all the things we need to create our optimized and stripped down release candidate.
 
 
+
 # Intermission II - Debugging in Visual Studio
 
 We want to be able to understand the flow of our code, and peek at variables to look at their values. We do this by using a debugger.
 
 > [!NOTE]
->  On Linux, we don't use Visual Studio. Instead, we can use:
-> - **GDB** (GNU Debugger) — a command-line debugger, usable with your editor (e.g. nvim with `vim-dap` or `gdb` integration)
-> - **LLDB** — the LLVM debugger, works great with Clang
+> On Linux, we don't use Visual Studio. Instead, we can use:
+> - **GDB** (GNU Debugger) -- a command-line debugger, usable with Helix (with `vim-dap` or `gdb` integration)
+> - **LLDB** -- the LLVM debugger, works great with Clang
 > - **VS Code** with the C++ extension as a lightweight debugger GUI
 > - **Qt Creator** or **CLion** as full IDEs with debugging support
 >
@@ -11912,6 +11534,7 @@ We might also want to pause execution on a line of code, but only if a certain v
 There is more we can do with breakpoints but this covers the fundamentals!
 
 
+
 # Intermission III - Github Part I
 
 What if we chuked our laptop into the sea? Then everything we had been working on would be lost. This won't do.
@@ -11924,7 +11547,7 @@ If someone on our team has pushed a commit to our repository on Github using Git
 When we have changes we commit them then push them. When we want to download the latest changes from github then we fetch them to see if any existed, then pull them into our machine.
 
 > [!NOTE]
->  On Linux, we can use Git via the terminal directly (no need for PowerShell). The basic commands are the same:
+> On Linux, we can use Git via the terminal directly (no need for PowerShell). The basic commands are the same:
 > - `git init` to create a new repository
 > - `git add .` to stage all changes
 > - `git commit -m "message"` to commit
@@ -11942,7 +11565,7 @@ https://desktop.github.com/download/
 Besides the Github Desktop client we will also need an account on github.com.
 
 > [!NOTE]
->  This account will be your portfolio, this if maintained nicely will be a huge asset for you when applying for internships and work. So please pick a sensible account name.
+> This account will be your portfolio, this if maintained nicely will be a huge asset for you when applying for internships and work. So please pick a sensible account name.
 
 Once our account is set up we can log in to Github Desktop.
 Now we can use file->new repository to start working on a new project. Or if we have the URL to a github project that we've been invited to collaborate on we can clone that repository from file->clone repository
@@ -11950,4 +11573,6 @@ Once we have our repository locally we can start commiting changes and pushing a
 For a more in-depth look, check out the documentation: https://docs.github.com/en/desktop
 With this we can do the very basics in Github.
 Later you will learn about branches and pull requests and merge conflicts .
+
+
 

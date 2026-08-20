@@ -15,7 +15,7 @@ if(cell_id == ID::GROUND) {
 }
 ```
 
-We are removing both our `ID::GROUND` and `ID::WALL` from our code. then we'll change the name of `ID` to `ENTITY_ID` as we are no longer storing IDs for our terrain. Now they are exclusive for our Entities. This will touch a lot of our codebase. But at this point you should be familiar enough using your editor (e.g. nvim) to search for, find and update these parts of the code once everything is set up in this chapter.
+We are removing both our `ID::GROUND` and `ID::WALL` from our code. then we'll change the name of `ID` to `ENTITY_ID` as we are no longer storing IDs for our terrain. Now they are exclusive for our Entities. This will touch a lot of our codebase. But at this point you should be familiar enough using Helix to search for, find and update these parts of the code once everything is set up in this chapter.
 We can open Tiled project and inspect it. our `testing.tmx` is our level. It uses three tilesets to draw the level.
 
 1. `automap rules` . This is a tileset from Tiled itself. It was used alongside a feature called `automapping` to help with level creation. The important thing to understand for us is that it is part of the project file.
@@ -129,7 +129,7 @@ inside `Get_Tileset_ID_Offset_From_Tilemap()` we use `const auto& tileset` it is
 
 `auto` means that we let our compiler figure out the data type of our `tileset` . We do this because the `nlohmann::json` parser uses more complex data structures behind the scenes to help us work with our JSON file. So we'll let the compiler handle the mapping. `&` put after `auto` will make the `tileset` be a reference to the data from `tmj_result` instead of creating a whole new copy of the data. The size of the data behind the scenes is pretty large, so we wan't to avoid creating a copy of it when there is no need.
 This is not my favorite type of programming, but this syntax style will be contained to the parsing of json files for our game engine. If we can swallow the fact that we don't have full knowledge of the underlying data type hidden by `auto` and that as long as we know how to fetch data from the json using `["name_of_data"]` and `.get<variableType>()` then we can move forward.
-the strings `"tilesets"` and `"firstgid"` are the exact names that I found when opening the .tmj file in your editor (e.g. nvim) to inspect the data inside it.
+the strings `"tilesets"` and `"firstgid"` are the exact names that I found when opening the .tmj file in Helix to inspect the data inside it.
 
 ```cpp
 // tilesetLibrary.cpp
@@ -166,7 +166,7 @@ namespace AssetManagement {
 `LoadTileset` then tries and find the file found at `entry->path` and uses the `nlohmann` json parser to turn it from text into something we can use in code. We store the full parsed json data in `auto jsonResult` .
 `tile_count` is fetched by taking our full json data and fetching the data held in `tilecount` . This is a number inside our .tsj file. Note. We are creating our tilesets from our .tsj file(s). Not from the actual level file which is our .tmj . The .tsj file is just our tiles and their custom properties exported from Tiled.
 we allocate our `walkableBuffer` and make it as large as the amount of tiles in our tileset.
-We then fetch the json array holding all our tiles by using `["tiles"]` . You can open our .tsj file in your editor (e.g. nvim) to learn what each array is called. A JSON file is so nice because it is human-readable.
+We then fetch the json array holding all our tiles by using `["tiles"]` . You can open our .tsj file in Helix to learn what each array is called. A JSON file is so nice because it is human-readable.
 We then use the same `const auto&` syntax to fetch each of the entries from the json array. We use `auto` everwhere when working with this parser so we can just ignore the underlying types.
 Inside the for-loop we fetch the id of the tile then we loop over all properties stored on that tile. Currently we only store `walkable` but we can imagine having more attributes for a tile. When the property is `walkable` then we know we can read the value stored in that json array element to figure out if the tile is walkable or not. We assign the `walkableBuffer` array at that index to the parsed value . And as we know (because we've opened and inspected or .tsj file) the name was `walkable` the type was `bool` and the value was `true/false` . So using `.Get<bool>()` we on the value element we can get back `true` or `false` .
 I will happily suggest spending extra time learning how to parse a JSON. But as this step only happens during the Initialization of our program means that we know immediatly if things have worked or not. And thankfully a LLM is a great help when figuring out how to parse a JSON like this. If you provide it the JSON file and what data you want to retrieve it will help you figure out how to get there.
@@ -312,7 +312,7 @@ We still parse a json file loaded from the specified path. But once we have that
 - `entities`
 
 To make sure we fetch our data from the correct place we loop over each layer until we find one named "level". When we do we flip the `found` bool to true and collect all the cell ids stored in the "data" array.
-Once again, these names are all just lifted from the JSON file. We open it in your editor to easily inspect its contents.
+Once again, these names are all just lifted from the JSON file. We open it in Helix to easily inspect its contents.
 we then loop over all ids until we find one that is not `0` . We will use this non-zero ID to get the `firstgid` offset of our tileset within our .tmj file.
 
 Then we fetch the width and height without any changes compared to before the refactor.

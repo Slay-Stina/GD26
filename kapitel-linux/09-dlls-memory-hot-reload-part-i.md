@@ -81,7 +81,7 @@ set(EXE_EXCLUSIVE
 )
 ```
 
-Here we store all .cpp files we want to have included with our executable in a single array that we've named `EXE_EXCLUSIVE` — should we need more files to be compiled into our executable we will have to manually modify this list.
+Here we store all .cpp files we want to have included with our executable in a single array that we've named `EXE_EXCLUSIVE` -- should we need more files to be compiled into our executable we will have to manually modify this list.
 
 > [!NOTE]
 > Another method is to take all the .cpp files we want to have and store them in a separate subdirectory then point our functions towards that folder. But this time we'll do the manual work.
@@ -138,7 +138,7 @@ reload() {
 ```
 
 1. It uses a config file to fetch the path to our build folder
-2. Inside the build folder, it looks for a file called `CMakeCache.txt` — this is automatically added by cmake when it is being configured
+2. Inside the build folder, it looks for a file called `CMakeCache.txt` -- this is automatically added by cmake when it is being configured
 3. We read the contents of our Cache looking for the line of text that includes the `CMAKE_PROJECT_NAME:STATIC` text. We then store the name of our game in the `projectName` variable
 4. We then tell cmake to build the project again, but only the target named `NameOfOurProject_game`
 
@@ -219,7 +219,7 @@ int main(){
 In this program we:
 
 1. Create a few structs: `MemoryArena`, `GameData`, `Character`
-   Then we use these structs to hold variables, and our `GameData` struct holds `Character` structs itself. But notice how the variable name is `characters` in plural, but we only store a single pointer — this should mean that we are only storing a single character. We are actually storing a collection of characters inside memory by pointing to the first character only. We'll get back to how that is set up once we have a better understanding of the program in its entirety.
+   Then we use these structs to hold variables, and our `GameData` struct holds `Character` structs itself. But notice how the variable name is `characters` in plural, but we only store a single pointer -- this should mean that we are only storing a single character. We are actually storing a collection of characters inside memory by pointing to the first character only. We'll get back to how that is set up once we have a better understanding of the program in its entirety.
 
 2. We create our `MemoryArena` struct
    > [!NOTE]
@@ -227,20 +227,20 @@ In this program we:
 
 This struct holds very little in terms of stuff, but is very powerful. Our three variables are:
 
-- `unsigned char* base;` — This a pointer to the first address in memory of our arena. We need to use an `unsigned char*` instead of a `void*` as this allows us to add a number to our base to move further down our block of memory. If we had our pointer as a `void*` it would need to be cast all the time before we attempt to do arithmetic (+, -, x, etc).
+- `unsigned char* base;` -- This a pointer to the first address in memory of our arena. We need to use an `unsigned char*` instead of a `void*` as this allows us to add a number to our base to move further down our block of memory. If we had our pointer as a `void*` it would need to be cast all the time before we attempt to do arithmetic (+, -, x, etc).
   > [!NOTE]
   > we will learn about casting a bit later in this lecture
-- `size_t size;` — `size_t` is a type of variable, like an int, that holds a whole number, but `size_t` is larger than an `int` and especially made to help us store how big something is. `size_t` is also unsigned, meaning that compared to a int it can't store a negative number. This variable is meant to tell us how large our memory block is, whilst the `unsigned char*` pointer above just tells us where it starts.
-- `size_t used;` — We update this variable each time we specify what the next piece of memory is used for. So we know we aren't overwriting other parts of our memory when adding new things to it. Also, by resetting this to 0 we actually delete all memory in the arena all at once. We do this in the `Arena_Reset()` function
+- `size_t size;` -- `size_t` is a type of variable, like an int, that holds a whole number, but `size_t` is larger than an `int` and especially made to help us store how big something is. `size_t` is also unsigned, meaning that compared to a int it can't store a negative number. This variable is meant to tell us how large our memory block is, whilst the `unsigned char*` pointer above just tells us where it starts.
+- `size_t used;` -- We update this variable each time we specify what the next piece of memory is used for. So we know we aren't overwriting other parts of our memory when adding new things to it. Also, by resetting this to 0 we actually delete all memory in the arena all at once. We do this in the `Arena_Reset()` function
 
 3. We've created three functions:
-   - `Arena_Add()` — This function tells our memory arena to tag a portion of memory as used.
-   - `Arena_Initialize()` — This function sets up the memory arena by setting up the values of our struct.
-   - `Arena_Reset()` — This function sets the size of our `size_t used` variable to 0, meaning that to the memory arena no part of memory is tagged and should something new be added into memory then it will write it at the start of the memory block.
+   - `Arena_Add()` -- This function tells our memory arena to tag a portion of memory as used.
+   - `Arena_Initialize()` -- This function sets up the memory arena by setting up the values of our struct.
+   - `Arena_Reset()` -- This function sets the size of our `size_t used` variable to 0, meaning that to the memory arena no part of memory is tagged and should something new be added into memory then it will write it at the start of the memory block.
 
-But before we can use this memory arena we need to find a place in memory where we can store our continuous chunk. In other applications where we create and free memory willy-nilly our memory lives all over our heap — in this program we will store all our memory in one location and once we're done with it we will free it all at once. The upside to this is:
+But before we can use this memory arena we need to find a place in memory where we can store our continuous chunk. In other applications where we create and free memory willy-nilly our memory lives all over our heap -- in this program we will store all our memory in one location and once we're done with it we will free it all at once. The upside to this is:
 
-1. We know that our program will not crash due to insufficient memory — if it starts up then we know we managed to allocate enough memory.
+1. We know that our program will not crash due to insufficient memory -- if it starts up then we know we managed to allocate enough memory.
 2. Our memory lives in tidy blocks on our heap, making accessing them faster as the CPU doesn't have to go back to RAM as often to fetch a chunk of memory.
 
 ```cpp
@@ -280,7 +280,7 @@ gameData->character_count = 10;
 gameData->score = 0;
 ```
 
-Here we must take a moment to learn about **casting** — casting is the process of telling our compiler that we want to take data that is one type, and treat it as if it were another type. Not all types can be cast to each other, but the `void*` returned from our `Add_To_Arena` function can be cast into any other pointer.
+Here we must take a moment to learn about **casting** -- casting is the process of telling our compiler that we want to take data that is one type, and treat it as if it were another type. Not all types can be cast to each other, but the `void*` returned from our `Add_To_Arena` function can be cast into any other pointer.
 
 ```cpp
 float decimalValue = 2.5;

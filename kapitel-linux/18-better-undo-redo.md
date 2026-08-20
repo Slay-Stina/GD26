@@ -65,7 +65,7 @@ bool TryMove(Entity* mover, LevelData* level, CommandBuffer* cmd_buffer, int xDi
 ```
 
 Now at all locations in `game.cpp` where we call `TryMove()` and `Push()` we need to provide the timestamp from our `GameData* data` .
-Your editor will provide us with errors at all locations where this has not been done yet. To go between errors in your editor (e.g. nvim) we can find all the calls for `TryMove()` and `Push()` . We can also go to the function declaration and with the caret over the function name we can press `g-r` to get a list of everywhere the function is being used.
+Helix will provide us with errors at all locations where this has not been done yet. To go between errors in Helix we can find all the calls for `TryMove()` and `Push()` . We can also go to the function declaration and with the caret over the function name we can press `g-r` to get a list of everywhere the function is being used.
 With this done we need to add logic to our `Undo()` and `Redo()` functions inside `command.cpp`
 
 ```cpp

@@ -2,7 +2,7 @@
 
 > **Linux:** This chapter is adapted for Linux.
 
-Remember SDL3, CMake, and Ninja — we're going to ignore those for now as we will need to learn more about C++ before we can honestly start working with SDL3. Soon 95%+ percent of all code we'll write will be C++, only writing bash script or CMake syntax from time to time.
+Remember SDL3, CMake, and Ninja -- we're going to ignore those for now as we will need to learn more about C++ before we can honestly start working with SDL3. Soon 95%+ percent of all code we'll write will be C++, only writing bash script or CMake syntax from time to time.
 
 The next step is to create a new empty .cpp file, open it, write some code, then use clang to compile it. Once that is done we run it. The reason we can do this is that we're just compiling a single C++ script, no need for a build system generator (CMake), instructions (CMakeLists.txt) or a build system (Ninja) because we require no linking or multiple files that need to be compiled together.
 
@@ -11,6 +11,7 @@ We need to update our directory to somewhere we can create and access a small .c
 We will instead create a little function in `~/.bashrc` to help us get things set up.
 
 > [!NOTE]
+> 
 > I like the convenience of the following setup as I will show you a bunch of coding examples throughout the course.
 
 ```bash
@@ -18,11 +19,11 @@ practice() {
   cd "$projectDir/PRACTICE" || return 1
   local name="${1:-example}"
   touch "$name.cpp"
-  your-editor "$name.cpp"
+  hx "$name.cpp"
 }
 ```
 
-This function sets our working directory to a folder I've already created. The path will not be the same on your computer, it depends on where you decided to create your folder. I create a new file called `example.cpp`. I then run your editor (e.g. nvim) opening up that newly created file.
+This function sets our working directory to a folder I've already created. The path will not be the same on your computer, it depends on where you decided to create your folder. I create a new file called `example.cpp`. I then run Helix opening up that newly created file.
 
 Now we need a function to help us compile and run this small program:
 
@@ -62,11 +63,11 @@ else {
 
 With this in mind, let's break down the function: using our system environment variable `PATH` to the folder containing `clang++` we get to call into it without specifying ITS/FULL/PATH. What follows are a set of instructions to clang:
 
-- `example.cpp` — the name of the file we want to compile
-- `-std=c++23` — tells clang++ to use C++ version 23, this will help us make some simpler code later
-- `-o example` — specifies the name of the output file, namely `example`. Without `-o`, the program is given the default name `a.out`.
-- `&&` — run the next command only if the previous command succeeded (exit code 0)
-- `./"$name"` — look for a file in this directory called `example` and run it. On Linux, executables have no `.exe` extension.
+- `example.cpp` -- the name of the file we want to compile
+- `-std=c++23` -- tells clang++ to use C++ version 23, this will help us make some simpler code later
+- `-o example` -- specifies the name of the output file, namely `example`. Without `-o`, the program is given the default name `a.out`.
+- `&&` -- run the next command only if the previous command succeeded (exit code 0)
+- `./"$name"` -- look for a file in this directory called `example` and run it. On Linux, executables have no `.exe` extension.
 
 After saving our `~/.bashrc` file we need to reload it before these two newly created functions can be found. Running this simple line of code does the trick:
 
@@ -138,7 +139,7 @@ void AddNumbers(int a, int b){
 
 A return type of `void` means that the function doesn't return anything. And therefore a `return X` line is not added (as that would create an error). By introducing two integers (`int a` and `int b`) to the parenthesis of the function we have declared that anyone using this function must provide two integers separated by a `,`.
 
-There are many ways of printing something to the console. The `println` function can't work with an integer directly. Other methods like `cout` can. By adding `"{}"` as the first parameter to `println` it can take the second parameter (in our case the number 15) and replace the placeholder `"{}"` with it later. But don't worry, there was really no way for you to know this, and no way from reading the code for us to understand this syntax — some parts of how code is written we kinda just gotta learn.
+There are many ways of printing something to the console. The `println` function can't work with an integer directly. Other methods like `cout` can. By adding `"{}"` as the first parameter to `println` it can take the second parameter (in our case the number 15) and replace the placeholder `"{}"` with it later. But don't worry, there was really no way for you to know this, and no way from reading the code for us to understand this syntax -- some parts of how code is written we kinda just gotta learn.
 
 If we use the following program instead, including `<iostream>` instead of `<print>` and working with the older `cout` syntax, we can get the same result with a program that looks like this instead:
 
@@ -154,7 +155,7 @@ int main(){
 }
 ```
 
-But notice those strange `<<` — we will not be seeing them in any other setting than these practice functions. Thankfully SDL3 has a helpful function that works like `println` but can accept more types of data without needing the strange placeholder `"{}"`.
+But notice those strange `<<` -- we will not be seeing them in any other setting than these practice functions. Thankfully SDL3 has a helpful function that works like `println` but can accept more types of data without needing the strange placeholder `"{}"`.
 
 Let's learn about scope. The newly created integer variable `result` is only available inside the curly braces of the function. Once the code reaches the end of the last line, all locally scoped variables are cleaned up.
 
@@ -183,7 +184,7 @@ Now we can clearly see the difference between the function itself and calling th
 > [!NOTE]
 > With even simple Unity projects taking AGES to compile, I would like to stress the importance of a design decision as this one.
 
-Swapping the position of the `AddNumbers()` and `main()` functions, then compiling and running our program, it spits out 15 — the combined total of the two values we passed to the function (5 and 10) that are then printed to the console via the `println()` function. After that we hit the `return 0` and the program closes.
+Swapping the position of the `AddNumbers()` and `main()` functions, then compiling and running our program, it spits out 15 -- the combined total of the two values we passed to the function (5 and 10) that are then printed to the console via the `println()` function. After that we hit the `return 0` and the program closes.
 
 What we've created is sorta the world's slowest and worst calculator. But it has taught us a few things:
 
@@ -335,7 +336,7 @@ int main(){
 
 First we create two variables, both `int`s. Then we use a minus `-` and an assignment operator `=` to subtract the value of `enemyDamage` from `playerHealth` and store the result back in `playerHealth`. If we just typed `playerHealth - enemyDamage` without the assignment operator then the resulting value `4` would not be stored anywhere and no change would be assigned to `playerHealth`.
 
-We then create a `bool` variable. The statement after the assignment operator can only be either `true` or `false` — either `playerHealth` is above or equal to 0 or it isn't.
+We then create a `bool` variable. The statement after the assignment operator can only be either `true` or `false` -- either `playerHealth` is above or equal to 0 or it isn't.
 
 What follows is a common part of programming: an `if` statement followed by an `else` statement. The question being answered in the parenthesis of the `if`-statement is responsible for deciding if the code flow enters the scope of the `if` or the `else`.
 

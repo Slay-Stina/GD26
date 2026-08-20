@@ -24,11 +24,11 @@ root/
 └── src/
 ```
 
-- **build/** — holds the compiled version of our game
-- **include/** — holds header files (.h)
-- **lib/** — holds any static libraries we might need
-- **assets/** — sound effects, PNGs, etc
-- **src/** — all script files (.cpp, .h) that we create ourselves
+- **build/** -- holds the compiled version of our game
+- **include/** -- holds header files (.h)
+- **lib/** -- holds any static libraries we might need
+- **assets/** -- sound effects, PNGs, etc
+- **src/** -- all script files (.cpp, .h) that we create ourselves
 
 ## Setting up SDL3
 
@@ -54,10 +54,10 @@ No manual downloading or copying of DLLs needed.
 
 ## Editor
 
-For this course, we will be writing our code in **your editor (e.g. nvim)** (Neovim). You can also use VS Code or any editor you prefer.
+For this course, we will be writing our code in **Helix**. You can also use VS Code or any editor you prefer.
 
 > [!NOTE]
-> your editor (e.g. nvim) is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
+> Helix is a terminal-based editor. To quit: press Escape to ensure you're in Normal Mode, then type `:q` and press Enter.
 
 ## bash and environment variables
 
@@ -70,7 +70,7 @@ We can create small functions that bash can call on. A function is a collection 
 Open it with:
 
 ```bash
-your-editor ~/.bashrc
+hx ~/.bashrc
 ```
 
 Add our functions at the bottom of the file.
@@ -129,7 +129,7 @@ dev() {
     cd "$path/src" || return 1
 
     export GAMEPROJECT="$project"
-    your-editor main.cpp
+    hx main.cpp
 }
 ```
 
@@ -138,7 +138,7 @@ This function:
 2. If the project doesn't exist in JSON, return with an error
 3. Changes directory to the project's `src/` folder
 4. Saves the project name to an environment variable
-5. Opens the main file in your editor
+5. Opens the main file in Helix
 
 ## JSON configuration
 
@@ -319,7 +319,7 @@ int main() {
 }
 ```
 
-> **Linux:** The book uses `#include <windows.h>` and `Sleep(2000)` — windows.h doesn't exist on Linux. SDL3 has `SDL_Delay()` which does the same thing.
+> **Linux:** The book uses `#include <windows.h>` and `Sleep(2000)` -- windows.h doesn't exist on Linux. SDL3 has `SDL_Delay()` which does the same thing.
 
 Build and run:
 
@@ -341,7 +341,7 @@ You have now learned:
 - How to set up a development environment
 - Environment variables
 - File and folder structure for game projects
-- How to work with text editors (your editor (e.g. nvim))
+- How to work with text editors (Helix)
 - The relationship between build systems (CMake, Ninja) and compilers (Clang++)
 - How to install and integrate external libraries (SDL3 via package manager + find_package)
 - How to create and use functions with parameters

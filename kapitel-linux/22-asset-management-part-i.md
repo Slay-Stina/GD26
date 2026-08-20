@@ -5,7 +5,7 @@ Another issue is that we have to pass each `Image*` manually when we want to pas
 We're making two changes to start with, we're removing everything inside `image.h/cpp` and instead creating `spriteLibarary.h/cpp` . We're also taking our `Image` struct and changing its name to `Sprite` .
 
 > [!NOTE]
-> We're renaming `Image` to `Sprite` using the built in rename command in your editor (e.g. nvim). This is performed by having the caret over the word and pressing `space+r` . Then in the command line at the bottom of the screen we just erase/type the name we want to change it to. Finally pressing `enter` confirms the change. This will update the word across our entire codebase. (which is nice).
+> We're renaming `Image` to `Sprite` using the built in rename command in Helix. This is performed by having the caret over the word and pressing `space+r` . Then in the command line at the bottom of the screen we just erase/type the name we want to change it to. Finally pressing `enter` confirms the change. This will update the word across our entire codebase. (which is nice).
 
 We'll soon be moving from our generic Sokoban game, with a player and a box, and adding some actual game design to this base shell. One of the first changes we're making is adding more contextually relevant IDs inside `entity.h`
 

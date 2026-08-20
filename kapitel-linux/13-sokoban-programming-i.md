@@ -12,15 +12,15 @@ To make a Sokoban game we need to:
 2. Have entities on that grid that can move and be interacted with
 3. Load a level and populate it with the relevant entities
 
-I will be creating three .PNG files: `ground.png`, `player.png` and `wall.png` — all are 32x32px squares. We'll add these to our `assets/sprites` folder.
+I will be creating three .PNG files: `ground.png`, `player.png` and `wall.png` -- all are 32x32px squares. We'll add these to our `assets/sprites` folder.
 
 We will be using a software called **Tiled** to create our levels. Download Tiled from tiled.com.
 
 Inside Tiled we'll create a new tileset importing our three PNGs. Then we create two layers: `level` and `entities`. We can then create a map and using our tileset we can draw our level. Once we are happy with our test level we can export it from File > Export As, give it a name and export it as a JSON file that will have the file extension of `.tmj`.
 
-Opening our exported `.tmj` file inside your editor (e.g. nvim) we can look at the different fields. The json element `layers` has two sub-elements, each with a couple of fields — `data` and `id` are the most important to consider at the moment.
+Opening our exported `.tmj` file inside Helix we can look at the different fields. The json element `layers` has two sub-elements, each with a couple of fields -- `data` and `id` are the most important to consider at the moment.
 
-> **Linux:** Use your editor (e.g. nvim) to open `.tmj` files instead of `subl` on Windows.
+> **Linux:** Use Helix to open `.tmj` files instead of `subl` on Windows.
 
 We need a JSON parser. A very good JSON parser comes from nlohmann and is a single .h file. Download the `json.hpp` file from https://github.com/nlohmann/json. Place it in `include/Parsers/`.
 
